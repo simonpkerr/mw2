@@ -1,0 +1,17 @@
+sk_media_api_bundle:
+    type: rest
+    resource: "@SkMediaApiBundle/Resources/config/routing.yml"
+    prefix:   /api
+
+fos_comment_bundle:
+    type: rest
+    resource: "@FOSCommentBundle/Resources/config/routing.yml"
+    prefix: /fosapi
+
+sk_comment:
+    resource: "@SkCommentBundle/Controller/"
+    type:     annotation
+    prefix:   /
+    
+
+

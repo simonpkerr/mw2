@@ -1,0 +1,4 @@
+sk_media_api:
+    type: rest
+    resource: Sk\MediaApiBundle\Controller\DefaultController
+    name_prefix: sk_media_api_

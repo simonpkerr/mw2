@@ -1,0 +1,20 @@
+security:
+    providers:
+        in_memory:
+            memory: ~
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        default:
+            anonymous: ~
+dunglas_angular_csrf:
+    cookie:
+        set_on:
+            - { path: ^/$ }
+            - { route: ^app_, methods: [GET, HEAD] }
+    secure:
+        - { path: ^/api, methods: [POST, PUT, PATCH, LINK] }
+        - { route: ^sk_media_api_ }
