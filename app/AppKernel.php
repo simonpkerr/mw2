@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Sk\MediaApiBundle\SkMediaApiBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Dunglas\AngularCsrfBundle\DunglasAngularCsrfBundle(),
+            //new Sk\FrontEndBundle\SkFrontEndBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

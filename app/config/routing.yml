@@ -1,3 +1,8 @@
+#sk_front_end:
+#    resource: "@SkFrontEndBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+
 sk_media_api_bundle:
     type: rest
     resource: "@SkMediaApiBundle/Resources/config/routing.yml"

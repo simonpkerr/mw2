@@ -14,9 +14,10 @@ var mwApp = angular.module('MWApp', [
   'mwServices'
   
 ]),
+  //viewBase = '../web/bundles/Sk/public/app/';
   viewBase = '';
 
-//../bundles/Sk/public/app/
+
 mwApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.

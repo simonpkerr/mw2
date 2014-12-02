@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/comments")
      * @Template("SkCommentBundle:Default:index.html.twig")
      */
     public function indexAction($name = 'simon')
