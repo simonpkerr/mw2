@@ -56,4 +56,15 @@ class DefaultController extends Controller
 
         return $this->getViewHandler()->handle($view);
     }
+    
+    /**
+     * Get a wall.
+     * Gets a collection of Amazon listings and caches them.
+     * Then returns 5 random results  
+     * 
+     * @return View
+     */
+    public function getMemoryWall(){
+        
+    }
 }
