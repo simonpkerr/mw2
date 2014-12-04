@@ -12,9 +12,6 @@ class DefaultController extends Controller
      * @Route("/")
      * @Template("SkFrontEndBundle:Default:index.html.twig")
      * 
-     * DOES THIS NEED TO BE HERE ONLY TO INITIALISE THE CSRF TOKEN
-     * THEN IT WORKS? WHEN INITIALISING THIS FOR THE FIRST TIME, IT DIDN'T
-     * WORK WITHOUT THE FRONT END BUNDLE
      * 
      */
     public function indexAction()

@@ -45,7 +45,7 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test', 'karma']
       },
       compass: {
-        files: ['<%= yeoman.app %>/styles/scss/*.{scss,sass}'],
+        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['compass:server', 'autoprefixer']
       },
       gruntfile: {
@@ -147,12 +147,15 @@ module.exports = function (grunt) {
 
     // Add vendor prefixed styles
     autoprefixer: {
+      options: {
+        browsers: ['last 1 version']
+      },
       dist: {
         files: [{
           expand: true,
-          //cwd: '<%= yeoman.app %>/styles/css',
-          src: '<%= yeoman.app %>/styles/css/*.css'
-          //dest: '<%= yeoman.app %>/styles/css/compiled/main.css'
+          cwd: '.tmp/styles/',
+          src: '{,*/}*.css',
+          dest: '.tmp/styles/'
         }]
       }
     },
@@ -172,8 +175,8 @@ module.exports = function (grunt) {
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
       options: {
-        sassDir: '<%= yeoman.app %>/styles/scss',
-        cssDir: '<%= yeoman.app %>/styles/css',
+        sassDir: '<%= yeoman.app %>/styles',
+        cssDir: '.tmp/styles',
         generatedImagesDir: '.tmp/images/generated',
         imagesDir: '<%= yeoman.app %>/images',
         javascriptsDir: '<%= yeoman.app %>/scripts',
@@ -188,9 +191,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          generatedImagesDir: '<%= yeoman.dist %>/images/generated',
-          outputStyle: 'compressed'
-         
+          generatedImagesDir: '<%= yeoman.dist %>/images/generated'
         }
       },
       server: {
@@ -244,15 +245,15 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-     cssmin: {
-       dist: {
-         files: {
-           '<%= yeoman.app %>/styles/css/main.css': [
-             '<%= yeoman.app %>/styles/css/*.css'
-           ]
-         }
-       }
-     },
+//     cssmin: {
+//       dist: {
+//         files: {
+//           '<%= yeoman.dist %>/styles/main.css': [
+//             '.tmp/styles/{,*/}*.css'
+//           ]
+//         }
+//       }
+//     },
 //     uglify: {
 //       dist: {
 //         files: {
@@ -389,9 +390,10 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      //'wiredep',
+      'wiredep',
       'concurrent:server',
       'autoprefixer',
+      //'connect:livereload',
       'watch'
     ]);
   });
@@ -406,19 +408,19 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    //'wiredep',
-    //useminPrepare',
-    //'concurrent:dist',
+    'wiredep',
+    'useminPrepare',
+    'concurrent:dist',
     'autoprefixer',
     'concat',
-    //'ngAnnotate',
-    //'copy:dist',
-    //'cdnify',
+    'ngAnnotate',
+    'copy:dist',
+    'cdnify',
     'cssmin',
-    //'uglify',
-    //'filerev',
-    //'usemin',
-    //'htmlmin'
+    'uglify',
+    'filerev',
+    'usemin',
+    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
