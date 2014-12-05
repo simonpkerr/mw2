@@ -110,9 +110,20 @@ class AmazonProvider implements IMediaProviderStrategy {
         }
     }
     
-        
     /**
      * 
+     * @param \Sk\MediaApiBundle\Entity\Decade $decade
+     * @param type $pageNumber
+     * Get the listings and then select a random 5,
+     * get each one's title, url and image
+     */
+    public function getRandomItems(Decade $decade, $pageNumber = 1){
+        $listings = $this->getListings($decade, $pageNumber);
+        
+    }
+    
+    
+    /**
      * @param \Sk\MediaApiBundle\Entity\Decade $decade
      * @param type $pageNumber
      * @return type

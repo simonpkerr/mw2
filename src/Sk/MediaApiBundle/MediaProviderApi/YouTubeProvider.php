@@ -137,7 +137,10 @@ xmlns:batch="http://schemas.google.com/gdata/batch" xmlns:yt="http://gdata.youtu
         return $response;
         
     }
-    
+
+    public function getRandomItems(Decade $decade, $pageNumber = 1){
+        return null;
+    }
     
     public function getListings(Decade $decade){
                        

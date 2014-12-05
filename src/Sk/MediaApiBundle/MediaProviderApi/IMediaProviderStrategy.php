@@ -18,6 +18,7 @@ interface IMediaProviderStrategy {
     
     //public function getAPIEntity();
     //public function setAPIEntity(API $entity);
+    public function getRandomItems(Decade $decade, $pageNumber = 1);
     public function getListings(Decade $decade);
     //public function getDetails(array $params);
     public function getProviderName();
