@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <!--mediaapi params-->
+        <parameter key="media_provider_api.class">Sk\MediaApiBundle\MediaProviderApi\MediaProviderFacade</parameter>
+        <parameter key="media_provider_api.debug_mode" />
+                
+        <!--amazon params-->
+        <parameter key="amazon_provider.class">Sk\MediaApiBundle\MediaProviderApi\AmazonProvider</parameter>
+        <parameter key="amazon_provider.access_params" type="collection" >
+            <parameter key="amazon_public_key" />
+            <parameter key="amazon_uk_private_key" />
+            <parameter key="amazon_associate_tag" />
+        </parameter>
+        <parameter key="amazon_provider.amazon_signed_request.class" />
+            
+        <!--youtube params-->
+        <parameter key="youtube_provider.class">Sk\MediaApiBundle\MediaProviderApi\YouTubeProvider</parameter>
+        <parameter key="youtube_provider.youtube_request_object.class" />
+   
+    </parameters>
+    
+    <services>
+        <service id="sk_media_api.media_provider_api" class="%media_provider_api.class%">
+            <argument>%media_provider_api.debug_mode%</argument>
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="session" />
+            <argument type="collection" id="providers">
+                <argument type="service" id="amazon_provider" key="amazon_provider" />
+                <argument type="service" id="youtube_provider" key="youtube_provider" />
+            </argument>
+        </service>
+        
+        <!--amazon services-->
+        <service id="amazon_signed_request" class="%amazon_provider.amazon_signed_request.class%" public="false" />
+        <service id="amazon_provider" class="%amazon_provider.class%" public="false">
+            <argument>%amazon_provider.access_params%</argument>
+            <argument id="amazon_signed_request" type="service" />
+        </service>
+        
+        <!--youtube services-->
+        <service id="youtube_request_object" class="%youtube_provider.youtube_request_object.class%" public="false" />
+        <service id="youtube_provider" class="%youtube_provider.class%" public="false">
+            <argument type="service" on-invalid="ignore" id="youtube_request_object" />
+        </service>
+         
+    </services>
+</container>
+
