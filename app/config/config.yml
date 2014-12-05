@@ -90,3 +90,14 @@ fos_comment:
         model:
             comment: Sk\CommentBundle\Entity\Comment
             thread: Sk\CommentBundle\Entity\Thread
+
+sk_media_api:
+  media_provider_api:
+    debug_mode: false
+    providers: 
+      amazon_provider:
+        access_params:
+          amazon_public_key: %amazon_public_key%
+          amazon_private_key: %amazon_uk_private_key%
+          amazon_associate_tag: %amazon_associate_tag%
+      youtube_provider: ~

@@ -6,24 +6,25 @@
  * @version 1.0
  */
 
-namespace SkNd\MediaBundle\MediaAPI;
-use SkNd\MediaBundle\MediaAPI\AmazonSignedRequest;
+namespace Sk\MediaApiBundle\MediaProviderApi;
+
+use Sk\MediaApiBundle\MediaProviderApi\AmazonSignedRequest;
 use Symfony\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManager;
-use SkNd\MediaBundle\Entity\Decade;
-use SkNd\MediaBundle\Entity\Genre;
-use SkNd\MediaBundle\Entity\MediaType;
-use SkNd\MediaBundle\Entity\MediaSelection;
-use SkNd\MediaBundle\Entity\API;
-use SkNd\MediaBundle\MediaAPI\Utilities;
+use Sk\MediaApiBundle\Entity\Decade;
+use Sk\MediaApiBundle\Entity\Genre;
+use Sk\MediaApiBundle\Entity\MediaType;
+use Sk\MediaApiBundle\Entity\MediaSelection;
+use Sk\MediaApiBundle\Entity\API;
+use Sk\MediaApiBundle\MediaProviderApi\Utilities;
 use \SimpleXMLElement;
 
 
-class AmazonAPI implements IAPIStrategy {
+class AmazonProvider implements IMediaProviderStrategy {
     const FRIENDLY_NAME = 'Amazon';
-    const API_NAME = 'amazonapi';
+    const PROVIDER_NAME = 'amazonapi';
     const BATCH_PROCESS_THRESHOLD = 10;
-    protected $apiEntity;
+    //protected $apiEntity;
     private $amazonParameters;
     private $public_key;                           
     private $private_key;
@@ -51,17 +52,17 @@ class AmazonAPI implements IAPIStrategy {
          );
     }
     
-    public function getName(){
-        return self::API_NAME;
+    public function getProviderName(){
+        return self::PROVIDER_NAME;
     }
     
-    public function setAPIEntity(API $entity){
-        $this->apiEntity = $entity;
-    }
+//    public function setAPIEntity(API $entity){
+//        $this->apiEntity = $entity;
+//    }
     
-    public function getAPIEntity(){
-        return $this->apiEntity;
-    }
+//    public function getAPIEntity(){
+//        return $this->apiEntity;
+//    }
     
     public function setAmazonSignedRequest($asr){
         $this->asr = $asr;
@@ -109,34 +110,30 @@ class AmazonAPI implements IAPIStrategy {
         }
     }
     
-    public function getListings(MediaSelection $mediaSelection){
-        $browseNodeArray = array(); 
-            
-        array_push($browseNodeArray, $mediaSelection->getMediaType()->getAmazonBrowseNodeId());
         
-        if($mediaSelection->getDecade() != null)
-            array_push($browseNodeArray, $mediaSelection->getDecade()->getAmazonBrowseNodeId());
-
-        if($mediaSelection->getSelectedMediaGenre() != null)
-            array_push($browseNodeArray, $mediaSelection->getSelectedMediaGenre()->getAmazonBrowseNodeId());
-            
+    /**
+     * 
+     * @param \Sk\MediaApiBundle\Entity\Decade $decade
+     * @param type $pageNumber
+     * @return type
+     * @throws \Sk\MediaApiBundle\MediaProviderApi\RunTimeException
+     * @throws \Sk\MediaApiBundle\MediaProviderApi\LengthException
+     * checks cache to see if response currently exists and is not stale
+     * if no cache or cache is stale, get results and refresh cache
+     */
+    public function getListings(Decade $decade, $pageNumber = 1){
+        $browseNodeArray = array(); 
+        array_push($browseNodeArray, $decade->getAmazonBrowseNodeId());
         $canonicalBrowseNodes = implode(',', $browseNodeArray);
-
         $params = Utilities::removeNullEntries(array(
-            'Keywords'       =>      $mediaSelection->getKeywords() != null ? $mediaSelection->getKeywords() : null,
+            //'Keywords'       =>      $mediaSelection->getKeywords() != null ? $mediaSelection->getKeywords() : null,
             'BrowseNode'     =>      $canonicalBrowseNodes,
             'SearchIndex'    =>      'Video',
-            'ItemPage'       =>      $mediaSelection->getPage(),
+            'ItemPage'       =>      $pageNumber,
             'Sort'           =>      'salesrank',
         ));
         
-        if(array_key_exists('ItemPage', $params) && $params['ItemPage'] > 10){
-            throw new \RunTimeException("Requested page was out of bounds");
-        }
-        
         $this->amazonParameters = array_merge($this->amazonParameters, $params);
-        //need to account for page number, sort type, number of results
-        
         $xml_response = $this->queryAmazon($this->amazonParameters, "co.uk");
         
         try{

@@ -6,9 +6,9 @@
  * @version 1.0
  */
 
-namespace SkNd\MediaBundle\MediaAPI;
+namespace Sk\MediaApiBundle\MediaProviderApi;
 require_once 'SimpleXmlRequest.php';
-use SkNd\MediaBundle\Entity\MediaSelection;
+use Sk\MediaApiBundle\Entity\MediaSelection;
 use \SimpleXMLElement;
 
 class SevenDigitalAPI implements IAPIStrategy{

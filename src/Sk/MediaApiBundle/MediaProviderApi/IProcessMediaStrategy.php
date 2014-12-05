@@ -8,9 +8,9 @@
  * @author Simon Kerr
  * @version 1.0
  */
-namespace SkNd\MediaBundle\MediaAPI;
+namespace Sk\MediaApiBundle\MediaProviderApi;
 
-use SkNd\MediaBundle\MediaAPI\XMLFileManager;
+use Sk\MediaApiBundle\MediaProviderApi\XMLFileManager;
 
 interface IProcessMediaStrategy {
     public function setXMLFileManager(XMLFileManager $xmlFileManager);

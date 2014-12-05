@@ -7,11 +7,11 @@
  * @author Simon Kerr
  * @version 1.0
  */
-namespace SkNd\MediaBundle\MediaAPI;
-use SkNd\MediaBundle\Entity\MediaResourceCache;
+namespace Sk\MediaApiBundle\MediaProviderApi;
+use Sk\MediaApiBundle\Entity\MediaResourceCache;
 use Doctrine\ORM\EntityManager;
-use SkNd\MediaBundle\MediaAPI\Utilities;
-use SkNd\MediaBundle\MediaAPI\XMLFileManager;
+use Sk\MediaApiBundle\MediaProviderApi\Utilities;
+use Sk\MediaApiBundle\MediaProviderApi\XMLFileManager;
 
 class ProcessBatchStrategy implements IProcessMediaStrategy, IMediaDetails {
     protected $apis;
@@ -153,7 +153,7 @@ class ProcessBatchStrategy implements IProcessMediaStrategy, IMediaDetails {
                     $cachedResource->setDateCreated(new \DateTime("now"));
                     if(is_null($mr->getDecade())){
                         $decade = $api->getDecadeFromXML($itemXml);
-                        $decade = $this->em->getRepository('SkNdMediaBundle:Decade')->getDecadeBySlug($decade);
+                        $decade = $this->em->getRepository('SkMediaProviderApiBundle:Decade')->getDecadeBySlug($decade);
                         if(!is_null($decade)){
                             $mr->setDecade($decade);
                         }

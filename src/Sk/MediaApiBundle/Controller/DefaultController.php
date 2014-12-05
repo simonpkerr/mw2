@@ -58,13 +58,20 @@ class DefaultController extends Controller
     }
     
     /**
-     * Get a wall.
-     * Gets a collection of Amazon listings and caches them.
-     * Then returns 5 random results  
+     * Get a wall based on random decade 
+     * Gets a collection of Amazon, youtube, 7digital, flickr, google images listings and caches them if there is no existing cache
+     * or the existing cache is stale.
+     * Then returns 5 random results from each provider  
      * 
      * @return View
      */
-    public function getMemoryWall(){
+    public function getMemorywallAction(){
+        $mediaProviderFacade = $this->get('sk_media_api.media_provider_api');
+        $wallData = $mediaProviderFacade->getMemoryWall();
         
+        $view = View::create()
+            ->setData(array('wallData' => $wallData));
+
+        return $this->getViewHandler()->handle($view);
     }
 }

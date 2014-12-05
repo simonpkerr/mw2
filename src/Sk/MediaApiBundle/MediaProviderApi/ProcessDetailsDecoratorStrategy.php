@@ -6,11 +6,11 @@
  * @copyright Simon Kerr 2012
  * @author Simon Kerr
  */
-namespace SkNd\MediaBundle\MediaAPI;
+namespace Sk\MediaApiBundle\MediaProviderApi;
 
 use Doctrine\ORM\EntityManager;
-use SkNd\MediaBundle\MediaAPI\ProcessBatchStrategy;
-use SkNd\MediaBundle\Entity\MediaResource;
+use Sk\MediaApiBundle\MediaProviderApi\ProcessBatchStrategy;
+use Sk\MediaApiBundle\Entity\MediaResource;
 
 class ProcessDetailsDecoratorStrategy extends ProcessBatchStrategy implements IProcessMediaStrategy, IMediaDetails {
     protected $processDetailsStrategy;
@@ -93,7 +93,7 @@ class ProcessDetailsDecoratorStrategy extends ProcessBatchStrategy implements IP
      * @return $recommendatations array
      */
     protected function getRecommendations(MediaResource $mr) {
-        $recommendationSet = $this->em->getRepository('SkNdMediaBundle:MediaResource')->getMediaResourceRecommendations($mr);
+        $recommendationSet = $this->em->getRepository('SkMediaProviderApiBundle:MediaResource')->getMediaResourceRecommendations($mr);
         return $recommendationSet;
     }
 

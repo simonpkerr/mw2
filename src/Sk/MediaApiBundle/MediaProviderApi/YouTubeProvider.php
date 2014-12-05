@@ -6,16 +6,17 @@
  * @author Simon Kerr
  * @version 1.0
  */
-namespace SkNd\MediaBundle\MediaAPI;
-use SkNd\MediaBundle\MediaAPI\Utilities;
-use SkNd\MediaBundle\Entity\MediaSelection;
-use SkNd\MediaBundle\Entity\API;
+namespace Sk\MediaApiBundle\MediaProviderApi;
+use Sk\MediaApiBundle\MediaProviderApi\Utilities;
+use Sk\MediaApiBundle\Entity\MediaSelection;
+use Sk\MediaApiBundle\Entity\Decade;
+//use Sk\MediaApiBundle\Entity\API;
 use Doctrine\ORM\EntityManager;
 use \SimpleXMLElement;
 
-class YouTubeAPI implements IAPIStrategy {
+class YouTubeProvider implements IMediaProviderStrategy {
     const FRIENDLY_NAME = 'YouTube';
-    const API_NAME = 'youtubeapi';
+    const PROVIDER_NAME = 'youtubeapi';
     const BATCH_PROCESS_THRESHOLD = 24;
     
     protected $youTube;
@@ -29,18 +30,18 @@ class YouTubeAPI implements IAPIStrategy {
        
     }
     
-    public function getName(){
-        return self::API_NAME;
+    public function getProviderName(){
+        return self::PROVIDER_NAME;
     }
     
-    public function getAPIEntity() {
-        return $this->apiEntity;
-    }
-
-    public function setAPIEntity(API $entity) {
-        $this->apiEntity = $entity;
-        
-    }
+//    public function getAPIEntity() {
+//        return $this->apiEntity;
+//    }
+//
+//    public function setAPIEntity(API $entity) {
+//        $this->apiEntity = $entity;
+//        
+//    }
     
     public function setRequestObject($obj){
         $this->youTube = $obj;
@@ -137,19 +138,21 @@ xmlns:batch="http://schemas.google.com/gdata/batch" xmlns:yt="http://gdata.youtu
         
     }
     
-    public function getListings(MediaSelection $mediaSelection){
+    
+    public function getListings(Decade $decade){
                        
-        $videoFeed = $this->getVideoFeed($mediaSelection);
-
-        if($videoFeed === false)
-            throw new \RuntimeException("Could not connect to YouTube");
-        
-        if(count($videoFeed) < 1){
-            throw new \LengthException("No results were returned");
-        }
-
-        return $this->getSimpleXml($videoFeed);
+//        $videoFeed = $this->getVideoFeed($mediaSelection);
+//
+//        if($videoFeed === false)
+//            throw new \RuntimeException("Could not connect to YouTube");
+//        
+//        if(count($videoFeed) < 1){
+//            throw new \LengthException("No results were returned");
+//        }
+//
+//        return $this->getSimpleXml($videoFeed);
                 
+        return null;
     }
     
     private function getVideoFeed(MediaSelection $mediaSelection){

@@ -29,7 +29,7 @@ DEALINGS IN THE SOFTWARE.
   
 */
 
-namespace SkNd\MediaBundle\MediaAPI;
+namespace Sk\MediaApiBundle\MediaProviderApi;
 
 class AmazonSignedRequest{
 

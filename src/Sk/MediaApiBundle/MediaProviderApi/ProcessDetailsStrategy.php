@@ -9,10 +9,10 @@
  * 
  */
 
-namespace SkNd\MediaBundle\MediaAPI;
-use SkNd\MediaBundle\MediaAPI\Utilities;
-use SkNd\MediaBundle\Entity\MediaResource;
-use SkNd\MediaBundle\Entity\MediaResourceCache;
+namespace Sk\MediaApiBundle\MediaProviderApi;
+use Sk\MediaApiBundle\MediaProviderApi\Utilities;
+use Sk\MediaApiBundle\Entity\MediaResource;
+use Sk\MediaApiBundle\Entity\MediaResourceCache;
 
 class ProcessDetailsStrategy implements IProcessMediaStrategy, IMediaDetails {
     protected $apiStrategy;
@@ -91,7 +91,7 @@ class ProcessDetailsStrategy implements IProcessMediaStrategy, IMediaDetails {
     }
     
     public function getMediaResource(){
-        $this->mediaResource = $this->em->getRepository('SkNdMediaBundle:MediaResource')->getMediaResourceById($this->itemId);
+        $this->mediaResource = $this->em->getRepository('SkMediaProviderApiBundle:MediaResource')->getMediaResourceById($this->itemId);
         if($this->mediaResource == null)
             $this->mediaResource = $this->createNewMediaResource($this->itemId);
         else {
@@ -108,7 +108,7 @@ class ProcessDetailsStrategy implements IProcessMediaStrategy, IMediaDetails {
         //if decade null, try to refine based on title
         if(is_null($mr->getDecade())){
             $decade = Utilities::getDecadeSlugFromUrl($this->title);
-            $decade = $this->em->getRepository('SkNdMediaBundle:Decade')->getDecadeBySlug($decade);
+            $decade = $this->em->getRepository('SkMediaProviderApiBundle:Decade')->getDecadeBySlug($decade);
             if(!is_null($decade)){
                 $mr->setDecade($decade);
             }
@@ -178,7 +178,7 @@ class ProcessDetailsStrategy implements IProcessMediaStrategy, IMediaDetails {
              */
             if(is_null($this->mediaResource->getDecade())){
                 $decade = $this->apiStrategy->getDecadeFromXML($this->apiResponse);
-                $decade = $this->em->getRepository('SkNdMediaBundle:Decade')->getDecadeBySlug($decade);
+                $decade = $this->em->getRepository('SkMediaProviderApiBundle:Decade')->getDecadeBySlug($decade);
                 if(!is_null($decade)){
                     $this->mediaResource->setDecade($decade);
                 }
@@ -197,7 +197,7 @@ class ProcessDetailsStrategy implements IProcessMediaStrategy, IMediaDetails {
     //will be deprecated
     public function convertMedia(){
         $date = $this->apiStrategy->getValidCreationTime();
-        $mrCollection = $this->em->createQuery('select mr from SkNd\MediaBundle\Entity\MediaResource mr where mr.api = :api AND mr.mediaResourceCache IS NOT NULL')
+        $mrCollection = $this->em->createQuery('select mr from Sk\MediaApiBundle\Entity\MediaResource mr where mr.api = :api AND mr.mediaResourceCache IS NOT NULL')
                 ->setParameter('api', $this->apiStrategy->getAPIEntity())
                 ->setMaxResults(1000)
                 ->getResult();

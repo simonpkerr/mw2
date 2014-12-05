@@ -24,5 +24,17 @@ class SkMediaApiExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+        
+        //mediaapi params
+        $container->setParameter('media_provider_api.debug_mode', $config['media_provider_api']['debug_mode']);
+        $container->setParameter('media_provider_api.providers', $config['media_provider_api']['providers']);
+
+        $providers = $config['media_provider_api']['providers'];
+        //amazon params
+        $container->setParameter('amazon_provider.access_params', $providers['amazon_provider']['access_params']);
+        $container->setParameter ('amazon_provider.amazon_signed_request.class', $providers['amazon_provider']['amazon_signed_request']['class']);
+        
+        //youtube params
+        $container->setParameter('youtube_provider.youtube_request_object.class', $providers['youtube_provider']['youtube_request_object']['class']);
     }
 }

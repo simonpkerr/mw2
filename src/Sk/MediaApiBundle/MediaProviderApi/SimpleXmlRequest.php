@@ -1,5 +1,5 @@
 <?php
-namespace SkNd\MediaBundle\MediaAPI;
+namespace Sk\MediaApiBundle\MediaProviderApi;
 
 function getSimpleXmlResponse($request){
     $ch = curl_init();

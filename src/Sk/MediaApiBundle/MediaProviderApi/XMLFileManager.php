@@ -3,7 +3,7 @@
 /**
  * handles xml file manipulation, deletion and retrieval
  */
-namespace SkNd\MediaBundle\MediaAPI;
+namespace Sk\MediaApiBundle\MediaProviderApi;
 use \SimpleXMLElement;
 
 class XMLFileManager {

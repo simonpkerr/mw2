@@ -7,13 +7,13 @@
  * @uses MediaController
  * @version 1.0
  */
-namespace SkNd\MediaBundle\MediaAPI;
-use SkNd\MediaBundle\Entity\MediaSelection;
+namespace Sk\MediaApiBundle\MediaProviderApi;
+use Sk\MediaApiBundle\Entity\MediaSelection;
 use Doctrine\ORM\EntityManager;
-use SkNd\MediaBundle\Entity\MediaResourceListingsCache;
+use Sk\MediaApiBundle\Entity\MediaResourceListingsCache;
 use \SimpleXMLElement;
-use SkNd\MediaBundle\MediaAPI\Utilities;
-use SkNd\MediaBundle\MediaAPI\XMLFileManager;
+use Sk\MediaApiBundle\MediaProviderApi\Utilities;
+use Sk\MediaApiBundle\MediaProviderApi\XMLFileManager;
 
 class ProcessListingsStrategy implements IProcessMediaStrategy {
     protected $apiStrategy;
@@ -56,7 +56,7 @@ class ProcessListingsStrategy implements IProcessMediaStrategy {
         return $this->xmlFileManager;
     }
     
-    //is this needed? its no longer referenced in mediaapi
+    //is this needed? its no longer referenced in MediaProviderApi
     public function getAPIData(){
         return $this->apiStrategy;
     }
@@ -75,7 +75,7 @@ class ProcessListingsStrategy implements IProcessMediaStrategy {
         $this->listings = null;
            
         //when getting cached listings, get the xml file and store in the listings object as xmlData 
-        $this->listings = $this->em->getRepository('SkNdMediaBundle:MediaResourceListingsCache')->getCachedListings($this->mediaSelection);
+        $this->listings = $this->em->getRepository('SkMediaProviderApiBundle:MediaResourceListingsCache')->getCachedListings($this->mediaSelection);
         if(is_null($this->listings) || $this->listings->getLastModified()->format("Y-m-d H:i:s") < $this->apiStrategy->getValidCreationTime() || !$this->getXMLFileManager()->xmlRefExists($this->listings->getXmlRef())){
             $this->listings = $this->createListings($this->apiStrategy->getListings($this->mediaSelection), $this->listings);
         } else {
@@ -88,7 +88,7 @@ class ProcessListingsStrategy implements IProcessMediaStrategy {
     
     public function getRecommendations() {
         if($this->mediaSelection->getDecade() != null){
-            $recommendations = $this->em->getRepository('SkNdUserBundle:MemoryWall')->getMemoryWallsByDecade($this->mediaSelection->getDecade());
+            $recommendations = $this->em->getRepository('SkUserBundle:MemoryWall')->getMemoryWallsByDecade($this->mediaSelection->getDecade());
             if(count($recommendations) > 0)
                 return $recommendations;
         }
@@ -122,7 +122,7 @@ class ProcessListingsStrategy implements IProcessMediaStrategy {
     //will be deprecated
     public function convertMedia(){
         $date = $this->apiStrategy->getValidCreationTime();
-        $listingsCollection = $this->em->createQuery('select c from SkNd\MediaBundle\Entity\MediaResourceListingsCache c where c.api = :api AND c.xmlRef IS NULL')
+        $listingsCollection = $this->em->createQuery('select c from Sk\MediaApiBundle\Entity\MediaResourceListingsCache c where c.api = :api AND c.xmlRef IS NULL')
                 ->setParameter('api', $this->apiStrategy->getAPIEntity())
                 ->setMaxResults(2000)
                 ->getResult();

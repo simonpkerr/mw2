@@ -1,30 +1,29 @@
 <?php
 /*
  * Original code Copyright (c) 2011 Simon Kerr
- * MediaAPI controls access to the various apis and their operations,
+ * MediaProviderApi controls access to the various apis and their operations,
  * checking for cached versions of details or listings
  * @author Simon Kerr
  * @version 1.0
  */
 
-namespace SkNd\MediaBundle\MediaAPI;
+namespace Sk\MediaApiBundle\MediaProviderApi;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\ORM\EntityManager;
-use SkNd\MediaBundle\MediaAPI\Utilities;
-use SkNd\MediaBundle\MediaAPI\XMLFileManager;
-use SkNd\MediaBundle\Entity\API;
-use SkNd\MediaBundle\Entity\MediaSelection;
-use SkNd\MediaBundle\Entity\MediaType;
-use SkNd\MediaBundle\Entity\Decade;
-use SkNd\MediaBundle\Entity\Genre;
+use Sk\MediaApiBundle\MediaProviderApi\Utilities;
+use Sk\MediaApiBundle\MediaProviderApi\XMLFileManager;
+use Sk\MediaApiBundle\Entity\API;
+use Sk\MediaApiBundle\Entity\MediaSelection;
+use Sk\MediaApiBundle\Entity\MediaType;
+use Sk\MediaApiBundle\Entity\Decade;
+use Sk\MediaApiBundle\Entity\Genre;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use \RuntimeException;
 
 class MediaProviderApi {
     const MEDIA_RESOURCE_RECOMMENDATION = 1;
     const MEMORY_WALL_RECOMMENDATION = 2;
-    //const CACHE_PATH = 'bundles/SkNd/cache/';
     protected $cachePath;
     protected $session;
     protected $apiStrategy;
@@ -74,7 +73,7 @@ class MediaProviderApi {
     public function setAPIs(array $apis){
         $this->apis = array_merge($apis);
         foreach($this->apis as $api){
-            $api->setAPIEntity($this->em->getRepository('SkNdMediaBundle:API')->getAPIByName($api->getName()));
+            $api->setAPIEntity($this->em->getRepository('SkMediaProviderApiBundle:API')->getAPIByName($api->getName()));
         }
     }
         
@@ -153,7 +152,7 @@ class MediaProviderApi {
 
                 //only update the mediaSelection if different
                 if($api == null || $apiSlug != $api->getName()){
-                    $api = $this->em->getRepository('SkNdMediaBundle:API')->getAPIByName($apiSlug);
+                    $api = $this->em->getRepository('SkMediaProviderApiBundle:API')->getAPIByName($apiSlug);
                     if($api == null)
                         throw new \RuntimeException("There was a problem with that api value");
 
@@ -161,7 +160,7 @@ class MediaProviderApi {
                 } 
 
                 if($mediaType == null || $mediaTypeSlug != $mediaType->getSlug()){
-                    $mediaType = $this->em->getRepository('SkNdMediaBundle:MediaType')->getMediaTypeBySlug($mediaTypeSlug);
+                    $mediaType = $this->em->getRepository('SkMediaProviderApiBundle:MediaType')->getMediaTypeBySlug($mediaTypeSlug);
                     if($mediaType == null)
                         throw new NotFoundHttpException("There was a problem with that media type");
                 }
@@ -169,7 +168,7 @@ class MediaProviderApi {
                 //if decade is not default decade and is not the same as existing decade
                 if($decadeSlug != Decade::$default){
                     if($decade == null || $decadeSlug != $decade->getSlug()){
-                        $decade = $this->em->getRepository('SkNdMediaBundle:Decade')->getDecadeBySlug($decadeSlug);
+                        $decade = $this->em->getRepository('SkMediaProviderApiBundle:Decade')->getDecadeBySlug($decadeSlug);
                         if($decade == null)
                             throw new NotFoundHttpException ("There was a problem with that decade");
                     } 
@@ -181,7 +180,7 @@ class MediaProviderApi {
                     //if the genre is different or the media type is different, reset the genre
                     if($genre == null || $genreSlug != $genre->getSlug() || $mediaTypeSlug != $mediaType->getSlug()){
                         try{
-                            $genre = $this->em->getRepository('SkNdMediaBundle:Genre')->getGenreBySlugAndMedia($genreSlug, $mediaTypeSlug);
+                            $genre = $this->em->getRepository('SkMediaProviderApiBundle:Genre')->getGenreBySlugAndMedia($genreSlug, $mediaTypeSlug);
                         }catch(\Exception $ex){
                             throw new NotFoundHttpException ("There was a problem with that genre");
                         }
@@ -204,11 +203,11 @@ class MediaProviderApi {
             } else {
                 //if no params were sent through, ensure that defaults are added for mediatype and api
                 if($api == null){
-                    $api = $this->em->getRepository('SkNdMediaBundle:API')->getAPIByName(API::$default);
+                    $api = $this->em->getRepository('SkMediaProviderApiBundle:API')->getAPIByName(API::$default);
                     $this->setAPIStrategy(API::$default);
                 }
                 if($mediaType == null){
-                    $mediaType = $this->em->getRepository('SkNdMediaBundle:MediaType')->getMediaTypeBySlug(MediaType::$default);
+                    $mediaType = $this->em->getRepository('SkMediaProviderApiBundle:MediaType')->getMediaTypeBySlug(MediaType::$default);
                 }
 
             }
@@ -217,7 +216,7 @@ class MediaProviderApi {
                 $this->mediaSelection->setPage($page);
 
             if($this->mediaSelection->getGenres() == null){
-                $genres = $this->em->getRepository('SkNdMediaBundle:Genre')->getAllGenres();
+                $genres = $this->em->getRepository('SkMediaProviderApiBundle:Genre')->getAllGenres();
                 $this->mediaSelection->setGenres($genres);
             }
 

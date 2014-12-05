@@ -6,8 +6,8 @@
  * @author Simon Kerr
  * @version 1.0
  */
-namespace SkNd\MediaBundle\MediaAPI;
-use SkNd\MediaBundle\MediaAPI\AmazonSignedRequest;
+namespace Sk\MediaApiBundle\MediaProviderApi;
+use Sk\MediaApiBundle\MediaProviderApi\AmazonSignedRequest;
 
 class TestAmazonSignedRequest extends AmazonSignedRequest{
 
@@ -15,10 +15,10 @@ class TestAmazonSignedRequest extends AmazonSignedRequest{
     {
         if($params["Operation"] == "ItemSearch"){
             //load sample listings
-            $response = simplexml_load_file('src\SkNd\MediaBundle\Tests\MediaAPI\SampleResponses\sampleAmazonListings.xml');
+            $response = simplexml_load_file('src\Sk\MediaApiBundle\Tests\MediaProviderApi\SampleResponses\sampleAmazonListings.xml');
         }else{
             //load sample details
-            $response = simplexml_load_file('src\SkNd\MediaBundle\Tests\MediaAPI\SampleResponses\sampleAmazonDetails.xml');
+            $response = simplexml_load_file('src\Sk\MediaApiBundle\Tests\MediaProviderApi\SampleResponses\sampleAmazonDetails.xml');
         }
         
         return $response;

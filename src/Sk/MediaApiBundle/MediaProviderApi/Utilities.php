@@ -7,7 +7,7 @@
  * @copyright Simon Kerr 2012
  *
  */
-namespace SkNd\MediaBundle\MediaAPI;
+namespace Sk\MediaApiBundle\MediaProviderApi;
 use Doctrine\ORM\EntityManager;
 
 class Utilities {

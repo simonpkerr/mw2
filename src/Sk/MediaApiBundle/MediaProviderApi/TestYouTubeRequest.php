@@ -7,7 +7,7 @@
  * @version 1.0
  */
 
-namespace SkNd\MediaBundle\MediaAPI;
+namespace Sk\MediaApiBundle\MediaProviderApi;
 require_once 'Zend/Loader.php';
 class TestYouTubeRequest {
     private $headers;
@@ -38,19 +38,19 @@ Connection: close';
     }
     
     public function getVideoFeed($queryUrl){
-        $feed = simplexml_load_file('src\SkNd\MediaBundle\Tests\MediaAPI\SampleResponses\sampleYouTubeListings.xml');
+        $feed = simplexml_load_file('src\Sk\MediaApiBundle\Tests\MediaProviderApi\SampleResponses\sampleYouTubeListings.xml');
         return $feed;
     }
     
     public function post($data){
-        $body = simplexml_load_file('src\SkNd\MediaBundle\Tests\MediaAPI\SampleResponses\ytBatchResponse.xml');
+        $body = simplexml_load_file('src\Sk\MediaApiBundle\Tests\MediaProviderApi\SampleResponses\ytBatchResponse.xml');
         
         $response = new \Zend_Http_Response(200, \Zend_Http_Response::extractHeaders($this->headers), $body->asXML(), '1.1', '200');
         return $response;
     }
     
     public function getVideoEntry($id){
-        $data = simplexml_load_file('src\SkNd\MediaBundle\Tests\MediaAPI\SampleResponses\validYouTubeDetails.xml');
+        $data = simplexml_load_file('src\Sk\MediaApiBundle\Tests\MediaProviderApi\SampleResponses\validYouTubeDetails.xml');
         $ve = new \Zend_Gdata_YouTube_VideoEntry();
         $ve->transferFromXML($data->asXML());
         

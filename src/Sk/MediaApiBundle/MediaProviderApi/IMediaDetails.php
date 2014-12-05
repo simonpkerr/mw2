@@ -8,7 +8,7 @@
  * @author Simon Kerr
  * @version 1.0
  */
-namespace SkNd\MediaBundle\MediaAPI;
+namespace Sk\MediaApiBundle\MediaProviderApi;
 
 interface IMediaDetails {
     public function getMediaResource();
@@ -16,4 +16,4 @@ interface IMediaDetails {
     
 }
 
-?>
+
