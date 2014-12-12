@@ -18,6 +18,7 @@ class YouTubeProvider implements IMediaProviderStrategy {
     const FRIENDLY_NAME = 'YouTube';
     const PROVIDER_NAME = 'youtubeapi';
     const BATCH_PROCESS_THRESHOLD = 24;
+    const CACHE_TTL = 259200;
     
     protected $youTube;
     protected $apiEntity;
@@ -250,12 +251,12 @@ xmlns:batch="http://schemas.google.com/gdata/batch" xmlns:yt="http://gdata.youtu
      * has been chosen
      * @return type DateTime
      */
-    public function getValidCreationTime(){
-         $date = new \DateTime("now");
-         $date = $date->sub(new \DateInterval('PT72H'))->format("Y-m-d H:i:s");
-
-         return $date;
-    }
+//    public function getCacheTTL(){
+//         $date = new \DateTime("now");
+//         $date = $date->sub(new \DateInterval('PT72H'))->format("Y-m-d H:i:s");
+//
+//         return $date;
+//    }
 
     
    

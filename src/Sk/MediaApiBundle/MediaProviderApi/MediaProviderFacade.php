@@ -35,18 +35,24 @@ class MediaProviderFacade {
         $wallData = array();
         $decades = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecades();
         $randomKey = array_rand($decades);
-        $decade = $decades[$randomKey];
+        $decade = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug('1980s'); // $decades[$randomKey];
+        $pageNumber = 1; // rand(1, 10);
         array_push($wallData, array(
-           'decade' => $decade
+            'decade' => $decade->getSlug(),
+            'pageNumber' => $pageNumber
         ));
         
         foreach($this->mediaProviders as $mediaProvider){       
             array_push($wallData, array(
                 'mediaProvider' => $mediaProvider->getProviderName(),
-                'providerData'  => json_encode($mediaProvider->getListings($decade, rand(1, 10)))
+                'providerData'  => $mediaProvider->getRandomItems($decade, $pageNumber)
             ));
         }
         
         return $wallData;
+    }
+    
+    public function getCachedData($key){
+        
     }
 }

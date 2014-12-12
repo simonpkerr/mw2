@@ -18,12 +18,17 @@ use Sk\MediaApiBundle\Entity\MediaSelection;
 use Sk\MediaApiBundle\Entity\API;
 use Sk\MediaApiBundle\MediaProviderApi\Utilities;
 use \SimpleXMLElement;
+use Sonata\Cache\CacheAdapterInterface;
+use Sonata\CacheBundle\Adapter;
+use Sonata\Cache\CacheElement;
 
 
 class AmazonProvider implements IMediaProviderStrategy {
     const FRIENDLY_NAME = 'Amazon';
     const PROVIDER_NAME = 'amazonapi';
     const BATCH_PROCESS_THRESHOLD = 10;
+    const CACHE_TTL = 86400;
+    
     //protected $apiEntity;
     private $amazonParameters;
     private $public_key;                           
@@ -32,8 +37,9 @@ class AmazonProvider implements IMediaProviderStrategy {
     protected $asr;
     private $ITEM_SEARCH = 'ItemSearch';
     private $ITEM_LOOKUP = 'ItemLookup';
+    private $cache;
  
-    public function __construct(array $access_params, $amazon_signed_request){
+    public function __construct(array $access_params, $amazon_signed_request, CacheAdapterInterface $cache){
             
         $this->public_key = $access_params['amazon_public_key'];
         $this->private_key = $access_params['amazon_private_key'];
@@ -50,6 +56,8 @@ class AmazonProvider implements IMediaProviderStrategy {
                 //"Sort"          => "-releasedate", // release date oldest to newest
                 "Validate"      => "True",
          );
+        
+        $this->cache = $cache;
     }
     
     public function getProviderName(){
@@ -77,10 +85,25 @@ class AmazonProvider implements IMediaProviderStrategy {
         return $xmlData->asXML();
     }
     
+    public function getPriceFromXml(SimpleXMLElement $xmlData){
+        try {
+            return (string)$xmlData->ItemAttributes->ListPrice->FormattedPrice;
+        } catch (\RuntimeException $ex) {
+            return null;
+        }
+    }
     
     public function getImageUrlFromXML(SimpleXMLElement $xmlData){
         try{
             return (string)$xmlData->MediumImage->URL;
+        } catch(\RuntimeException $re){
+            return null;
+        }
+    }
+    
+    public function getReferralUrlFromXML(SimpleXMLElement $xmlData){
+        try{
+            return (string)$xmlData->DetailPageURL;
         } catch(\RuntimeException $re){
             return null;
         }
@@ -113,12 +136,45 @@ class AmazonProvider implements IMediaProviderStrategy {
     /**
      * 
      * @param \Sk\MediaApiBundle\Entity\Decade $decade
-     * @param type $pageNumber
+     * @param int $pageNumber
+     * checks cache to see if response currently exists and is not stale
+     * if no cache or cache is stale, get results and refresh cache
      * Get the listings and then select a random 5,
      * get each one's title, url and image
      */
     public function getRandomItems(Decade $decade, $pageNumber = 1){
-        $listings = $this->getListings($decade, $pageNumber);
+        //check cache using composite key. if exists and is not stale get data
+        //else get listings from amazon and cache items using amazon ttl
+        $cacheKey = array(
+            'decade'        => $decade->getSlug(),
+            'pageNumber'    => $pageNumber,
+            'provider'      => self::PROVIDER_NAME
+        );
+        $items = array();
+        if($this->cache->has($cacheKey)){
+            $cacheElement = $this->cache->get($cacheKey);
+            $items = $cacheElement->getData();
+        } else {
+            $xmlResponse = (array)$this->getListings($decade, $pageNumber);
+            $xmlResponse = $xmlResponse['Item'];
+            
+            foreach($xmlResponse as $item){
+                array_push($items, array(
+                    'title'     =>  $this->getItemTitleFromXML($item),
+                    'image'     =>  $this->getImageUrlFromXML($item),
+                    'url'       =>  $this->getReferralUrlFromXML($item),
+                    'price'     =>  $this->getPriceFromXml($item)
+                ));
+            }
+            $this->cache->set($cacheKey, $items, self::CACHE_TTL);
+        }        
+        
+        $listingsCount = count($items);
+        $listingsCount = $listingsCount > 5 ? 5 : $listingsCount;
+        shuffle($items);
+        $randomItems = array_slice($items, 0, $listingsCount);
+        
+        return $randomItems;
         
     }
     
@@ -129,8 +185,6 @@ class AmazonProvider implements IMediaProviderStrategy {
      * @return type
      * @throws \Sk\MediaApiBundle\MediaProviderApi\RunTimeException
      * @throws \Sk\MediaApiBundle\MediaProviderApi\LengthException
-     * checks cache to see if response currently exists and is not stale
-     * if no cache or cache is stale, get results and refresh cache
      */
     public function getListings(Decade $decade, $pageNumber = 1){
         $browseNodeArray = array(); 
@@ -255,12 +309,13 @@ class AmazonProvider implements IMediaProviderStrategy {
      * threshold is 24 hours.
      * @return type DateTime
      */
-    public function getValidCreationTime(){
-         $date = new \DateTime("now");
-         $date = $date->sub(new \DateInterval('PT24H'))->format("Y-m-d H:i:s");
-
-         return $date;
-    }
+//    public function getCacheTTL(){
+//         $date = new \DateTime("now");
+//         $date = $date->sub(new \DateInterval('PT24H'))->format("Y-m-d H:i:s");
+//         return $date;
+//         
+//        
+//    }
 }
 
 

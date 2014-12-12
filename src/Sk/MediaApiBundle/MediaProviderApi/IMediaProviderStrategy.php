@@ -29,7 +29,7 @@ interface IMediaProviderStrategy {
     public function getImageUrlFromXML(SimpleXMLElement $xmlData);
     public function getItemTitleFromXML(SimpleXMLElement $xmlData);
     public function getDecadeFromXML(SimpleXMLElement $xmlData);
-    public function getValidCreationTime();
+    //public function getCacheTTL();
    
     
 }

@@ -17,3 +17,10 @@ parameters:
     debug_toolbar:          true
     debug_redirects:        false
     use_assetic_controller: true
+
+    #custom stuff
+    amazon_public_key: pk
+    amazon_uk_private_key: pk
+    amazon_us_private_key: pk
+    amazon_associate_tag: aat
+    apc_token: s3cur3

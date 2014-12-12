@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Dunglas\AngularCsrfBundle\DunglasAngularCsrfBundle(),
             new Sk\FrontEndBundle\SkFrontEndBundle(),
+            new Sonata\CacheBundle\SonataCacheBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
