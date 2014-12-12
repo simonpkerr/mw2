@@ -140,7 +140,7 @@ class AmazonProvider implements IMediaProviderStrategy {
      * checks cache to see if response currently exists and is not stale
      * if no cache or cache is stale, get results and refresh cache
      * Get the listings and then select a random 5,
-     * get each one's title, url and image
+     * get each one's title, url, image and price if available
      */
     public function getRandomItems(Decade $decade, $pageNumber = 1){
         //check cache using composite key. if exists and is not stale get data
@@ -157,7 +157,6 @@ class AmazonProvider implements IMediaProviderStrategy {
         } else {
             $xmlResponse = (array)$this->getListings($decade, $pageNumber);
             $xmlResponse = $xmlResponse['Item'];
-            
             foreach($xmlResponse as $item){
                 array_push($items, array(
                     'title'     =>  $this->getItemTitleFromXML($item),
@@ -175,7 +174,6 @@ class AmazonProvider implements IMediaProviderStrategy {
         $randomItems = array_slice($items, 0, $listingsCount);
         
         return $randomItems;
-        
     }
     
     

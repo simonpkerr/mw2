@@ -35,8 +35,8 @@ class MediaProviderFacade {
         $wallData = array();
         $decades = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecades();
         $randomKey = array_rand($decades);
-        $decade = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug('1980s'); // $decades[$randomKey];
-        $pageNumber = 1; // rand(1, 10);
+        $decade = $decades[$randomKey]; //$this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug('1980s');
+        $pageNumber = rand(1, 10);
         array_push($wallData, array(
             'decade' => $decade->getSlug(),
             'pageNumber' => $pageNumber

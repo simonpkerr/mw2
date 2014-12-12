@@ -14,3 +14,18 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+sk_media_api:
+  media_provider_api:
+    debug_mode: false
+    providers: 
+      amazon_provider:
+        access_params:
+          amazon_public_key: apuk
+          amazon_private_key: aprk
+          amazon_associate_tag: aat
+        amazon_signed_request:
+          class: Sk\MediaApiBundle\MediaProviderApi\TestAmazonSignedRequest
+      youtube_provider:
+        youtube_request_object: 
+          class: Sk\MediaApiBundle\MediaProviderApi\TestYouTubeRequest 
