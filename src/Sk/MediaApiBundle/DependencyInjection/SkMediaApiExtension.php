@@ -34,7 +34,14 @@ class SkMediaApiExtension extends Extension
         $container->setParameter('amazon_provider.access_params', $providers['amazon_provider']['access_params']);
         $container->setParameter ('amazon_provider.amazon_signed_request.class', $providers['amazon_provider']['amazon_signed_request']['class']);
         
+        //google params
+        $container->setParameter('google_provider.class', $providers['google_provider']['class']);
+        $container->setParameter('google_provider.gdata_key', $providers['google_provider']['gdata_key']);
+        $container->setParameter('google_provider.gdata_app_name', $providers['google_provider']['gdata_app_name']);
+        
         //youtube params
-        $container->setParameter('youtube_provider.youtube_request_object.class', $providers['youtube_provider']['youtube_request_object']['class']);
+        $container->setParameter('youtube_provider.google_service_youtube.class', $providers['youtube_provider']['google_service_youtube']['class']);
+        
+        //$container->setParameter('youtube_provider.access_params.gdata_key', $providers['youtube_provider']['access_params']['gdata_key']);
     }
 }

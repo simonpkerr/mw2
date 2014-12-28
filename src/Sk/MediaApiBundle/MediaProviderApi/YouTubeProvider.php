@@ -16,19 +16,29 @@ use \SimpleXMLElement;
 
 class YouTubeProvider implements IMediaProviderStrategy {
     const FRIENDLY_NAME = 'YouTube';
-    const PROVIDER_NAME = 'youtubeapi';
+    const PROVIDER_NAME = 'youtube';
     const BATCH_PROCESS_THRESHOLD = 24;
     const CACHE_TTL = 259200;
     
-    protected $youTube;
+    protected $gsYouTube;
     protected $apiEntity;
+    private $googleClient;
     private $query;
     private $ids;
+    private $gdataKey;
     
-    public function __construct($youtube_request_object = null){
-        $this->youTube = is_null($youtube_request_object) ? new \Zend_Gdata_YouTube() : $youtube_request_object;
-        $this->youTube->setMajorProtocolVersion(2);
+    public function __construct($google_service_youtube){
+        
+        //$this->gsYouTube =  is_null($youtube_request_object) ? new \Zend_Gdata_YouTube() : $youtube_request_object;
+        //$this->gdataKey = $access_params['gdata_key'];
+//        $this->googleClient = new Google_Client();
+//        $this->googleClient->setApplicationName("memory walls");
+//        $this->googleClient->setDeveloperKey($this->gdataKey);
+//        $this->googleServiceYouTube = is_null($google_service_youtube) ? new Google_Service_YouTube($this->googleClient) : $google_service_youtube;
+//               
+        //$this->gsYouTube->setMajorProtocolVersion(2);
        
+        $this->gsYouTube = $google_service_youtube;
     }
     
     public function getProviderName(){
@@ -45,7 +55,7 @@ class YouTubeProvider implements IMediaProviderStrategy {
 //    }
     
     public function setRequestObject($obj){
-        $this->youTube = $obj;
+        $this->gsYouTube = $obj;
     }
     
     public function getIdFromXML(SimpleXMLElement $xmlData){
@@ -82,131 +92,116 @@ class YouTubeProvider implements IMediaProviderStrategy {
      */
     public function getDetails(array $params){
         
-        if(!isset($params['ItemId']))
-           throw new \InvalidArgumentException('No id was passed to Youtube');
-        
-        $ve = $this->youTube->getVideoEntry($params['ItemId']);
-        
-        if($ve === false)
-            throw new \RuntimeException("Could not connect to YouTube");
-        
-        if(count($ve) < 1){
-            throw new \LengthException("No results were returned");
-        }
-        
-        $response = $this->constructVideoEntry(new SimpleXMLElement('<entry></entry>'), $ve);
- 
-        return $response;
+//        if(!isset($params['ItemId']))
+//           throw new \InvalidArgumentException('No id was passed to Youtube');
+//        
+//        $ve = $this->gsYouTube->getVideoEntry($params['ItemId']);
+//        
+//        if($ve === false)
+//            throw new \RuntimeException("Could not connect to YouTube");
+//        
+//        if(count($ve) < 1){
+//            throw new \LengthException("No results were returned");
+//        }
+//        
+//        $response = $this->constructVideoEntry(new SimpleXMLElement('<entry></entry>'), $ve);
+// 
+//        return $response;
+        return null;
     }
     
     public function getBatch(array $ids){
-        if(count($ids) > self::BATCH_PROCESS_THRESHOLD)
-            $ids = array_slice ($ids, 0, self::BATCH_PROCESS_THRESHOLD);
-        
-        $this->ids = $ids;
-                
-        $feed = '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/"
-xmlns:batch="http://schemas.google.com/gdata/batch" xmlns:yt="http://gdata.youtube.com/schemas/2007"><batch:operation type="query" />';
-        
-        $entries = array();
-        foreach($ids as $id){
-            array_push($entries, '<entry><id>http://gdata.youtube.com/feeds/api/videos/' . $id . '</id></entry>');
-        }
-        $feed = $feed . implode('', $entries) . '</feed>';
-        try{
-            $response = $this->youTube->post($feed, 'http://gdata.youtube.com/feeds/api/videos/batch');
-        }catch(\Exception $ex){
-            throw new \RuntimeException('A problem occurred connecting to YouTube');
-        }
-        
-        if($response === false)
-            throw new \RuntimeException('Could not connect to YouTube');
-        
-        if($response->getStatus() != 200)
-            throw new \RuntimeException('A problem occurred with the response');
-        
-        $response = $response->getBody();//gets the raw response as Zend_Http_Response
-        $feed = new \Zend_Gdata_YouTube_VideoFeed();
-        $feed->setMajorProtocolVersion(2);
-        try{
-            $feed->transferFromXML($response);
-        }catch(\Exception $ex){
-            throw new \RuntimeException('Could not parse response');
-        }
-        $response = $this->getSimpleXml($feed);
-
-        return $response;
-        
+//        if(count($ids) > self::BATCH_PROCESS_THRESHOLD)
+//            $ids = array_slice ($ids, 0, self::BATCH_PROCESS_THRESHOLD);
+//        
+//        $this->ids = $ids;
+//                
+//        $feed = '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/"
+//xmlns:batch="http://schemas.google.com/gdata/batch" xmlns:yt="http://gdata.youtube.com/schemas/2007"><batch:operation type="query" />';
+//        
+//        $entries = array();
+//        foreach($ids as $id){
+//            array_push($entries, '<entry><id>http://gdata.youtube.com/feeds/api/videos/' . $id . '</id></entry>');
+//        }
+//        $feed = $feed . implode('', $entries) . '</feed>';
+//        try{
+//            $response = $this->gsYouTube->post($feed, 'http://gdata.youtube.com/feeds/api/videos/batch');
+//        }catch(\Exception $ex){
+//            throw new \RuntimeException('A problem occurred connecting to YouTube');
+//        }
+//        
+//        if($response === false)
+//            throw new \RuntimeException('Could not connect to YouTube');
+//        
+//        if($response->getStatus() != 200)
+//            throw new \RuntimeException('A problem occurred with the response');
+//        
+//        $response = $response->getBody();//gets the raw response as Zend_Http_Response
+//        $feed = new \Zend_Gdata_YouTube_VideoFeed();
+//        $feed->setMajorProtocolVersion(2);
+//        try{
+//            $feed->transferFromXML($response);
+//        }catch(\Exception $ex){
+//            throw new \RuntimeException('Could not parse response');
+//        }
+//        $response = $this->getSimpleXml($feed);
+//
+//        return $response;
+        return null;
     }
 
     public function getRandomItems(Decade $decade, $pageNumber = 1){
-        return null;
+        $searchResponseItems = (array)$this->getListings($decade, $pageNumber);
+        $listingsCount = count($searchResponseItems);
+        $listingsCount = $listingsCount > 5 ? 5 : $listingsCount;
+        shuffle($searchResponseItems);
+        $randomItems = array_slice($searchResponseItems, 0, $listingsCount);
+        
+        return $randomItems;
     }
     
-    public function getListings(Decade $decade){
-                       
-//        $videoFeed = $this->getVideoFeed($mediaSelection);
-//
-//        if($videoFeed === false)
-//            throw new \RuntimeException("Could not connect to YouTube");
-//        
-//        if(count($videoFeed) < 1){
-//            throw new \LengthException("No results were returned");
-//        }
-//
-//        return $this->getSimpleXml($videoFeed);
-                
-        return null;
+    public function getListings(Decade $decade, $pageNumber = 1){
+        try {
+            $searchReponse = $this->gsYouTube->search->listSearch('id,snippet', array(
+                'q'             =>  urlencode($decade->getSlug()),
+                'maxResults'    =>  self::BATCH_PROCESS_THRESHOLD,
+                'pageToken'     =>  $pageNumber,
+                'type'          =>  'video'
+            ));
+        } catch (Google_ServiceException $e) {
+            return $e->getMessage();
+        } catch (Google_Exception $e){
+            return $e->getMessage();
+        }              
+
+        if($searchReponse === false) {
+            throw new \RuntimeException("Could not connect to YouTube");
+        }
+        
+        if(count($searchReponse['items']) < 1){
+            throw new \LengthException("No youtube results were returned");
+        }
+
+        return $searchReponse['items'];
+        //return $this->getSimpleXml($videoFeed);
     }
     
-    private function getVideoFeed(MediaSelection $mediaSelection){
-        $categories = 'Entertainment';
-        $query = $this->youTube->newVideoQuery();
+    private function getVideoFeed(Decade $decade){
+        //$query = $this->gsYouTube->newVideoQuery();
         
         //$query->setOrderBy('viewCount');
         //default ordering is relevance
-        $query->setMaxResults(self::BATCH_PROCESS_THRESHOLD);
+        //$query->setMaxResults(self::BATCH_PROCESS_THRESHOLD);
+        //$query->setCategory('Entertainment/' . $decade->getSlug());
         
-        /*switch($mediaSelection->getMediaType()->getSlug()){
-            case 'film':
-                $categories = 'Film';
-                break;
-            case 'tv':
-                $categories = 'Entertainment';
-                break;
-            case 'music':
-                $categories = 'Music';
-                break;
-        }*/
+        //$this->query = $query->getQueryUrl(2);
         
-        $searchString = Utilities::formatSearchString(array(
-            'keywords'  => $mediaSelection->getKeywords(),
-            'media'     => $mediaSelection->getMediaType()->getSlug(),
-            'decade'    => $mediaSelection->getDecade() != null ? $mediaSelection->getDecade()->getDecadeName() : null,
-            'genre'     => $mediaSelection->getSelectedMediaGenre() != null ? $mediaSelection->getSelectedMediaGenre()->getGenreName() : null
-        ));
-        
-        $searchQuery = $searchString['keywords'];
-        
-        if(!is_null($searchString['year'])){
-            $searchQuery .= '|' . $searchString['year'];
-        }
-        $query->setVideoQuery(htmlentities($searchQuery));
-        
-        if(!is_null($mediaSelection->getDecade())){
-            $categories .= '|' . $mediaSelection->getDecade()->getSlug();
-        }
-        $query->setCategory(urlencode($categories));
-        
-        $this->query = $query->getQueryUrl(2);
-        
-        return $this->youTube->getVideoFeed($this->query);    
-                
+        //return $this->gsYouTube->getVideoFeed($query);    
+        return null;        
     }
     
     private function getSimpleXml($videoFeed, $debugURL = false){
         $sxml = new SimpleXMLElement('<feed></feed>');
-        //$feed = $sxml->addChild('feed');
         foreach($videoFeed as $i=>$videoEntry){
             $entry = $sxml->addChild('entry');
             $this->constructVideoEntry($entry, $videoEntry, $i);
@@ -251,12 +246,12 @@ xmlns:batch="http://schemas.google.com/gdata/batch" xmlns:yt="http://gdata.youtu
      * has been chosen
      * @return type DateTime
      */
-//    public function getCacheTTL(){
-//         $date = new \DateTime("now");
-//         $date = $date->sub(new \DateInterval('PT72H'))->format("Y-m-d H:i:s");
-//
-//         return $date;
-//    }
+    public function getCacheTTL(){
+         $date = new \DateTime("now");
+         $date = $date->sub(new \DateInterval('PT72H'))->format("Y-m-d H:i:s");
+
+         return $date;
+    }
 
     
    

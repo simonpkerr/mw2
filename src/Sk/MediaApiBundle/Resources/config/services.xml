@@ -17,11 +17,17 @@
             <parameter key="amazon_associate_tag" />
         </parameter>
         <parameter key="amazon_provider.amazon_signed_request.class" />
-            
+
+        <!--google params-->
+        <parameter key="google_provider.class">Google_Client</parameter>
+        <parameter key="google_provider.gdata_key" />
+        <parameter key="google_provider.gdata_app_name" />
+                    
         <!--youtube params-->
         <parameter key="youtube_provider.class">Sk\MediaApiBundle\MediaProviderApi\YouTubeProvider</parameter>
-        <parameter key="youtube_provider.youtube_request_object.class" />
-   
+        <parameter key="youtube_provider.google_service_youtube.class" />
+
+           
     </parameters>
     
     <services>
@@ -43,10 +49,23 @@
             <argument id="sonata.cache.apc" type="service"  />
         </service>
         
+        <!--google services-->
+        <service id="google_client" class="%google_provider.class%" public="false">
+            <call method="setDeveloperKey">
+                <argument>%google_provider.gdata_key%</argument>
+            </call>
+            <call method="setApplicationName">
+                <argument>%google_provider.gdata_app_name%</argument>
+            </call>
+        </service>
+        
         <!--youtube services-->
-        <service id="youtube_request_object" class="%youtube_provider.youtube_request_object.class%" public="false" />
+        <service id="google_service_youtube" class="%youtube_provider.google_service_youtube.class%" public="false">
+            <argument type="service" id="google_client" />
+        </service>
+        
         <service id="youtube_provider" class="%youtube_provider.class%" public="false">
-            <argument type="service" on-invalid="ignore" id="youtube_request_object" />
+            <argument type="service" on-invalid="ignore" id="google_service_youtube" />
         </service>
          
     </services>

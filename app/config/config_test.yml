@@ -27,5 +27,7 @@ sk_media_api:
         amazon_signed_request:
           class: Sk\MediaApiBundle\MediaProviderApi\TestAmazonSignedRequest
       youtube_provider:
-        youtube_request_object: 
-          class: Sk\MediaApiBundle\MediaProviderApi\TestYouTubeRequest 
+        access_params:
+          gdata_key: %gdata_key%
+        google_service_youtube: 
+          class: Sk\MediaApiBundle\MediaProviderApi\TestYouTubeService 

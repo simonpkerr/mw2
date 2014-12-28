@@ -8,8 +8,8 @@
  */
 
 namespace Sk\MediaApiBundle\MediaProviderApi;
-require_once 'Zend/Loader.php';
-class TestYouTubeRequest {
+//require_once 'Zend/Loader.php';
+class TestYouTubeService {
     private $headers;
     
     public function __construct(){

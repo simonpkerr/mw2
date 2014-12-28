@@ -18,6 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
+        //$treeBuilder->root()->
         $rootNode = $treeBuilder->root('sk_media_api');
         $rootNode
         ->children()
@@ -44,16 +45,24 @@ class Configuration implements ConfigurationInterface
                                     ->end()//end of amazon_signed_request
                                 ->end()
                             ->end()//end of amazonapi
+                            ->arrayNode('google_provider')
+                            ->addDefaultsIfNotSet()
+                                ->children()
+                                    ->scalarNode('gdata_key')->isRequired()->cannotBeEmpty()->end()
+                                    ->scalarNode('gdata_app_name')->isRequired()->cannotBeEmpty()->end()
+                                    ->scalarNode('class')->defaultValue('Google_Client')->end()
+                                ->end()
+                            ->end()//end of google provider
                             ->arrayNode('youtube_provider')
                             ->isRequired()
                                 ->children()
-                                    ->arrayNode('youtube_request_object')
+                                    ->arrayNode('google_service_youtube')
                                     ->addDefaultsIfNotSet()
                                         ->children()
-                                            ->scalarNode('class')->defaultValue('Zend_Gdata_YouTube')->end()
+                                            ->scalarNode('class')->defaultValue('Google_Service_YouTube')->end()
                                         ->end()
                                     ->end()
-                                ->end()
+                                ->end()    
                             ->end()//end of youtubeapi
                         ->end()
                     ->end()//end of providers

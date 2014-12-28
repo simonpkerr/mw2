@@ -23,4 +23,6 @@ parameters:
     amazon_uk_private_key: pk
     amazon_us_private_key: pk
     amazon_associate_tag: aat
+    gdata_key: 12345
+    gdata_app_name: "my app"
     apc_token: s3cur3

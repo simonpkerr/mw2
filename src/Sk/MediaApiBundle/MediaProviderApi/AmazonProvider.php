@@ -25,7 +25,7 @@ use Sonata\Cache\CacheElement;
 
 class AmazonProvider implements IMediaProviderStrategy {
     const FRIENDLY_NAME = 'Amazon';
-    const PROVIDER_NAME = 'amazonapi';
+    const PROVIDER_NAME = 'amazon';
     const BATCH_PROCESS_THRESHOLD = 10;
     const CACHE_TTL = 86400;
     

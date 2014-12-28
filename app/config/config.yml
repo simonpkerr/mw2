@@ -141,4 +141,8 @@ sk_media_api:
           amazon_public_key: %amazon_public_key%
           amazon_private_key: %amazon_uk_private_key%
           amazon_associate_tag: %amazon_associate_tag%
-      youtube_provider: ~
+      google_provider:
+        gdata_key: %gdata_key%
+        gdata_app_name: %gdata_app_name%
+      youtube_provider:
+        
