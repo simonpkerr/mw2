@@ -66,6 +66,7 @@
         
         <service id="youtube_provider" class="%youtube_provider.class%" public="false">
             <argument type="service" on-invalid="ignore" id="google_service_youtube" />
+            <argument id="sonata.cache.apc" type="service"  />
         </service>
          
     </services>

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Simon Kerr
+ * Copyright (c) 2015 Simon Kerr
  * Connects to YouTube api to return results for all media,
  * handles getting listings, details and batch processing of YouTube data
  * @author Simon Kerr
@@ -10,34 +10,25 @@ namespace Sk\MediaApiBundle\MediaProviderApi;
 use Sk\MediaApiBundle\MediaProviderApi\Utilities;
 use Sk\MediaApiBundle\Entity\MediaSelection;
 use Sk\MediaApiBundle\Entity\Decade;
-//use Sk\MediaApiBundle\Entity\API;
 use Doctrine\ORM\EntityManager;
 use \SimpleXMLElement;
+use Sonata\Cache\CacheAdapterInterface;
+use Sonata\CacheBundle\Adapter;
+use Sonata\Cache\CacheElement;
 
 class YouTubeProvider implements IMediaProviderStrategy {
     const FRIENDLY_NAME = 'YouTube';
     const PROVIDER_NAME = 'youtube';
     const BATCH_PROCESS_THRESHOLD = 24;
+    const SEARCH_MAX_RESULTS = 50;
     const CACHE_TTL = 259200;
     
-    protected $gsYouTube;
-    protected $apiEntity;
-    private $googleClient;
-    private $query;
-    private $ids;
-    private $gdataKey;
+    private $gsYouTube;
+    private $cache;
     
-    public function __construct($google_service_youtube){
-        
-        //$this->gsYouTube =  is_null($youtube_request_object) ? new \Zend_Gdata_YouTube() : $youtube_request_object;
-        //$this->gdataKey = $access_params['gdata_key'];
-//        $this->googleClient = new Google_Client();
-//        $this->googleClient->setApplicationName("memory walls");
-//        $this->googleClient->setDeveloperKey($this->gdataKey);
-//        $this->googleServiceYouTube = is_null($google_service_youtube) ? new Google_Service_YouTube($this->googleClient) : $google_service_youtube;
-//               
-        //$this->gsYouTube->setMajorProtocolVersion(2);
-       
+    //through DI, either receives the genuine search object or a fake
+    public function __construct($google_service_youtube, CacheAdapterInterface $cache){
+        $this->cache = $cache;
         $this->gsYouTube = $google_service_youtube;
     }
     
@@ -151,11 +142,31 @@ class YouTubeProvider implements IMediaProviderStrategy {
     }
 
     public function getRandomItems(Decade $decade, $pageNumber = 1){
-        $searchResponseItems = (array)$this->getListings($decade, $pageNumber);
-        $listingsCount = count($searchResponseItems);
+        $cacheKey = array(
+            'decade'        => $decade->getSlug(),
+            'provider'      => self::PROVIDER_NAME
+        );                
+        $items = array();
+        if($this->cache->has($cacheKey)){
+            $cacheElement = $this->cache->get($cacheKey);
+            $items = $cacheElement->getData();
+        } else {
+            $searchResponse = (array)$this->getListings($decade, $pageNumber);
+            foreach($searchResponse as $item){
+                array_push($items, array(
+                    'title'         =>  $item->snippet->title,
+                    'description'   =>  $item->snippet->description,
+                    'image'         =>  $item->snippet->thumbnails->medium->url,
+                    'id'            =>  $item->id->videoId
+                ));
+            }
+            $this->cache->set($cacheKey, $items, self::CACHE_TTL);
+        }
+        
+        $listingsCount = count($items);
         $listingsCount = $listingsCount > 5 ? 5 : $listingsCount;
-        shuffle($searchResponseItems);
-        $randomItems = array_slice($searchResponseItems, 0, $listingsCount);
+        shuffle($items);
+        $randomItems = array_slice($items, 0, $listingsCount);
         
         return $randomItems;
     }
@@ -164,15 +175,12 @@ class YouTubeProvider implements IMediaProviderStrategy {
         try {
             $searchReponse = $this->gsYouTube->search->listSearch('id,snippet', array(
                 'q'             =>  urlencode($decade->getSlug()),
-                'maxResults'    =>  self::BATCH_PROCESS_THRESHOLD,
-                'pageToken'     =>  $pageNumber,
+                'maxResults'    =>  self::SEARCH_MAX_RESULTS,
                 'type'          =>  'video'
             ));
-        } catch (Google_ServiceException $e) {
-            return $e->getMessage();
-        } catch (Google_Exception $e){
-            return $e->getMessage();
-        }              
+        } catch (\Exception $e) {
+            throw $e;
+        }            
 
         if($searchReponse === false) {
             throw new \RuntimeException("Could not connect to YouTube");
@@ -200,45 +208,45 @@ class YouTubeProvider implements IMediaProviderStrategy {
         return null;        
     }
     
-    private function getSimpleXml($videoFeed, $debugURL = false){
-        $sxml = new SimpleXMLElement('<feed></feed>');
-        foreach($videoFeed as $i=>$videoEntry){
-            $entry = $sxml->addChild('entry');
-            $this->constructVideoEntry($entry, $videoEntry, $i);
-        }
-        
-        //debug - output the search url
-        if($debugURL){
-            $url = $sxml->addChild('url');
-            $url[0] = $this->query;
-        }
-        return $sxml;
-    }
+//    private function getSimpleXml($videoFeed, $debugURL = false){
+//        $sxml = new SimpleXMLElement('<feed></feed>');
+//        foreach($videoFeed as $i=>$videoEntry){
+//            $entry = $sxml->addChild('entry');
+//            $this->constructVideoEntry($entry, $videoEntry, $i);
+//        }
+//        
+//        //debug - output the search url
+//        if($debugURL){
+//            $url = $sxml->addChild('url');
+//            $url[0] = $this->query;
+//        }
+//        return $sxml;
+//    }
     
-    private function constructVideoEntry(SimpleXMLElement $entry, $videoEntry, $i = null){
-        $id = $entry->addChild('id');
-        $thumbnail = $entry->addChild('thumbnail');
-        $title = $entry->addChild('title');
-        
-        if(!is_null($videoEntry->getVideoTitle())) {
-            $id[0] = $videoEntry->getVideoId();
-            $thumbnails = $videoEntry->getVideoThumbnails();
-            $tn = end($thumbnails);
-            $thumbnail[0] = $tn['url'];
-            $title[0] = $videoEntry->getVideoTitle();
-        } else {
-            if(!is_null($this->ids) && !is_null($i)){
-                $id[0] = $this->ids[$i];                        
-            } else {
-                $id[0] = '-1';
-            }
-            $thumbnail[0] = 'na';
-            $title[0] = 'Sorry, this video has been removed by YouTube';
-        }
-        
-        return $entry;
-    }
-    
+//    private function constructVideoEntry(SimpleXMLElement $entry, $videoEntry, $i = null){
+//        $id = $entry->addChild('id');
+//        $thumbnail = $entry->addChild('thumbnail');
+//        $title = $entry->addChild('title');
+//        
+//        if(!is_null($videoEntry->getVideoTitle())) {
+//            $id[0] = $videoEntry->getVideoId();
+//            $thumbnails = $videoEntry->getVideoThumbnails();
+//            $tn = end($thumbnails);
+//            $thumbnail[0] = $tn['url'];
+//            $title[0] = $videoEntry->getVideoTitle();
+//        } else {
+//            if(!is_null($this->ids) && !is_null($i)){
+//                $id[0] = $this->ids[$i];                        
+//            } else {
+//                $id[0] = '-1';
+//            }
+//            $thumbnail[0] = 'na';
+//            $title[0] = 'Sorry, this video has been removed by YouTube';
+//        }
+//        
+//        return $entry;
+//    }
+//    
     /**
      * method returns a date time object against which records can be compared
      * for youtube. This enables updates to be made to out of date records
@@ -246,12 +254,12 @@ class YouTubeProvider implements IMediaProviderStrategy {
      * has been chosen
      * @return type DateTime
      */
-    public function getCacheTTL(){
-         $date = new \DateTime("now");
-         $date = $date->sub(new \DateInterval('PT72H'))->format("Y-m-d H:i:s");
-
-         return $date;
-    }
+//    public function getCacheTTL(){
+//         $date = new \DateTime("now");
+//         $date = $date->sub(new \DateInterval('PT72H'))->format("Y-m-d H:i:s");
+//
+//         return $date;
+//    }
 
     
    
