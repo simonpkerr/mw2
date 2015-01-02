@@ -6,7 +6,7 @@
  * @author Simon Kerr
  * @version 1.0
  */
-namespace Sk\MediaApiBundle\MediaProviderApi;
+namespace Sk\MediaApiBundle\Tests\MediaProviderApi;
 use Sk\MediaApiBundle\MediaProviderApi\AmazonSignedRequest;
 
 class TestAmazonSignedRequest extends AmazonSignedRequest{

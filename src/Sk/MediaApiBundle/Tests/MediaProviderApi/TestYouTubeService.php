@@ -7,7 +7,7 @@
  * @version 1.0
  */
 
-namespace Sk\MediaApiBundle\MediaProviderApi;
+namespace Sk\MediaApiBundle\Tests\MediaProviderApi;
 //require_once 'Zend/Loader.php';
 class TestYouTubeService {
     private $headers;

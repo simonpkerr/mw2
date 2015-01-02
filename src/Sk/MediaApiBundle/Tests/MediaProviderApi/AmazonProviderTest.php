@@ -62,7 +62,6 @@ class AmazonProviderTest extends WebTestCase {
         unset($this->access_params);
         unset($this->mediaSelection);
         unset($this->testASR);                
-        $this->cache->flushAll();
         unset($this->cache);
     }
     
@@ -106,6 +105,50 @@ class AmazonProviderTest extends WebTestCase {
         $api = new AmazonProvider($this->access_params, $this->testASR, $this->cache);
         $response = $api->getListings($this->decade, 1);
         $this->assertTrue((int)$response->TotalResults > 0);
+    }
+    
+    public function testGetRandomItemsIfNoCacheKeyReturnsProviderData(){
+        $this->cache = $this->getMockBuilder('Sonata\\CacheBundle\\Adapter\\ApcCache')
+                ->disableOriginalConstructor()
+                ->setMethods(array(
+                    'has',
+                    'set'
+                ))
+                ->getMock();
+        $this->cache->expects($this->any())
+                ->method('has')
+                ->will($this->returnValue(false));
+        
+        $api = new AmazonProvider($this->access_params, new TestAmazonSignedRequest(), $this->cache);
+        $response = $api->getRandomItems($this->decade);
+        $this->assertEquals(count($response), 5, '5 random items not returned');
+    }
+    
+    public function testGetRandomItemsIfValidCacheReturnsCache(){
+        $cacheElement = new \Sonata\Cache\CacheElement(array(),array(
+                    'item1' => 1,
+                    'item2' => 2,
+                    'item3' => 3
+                ));
+
+        $this->cache = $this->getMockBuilder('Sonata\\CacheBundle\\Adapter\\ApcCache')
+                ->disableOriginalConstructor()
+                ->setMethods(array(
+                    'has',
+                    'get'
+                ))
+                ->getMock();
+        $this->cache->expects($this->any())
+                ->method('has')
+                ->will($this->returnValue(true));
+        
+        $this->cache->expects($this->any())
+                ->method('get')
+                ->will($this->returnValue($cacheElement));                
+        
+        $api = new AmazonProvider($this->access_params, new TestAmazonSignedRequest(), $this->cache);
+        $response = $api->getRandomItems($this->decade);
+        $this->assertEquals(count($response), 3, '3 random items not returned');
     }
     
     /**

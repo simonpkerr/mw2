@@ -42,6 +42,5 @@ class SkMediaApiExtension extends Extension
         //youtube params
         $container->setParameter('youtube_provider.google_service_youtube.class', $providers['youtube_provider']['google_service_youtube']['class']);
         
-        //$container->setParameter('youtube_provider.access_params.gdata_key', $providers['youtube_provider']['access_params']['gdata_key']);
     }
 }

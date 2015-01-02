@@ -17,7 +17,7 @@ swiftmailer:
 
 sk_media_api:
   media_provider_api:
-    debug_mode: false
+    debug_mode: true
     providers: 
       amazon_provider:
         access_params:
@@ -25,9 +25,7 @@ sk_media_api:
           amazon_private_key: aprk
           amazon_associate_tag: aat
         amazon_signed_request:
-          class: Sk\MediaApiBundle\MediaProviderApi\TestAmazonSignedRequest
+          class: Sk\MediaApiBundle\Tests\MediaProviderApi\TestAmazonSignedRequest
       youtube_provider:
-        access_params:
-          gdata_key: %gdata_key%
         google_service_youtube: 
-          class: Sk\MediaApiBundle\MediaProviderApi\TestYouTubeService 
+          class: Sk\MediaApiBundle\Tests\MediaProviderApi\TestYouTubeService 

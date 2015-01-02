@@ -25,11 +25,24 @@ class YouTubeProvider implements IMediaProviderStrategy {
     
     private $gsYouTube;
     private $cache;
+    private $defaults;
     
     //through DI, either receives the genuine search object or a fake
+    /**
+     * 
+     * @param type $google_service_youtube
+     * @param CacheAdapterInterface $cache
+     * $defaults  1 (Film & animation), 10 (Music), 20 (Gaming), 24 (Entertainment), 30 (movies), 43 (Shows)
+     */
     public function __construct($google_service_youtube, CacheAdapterInterface $cache){
         $this->cache = $cache;
         $this->gsYouTube = $google_service_youtube;
+        $this->defaults = array(
+            'maxResults'        =>  self::SEARCH_MAX_RESULTS,
+            'type'              =>  'video',
+            'videoCategoryId'   =>  '1,10,20,24,30,43',
+            'regionCode'        =>  'GB'
+        );
     }
     
     public function getProviderName(){
@@ -173,11 +186,9 @@ class YouTubeProvider implements IMediaProviderStrategy {
     
     public function getListings(Decade $decade, $pageNumber = 1){
         try {
-            $searchReponse = $this->gsYouTube->search->listSearch('id,snippet', array(
-                'q'             =>  urlencode($decade->getSlug()),
-                'maxResults'    =>  self::SEARCH_MAX_RESULTS,
-                'type'          =>  'video'
-            ));
+            $searchReponse = $this->gsYouTube->search->listSearch('id,snippet', array_merge($this->defaults, array(
+                'q'     =>  urlencode($decade->getSlug()),
+            )));
         } catch (\Exception $e) {
             throw $e;
         }            
