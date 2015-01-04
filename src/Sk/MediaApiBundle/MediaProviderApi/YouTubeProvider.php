@@ -193,16 +193,11 @@ class YouTubeProvider implements IMediaProviderStrategy {
             throw $e;
         }            
 
-        if($searchReponse === false) {
-            throw new \RuntimeException("Could not connect to YouTube");
-        }
-        
         if(count($searchReponse['items']) < 1){
             throw new \LengthException("No youtube results were returned");
         }
 
         return $searchReponse['items'];
-        //return $this->getSimpleXml($videoFeed);
     }
     
     private function getVideoFeed(Decade $decade){

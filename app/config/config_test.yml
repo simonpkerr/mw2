@@ -28,4 +28,4 @@ sk_media_api:
           class: Sk\MediaApiBundle\Tests\MediaProviderApi\TestAmazonSignedRequest
       youtube_provider:
         google_service_youtube: 
-          class: Sk\MediaApiBundle\Tests\MediaProviderApi\TestYouTubeService 
+          class: Sk\MediaApiBundle\Tests\MediaProviderApi\TestGoogleServiceYouTube 
