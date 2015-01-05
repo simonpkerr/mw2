@@ -10,6 +10,7 @@
 namespace Sk\MediaApiBundle\Tests\MediaProviderApi;
 class TestGoogleServiceYouTube extends Google_Service_YouTube {
     private $headers;
+    public $search;
     
     public function __construct(){
         $this->headers = 'HTTP/1.1 200 OK
@@ -25,8 +26,11 @@ X-xss-protection: 1; mode=block
 Server: GSE
 Connection: close';
 //Transfer-encoding: chunked
+        $this->search = new TestSearchResponse();
     }
-    
+}
+
+class TestSearchResponse {
     public function listSearch($part, $optParams = array()){
         $file = 'src\Sk\MediaApiBundle\Tests\MediaProviderApi\SampleResponses\sampleYouTubeListings.txt';
         if(isset($optParams['fileName'])){

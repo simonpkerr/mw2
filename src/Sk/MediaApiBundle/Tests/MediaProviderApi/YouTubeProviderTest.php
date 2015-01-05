@@ -44,8 +44,12 @@ class YouTubeProviderTest extends WebTestCase {
         //$this->gsYouTube = new YouTubeProvider(new TestGoogleServiceYouTube(), $this->cache);
         $this->gsYouTube = $this->getMockBuilder('\Google_Service_YouTube')
                 ->disableOriginalConstructor()
+                ->getMock();
+        
+        $this->gsYouTube->search = $this->getMockBuilder('\Google_Service_YouTube_Search_Resource')
+                ->disableOriginalConstructor()
                 ->setMethods(array(
-                   'search.listSearch' 
+                    'listSearch'
                 ))
                 ->getMock();
         
@@ -61,8 +65,8 @@ class YouTubeProviderTest extends WebTestCase {
      * @expectedException Exception 
      **/
     public function testNoResponseThrowsRuntimeException(){
-        $this->gsYouTube->expects($this->any())
-                ->method('search.listSearch')
+        $this->gsYouTube->search->expects($this->any())
+                ->method('listSearch')
                 ->will($this->throwException(new \Exception()));
         
         $yt = new YouTubeProvider($this->gsYouTube, $this->cache);
@@ -75,8 +79,8 @@ class YouTubeProviderTest extends WebTestCase {
      */
     public function testEmptyResponseReturnsLengthException(){
         $emptyFile = './src/Sk/MediaApiBundle/Tests/MediaProviderApi/SampleResponses/sampleEmptyYouTubeListings.txt';
-        $this->gsYouTube->expects($this->any())
-                ->method('search.listSearch')
+        $this->gsYouTube->search->expects($this->any())
+                ->method('listSearch')
                 ->will($this->returnValue(json_decode(file_get_contents($emptyFile),true)));
         
         $yt = new YouTubeProvider($this->gsYouTube, $this->cache);

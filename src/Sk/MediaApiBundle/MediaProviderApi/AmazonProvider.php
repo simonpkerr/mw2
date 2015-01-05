@@ -13,8 +13,6 @@ use Symfony\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManager;
 use Sk\MediaApiBundle\Entity\Decade;
 use Sk\MediaApiBundle\Entity\Genre;
-use Sk\MediaApiBundle\Entity\MediaType;
-use Sk\MediaApiBundle\Entity\MediaSelection;
 use Sk\MediaApiBundle\Entity\API;
 use Sk\MediaApiBundle\MediaProviderApi\Utilities;
 use \SimpleXMLElement;
@@ -39,7 +37,7 @@ class AmazonProvider implements IMediaProviderStrategy {
     private $ITEM_LOOKUP = 'ItemLookup';
     private $cache;
  
-    public function __construct(array $access_params, $amazon_signed_request, CacheAdapterInterface $cache){
+    public function __construct(array $access_params, $amazon_signed_request){
             
         $this->public_key = $access_params['amazon_public_key'];
         $this->private_key = $access_params['amazon_private_key'];
@@ -57,11 +55,19 @@ class AmazonProvider implements IMediaProviderStrategy {
                 "Validate"      => "True",
          );
         
-        $this->cache = $cache;
+        //$this->cache = $cache;
     }
     
     public function getProviderName(){
         return self::PROVIDER_NAME;
+    }
+    
+    public function getCacheKey(Decade $decade, $pageNumber = 1){
+        return array(
+            'decade'        => $decade->getSlug(),
+            'pageNumber'    => $pageNumber,
+            'provider'      => self::PROVIDER_NAME
+        );
     }
     
 //    public function setAPIEntity(API $entity){
@@ -77,49 +83,49 @@ class AmazonProvider implements IMediaProviderStrategy {
     }
     
     //each api will have it's own method for returning the id of a mediaresource for caching purposes.
-    public function getIdFromXML(SimpleXMLElement $xmlData){
-        return (string)$xmlData->ASIN;
+    public function getItemId($data){
+        return (string)$data->ASIN;
     }
     
-    public function getXML(SimpleXMLElement $xmlData){
-        return $xmlData->asXML();
+    public function getXML($data){
+        return $data->asXML();
     }
     
-    public function getPriceFromXml(SimpleXMLElement $xmlData){
+    public function getItemPrice($data){
         try {
-            return (string)$xmlData->ItemAttributes->ListPrice->FormattedPrice;
+            return (string)$data->ItemAttributes->ListPrice->FormattedPrice;
         } catch (\RuntimeException $ex) {
             return null;
         }
     }
     
-    public function getImageUrlFromXML(SimpleXMLElement $xmlData){
+    public function getItemImage($data){
         try{
-            return (string)$xmlData->MediumImage->URL;
+            return (string)$data->MediumImage->URL;
         } catch(\RuntimeException $re){
             return null;
         }
     }
     
-    public function getReferralUrlFromXML(SimpleXMLElement $xmlData){
+    public function getItemUrl($data){
         try{
-            return (string)$xmlData->DetailPageURL;
+            return (string)$data->DetailPageURL;
         } catch(\RuntimeException $re){
             return null;
         }
     }
     
-    public function getItemTitleFromXML(SimpleXMLElement $xmlData){
+    public function getItemTitle($data){
         try{
-            return (string)$xmlData->ItemAttributes->Title;
+            return (string)$data->ItemAttributes->Title;
         } catch(\RuntimeException $re){
             return null;
         }
     }
     
-    public function getDecadeFromXML(SimpleXMLElement $xmlData) {
+    public function getItemDecade($data) {
         try{
-            $title = (string)$xmlData->ItemAttributes->Title;
+            $title = (string)$data->ItemAttributes->Title;
             $yearParts = array();
             preg_match('/[\[|\(](\d{4})[\]|\)]/i', $title, $yearParts);
             $year = isset($yearParts[1]) ? $yearParts[1] : null;
@@ -133,50 +139,16 @@ class AmazonProvider implements IMediaProviderStrategy {
         }
     }
     
-    /**
-     * 
-     * @param \Sk\MediaApiBundle\Entity\Decade $decade
-     * @param int $pageNumber
-     * checks cache to see if response currently exists and is not stale
-     * if no cache or cache is stale, get results and refresh cache
-     * Get the listings and then select a random 5,
-     * get each one's title, url, image and price if available
-     */
-    public function getRandomItems(Decade $decade, $pageNumber = 1){
-        //check cache using composite key. if exists and is not stale get data
-        //else get listings from amazon and cache items using amazon ttl
-        $cacheKey = array(
-            'decade'        => $decade->getSlug(),
-            'pageNumber'    => $pageNumber,
-            'provider'      => self::PROVIDER_NAME
-        );
-        $items = array();
-        if($this->cache->has($cacheKey)){
-            $cacheElement = $this->cache->get($cacheKey);
-            $items = $cacheElement->getData();
-        } else {
-            $xmlResponse = (array)$this->getListings($decade, $pageNumber);
-            $xmlResponse = $xmlResponse['Item'];
-            foreach($xmlResponse as $item){
-                array_push($items, array(
-                    'title'     =>  $this->getItemTitleFromXML($item),
-                    'image'     =>  $this->getImageUrlFromXML($item),
-                    'url'       =>  $this->getReferralUrlFromXML($item),
-                    'price'     =>  $this->getPriceFromXml($item)
-                ));
-            }
-            $this->cache->set($cacheKey, $items, self::CACHE_TTL);
-        }        
+    public function getItemDescription($data) {
+        try{
+            return null;
+        } catch (\RuntimeException $ex) {
+            return null;
+        }
         
-        $listingsCount = count($items);
-        $listingsCount = $listingsCount > 5 ? 5 : $listingsCount;
-        shuffle($items);
-        $randomItems = array_slice($items, 0, $listingsCount);
-        
-        return $randomItems;
     }
     
-    
+   
     /**
      * @param \Sk\MediaApiBundle\Entity\Decade $decade
      * @param type $pageNumber
@@ -200,14 +172,14 @@ class AmazonProvider implements IMediaProviderStrategy {
         $xml_response = $this->queryAmazon($this->amazonParameters, "co.uk");
         
         try{
-            $xml_response = $this->verifyXmlResponse($xml_response)->Items;
+            $xml_response = (array)$this->verifyXmlResponse($xml_response)->Items;
         }catch(\RunTimeException $re){
             throw $re;
         }catch(\LengthException $le){
             throw $le;
         }
-        
-        return $xml_response;
+                
+        return $xml_response['Item'];
     }
     
     /*
@@ -300,20 +272,7 @@ class AmazonProvider implements IMediaProviderStrategy {
         return $this->asr->aws_signed_request($region, $parameters, $this->public_key, $this->private_key, $this->associate_tag);
     }
     
-    /**
-     * returns a DateTime object against which records can be compared 
-     * to determine whether cached records for amazon can be used or need
-     * to be updated from the live api. According to toc for amazon, this
-     * threshold is 24 hours.
-     * @return type DateTime
-     */
-//    public function getCacheTTL(){
-//         $date = new \DateTime("now");
-//         $date = $date->sub(new \DateInterval('PT24H'))->format("Y-m-d H:i:s");
-//         return $date;
-//         
-//        
-//    }
+
 }
 
 

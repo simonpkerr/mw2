@@ -39,6 +39,7 @@
                 <argument type="service" id="amazon_provider" key="amazon_provider" />
                 <argument type="service" id="youtube_provider" key="youtube_provider" />
             </argument>
+            <argument id="sonata.cache.apc" type="service"  />
         </service>
         
         <!--amazon services-->
@@ -46,7 +47,7 @@
         <service id="amazon_provider" class="%amazon_provider.class%" public="false">
             <argument>%amazon_provider.access_params%</argument>
             <argument id="amazon_signed_request" type="service" />
-            <argument id="sonata.cache.apc" type="service"  />
+            <!--<argument id="sonata.cache.apc" type="service"  />-->
         </service>
         
         <!--google services-->
@@ -66,7 +67,7 @@
         
         <service id="youtube_provider" class="%youtube_provider.class%" public="false">
             <argument type="service" on-invalid="ignore" id="google_service_youtube" />
-            <argument id="sonata.cache.apc" type="service"  />
+<!--            <argument id="sonata.cache.apc" type="service"  />-->
         </service>
          
     </services>

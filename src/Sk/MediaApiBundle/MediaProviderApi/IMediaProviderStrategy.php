@@ -16,19 +16,22 @@ use \SimpleXMLElement;
 
 interface IMediaProviderStrategy {
     
+    public function getCacheKey(Decade $decade, $pageNumber = 1);
     //public function getAPIEntity();
     //public function setAPIEntity(API $entity);
-    public function getRandomItems(Decade $decade, $pageNumber = 1);
+    //public function getRandomItems(Decade $decade, $pageNumber = 1);
     public function getListings(Decade $decade);
     //public function getDetails(array $params);
     public function getProviderName();
     //public function getBatch(array $ids);
     //each api implements its own method of getting the id
-    public function getIdFromXML(SimpleXMLElement $xmlData);
-    public function getXML(SimpleXMLElement $xmlData);
-    public function getImageUrlFromXML(SimpleXMLElement $xmlData);
-    public function getItemTitleFromXML(SimpleXMLElement $xmlData);
-    public function getDecadeFromXML(SimpleXMLElement $xmlData);
+    public function getItemId($data);
+    public function getXML($data);
+    public function getItemImage($data);
+    public function getItemTitle($data);
+    public function getItemDecade($data);
+    public function getItemDescription($data);
+    public function getItemUrl($data);
     //public function getCacheTTL();
    
     

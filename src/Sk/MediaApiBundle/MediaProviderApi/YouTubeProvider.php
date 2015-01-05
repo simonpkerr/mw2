@@ -34,8 +34,8 @@ class YouTubeProvider implements IMediaProviderStrategy {
      * @param CacheAdapterInterface $cache
      * $defaults  1 (Film & animation), 10 (Music), 20 (Gaming), 24 (Entertainment), 30 (movies), 43 (Shows)
      */
-    public function __construct($google_service_youtube, CacheAdapterInterface $cache){
-        $this->cache = $cache;
+    public function __construct($google_service_youtube){
+        //$this->cache = $cache;
         $this->gsYouTube = $google_service_youtube;
         $this->defaults = array(
             'maxResults'        =>  self::SEARCH_MAX_RESULTS,
@@ -48,6 +48,14 @@ class YouTubeProvider implements IMediaProviderStrategy {
     public function getProviderName(){
         return self::PROVIDER_NAME;
     }
+    
+    public function getCacheKey(Decade $decade, $pageNumber = 1){
+        return array(
+            'decade'        => $decade->getSlug(),
+            'provider'      => self::PROVIDER_NAME
+        );
+    }
+    
     
 //    public function getAPIEntity() {
 //        return $this->apiEntity;
@@ -62,30 +70,53 @@ class YouTubeProvider implements IMediaProviderStrategy {
         $this->gsYouTube = $obj;
     }
     
-    public function getIdFromXML(SimpleXMLElement $xmlData){
-        return (string)$xmlData->id;
+    public function getItemId($data){
+        return  $data->id->videoId;
     }
     
-    public function getXML(SimpleXMLElement $xmlData){
-        return $xmlData->asXML();
-    }
     
-    public function getImageUrlFromXML(SimpleXMLElement $xmlData) {
+     public function getItemUrl($data){
         try{
-            return (string)$xmlData->thumbnail;
-        } catch(\RuntimeException $re){
-            return null;
-        }
-    }
-    public function getItemTitleFromXML(SimpleXMLElement $xmlData){
-        try{
-            return (string)$xmlData->title;
+            return 'https://www.youtube.com/watch?v=' . $data->id->videoId;
         } catch(\RuntimeException $re){
             return null;
         }
     }
     
-    public function getDecadeFromXML(SimpleXMLElement $xmlData) {
+    
+    public function getXML($data){
+        return $data->asXML();
+    }
+    
+    public function getItemImage($data) {
+        try{
+            return $data->snippet->thumbnails->medium->url;
+        } catch(\RuntimeException $re){
+            return null;
+        }
+    }
+    public function getItemTitle($data){
+        try{
+            return $data->snippet->title;
+        } catch(\RuntimeException $re){
+            return null;
+        }
+    }
+    
+    public function getItemDecade($data) {
+        return null;
+    }
+    
+    public function getItemDescription($data) {
+        try{
+            return $data->snippet->description;
+        } catch (\RuntimeException $ex) {
+            return null;
+        }
+        
+    }
+    
+    public function getItemPrice($data){
         return null;
     }
     
@@ -152,36 +183,6 @@ class YouTubeProvider implements IMediaProviderStrategy {
 //
 //        return $response;
         return null;
-    }
-
-    public function getRandomItems(Decade $decade, $pageNumber = 1){
-        $cacheKey = array(
-            'decade'        => $decade->getSlug(),
-            'provider'      => self::PROVIDER_NAME
-        );                
-        $items = array();
-        if($this->cache->has($cacheKey)){
-            $cacheElement = $this->cache->get($cacheKey);
-            $items = $cacheElement->getData();
-        } else {
-            $searchResponse = (array)$this->getListings($decade, $pageNumber);
-            foreach($searchResponse as $item){
-                array_push($items, array(
-                    'title'         =>  $item->snippet->title,
-                    'description'   =>  $item->snippet->description,
-                    'image'         =>  $item->snippet->thumbnails->medium->url,
-                    'id'            =>  $item->id->videoId
-                ));
-            }
-            $this->cache->set($cacheKey, $items, self::CACHE_TTL);
-        }
-        
-        $listingsCount = count($items);
-        $listingsCount = $listingsCount > 5 ? 5 : $listingsCount;
-        shuffle($items);
-        $randomItems = array_slice($items, 0, $listingsCount);
-        
-        return $randomItems;
     }
     
     public function getListings(Decade $decade, $pageNumber = 1){
@@ -253,21 +254,7 @@ class YouTubeProvider implements IMediaProviderStrategy {
 //        return $entry;
 //    }
 //    
-    /**
-     * method returns a date time object against which records can be compared
-     * for youtube. This enables updates to be made to out of date records
-     * as there is no set time threshold for youtube, a threshold of 3 days 
-     * has been chosen
-     * @return type DateTime
-     */
-//    public function getCacheTTL(){
-//         $date = new \DateTime("now");
-//         $date = $date->sub(new \DateInterval('PT72H'))->format("Y-m-d H:i:s");
-//
-//         return $date;
-//    }
 
-    
    
 }
 
