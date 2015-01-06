@@ -8,7 +8,7 @@
  */
 
 namespace Sk\MediaApiBundle\Tests\MediaProviderApi;
-class TestGoogleServiceYouTube extends Google_Service_YouTube {
+class TestGoogleServiceYouTube extends \Google_Service_YouTube {
     private $headers;
     public $search;
     

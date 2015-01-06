@@ -32,14 +32,14 @@
     
     <services>
         <service id="sk_media_api.media_provider_api" class="%media_provider_api.class%">
-            <argument>%media_provider_api.debug_mode%</argument>
             <argument type="service" id="doctrine.orm.entity_manager" />
-            <argument type="service" id="session" />
+            <!--<argument type="service" id="session" />-->
             <argument type="collection" id="providers">
                 <argument type="service" id="amazon_provider" key="amazon_provider" />
                 <argument type="service" id="youtube_provider" key="youtube_provider" />
             </argument>
             <argument id="sonata.cache.apc" type="service"  />
+            <argument>%media_provider_api.debug_mode%</argument>
         </service>
         
         <!--amazon services-->
@@ -47,7 +47,6 @@
         <service id="amazon_provider" class="%amazon_provider.class%" public="false">
             <argument>%amazon_provider.access_params%</argument>
             <argument id="amazon_signed_request" type="service" />
-            <!--<argument id="sonata.cache.apc" type="service"  />-->
         </service>
         
         <!--google services-->
@@ -67,7 +66,6 @@
         
         <service id="youtube_provider" class="%youtube_provider.class%" public="false">
             <argument type="service" on-invalid="ignore" id="google_service_youtube" />
-<!--            <argument id="sonata.cache.apc" type="service"  />-->
         </service>
          
     </services>

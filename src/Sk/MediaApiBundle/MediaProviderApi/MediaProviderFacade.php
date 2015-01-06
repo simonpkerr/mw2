@@ -12,6 +12,7 @@ use Sonata\Cache\CacheAdapterInterface;
 use Sonata\CacheBundle\Adapter;
 use Sonata\Cache\CacheElement;
 use \RuntimeException;
+use \Exception;
 /**
  * MediaProviderFacade provides an interface to get data from all other media providers
  * it checks cached data and adds to or clears based on each individual providers cache
@@ -21,18 +22,26 @@ use \RuntimeException;
  */
 class MediaProviderFacade {
     protected $mediaProviders;
-    protected $debugMode = false;
+    protected $debugMode;
     protected $doctrine;
     protected $em;
     protected $cache;
     
-    public function __construct($debug_mode, EntityManager $em, Session $session, array $providers, CacheAdapterInterface $cache){
+    public function __construct(EntityManager $em, array $providers, CacheAdapterInterface $cache, $debug_mode = false){
         $this->debugMode = $debug_mode;
         $this->em = $em;
-        $this->session = $session;
+        //$this->session = $session;
         $this->mediaProviders = $providers;     
         $this->cache = $cache;
     }
+    
+    public function setProviders(array $providers){
+        $this->mediaProviders = $providers;
+    }
+    
+    public function setCache(CacheAdapterInterface $cache){
+        $this->cache = $cache;
+    }    
     
     public function getMemoryWall(){
         $wallData = array();
@@ -53,14 +62,13 @@ class MediaProviderFacade {
             } catch (Exception $ex) {
                 $errorMsg = $ex->getMessage();
             }
-            
+                        
             array_push($wallData, array(
                 'mediaProvider' => $mediaProvider->getProviderName(),
                 'providerData'  => $items,
                 'errorMsg'      => $errorMsg
             ));
         }
-        
         return $wallData;
     }
     
@@ -72,7 +80,6 @@ class MediaProviderFacade {
             $items = $cacheElement->getData();
         } else {
             $response = (array)$providerStrategy->getListings($decade, $pageNumber);
-            //$response = $providerStrategy->getResponse($response);
             foreach($response as $item){
                 array_push($items, array(
                     'title'         =>  $providerStrategy->getItemTitle($item),

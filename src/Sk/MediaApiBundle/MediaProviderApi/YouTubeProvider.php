@@ -15,6 +15,7 @@ use \SimpleXMLElement;
 use Sonata\Cache\CacheAdapterInterface;
 use Sonata\CacheBundle\Adapter;
 use Sonata\Cache\CacheElement;
+use \Exception;
 
 class YouTubeProvider implements IMediaProviderStrategy {
     const FRIENDLY_NAME = 'YouTube';
@@ -78,7 +79,7 @@ class YouTubeProvider implements IMediaProviderStrategy {
      public function getItemUrl($data){
         try{
             return 'https://www.youtube.com/watch?v=' . $data->id->videoId;
-        } catch(\RuntimeException $re){
+        } catch(Exception $re){
             return null;
         }
     }
@@ -91,14 +92,14 @@ class YouTubeProvider implements IMediaProviderStrategy {
     public function getItemImage($data) {
         try{
             return $data->snippet->thumbnails->medium->url;
-        } catch(\RuntimeException $re){
+        } catch(Exception $re){
             return null;
         }
     }
     public function getItemTitle($data){
         try{
             return $data->snippet->title;
-        } catch(\RuntimeException $re){
+        } catch(Exception $e){
             return null;
         }
     }
@@ -110,7 +111,7 @@ class YouTubeProvider implements IMediaProviderStrategy {
     public function getItemDescription($data) {
         try{
             return $data->snippet->description;
-        } catch (\RuntimeException $ex) {
+        } catch (Exception $ex) {
             return null;
         }
         
@@ -188,14 +189,14 @@ class YouTubeProvider implements IMediaProviderStrategy {
     public function getListings(Decade $decade, $pageNumber = 1){
         try {
             $searchReponse = $this->gsYouTube->search->listSearch('id,snippet', array_merge($this->defaults, array(
-                'q'     =>  urlencode($decade->getSlug()),
+                'q'     => urlencode($decade->getSlug())
             )));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw $e;
-        }            
+        }    
 
         if(count($searchReponse['items']) < 1){
-            throw new \LengthException("No youtube results were returned");
+            throw new Exception("No results were returned");
         }
 
         return $searchReponse['items'];

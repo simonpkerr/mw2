@@ -19,7 +19,7 @@ class YouTubeProviderTest extends WebTestCase {
     private $decade;
     protected static $kernel;
     protected static $em;
-    private $cache;
+    //private $cache;
     private $router;
     private $params;
     private $ms;
@@ -39,9 +39,7 @@ class YouTubeProviderTest extends WebTestCase {
     protected function setUp(){
         $this->decade = self::$em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug('1970s');
         $this->router = $this->getMock('Symfony\Component\Routing\RouterInterface');
-        $this->cache = new ApcCache($this->router, 'token', 'prefix_', array());
-        
-        //$this->gsYouTube = new YouTubeProvider(new TestGoogleServiceYouTube(), $this->cache);
+
         $this->gsYouTube = $this->getMockBuilder('\Google_Service_YouTube')
                 ->disableOriginalConstructor()
                 ->getMock();
@@ -69,21 +67,21 @@ class YouTubeProviderTest extends WebTestCase {
                 ->method('listSearch')
                 ->will($this->throwException(new \Exception()));
         
-        $yt = new YouTubeProvider($this->gsYouTube, $this->cache);
+        $yt = new YouTubeProvider($this->gsYouTube);
         $yt->getListings($this->decade);
     }
     
     /**
-     * @expectedException LengthException 
+     * @expectedException Exception 
      * @expectedExceptionMessage No results were returned
      */
-    public function testEmptyResponseReturnsLengthException(){
+    public function testEmptyResponseReturnsException(){
         $emptyFile = './src/Sk/MediaApiBundle/Tests/MediaProviderApi/SampleResponses/sampleEmptyYouTubeListings.txt';
         $this->gsYouTube->search->expects($this->any())
                 ->method('listSearch')
                 ->will($this->returnValue(json_decode(file_get_contents($emptyFile),true)));
         
-        $yt = new YouTubeProvider($this->gsYouTube, $this->cache);
+        $yt = new YouTubeProvider($this->gsYouTube);
         $yt->getListings($this->decade);
     }
     

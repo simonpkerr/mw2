@@ -19,7 +19,7 @@ use \SimpleXMLElement;
 use Sonata\Cache\CacheAdapterInterface;
 use Sonata\CacheBundle\Adapter;
 use Sonata\Cache\CacheElement;
-
+use \Exception;
 
 class AmazonProvider implements IMediaProviderStrategy {
     const FRIENDLY_NAME = 'Amazon';
@@ -94,7 +94,7 @@ class AmazonProvider implements IMediaProviderStrategy {
     public function getItemPrice($data){
         try {
             return (string)$data->ItemAttributes->ListPrice->FormattedPrice;
-        } catch (\RuntimeException $ex) {
+        } catch (Exception $ex) {
             return null;
         }
     }
@@ -102,7 +102,7 @@ class AmazonProvider implements IMediaProviderStrategy {
     public function getItemImage($data){
         try{
             return (string)$data->MediumImage->URL;
-        } catch(\RuntimeException $re){
+        } catch(Exception $re){
             return null;
         }
     }
@@ -110,7 +110,7 @@ class AmazonProvider implements IMediaProviderStrategy {
     public function getItemUrl($data){
         try{
             return (string)$data->DetailPageURL;
-        } catch(\RuntimeException $re){
+        } catch(Exception $re){
             return null;
         }
     }
@@ -118,7 +118,7 @@ class AmazonProvider implements IMediaProviderStrategy {
     public function getItemTitle($data){
         try{
             return (string)$data->ItemAttributes->Title;
-        } catch(\RuntimeException $re){
+        } catch(Exception $re){
             return null;
         }
     }
@@ -140,11 +140,12 @@ class AmazonProvider implements IMediaProviderStrategy {
     }
     
     public function getItemDescription($data) {
-        try{
-            return null;
-        } catch (\RuntimeException $ex) {
-            return null;
-        }
+//        try{
+//            return null;
+//        } catch (Exception $ex) {
+//            return null;
+//        }
+        return null;
         
     }
     
@@ -153,8 +154,7 @@ class AmazonProvider implements IMediaProviderStrategy {
      * @param \Sk\MediaApiBundle\Entity\Decade $decade
      * @param type $pageNumber
      * @return type
-     * @throws \Sk\MediaApiBundle\MediaProviderApi\RunTimeException
-     * @throws \Sk\MediaApiBundle\MediaProviderApi\LengthException
+     * @throws \Sk\MediaApiBundle\MediaProviderApi\Exception
      */
     public function getListings(Decade $decade, $pageNumber = 1){
         $browseNodeArray = array(); 
@@ -173,10 +173,8 @@ class AmazonProvider implements IMediaProviderStrategy {
         
         try{
             $xml_response = (array)$this->verifyXmlResponse($xml_response)->Items;
-        }catch(\RunTimeException $re){
-            throw $re;
-        }catch(\LengthException $le){
-            throw $le;
+        }catch(Exception $e){
+            throw $e;
         }
                 
         return $xml_response['Item'];
@@ -242,21 +240,21 @@ class AmazonProvider implements IMediaProviderStrategy {
     {
         if ($response === False)
         {
-            throw new \RuntimeException("Could not connect to Amazon");
+            throw new Exception("Could not connect to Amazon");
         }
         else
         {
             //for searches
-            if($response->Items->TotalResults == 0 && $this->amazonParameters['Operation'] == $this->ITEM_SEARCH)
-                throw new \LengthException("No results were returned");
-            
+            if($response->Items->TotalResults == 0 && $this->amazonParameters['Operation'] == $this->ITEM_SEARCH){
+                throw new Exception("No results were returned");
+            }
             //for lookups
-            if(!$response->Items->Request->IsValid && $this->amazonParameters['Operation'] == $this->ITEM_LOOKUP)
-                throw new \RuntimeException("Invalid result set");
-            
-            if($response->Items->Request->Errors->Error != null) 
-                throw new \RuntimeException($response->Items->Request->Errors->Error->Message);
-            
+            if(!$response->Items->Request->IsValid && $this->amazonParameters['Operation'] == $this->ITEM_LOOKUP){
+                throw new Exception("Invalid result set");
+            }
+            if($response->Items->Request->Errors->Error != null) {
+                throw new Exception($response->Items->Request->Errors->Error->Message);
+            }
             return $response;
         }
     }

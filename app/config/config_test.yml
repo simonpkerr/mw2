@@ -15,6 +15,14 @@ web_profiler:
 swiftmailer:
     disable_delivery: true
 
+sonata_cache:
+    caches:
+        apc:
+            token:  apc_test     # token used to clear the related cache
+            prefix: mw_test      # prefix to ensure there is no clash between instances
+            servers:
+                - { domain: mw.local, ip: 127.0.0.2, port: 80}
+
 sk_media_api:
   media_provider_api:
     debug_mode: true

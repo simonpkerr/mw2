@@ -12,7 +12,6 @@ use Sk\MediaApiBundle\MediaProviderApi\AmazonProvider;
 use Sk\MediaApiBundle\Entity\Decade;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Sonata\CacheBundle\Adapter\ApcCache;
-require_once 'src\Sk\MediaApiBundle\MediaProviderApi\AmazonSignedRequest.php';
 
 class AmazonProviderTest extends WebTestCase {
 
@@ -21,7 +20,7 @@ class AmazonProviderTest extends WebTestCase {
     private $testASR;
     protected static $kernel;
     protected static $em;
-    private $cache;
+    //private $cache;
     private $router;
     
     public static function setUpBeforeClass(){
@@ -42,15 +41,9 @@ class AmazonProviderTest extends WebTestCase {
             'amazon_private_key'    => 'aupk',
             'amazon_associate_tag'  => 'aat',
         );
-    
-//        $mediaType = self::$em->getRepository('SkMediaApiBundle:MediaType')->getMediaTypeBySlug('film');
-//        $this->mediaSelection = new MediaSelection();
-//        $this->mediaSelection->setMediaType($mediaType);
         
         $this->decade = self::$em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug('1970s');
         $this->router = $this->getMock('Symfony\Component\Routing\RouterInterface');
-        $this->cache = new ApcCache($this->router, 'token', 'prefix_', array());
-        
         $this->testASR = $this->getMockBuilder('\\Sk\\MediaApiBundle\\MediaProviderApi\\AmazonSignedRequest')
                 ->setMethods(array(
                     'aws_signed_request',
@@ -62,11 +55,10 @@ class AmazonProviderTest extends WebTestCase {
         unset($this->access_params);
         unset($this->mediaSelection);
         unset($this->testASR);                
-        unset($this->cache);
     }
     
     /**
-     * @expectedException RuntimeException 
+     * @expectedException Exception 
      * @expectedExceptionMessage Could not connect to Amazon 
      */
     public function testGetListingsNoConnectionThrowsException(){
@@ -75,13 +67,13 @@ class AmazonProviderTest extends WebTestCase {
                 ->method('aws_signed_request')
                 ->will($this->returnValue(False));
         
-        $api = new AmazonProvider($this->access_params, $this->testASR, $this->cache);
+        $api = new AmazonProvider($this->access_params, $this->testASR);
         $response = $api->getListings($this->decade, 1);
         
     }
     
     /**
-     * @expectedException LengthException
+     * @expectedException Exception
      * @expectedExceptionMessage No results were returned
      */
     public function testGetListingsEmptyDataSetThrowsException(){
@@ -91,7 +83,7 @@ class AmazonProviderTest extends WebTestCase {
                 ->method('aws_signed_request')
                 ->will($this->returnValue($empty_xml_data_set));
         
-        $api = new AmazonProvider($this->access_params, $this->testASR, $this->cache);
+        $api = new AmazonProvider($this->access_params, $this->testASR);
         $response = $api->getListings($this->decade, 1);
     }   
     
@@ -102,53 +94,9 @@ class AmazonProviderTest extends WebTestCase {
                 ->method('aws_signed_request')
                 ->will($this->returnValue($valid_xml_data_set));
         
-        $api = new AmazonProvider($this->access_params, $this->testASR, $this->cache);
+        $api = new AmazonProvider($this->access_params, $this->testASR);
         $response = $api->getListings($this->decade, 1);
-        $this->assertTrue((int)$response->TotalResults > 0);
-    }
-    
-    public function testGetRandomItemsIfNoCacheKeyReturnsProviderData(){
-        $this->cache = $this->getMockBuilder('Sonata\\CacheBundle\\Adapter\\ApcCache')
-                ->disableOriginalConstructor()
-                ->setMethods(array(
-                    'has',
-                    'set'
-                ))
-                ->getMock();
-        $this->cache->expects($this->any())
-                ->method('has')
-                ->will($this->returnValue(false));
-        
-        $api = new AmazonProvider($this->access_params, new TestAmazonSignedRequest(), $this->cache);
-        $response = $api->getRandomItems($this->decade);
-        $this->assertEquals(count($response), 5, '5 random items not returned');
-    }
-    
-    public function testGetRandomItemsIfValidCacheReturnsCache(){
-        $cacheElement = new \Sonata\Cache\CacheElement(array(),array(
-                    'item1' => 1,
-                    'item2' => 2,
-                    'item3' => 3
-                ));
-
-        $this->cache = $this->getMockBuilder('Sonata\\CacheBundle\\Adapter\\ApcCache')
-                ->disableOriginalConstructor()
-                ->setMethods(array(
-                    'has',
-                    'get'
-                ))
-                ->getMock();
-        $this->cache->expects($this->any())
-                ->method('has')
-                ->will($this->returnValue(true));
-        
-        $this->cache->expects($this->any())
-                ->method('get')
-                ->will($this->returnValue($cacheElement));                
-        
-        $api = new AmazonProvider($this->access_params, new TestAmazonSignedRequest(), $this->cache);
-        $response = $api->getRandomItems($this->decade);
-        $this->assertEquals(count($response), 3, '3 random items not returned');
+        $this->assertGreaterThan(0,count($response), 'no items were returned');
     }
     
     /**

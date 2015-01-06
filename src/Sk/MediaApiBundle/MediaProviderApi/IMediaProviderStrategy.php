@@ -9,8 +9,6 @@
  */
 
 namespace Sk\MediaApiBundle\MediaProviderApi;
-use Sk\MediaApiBundle\Entity\MediaSelection;
-//use Sk\MediaApiBundle\Entity\API;
 use Sk\MediaApiBundle\Entity\Decade;
 use \SimpleXMLElement;
 
@@ -24,7 +22,6 @@ interface IMediaProviderStrategy {
     //public function getDetails(array $params);
     public function getProviderName();
     //public function getBatch(array $ids);
-    //each api implements its own method of getting the id
     public function getItemId($data);
     public function getXML($data);
     public function getItemImage($data);
@@ -32,7 +29,6 @@ interface IMediaProviderStrategy {
     public function getItemDecade($data);
     public function getItemDescription($data);
     public function getItemUrl($data);
-    //public function getCacheTTL();
    
     
 }
