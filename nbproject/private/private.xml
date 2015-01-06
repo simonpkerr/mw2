@@ -12,15 +12,15 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/Tests/MediaProviderApi/TestGoogleServiceYouTube.php</file>
+            <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/Tests/MediaProviderApi/MediaProviderFacadeTest.php</file>
             <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/YouTubeProvider.php</file>
-            <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/Tests/MediaProviderApi/AmazonProviderTest.php</file>
-            <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/Tests/MediaProviderApi/SampleResponses/sampleYouTubeListings.txt</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/public/app/scripts/controllers.js</file>
             <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/AmazonProvider.php</file>
             <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/IMediaProviderStrategy.php</file>
             <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/MediaProviderFacade.php</file>
-            <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/Resources/config/services.xml</file>
-            <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/Tests/MediaProviderApi/YouTubeProviderTest.php</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/public/app/views/main.html</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/public/app/scripts/services.js</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/public/app/scripts/app.js</file>
         </group>
     </open-files>
 </project-private>

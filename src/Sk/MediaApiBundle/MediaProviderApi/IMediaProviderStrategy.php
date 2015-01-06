@@ -20,7 +20,6 @@ interface IMediaProviderStrategy {
     //public function getRandomItems(Decade $decade, $pageNumber = 1);
     public function getListings(Decade $decade);
     //public function getDetails(array $params);
-    public function getProviderName();
     //public function getBatch(array $ids);
     public function getItemId($data);
     public function getXML($data);

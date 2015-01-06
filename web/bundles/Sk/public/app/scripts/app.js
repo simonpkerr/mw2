@@ -1,10 +1,10 @@
 'use strict';
 
 /**
- * @ngdoc overview
+ * @ngdoc Memory walls
  * @name publicApp
  * @description
- * # publicApp
+ * # controls all aspects of memory walls
  *
  * Main module of the application.
  */
@@ -14,7 +14,7 @@ var mwApp = angular.module('MWApp', [
   'mwServices'
   
 ]),
-  viewBase = '../web/bundles/Sk/public/app/';
+  viewBase = '../bundles/Sk/public/app/';
   //viewBase = '';
 
 

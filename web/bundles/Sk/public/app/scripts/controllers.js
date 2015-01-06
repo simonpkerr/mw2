@@ -9,10 +9,10 @@
  */
 var mwControllers = angular.module('mwControllers', []);
 
-mwControllers.controller('MainCtrl', ['$scope', '$routeParams', 'mediaTypes',
-  function($scope, $routeParams, mediaTypes) {
-    mediaTypes.get(function(data) {
-      $scope.mediaTypes = data.mediaTypes;
+mwControllers.controller('MainCtrl', ['$scope', '$routeParams', 'memoryWall',
+  function($scope, $routeParams, memoryWall) {
+    memoryWall.get(function(data) {
+      $scope.wallData = data.wallData;
     });
   }
 ]);

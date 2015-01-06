@@ -49,10 +49,11 @@ class MediaProviderFacade {
         $randomKey = array_rand($decades);
         $decade = $decades[$randomKey]; //$this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug('1940s'); 
         $pageNumber = rand(1, 10);
-        array_push($wallData, array(
+        $wallData['metaData'] = array(
             'decade' => $decade->getSlug(),
             'pageNumber' => $pageNumber
-        ));
+        );
+        $wallData['providerData'] = array();
         
         foreach($this->mediaProviders as $mediaProvider){       
             $items = array();
@@ -60,15 +61,19 @@ class MediaProviderFacade {
             try {
                 $items = $this->getRandomItems($mediaProvider, $decade, $pageNumber);
             } catch (Exception $ex) {
-                $errorMsg = $ex->getMessage();
+                array_push($wallData['errorMessages'], $ex->getMessage());
             }
-                        
-            array_push($wallData, array(
-                'mediaProvider' => $mediaProvider->getProviderName(),
-                'providerData'  => $items,
-                'errorMsg'      => $errorMsg
-            ));
+              
+            $wallData['providerData'] = array_merge($wallData['providerData'], $items);
+            
+//            array_push($wallData['providers'], array(
+//                'mediaProvider' => $mediaProvider->getProviderName(),
+//                'providerData'  => $items,
+//                'errorMsg'      => $errorMsg
+//            ));
         }
+        
+        shuffle($wallData['providerData']);
         return $wallData;
     }
     
@@ -82,6 +87,7 @@ class MediaProviderFacade {
             $response = (array)$providerStrategy->getListings($decade, $pageNumber);
             foreach($response as $item){
                 array_push($items, array(
+                    'provider'      =>  $providerStrategy::PROVIDER_NAME,
                     'title'         =>  $providerStrategy->getItemTitle($item),
                     'image'         =>  $providerStrategy->getItemImage($item),
                     'url'           =>  $providerStrategy->getItemUrl($item),

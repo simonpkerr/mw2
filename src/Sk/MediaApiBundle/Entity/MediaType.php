@@ -46,12 +46,12 @@ class MediaType
     
         
     public function __construct(){
-        $this->genres = new ArrayCollection();
+        //$this->genres = new ArrayCollection();
     }
     
-    public function getGenres(){
-        return $this->genres;
-    }
+//    public function getGenres(){
+//        return $this->genres;
+//    }
     
     public function getId()
     {
@@ -78,10 +78,10 @@ class MediaType
         return $this->amazonBrowseNodeId;
     }
 
-    public function addGenre(Genre $genres)
-    {
-        $this->genres[] = $genres;
-    }
+//    public function addGenre(Genre $genres)
+//    {
+//        $this->genres[] = $genres;
+//    }
 
     public function setSlug($slug)
     {

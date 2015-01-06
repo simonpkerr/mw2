@@ -25,7 +25,6 @@ class YouTubeProvider implements IMediaProviderStrategy {
     const CACHE_TTL = 259200;
     
     private $gsYouTube;
-    private $cache;
     private $defaults;
     
     //through DI, either receives the genuine search object or a fake
@@ -36,7 +35,6 @@ class YouTubeProvider implements IMediaProviderStrategy {
      * $defaults  1 (Film & animation), 10 (Music), 20 (Gaming), 24 (Entertainment), 30 (movies), 43 (Shows)
      */
     public function __construct($google_service_youtube){
-        //$this->cache = $cache;
         $this->gsYouTube = $google_service_youtube;
         $this->defaults = array(
             'maxResults'        =>  self::SEARCH_MAX_RESULTS,
@@ -44,10 +42,6 @@ class YouTubeProvider implements IMediaProviderStrategy {
             'videoCategoryId'   =>  '1,10,20,24,30,43',
             'regionCode'        =>  'GB'
         );
-    }
-    
-    public function getProviderName(){
-        return self::PROVIDER_NAME;
     }
     
     public function getCacheKey(Decade $decade, $pageNumber = 1){

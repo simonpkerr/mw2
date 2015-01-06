@@ -57,11 +57,7 @@ class AmazonProvider implements IMediaProviderStrategy {
         
         //$this->cache = $cache;
     }
-    
-    public function getProviderName(){
-        return self::PROVIDER_NAME;
-    }
-    
+  
     public function getCacheKey(Decade $decade, $pageNumber = 1){
         return array(
             'decade'        => $decade->getSlug(),
