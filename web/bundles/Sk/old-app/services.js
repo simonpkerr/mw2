@@ -1,8 +1,8 @@
 'use strict';
-/* Services */
-var mwServices = angular.module('mwServices', ['ngResource']);
 
-mwServices.factory('memoryWall', ['$resource',
+var memoryWallService = angular.module('memoryWallService', ['ngResource']);
+
+memoryWallService.factory('getMemoryWall', ['$resource',
     function($resource) {
         return $resource('/web/app_dev.php/api/memorywall', {
            query: {
@@ -12,7 +12,7 @@ mwServices.factory('memoryWall', ['$resource',
         });
     }
 ]);
-mwServices.factory('mediaTypes', ['$resource',
+memoryWallService.factory('getMediaTypes', ['$resource',
   function($resource) {
     //../api/mediatypes
     return $resource('/web/app_dev.php/api/mediatypes', {

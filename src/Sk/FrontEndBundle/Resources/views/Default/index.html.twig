@@ -1,12 +1,12 @@
 <!doctype html>
-<html class="no-js" ng-app="MWApp" lang="en">
+<html class="no-js" ng-app="mwApp" lang="en">
   <head>
     <meta charset="utf-8">
     <title>Memory Walls</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="stylesheet" href="{{ asset('bundles/Sk/public/app/styles/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/Sk/styles/css/main.css') }}">
     
   </head>
   <body>
@@ -32,26 +32,35 @@
 
     <!-- build:js(.) scripts/oldieshim.js -->
     <!--[if lt IE 9]>
-    <script src="{{ asset('bundles/Sk/public/bower_components/es5-shim/es5-shim.js') }}"></script>
-    <script src="{{ asset('bundles/Sk/public/bower_components/json3/lib/json3.js') }}"></script>
+    <script src="{{ asset('bundles/Sk/bower_components/es5-shim/es5-shim.js') }}"></script>
+    <script src="{{ asset('bundles/Sk/bower_components/json3/lib/json3.js') }}"></script>
     <![endif]-->
     <!-- endbuild -->
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="{{ asset('bundles/Sk/public/bower_components/jquery/dist/jquery.js') }}"></script>
-    <script src="{{ asset('bundles/Sk/public/bower_components/es5-shim/es5-shim.js') }}"></script>
-    <script src="{{ asset('bundles/Sk/public/bower_components/angular/angular.js') }}"></script>
-    <script src="{{ asset('bundles/Sk/public/bower_components/angular-route/angular-route.js') }}"></script>
-    <script src="{{ asset('bundles/Sk/public/bower_components/angular-resource/angular-resource.js')}}"></script>
-    <script src="{{ asset('bundles/Sk/public/bower_components/json3/lib/json3.js')}}"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+    {# dependecies #}
+    {% javascripts
+    'bundles/Sk/bower_components/jquery/dist/jquery.js'
+    'bundles/Sk/bower_components/es5-shim/es5-shim.js'
+    'bundles/Sk/bower_components/angular/angular.js'
+    'bundles/Sk/bower_components/angular-route/angular-route.js'
+    'bundles/Sk/bower_components/angular-resource/angular-resource.js'
+    'bundles/Sk/bower_components/json3/lib/json3.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    
+    {# the app #}
+    {% javascripts
+    'bundles/Sk/app/*.js'
+    'bundles/Sk/app/core/*.js'
+    'bundles/Sk/app/memoryWall/*.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="{{ asset('bundles/Sk/public/app/scripts/app.js')}}"></script>
-    <script src="{{ asset('bundles/Sk/public/app/scripts/controllers.js')}}"></script>
-    <script src="{{ asset('bundles/Sk/public/app/scripts/services.js')}}"></script>
-    <!-- endbuild -->
+{#    <script src="{{ asset('bundles/Sk/app/scripts/app.module.js')}}"></script>#}
+    {#<script src="{{ asset('bundles/Sk/app/scripts/controllers.js')}}"></script>
+    <script src="{{ asset('bundles/Sk/app/scripts/services.js')}}"></script>#}
+
 </body>
 </html>
