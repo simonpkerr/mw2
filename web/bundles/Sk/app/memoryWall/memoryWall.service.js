@@ -10,7 +10,7 @@ function memoryWallService($resource) {
     };
     return service;
     
-    function getMemoryWall($resource) {
+    function getMemoryWall() {
         return $resource('/web/app_dev.php/api/memorywall', {
             query: {
                 method: 'GET',
@@ -19,7 +19,7 @@ function memoryWallService($resource) {
         });
     }
 
-    function getMediaTypes($resource) {
+    function getMediaTypes() {
         //../api/mediatypes
         return $resource('/web/app_dev.php/api/mediatypes', {
             query: {

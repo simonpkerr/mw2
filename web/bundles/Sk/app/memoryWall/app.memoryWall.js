@@ -1,7 +1,7 @@
 angular.module('mwApp.memoryWall', [
     'mwApp.core',
     'ngResource'
-    //'mwApp.memoryWall.' add services and directives
+    //add services and directives?
 ])
 .controller('MemoryWall', MemoryWall);
 MemoryWall.$inject = ['$scope', '$routeParams', 'memoryWallService', 'memoryWallPrepService'];
@@ -14,7 +14,7 @@ function MemoryWall($scope, $routeParams, memoryWallService, memoryWallPrepServi
     
     getWallData();
     
-    var getWallData = function() {
+    function getWallData() {
         return getMemoryWall.get(function(data) {
             vm.wallData = data.wallData;
             //?

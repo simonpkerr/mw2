@@ -1,12 +1,13 @@
 //https://github.com/johnpapa/angularjs-styleguide#style-y038
 angular
     .module('mwApp')
-    .config(['$routeProvider', config]);
+    .config(['$routeProvider', config])
+    .constant('viewBase', '../bundles/Sk/public/app/');
 
 function config($routeProvider) {
     $routeProvider
         .when('/index' , {
-            templateUrl: 'memoryWall/main.html',
+            templateUrl: viewBase + 'memoryWall/main.html',
             controller: 'MemoryWall',
             controllerAs: 'vm',
             resolve: {
