@@ -1,13 +1,16 @@
 //https://github.com/johnpapa/angularjs-styleguide#style-y038
 angular
     .module('mwApp')
-    .config(['$routeProvider', config])
-    .constant('viewBase', '../bundles/Sk/public/app/');
+    //.constant('VIEWBASE', '../bundles/Sk/public/app/')
+    .config(config);
+
+config.$inject = ['$routeProvider'];
 
 function config($routeProvider) {
+    var VIEW_BASE = '/web/bundles/Sk/app/';
     $routeProvider
         .when('/index' , {
-            templateUrl: viewBase + 'memoryWall/main.html',
+            templateUrl: VIEW_BASE + 'memoryWall/main.html',
             controller: 'MemoryWall',
             controllerAs: 'vm',
             resolve: {
@@ -21,7 +24,7 @@ function config($routeProvider) {
 
 memoryWallPrepService.$inject = ['memoryWallService'];
 function memoryWallPrepService(memoryWallService) {
-    return memoryWallService.getMemoryWall(); //? should this be just .MemoryWall ?
+    return memoryWallService.memoryWall();
 }
 
 

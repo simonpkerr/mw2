@@ -5,12 +5,12 @@ memoryWallService.$inject = ['$resource'];
 
 function memoryWallService($resource) {
     var service = {
-        getMemoryWall: getMemoryWall,
-        getMediaTypes: getMediaTypes
+        memoryWall: memoryWall,
+        mediaTypes: mediaTypes
     };
     return service;
     
-    function getMemoryWall() {
+    function memoryWall() {
         return $resource('/web/app_dev.php/api/memorywall', {
             query: {
                 method: 'GET',
@@ -19,7 +19,7 @@ function memoryWallService($resource) {
         });
     }
 
-    function getMediaTypes() {
+    function mediaTypes() {
         //../api/mediatypes
         return $resource('/web/app_dev.php/api/mediatypes', {
             query: {

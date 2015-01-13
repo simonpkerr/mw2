@@ -1,6 +1,6 @@
-<p>Decade: {{ wallData.metaData.decade }}</p>
+<p>Decade: {{ vm.wallData.metaData.decade }}</p>
 <ul class="flex-container">
-    <li ng-repeat="item in wallData.providerData">
+    <li ng-repeat="item in vm.wallData.providerData">
         <mw-item item="item"></mw-item>
     </li>
 </ul>
