@@ -1,7 +1,7 @@
 angular.module('mwApp.memoryWall')
-        .directive('mwItemDirective', memoryWallDirective);
+    .directive('mwItem', memoryWallItemDirective);
 
-function memoryWallDirective(){
+function memoryWallItemDirective(){
     var directive = {
         restrict: 'E',
         scope: {
@@ -17,7 +17,6 @@ function memoryWallDirective(){
     
     function templateUrl(elem, attr) {
         return attr.provider + '.html';
-        
     }
     
     function link(scope , element, attrs) {
