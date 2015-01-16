@@ -1,35 +1,36 @@
-angular.module('mwApp.memoryWall')
-        .factory('memoryWallService', memoryWallService);
+(function () {
+    'use strict';
 
-memoryWallService.$inject = ['$resource'];
+    angular.module('mwApp.memoryWall')
+            .factory('memoryWallService', memoryWallService);
 
-function memoryWallService($resource) {
-    var service = {
-        memoryWall: memoryWall,
-        mediaTypes: mediaTypes
-    };
-    return service;
-    
-    function memoryWall() {
-        return $resource('/web/app_dev.php/api/memorywall', {
-            query: {
-                method: 'GET',
-                isArray: true
-            }
-        });
+    memoryWallService.$inject = ['$resource'];
+
+    function memoryWallService($resource) {
+        var service = {
+            memoryWall: memoryWall,
+            mediaTypes: mediaTypes
+        };
+        return service;
+
+        function memoryWall() {
+            return $resource('/web/app_dev.php/api/memorywall', {
+                query: {
+                    method: 'GET',
+                    isArray: true
+                }
+            });
+        }
+
+        function mediaTypes() {
+            //../api/mediatypes
+            return $resource('/web/app_dev.php/api/mediatypes', {
+                query: {
+                    method: 'GET',
+                    isArray: true
+                }
+            });
+        }
     }
-
-    function mediaTypes() {
-        //../api/mediatypes
-        return $resource('/web/app_dev.php/api/mediatypes', {
-            query: {
-                method: 'GET',
-                isArray: true
-            }
-        });
-    }
-}
-
-
-
+})();
 
