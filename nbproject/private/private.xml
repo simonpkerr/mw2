@@ -17,8 +17,8 @@
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/core/app.core.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/app.module.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/memoryWall.directive.js</file>
-            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/old-app/controllers.js</file>
-            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/old-app/services.js</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/youtube.html</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/amazon.html</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/app.memoryWall.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/memoryWall.service.js</file>
         </group>
