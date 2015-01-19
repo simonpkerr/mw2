@@ -1,11 +1,11 @@
-<!--<mw-item-youtube>-->
 <div class="youtube-item">
     <p>{{item.title}}</p>
     <img ng-src="{{item.image}}" alt="{{item.title}}" />
     <p>{{ item.description }}</p>
     <p><a ng-click="playYouTubeVideo(item)">Play the video</a></p>
+    <div id="yt-player-{{item.id}}"></div>
     <!--this will be a modal popout-->
     <!--<iframe id="{{ item.id }}" frameborder="0" type="text/html" class="youtube-iframe" ng-src="{{ scope.getYouTubeVideo(item.id) }}"></iframe>-->
 </div>
-<!--</mw-item-youtube>-->
+
 

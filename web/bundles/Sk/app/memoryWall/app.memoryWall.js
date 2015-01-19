@@ -12,7 +12,6 @@
         var vm = this;
         vm.wallData = {};
         vm.getWallData = getWallData;
-        vm.playYouTubeVideo = playYouTubeVideo;
 
         getWallData();
 
@@ -23,8 +22,5 @@
             });
         }
         
-        function playYouTubeVideo(mwItem) {
-            console.log(mwItem);
-        }
     }
 })();
