@@ -88,6 +88,7 @@ class MediaProviderFacade {
             foreach($response as $item){
                 array_push($items, array(
                     'provider'      =>  $providerStrategy::PROVIDER_NAME,
+                    'id'            =>  $providerStrategy->getItemId($item),
                     'title'         =>  $providerStrategy->getItemTitle($item),
                     'image'         =>  $providerStrategy->getItemImage($item),
                     'url'           =>  $providerStrategy->getItemUrl($item),

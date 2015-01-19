@@ -1,9 +1,11 @@
+<!--<mw-item-youtube>-->
 <div class="youtube-item">
     <p>{{item.title}}</p>
     <img ng-src="{{item.image}}" alt="{{item.title}}" />
     <p>{{ item.description }}</p>
-    <p><a ng-href="{{item.url}}">Play the video</a></p>
+    <p><a ng-click="playYouTubeVideo(item)">Play the video</a></p>
     <!--this will be a modal popout-->
-    <iframe id="{{ item.id }}" frameborder="0" type="text/html" class="youtube-iframe" ng-src="{{ scope.getYouTubeVideo(item.id) }}"></iframe>
+    <!--<iframe id="{{ item.id }}" frameborder="0" type="text/html" class="youtube-iframe" ng-src="{{ scope.getYouTubeVideo(item.id) }}"></iframe>-->
 </div>
+<!--</mw-item-youtube>-->
 
