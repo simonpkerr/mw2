@@ -1,8 +1,7 @@
 (function () {
     'use strict';
-
     angular.module('mwApp.memoryWall')
-            .factory('memoryWallService', memoryWallService);
+        .factory('memoryWallService', memoryWallService);
 
     memoryWallService.$inject = ['$resource'];
 
@@ -31,6 +30,7 @@
                 }
             });
         }
+        
     }
 })();
 

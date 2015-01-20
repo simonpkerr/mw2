@@ -25,9 +25,12 @@
                 });
     }
 
-    memoryWallPrepService.$inject = ['memoryWallService'];
-    function memoryWallPrepService(memoryWallService) {
-        return memoryWallService.memoryWall();
+    memoryWallPrepService.$inject = ['memoryWallService', 'youTubePlayerService'];
+    function memoryWallPrepService(memoryWallService, youTubePlayerService) {
+        return {
+            memoryWall: memoryWallService.memoryWall(),
+            getYouTubePlayer: youTubePlayerService.getPlayer
+        };
     }
 
 

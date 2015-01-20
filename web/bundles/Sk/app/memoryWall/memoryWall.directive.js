@@ -10,7 +10,6 @@
             restrict: 'E',
             scope: {
                 item: '='
-         
             },
             replace: true,
 //          template: '<ng-include src="template" />',
