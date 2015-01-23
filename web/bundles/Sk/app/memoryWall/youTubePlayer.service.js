@@ -26,7 +26,7 @@
             $window.onYouTubeIframeAPIReady = function() {
                 $rootScope.$apply(function() {
                     service.isReady = true;
-                    console.log(service.isReady);
+                    
                 });
             };
         }

@@ -14,11 +14,13 @@
         <group>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/core/app.routing.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/main.html</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/youTubePlayer.service.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/app.module.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/memoryWall.directive.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/youtube.html</file>
-            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/amazon.html</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/youTubePlayer.directive.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/app.memoryWall.js</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/memoryWall.service.js</file>
         </group>
     </open-files>
 </project-private>
