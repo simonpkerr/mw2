@@ -1,11 +1,11 @@
 (function () {
     'use strict';
     angular.module('mwApp.memoryWall')
-        .factory('youTubePlayerService', youTubePlayerService);
+        .factory('youTubeService', youTubeService);
 
-    youTubePlayerService.$inject = ['$window', '$rootScope'];
+    youTubeService.$inject = ['$window', '$rootScope'];
     
-    function youTubePlayerService($window, $rootScope) {
+    function youTubeService($window, $rootScope) {
         var service = {
             getPlayer: getPlayer,            
             isReady: false

@@ -7,11 +7,11 @@
     'use strict';
     angular
         .module('mwApp.memoryWall')
-        .directive('youtubePlayer', youTubePlayer);
+        .directive('mwItemYoutube', mwItemYoutube);
     
-    youTubePlayer.$inject = ['youTubePlayerService'];
+    mwItemYoutube.$inject = ['youTubeService'];
     
-    function youTubePlayer(youTubePlayerService) {
+    function mwItemYoutube(youTubeService) {
         var stateNames = {
                 '-1': 'unstarted',
                 0: 'ended',
@@ -25,21 +25,23 @@
             directive = {
                 restrict: 'E',
                 scope: {
-                    videoId:        '@',
+                    item:           '=',
+                    videoId:        '=?',
                     player:         '=?',
                     playerHeight:   '=?',
                     playerWidth:    '=?'
                 },
-                //replace: true,
-    //          template: '<ng-include src="template" />',
+                replace: true,
+                templateUrl: '/web/bundles/Sk/app/memoryWall/youtube.html',
                 link: link
 
             };
         return directive;
 
         function link(scope, element, attrs) {
-            var playerId = attrs.playerId || element[0].id || 'you-tube-player-' + uniqueId++;
-            element[0].id = playerId;
+            var playerId = attrs.playerId || 'you-tube-player-' + uniqueId++;
+            element.children('.youtube-player').attr('id', playerId);
+            scope.videoId = scope.videoId || scope.item.id;
             scope.playerHeight = scope.playerHeight || 390;
             scope.playerWidth = scope.playerWidth || 640;
             //scope.playerVars = scope.playerVars || {};
@@ -92,19 +94,29 @@
                 }
             }
             
-            var stopWatchingReady = scope.$watch(
-                function() {
-                    return youTubePlayerService.isReady && typeof scope.videoId !== 'undefined';
-                },
-                function (isReady) {
-                    if (isReady) {
-                        stopWatchingReady();
-                        scope.$watch('videoId', function () {
-                           loadPlayer();
-                        });
+            function preparePlayer() {
+                var stopWatchingReady = scope.$watch(
+                    //watchExpression
+                    function() {
+                        return youTubeService.isReady && typeof scope.videoId !== 'undefined';
+                    },
+                    //listener
+                    function (ready) {
+                        if (ready) {
+                            stopWatchingReady();
+                            scope.$watch('videoId', function () {
+                               loadPlayer();
+                            });
+                        }
                     }
+                );
+            }
+            
+            scope.playYouTubeVideo = function() {
+                if(typeof scope.player !== 'object') {
+                    preparePlayer();
                 }
-            );
+            };
             
             scope.$on('$destroy', function () {
                 scope.player && scope.player.destroy();

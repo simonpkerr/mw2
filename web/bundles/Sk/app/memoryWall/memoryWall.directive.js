@@ -28,9 +28,6 @@
         function link(scope, element, attrs) {
 //            scope.template = '/web/bundles/Sk/app/memoryWall/' + scope.item.provider + '.html';
             
-            scope.playYouTubeVideo = function(item) {
-                console.log(item);
-            };
         }
     }
     
