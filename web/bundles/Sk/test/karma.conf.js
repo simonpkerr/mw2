@@ -22,6 +22,7 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      'bower_components/json3/lib/json3.js',
       'app/**/*.js',
       'app/**/*.html',
       //'test/mock/**/*.js',
@@ -67,9 +68,9 @@ module.exports = function(config) {
     
 
     // Uncomment the following lines if you are using grunt's server to run the tests
-    // proxies: {
-    //   '/': 'http://localhost:9000/'
-    // },
+//    proxies: {
+//       '/': 'http://mw.local:9000/'
+//    }
     // URL root prevent conflicts with the site root
     // urlRoot: '_karma_'
   });
