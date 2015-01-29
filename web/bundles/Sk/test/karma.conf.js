@@ -22,18 +22,19 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'bower_components/json3/lib/json3.js',
       'app/**/*.js',
       'app/**/*.html',
       //'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
+    
+    reporters: ['progress'],
 
     // list of files / patterns to exclude
     exclude: [],
 
     // web server port
-    port: 8080,
+    port: 9001,
 
     // Start these browsers, currently available:
     // - Chrome

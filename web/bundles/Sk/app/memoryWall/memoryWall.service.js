@@ -22,7 +22,6 @@
         }
 
         function mediaTypes() {
-            //../api/mediatypes
             return $resource('/web/app_dev.php/api/mediatypes', {
                 query: {
                     method: 'GET',

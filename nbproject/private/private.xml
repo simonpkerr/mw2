@@ -14,10 +14,15 @@
         <group>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/youTube.service.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwItemAmazon.directive.js</file>
+            <file>file:/D:/xampp/htdocs/mw/src/Sk/FrontEndBundle/Resources/views/Default/index.html.twig</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/app.module.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwItemYouTube.directive.js</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/Gruntfile.js</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/test/karma.conf.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/package.json</file>
-            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/app.memoryWall.js</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/test/spec/controllers/main.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/memoryWall.service.js</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/app.memoryWall.js</file>
         </group>
     </open-files>
 </project-private>
