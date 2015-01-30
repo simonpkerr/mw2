@@ -8,9 +8,9 @@ describe('MemoryWall controller', function () {
             $scope,
             $httpBackend,
             mockMemoryWallPrepService,
-            mockMemoryWallService,
-            mockYouTubeService,
-            wallFixtures =
+            memoryWallService,
+            memoryWallRequest,
+            wallDataFixtures =
             {
                 wallData: {
                     metaData: {
@@ -27,53 +27,33 @@ describe('MemoryWall controller', function () {
                         }]
                 }
             };
-
-
     // load the controller's module
     beforeEach(module('mwApp'));
     beforeEach(module('mwApp.memoryWall'));
 
-
-//  module(function($provide) {
-//     $provide.factory('memoryWallService', function(){
-//         this.memoryWall = jasmine.createSpy('memoryWall').andCallFake(function(){
-//             return 
-//         });
-//     }); 
-//  });
-//  
-
-
-//    memoryWallPrepService = {
-//        memoryWall: memoryWallService.memoryWall(),
-//        getYouTubePlayer: youTubeService.getPlayer
-//    };
-//        
-
-
     // Initialize the controller and a mock scope
-    beforeEach(inject(function (_$q_, _$rootScope_, _$controller_) {
-//    $httpBackend = _$httpBackend_;
-//    $httpBackend.expectGET('/web/app_dev.php/api/memorywall')
-//        .respond(wallFixtures);
+    beforeEach(inject(function (_$q_, _$rootScope_) {
         $q = _$q_;
         $rootScope = _$rootScope_;
     }));
 
-    beforeEach(inject(function ($controller) {
+    beforeEach(inject(function (_$httpBackend_, $controller, _memoryWallService_) {
         $scope = $rootScope.$new();
-        mockMemoryWallService = {
-            query: function() {
-                queryDeferred = $q.defer();
-                return { 
-                    $promise: queryDeferred.promise 
-                };
-            }
-        };
-        spyOn(mockMemoryWallService, 'query').andCallThrough();
+        $httpBackend = _$httpBackend_;
+        memoryWallService = _memoryWallService_;
+        memoryWallRequest = new RegExp('/web/app_dev.php/api/memorywall.*');
+        $httpBackend.expectGET(memoryWallRequest)
+            .respond(200, wallDataFixtures);
+
+        spyOn(memoryWallService, 'memoryWall').andCallThrough();
         
         mockMemoryWallPrepService = {
-            memoryWall: mockMemoryWallService.memoryWall()
+            memoryWall: memoryWallService.memoryWall(),
+            getYouTubePlayer: function(){
+                return function(){
+                    return "mock youtube function";
+                };
+            }
         };
         
         vm = $controller('MemoryWall', {
@@ -82,9 +62,13 @@ describe('MemoryWall controller', function () {
         });
     }));
 
+    it('should call the memoryWall service on init', function() {
+        expect(memoryWallService.memoryWall).toHaveBeenCalled();
+    });
+
     it('should load data from the api on load', function () {
         expect(vm.wallData.hasOwnProperty("providerData")).toBe(false);
         $httpBackend.flush();
-        expect(vm.wallData.hasOwnProperty("providerData")).toEqual(true);
+        expect(vm.wallData).toEqual(wallDataFixtures.wallData);
     });
 });
