@@ -3,30 +3,30 @@
 
 describe('MemoryWall controller', function () {
     var vm,
-            $q,
-            $rootScope,
-            $scope,
-            $httpBackend,
-            mockMemoryWallPrepService,
-            memoryWallService,
-            memoryWallRequest,
-            wallDataFixtures =
-            {
-                wallData: {
-                    metaData: {
-                        decade: "1940s",
-                        pageNumber: 1
-                    },
-                    providerData: [{
-                            provider: "amazon",
-                            id: "B004I8WHCO",
-                            title: "Fantasia - [DVD] [1940]",
-                            image: "FwAurdDHL._SL160_.jpg",
-                            url: "http://www.amazon.co.uk",
-                            price: ""
-                        }]
-                }
-            };
+        $q,
+        $rootScope,
+        $scope,
+        $httpBackend,
+        mockMemoryWallPrepService,
+        memoryWallService,
+        memoryWallRequest,
+        wallDataFixtures =
+        {
+            wallData: {
+                metaData: {
+                    decade: "1940s",
+                    pageNumber: 1
+                },
+                providerData: [{
+                    provider: "amazon",
+                    id: "B004I8WHCO",
+                    title: "Fantasia - [DVD] [1940]",
+                    image: "FwAurdDHL._SL160_.jpg",
+                    url: "http://www.amazon.co.uk",
+                    price: ""
+                }]
+            }
+        };
     // load the controller's module
     beforeEach(module('mwApp'));
     beforeEach(module('mwApp.memoryWall'));
@@ -43,26 +43,26 @@ describe('MemoryWall controller', function () {
         memoryWallService = _memoryWallService_;
         memoryWallRequest = new RegExp('/web/app_dev.php/api/memorywall.*');
         $httpBackend.expectGET(memoryWallRequest)
-            .respond(200, wallDataFixtures);
+                .respond(200, wallDataFixtures);
 
         spyOn(memoryWallService, 'memoryWall').andCallThrough();
-        
+
         mockMemoryWallPrepService = {
             memoryWall: memoryWallService.memoryWall(),
-            getYouTubePlayer: function(){
-                return function(){
+            getYouTubePlayer: function () {
+                return function () {
                     return "mock youtube function";
                 };
             }
         };
-        
+
         vm = $controller('MemoryWall', {
             '$scope': $scope,
             'memoryWallPrepService': mockMemoryWallPrepService
         });
     }));
 
-    it('should call the memoryWall service on init', function() {
+    it('should call the memoryWall service on init', function () {
         expect(memoryWallService.memoryWall).toHaveBeenCalled();
     });
 
