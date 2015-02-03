@@ -39,11 +39,12 @@
         return directive;
 
         function link(scope, element, attrs) {
-            var playerId = attrs.playerId || 'you-tube-player-' + uniqueId++;
-            element.children('.youtube-player').attr('id', playerId);
+            scope.playerId = attrs.playerId || 'you-tube-player-' + uniqueId++;
+            element.children('.youtube-player').attr('id', scope.playerId);
             scope.videoId = scope.videoId || scope.item.id;
             scope.playerHeight = scope.playerHeight || 390;
             scope.playerWidth = scope.playerWidth || 640;
+            
             //scope.playerVars = scope.playerVars || {};
             
             function applyBroadcast() {
@@ -70,17 +71,12 @@
             function createPlayer() {
                 //var playerVars = angular.copy(scope.playerVars);
                 //playerVars.start = playerVars.start || null;
-                var player = new YT.Player(playerId, {
-                    height: scope.playerHeight,
-                    width: scope.playerWidth,
-                    videoId: scope.videoId,
-                    //playerVars: scope.playerVars,
-                    events: {
+                var events = {
                         onReady: onPlayerReady,
                         onStateChange: onPlayerStateChange                         
-                    }
-                });
-                player.id = playerId;
+                    },
+                    player = youTubeService.createPlayer(scope, events);
+                    
                 return player;
             }
             
