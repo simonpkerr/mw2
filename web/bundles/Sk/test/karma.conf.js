@@ -13,34 +13,36 @@ module.exports = function (config) {
         basePath: '../',
         // testing framework to use (jasmine/mocha/qunit/...)
         frameworks: ['jasmine'],
-        preprocessors: {
-            'app/**/*.html': ['ng-html2js']
-        },
+        
         // list of files / patterns to load in the browser
         files: [
+            'bower_components/jquery/dist/jquery.js',
             'bower_components/angular/angular.js',
             'bower_components/angular-route/angular-route.js',
             'bower_components/angular-resource/angular-resource.js',
             'bower_components/angular-mocks/angular-mocks.js',
             'app/**/*.js',
-            'app/**/*.html',
             //'test/mock/**/*.js',
-            'test/spec/**/*.js'
+            'test/spec/**/*.js',
+            'app/**/*.html'
         ],
-//        ngHtml2JsPreprocessor: {
-//            // strip this from the file path
-//            stripPrefix: 'public/',
-//            stripSufix: '.ext',
-//            // prepend this to the
-//            prependPrefix: 'served/',
-//            // or define a custom transform function
+        preprocessors: {
+            'app/**/*.html': ['ng-html2js']
+        },
+        ngHtml2JsPreprocessor: {
+            // strip this from the file path
+            //stripPrefix: 'public/',
+            //stripSufix: '.ext',
+            // prepend this to the
+            prependPrefix: '/web/bundles/Sk/',
+            // or define a custom transform function
 //            cacheIdFromPath: function (filepath) {
-//                return cacheId;
-//            },
-//            // setting this option will create only a single module that contains templates
-//            // from all the files, so you can load them all with module('foo')
-//            moduleName: 'foo'
-//        },
+//                return '/web/bundles/Sk/' + filepath; //cacheId;
+//            }
+            // setting this option will create only a single module that contains templates
+            // from all the files, so you can load them all with module('foo')
+            moduleName: 'mwTemplates'
+        },
         reporters: ['progress'],
         // list of files / patterns to exclude
         exclude: [],
@@ -62,7 +64,8 @@ module.exports = function (config) {
         plugins: [
             //'karma-phantomjs-launcher',
             'karma-chrome-launcher',
-            'karma-jasmine'
+            'karma-jasmine',
+            'karma-ng-html2js-preprocessor'
         ],
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
