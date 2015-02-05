@@ -45,7 +45,7 @@ describe('MemoryWall controller', function () {
         $httpBackend.expectGET(memoryWallRequest)
                 .respond(200, wallDataFixtures);
 
-        spyOn(memoryWallService, 'memoryWall').andCallThrough();
+        spyOn(memoryWallService, 'memoryWall').and.callThrough();
 
         mockMemoryWallPrepService = {
             memoryWall: memoryWallService.memoryWall(),
