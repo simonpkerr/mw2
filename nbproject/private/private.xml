@@ -14,11 +14,8 @@
         <group>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/test/spec/memoryWall/app.memoryWallSpec.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/youTube.service.js</file>
-            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/test/spec/memoryWall/mwItemYoutube.directiveSpec.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwItemYouTube.directive.js</file>
             <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/youtube.html</file>
-            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/test/spec/memoryWall/mwItemAmazon.directiveSpec.js</file>
-            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/app.memoryWall.js</file>
         </group>
     </open-files>
 </project-private>

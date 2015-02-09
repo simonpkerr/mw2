@@ -86,15 +86,16 @@ class MediaProviderApi {
     }
     
     public function setAPIStrategy($apiKey){
-        if(!array_key_exists($apiKey, $this->apis))
+        if(!array_key_exists($apiKey, $this->apis)) {
             throw new RuntimeException("api key not found");
-            
+        }
         $this->apiStrategy = $this->apis[$apiKey]; 
     }
     
     public function getAPIStrategy($apiKey){
-        if(!array_key_exists($apiKey, $this->apis))
+        if(!array_key_exists($apiKey, $this->apis)){
             throw new RuntimeException("api key not found");
+        }
             
         return $this->apis[$apiKey]; 
          
