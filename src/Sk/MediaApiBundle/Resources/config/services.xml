@@ -26,8 +26,14 @@
         <!--youtube params-->
         <parameter key="youtube_provider.class">Sk\MediaApiBundle\MediaProviderApi\YouTubeProvider</parameter>
         <parameter key="youtube_provider.google_service_youtube.class" />
-
-           
+        
+        <!--wikimedia params-->
+        <parameter key="wikimedia_provider.class">Sk\MediaApiBundle\MediaProviderApi\WikiMediaProvider</parameter>
+        <parameter key="wikimedia_provider.wikimedia_request.class" />
+        <parameter key="wikimedia_provider.access_params" type="collection" >
+            <parameter key="wikimedia_endpoint" />
+            <parameter key="wikimedia_user_agent" />
+        </parameter>  
     </parameters>
     
     <services>
@@ -40,6 +46,14 @@
             </argument>
             <argument id="sonata.cache.apc" type="service"  />
             <argument>%media_provider_api.debug_mode%</argument>
+        </service>
+        
+        <!--wikimedia service-->
+        <service id="wikimedia_request" class="%wikimedia_provider.wikimedia_request.class%" public="false" />
+        <service id="wikimedia_provider" class="%wikimedia_provider.class%" public="false">
+            <argument>%wikimedia_provider.access_params%</argument>
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument id="wikimedia_request" type="service" />
         </service>
         
         <!--amazon services-->

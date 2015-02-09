@@ -15,10 +15,6 @@ use Sk\MediaApiBundle\Entity\Decade;
 use Sk\MediaApiBundle\Entity\Genre;
 use Sk\MediaApiBundle\Entity\API;
 use Sk\MediaApiBundle\MediaProviderApi\Utilities;
-use \SimpleXMLElement;
-use Sonata\Cache\CacheAdapterInterface;
-use Sonata\CacheBundle\Adapter;
-use Sonata\Cache\CacheElement;
 use \Exception;
 
 class WikiMediaProvider implements IMediaProviderStrategy {
@@ -40,7 +36,9 @@ class WikiMediaProvider implements IMediaProviderStrategy {
             'gcmlimit'  =>      50,
             'gcmtype'   =>      'file',
             'prop'      =>      'imageinfo|categories',
-            'iiprop'    =>      'url'            
+            'iiprop'    =>      'url',
+            'format'    =>      'json'
+            
         );
         $this->apiEndPoint = $access_params['wikimedia_endpoint'];
         $this->userAgent = $access_params['wikimedia_user_agent'];
@@ -126,7 +124,8 @@ class WikiMediaProvider implements IMediaProviderStrategy {
      */
     public function getListings(Decade $decade, $pageNumber = 1){
         //get random media type
-                
+        
+        
         //get random 3 years based on media type
         //$pageids = ...
         //implode($pageids, '|');
@@ -182,15 +181,15 @@ class WikiMediaProvider implements IMediaProviderStrategy {
      * @param array $ids 
      * 
      */
-    public function getBatch(array $ids){
-        if(count($ids) > self::BATCH_PROCESS_THRESHOLD)
-            $ids = array_slice ($ids, 0, self::BATCH_PROCESS_THRESHOLD);
-            
-        $params = array(
-            'ItemId'  => implode(',', $ids),
-        );
-        return $this->getDetails($params);
-    }
+//    public function getBatch(array $ids){
+//        if(count($ids) > self::BATCH_PROCESS_THRESHOLD)
+//            $ids = array_slice ($ids, 0, self::BATCH_PROCESS_THRESHOLD);
+//            
+//        $params = array(
+//            'ItemId'  => implode(',', $ids),
+//        );
+//        return $this->getDetails($params);
+//    }
     
    
    
@@ -206,7 +205,7 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     {
         if ($response === False)
         {
-            throw new Exception("Could not connect to Amazon");
+            throw new Exception("Could not connect to WikiMedia");
         }
         else
         {
@@ -214,13 +213,7 @@ class WikiMediaProvider implements IMediaProviderStrategy {
             if($response->Items->TotalResults == 0 && $this->amazonParameters['Operation'] == $this->ITEM_SEARCH){
                 throw new Exception("No results were returned");
             }
-            //for lookups
-            if(!$response->Items->Request->IsValid && $this->amazonParameters['Operation'] == $this->ITEM_LOOKUP){
-                throw new Exception("Invalid result set");
-            }
-            if($response->Items->Request->Errors->Error != null) {
-                throw new Exception($response->Items->Request->Errors->Error->Message);
-            }
+            
             return $response;
         }
     }
