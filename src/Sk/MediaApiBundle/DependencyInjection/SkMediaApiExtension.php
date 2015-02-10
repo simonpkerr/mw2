@@ -42,5 +42,9 @@ class SkMediaApiExtension extends Extension
         //youtube params
         $container->setParameter('youtube_provider.google_service_youtube.class', $providers['youtube_provider']['google_service_youtube']['class']);
         
+        //wikimedia params
+        $container->setParameter('wikimedia_provider.access_params', $providers['wikimedia_provider']['access_params']);
+        $container->setParameter ('wikimedia_provider.wikimedia_request.class', $providers['wikimedia_provider']['wikimedia_request']['class']);
+        
     }
 }

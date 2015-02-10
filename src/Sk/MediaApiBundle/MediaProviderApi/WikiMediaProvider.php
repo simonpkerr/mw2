@@ -1,7 +1,7 @@
 <?php
 /*
- * Original code Copyright (c) 2011 Simon Kerr
- * AmazonAPI controls access to the live amazon api or the dummy amazon api 
+ * Original code Copyright (c) 2015 Simon Kerr
+ * WikiMediaProvider controls access to wikimedia, gets listings, details or batch 
  * @author Simon Kerr
  * @version 1.0
  */

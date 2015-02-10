@@ -27,8 +27,7 @@ class Configuration implements ConfigurationInterface
                     ->booleanNode('debug_mode')->defaultValue(false)->end()
                     ->arrayNode('providers')->isRequired()
                         ->children()
-                            ->arrayNode('amazon_provider')
-                            ->isRequired()
+                            ->arrayNode('amazon_provider')->isRequired()
                                 ->children()
                                     ->arrayNode('access_params')->isRequired()
                                         ->children()
@@ -53,8 +52,7 @@ class Configuration implements ConfigurationInterface
                                     ->scalarNode('class')->defaultValue('Google_Client')->end()
                                 ->end()
                             ->end()//end of google provider
-                            ->arrayNode('youtube_provider')
-                            ->isRequired()
+                            ->arrayNode('youtube_provider')->isRequired()
                                 ->children()
                                     ->arrayNode('google_service_youtube')
                                     ->addDefaultsIfNotSet()
@@ -63,7 +61,23 @@ class Configuration implements ConfigurationInterface
                                         ->end()
                                     ->end()
                                 ->end()    
-                            ->end()//end of youtubeapi
+                            ->end()//end of youtube provider
+                            ->arrayNode('wikimedia_provider')->isRequired()
+                                ->children()
+                                    ->arrayNode('access_params')->isRequired()
+                                        ->children()
+                                            ->scalarNode('wikimedia_endpoint')->isRequired()->cannotBeEmpty()->end()
+                                            ->scalarNode('wikimedia_user_agent')->isRequired()->cannotBeEmpty()->end()
+                                        ->end()
+                                    ->end()
+                                    ->arrayNode('wikimedia_request')
+                                    ->addDefaultsIfNotSet()
+                                        ->children()
+                                            ->scalarNode('class')->defaultValue('Sk\MediaApiBundle\MediaProviderApi\WikiMediaRequest')->end()
+                                        ->end()
+                                    ->end()//end of wikimedia_request
+                                ->end()
+                            ->end()//end of wikimedia provider
                         ->end()
                     ->end()//end of providers
                 ->end()
