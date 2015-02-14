@@ -87,13 +87,13 @@ class AmazonProvider implements IMediaProviderStrategy {
         return $data->asXML();
     }
     
-    public function getItemPrice($data){
-        try {
-            return (string)$data->ItemAttributes->ListPrice->FormattedPrice;
-        } catch (Exception $ex) {
-            return null;
-        }
-    }
+//    public function getItemPrice($data){
+//        try {
+//            return (string)$data->ItemAttributes->ListPrice->FormattedPrice;
+//        } catch (Exception $ex) {
+//            return null;
+//        }
+//    }
     
     public function getItemImage($data){
         try{
@@ -150,7 +150,7 @@ class AmazonProvider implements IMediaProviderStrategy {
      * @param \Sk\MediaApiBundle\Entity\Decade $decade
      * @param type $pageNumber
      * @return type
-     * @throws \Sk\MediaApiBundle\MediaProviderApi\Exception
+     * @throws Exception
      */
     public function getListings(Decade $decade, $pageNumber = 1){
         $browseNodeArray = array(); 

@@ -25,16 +25,15 @@ class WikiMediaRequest{
         /* create request */
         $request = "http://".$host."?".$canonicalized_query;
 
-        $xml_response = $this->execCurl($request, $user_agent); 
-        if ($xml_response === False)
+        $response = $this->execCurl($request, $user_agent); 
+        if ($response === False)
         {
             return False;
         }
         else
         {
-            /* parse XML */
-            $parsed_xml = @simplexml_load_string($xml_response);
-            return ($parsed_xml === False) ? False : $parsed_xml;
+            //$parsed_response = @simplexml_load_string($xml_response);
+            return $response;
         }
     }
     

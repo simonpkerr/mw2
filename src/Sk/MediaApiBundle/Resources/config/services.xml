@@ -43,6 +43,7 @@
             <argument type="collection" id="providers">
                 <argument type="service" id="amazon_provider" key="amazon_provider" />
                 <argument type="service" id="youtube_provider" key="youtube_provider" />
+                <argument type="service" id="wikimedia_provider" key="wikimedia_provider" />
             </argument>
             <argument id="sonata.cache.apc" type="service"  />
             <argument>%media_provider_api.debug_mode%</argument>

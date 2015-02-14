@@ -21,7 +21,7 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     const FRIENDLY_NAME = 'Wikimedia';
     const PROVIDER_NAME = 'wikimedia';
     const BATCH_PROCESS_THRESHOLD = 10;
-    const CACHE_TTL = 86400;
+    const CACHE_TTL = 0; //86400;
     private $apiEndPoint;                           
     private $em;
     private $params;
@@ -55,7 +55,7 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     
     //each api will have it's own method for returning the id of a mediaresource for caching purposes.
     public function getItemId($data){
-        return (string)$data->ASIN;
+        return $data['pageid'];
     }
     
     public function getXML($data){
@@ -64,7 +64,8 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     
     public function getItemImage($data){
         try{
-            return (string)$data->MediumImage->URL;
+            $imageinfo = array_pop($data['imageinfo']);
+            return $imageinfo['url'];
         } catch(Exception $re){
             return null;
         }
@@ -72,7 +73,8 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     
     public function getItemUrl($data){
         try{
-            return (string)$data->DetailPageURL;
+            $imageinfo = array_pop($data['imageinfo']);
+            return $imageinfo['descriptionurl'];
         } catch(Exception $re){
             return null;
         }
@@ -80,26 +82,14 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     
     public function getItemTitle($data){
         try{
-            return (string)$data->ItemAttributes->Title;
+            return $data['title'];
         } catch(Exception $re){
             return null;
         }
     }
     
     public function getItemDecade($data) {
-        try{
-            $title = (string)$data->ItemAttributes->Title;
-            $yearParts = array();
-            preg_match('/[\[|\(](\d{4})[\]|\)]/i', $title, $yearParts);
-            $year = isset($yearParts[1]) ? $yearParts[1] : null;
-            if(!is_null($year)){
-                return substr($year, 0, 3) . '0s';
-            }
-            
-            return null;
-        }catch(\RuntimeException $re){
-            return null;
-        }
+        return null;
     }
     
     public function getItemDescription($data) {
@@ -109,41 +99,37 @@ class WikiMediaProvider implements IMediaProviderStrategy {
 //            return null;
 //        }
         return null;
-        
     }
-    
    
     /**
      * @param \Sk\MediaApiBundle\Entity\Decade $decade
      * @param type $pageNumber
      * @return type
-     * @throws \Sk\MediaApiBundle\MediaProviderApi\Exception
+     * @throws Exception
      * gets decade, choose random media, based on media
      * chooses random 3 years, then queries for 50 results,
      * which are cached for 2 days
      */
     public function getListings(Decade $decade, $pageNumber = 1){
-        //get random media type
-        
-        
-        //get random 3 years based on media type
-        //$pageids = ...
-        //implode($pageids, '|');
-        
+        $decadeIds = explode("|", $decade->getWikiMediaId());
+	shuffle($decadeIds);
+        $decadeIds = array_splice($decadeIds, 0, 4);
+	$pageIds = implode("|", $decadeIds);         
+
         $params = Utilities::removeNullEntries(array(
-            'gcmpageid'     =>      $pageids
+            'gcmpageid'     =>      $pageIds
         ));
         
         $this->params = array_merge($this->params, $params);
         $response = $this->runQuery($this->params);
         
         try{
-            $response = (array)$this->verifyResponse($response);
+            $response = $this->verifyResponse($response);
         }catch(Exception $e){
             throw $e;
         }
                 
-        return $response['Items'];
+        return $response;
     }
     
     /*
@@ -190,18 +176,16 @@ class WikiMediaProvider implements IMediaProviderStrategy {
 //        );
 //        return $this->getDetails($params);
 //    }
-    
-   
    
     /**
-     * Check if the xml received from Amazon is valid
+     * Check if the json received from WikiMedia is valid
      * 
-     * @param mixed $response xml response to check
-     * @return bool false if the xml is invalid
-     * @return mixed the xml response if it is valid
-     * @return exception if we could not connect to Amazon
+     * @param mixed $response json response to check
+     * @return bool false if the response is invalid
+     * @return mixed the response if it is valid
+     * @return exception if could not connect to WikiMedia
      */
-    protected function verifyXmlResponse($response)
+    protected function verifyResponse($response)
     {
         if ($response === False)
         {
@@ -209,22 +193,22 @@ class WikiMediaProvider implements IMediaProviderStrategy {
         }
         else
         {
-            //for searches
-            if($response->Items->TotalResults == 0 && $this->amazonParameters['Operation'] == $this->ITEM_SEARCH){
+            $response = json_decode($response, true, 25);
+            if(count($response['query']['pages']) === 0){
                 throw new Exception("No results were returned");
             }
             
-            return $response;
+            return $response['query']['pages'];
         }
     }
     
     /**
-     * Query Amazon with the issued parameters
+     * Query WikiMedia with the issued parameters
      * 
      * @param array $parameters parameters to query around
-     * @return simpleXmlObject xml query response
+     * @return json data response
      */
-    protected function runQuery($parameters, $uri)
+    protected function runQuery($parameters)
     {
         return $this->wikiMediaRequest->makeRequest($this->apiEndPoint, $parameters, $this->userAgent);
     }

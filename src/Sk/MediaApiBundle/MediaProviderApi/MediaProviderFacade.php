@@ -47,7 +47,8 @@ class MediaProviderFacade {
         $wallData = array();
         $decades = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecades();
         $randomKey = array_rand($decades);
-        $decade = $decades[$randomKey]; //$this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug('1940s'); 
+        //$decade = $decades[$randomKey]; 
+        $decade = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug('1980s'); 
         $pageNumber = rand(1, 10);
         $wallData['metaData'] = array(
             'decade' => $decade->getSlug(),
@@ -86,14 +87,16 @@ class MediaProviderFacade {
         } else {
             $response = (array)$providerStrategy->getListings($decade, $pageNumber);
             foreach($response as $item){
+                //could just provide data object to api, each directive knows how to consume data
                 array_push($items, array(
                     'provider'      =>  $providerStrategy::PROVIDER_NAME,
                     'id'            =>  $providerStrategy->getItemId($item),
                     'title'         =>  $providerStrategy->getItemTitle($item),
                     'image'         =>  $providerStrategy->getItemImage($item),
                     'url'           =>  $providerStrategy->getItemUrl($item),
-                    'price'         =>  $providerStrategy->getItemPrice($item),
+//                    'price'         =>  $providerStrategy->getItemPrice($item),
                     'description'   =>  $providerStrategy->getItemDescription($item)
+                    //get additional data such as categories for wikimedia
                 ));
             }
             $this->cache->set($cacheKey, $items, $providerStrategy::CACHE_TTL);

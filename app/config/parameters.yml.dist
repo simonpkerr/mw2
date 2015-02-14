@@ -26,3 +26,5 @@ parameters:
     gdata_key: 12345
     gdata_app_name: "my app"
     apc_token: s3cur3
+    wikimedia_endpoint: "/api/endpoint"
+    wikimedia_user_agent: "mw.local"

@@ -111,10 +111,6 @@ class YouTubeProvider implements IMediaProviderStrategy {
         
     }
     
-    public function getItemPrice($data){
-        return null;
-    }
-    
     /*
      * for youtube, details are retrieved on the client,
      * but still need to be stored to drive recommendations, timeline

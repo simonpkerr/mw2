@@ -41,6 +41,11 @@ class Decade
     protected $sevenDigitalTag;
     
     /**
+     * @ORM\Column(type="string", length=75)
+     */
+    protected $wikiMediaId;
+    
+    /**
      * @ORM\Column(type="string", length=255)
      */
     protected $slug;
@@ -75,6 +80,16 @@ class Decade
     {
         return $this->sevenDigitalTag;
     }
+    
+    public function setWikiMediaId($wikiMediaId)
+    {
+        $this->wikiMediaId = $wikiMediaId;
+    }
+    public function getWikiMediaId()
+    {
+        return $this->wikiMediaId;
+    }
+    
     public function getSlug()
     {
         return $this->slug;

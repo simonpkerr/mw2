@@ -3,5 +3,6 @@
     <li ng-repeat="item in vm.wallData.providerData" ng-switch on="item.provider">
         <mw-item-amazon ng-switch-when="amazon" item="item"></mw-item-amazon>
         <mw-item-youtube ng-switch-when="youtube" item="item"></mw-item-youtube>
+        <mw-item-wikimedia ng-switch-when="wikimedia" item="item"></mw-item-wikimedia>
     </li>
 </ul>
