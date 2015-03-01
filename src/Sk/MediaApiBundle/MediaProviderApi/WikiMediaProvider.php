@@ -15,6 +15,10 @@ use Sk\MediaApiBundle\Entity\Decade;
 use Sk\MediaApiBundle\Entity\Genre;
 use Sk\MediaApiBundle\Entity\API;
 use Sk\MediaApiBundle\MediaProviderApi\Utilities;
+use Sonata\Cache\CacheAdapterInterface;
+use Sonata\CacheBundle\Adapter;
+use Sonata\Cache\CacheElement;
+
 use \Exception;
 
 class WikiMediaProvider implements IMediaProviderStrategy {
@@ -22,13 +26,16 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     const PROVIDER_NAME = 'wikimedia';
     const BATCH_PROCESS_THRESHOLD = 10;
     const CACHE_TTL = 0; //86400;
+    const IMAGESIZE_THRESHOLD = 300;
     private $apiEndPoint;                           
     private $em;
     private $params;
     private $userAgent;
     private $wikiMediaRequest;
+    private $cache;
  
-    public function __construct(array $access_params, EntityManager $em, $wikimedia_request){
+    public function __construct(array $access_params, EntityManager $em, $wikimedia_request, CacheAdapterInterface $cache){
+        $this->cache = $cache;
         $this->em = $em;            
         $this->params = array(
             'action'    =>      'query',
@@ -63,12 +70,78 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     }
     
     public function getItemImage($data){
+        /*
+         * when requested, create a smaller thumbnail size if the image is too big
+         * cache it, then return the cached version, using the image full url as a key
+         */
         try{
             $imageinfo = array_pop($data['imageinfo']);
-            return $imageinfo['url'];
         } catch(Exception $re){
             return null;
         }
+        
+        $img = $this->createThumb($imageinfo['url']);        
+        return $img;
+    }
+    
+    private function createThumb($imageUrl){
+        $imgAttrs = getimagesize($imageUrl);
+        $w = $imgAttrs[0];
+        $h = $imgAttrs[1];
+        if($w < self::IMAGESIZE_THRESHOLD && $h < self::IMAGESIZE_THRESHOLD){
+            return $imageUrl;
+        }
+        
+        /*
+         * image is too big, check cache to see if image already exists
+         * if it does, load the image using gd, return url
+         * if not, cache image and return url of cached version
+         */
+        if($this->cache->has(array('imageUrl' => $imageUrl))){
+            $cacheElement = $this->cache->get(array('imageUrl' => $imageUrl));
+            $image = $cacheElement->getData();
+            return $image;
+        }
+        
+        $ext = $imgAttrs['mime'];
+        $commands = null;
+        switch($ext){
+            case "image/png":
+                $commands = array(
+                    'imagecreatefrompng',
+                    'imagepng',
+                );
+                break;
+            case "image/jpeg":
+                $commands = array(
+                    'imagecreatefromjpeg',
+                    'imagejpeg',
+                );
+                break;
+            case "image/gif":
+                $commands = array(
+                    'imagecreatefromgif',
+                    'imagegif',
+                );
+                break;
+        }
+        
+        $image = call_user_func($commands[0], fopen($imageUrl, 'r'));
+        
+        $newWidth = $w > self::IMAGESIZE_THRESHOLD ? self::IMAGESIZE_THRESHOLD : $w;
+        $newHeight = floor($h * ($newWidth / $w));
+        $tmpImg = imagecreatetruecolor($newWidth, $newHeight);
+        if($ext === "image/png" || $ext === "image/gif"){
+            imagealphablending($tmpImg, false);
+            imagesavealpha($tmpImg, true);
+        }
+        
+        imagecopyresized($tmpImg, $image, 0, 0, 0, 0, $newWidth, $newHeight, $w, $h);
+        call_user_func($commands[1], $tmpImg, $this->getUploadRootDir() . '/thumbs/' . $this->imagePath);
+                
+            
+            
+        return $imageUrl;
     }
     
     public function getItemUrl($data){
