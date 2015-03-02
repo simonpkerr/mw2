@@ -51,26 +51,27 @@ class YouTubeProvider implements IMediaProviderStrategy {
         );
     }
     
-    
-//    public function getAPIEntity() {
-//        return $this->apiEntity;
-//    }
-//
-//    public function setAPIEntity(API $entity) {
-//        $this->apiEntity = $entity;
-//        
-//    }
-    
     public function setRequestObject($obj){
         $this->gsYouTube = $obj;
     }
+
+    public function getItem($data){
+        return array(
+            'provider'      =>  self::PROVIDER_NAME,
+            'id'            =>  $this->getItemId($data),
+            'title'         =>  $this->getItemTitle($data),
+            'image'         =>  $this->getItemImage($data),
+            'url'           =>  $this->getItemUrl($data),
+            'description'   =>  $this->getItemDescription($data)
+        );
+    }
     
-    public function getItemId($data){
+    private function getItemId($data){
         return  $data->id->videoId;
     }
     
     
-     public function getItemUrl($data){
+    private function getItemUrl($data){
         try{
             return 'https://www.youtube.com/watch?v=' . $data->id->videoId;
         } catch(Exception $re){
@@ -78,19 +79,15 @@ class YouTubeProvider implements IMediaProviderStrategy {
         }
     }
     
-    
-    public function getXML($data){
-        return $data->asXML();
-    }
-    
-    public function getItemImage($data) {
+    private function getItemImage($data) {
         try{
             return $data->snippet->thumbnails->medium->url;
         } catch(Exception $re){
             return null;
         }
     }
-    public function getItemTitle($data){
+    
+    private function getItemTitle($data){
         try{
             return $data->snippet->title;
         } catch(Exception $e){
@@ -98,11 +95,8 @@ class YouTubeProvider implements IMediaProviderStrategy {
         }
     }
     
-    public function getItemDecade($data) {
-        return null;
-    }
-    
-    public function getItemDescription($data) {
+   
+    private function getItemDescription($data) {
         try{
             return $data->snippet->description;
         } catch (Exception $ex) {

@@ -15,16 +15,13 @@ use Sk\MediaApiBundle\Entity\Decade;
 use Sk\MediaApiBundle\Entity\Genre;
 use Sk\MediaApiBundle\Entity\API;
 use Sk\MediaApiBundle\MediaProviderApi\Utilities;
-use Sonata\Cache\CacheAdapterInterface;
-use Sonata\CacheBundle\Adapter;
-use Sonata\Cache\CacheElement;
 
 use \Exception;
 
 class WikiMediaProvider implements IMediaProviderStrategy {
     const FRIENDLY_NAME = 'Wikimedia';
     const PROVIDER_NAME = 'wikimedia';
-    const BATCH_PROCESS_THRESHOLD = 10;
+    const BATCH_PROCESS_THRESHOLD = 50;
     const CACHE_TTL = 0; //86400;
     const IMAGESIZE_THRESHOLD = 300;
     private $apiEndPoint;                           
@@ -32,19 +29,19 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     private $params;
     private $userAgent;
     private $wikiMediaRequest;
-    private $cache;
  
-    public function __construct(array $access_params, EntityManager $em, $wikimedia_request, CacheAdapterInterface $cache){
-        $this->cache = $cache;
+    public function __construct(array $access_params, EntityManager $em, $wikimedia_request){
         $this->em = $em;            
         $this->params = array(
             'action'    =>      'query',
             'generator' =>      'categorymembers',
-            'gcmlimit'  =>      50,
+            'gcmlimit'  =>      self::BATCH_PROCESS_THRESHOLD,
             'gcmtype'   =>      'file',
-            'prop'      =>      'imageinfo|categories',
-            'iiprop'    =>      'url',
-            'format'    =>      'json'
+            'prop'      =>      'imageinfo|categories',         //get imageinfo and categories
+            'iiprop'    =>      'url',                          //get the image url used on the page
+            'format'    =>      'json',
+            'iiurlwidth'=>      self::IMAGESIZE_THRESHOLD,      //specify a thumbnail url to return
+            'clshow'    =>      '!hidden'                       //don't show hidden categories
             
         );
         $this->apiEndPoint = $access_params['wikimedia_endpoint'];
@@ -61,90 +58,21 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     }
     
     //each api will have it's own method for returning the id of a mediaresource for caching purposes.
-    public function getItemId($data){
+    private function getItemId($data){
         return $data['pageid'];
     }
     
-    public function getXML($data){
-        return $data->asXML();
-    }
-    
-    public function getItemImage($data){
-        /*
-         * when requested, create a smaller thumbnail size if the image is too big
-         * cache it, then return the cached version, using the image full url as a key
-         */
+    private function getItemImage($data){
         try{
             $imageinfo = array_pop($data['imageinfo']);
+            return $imageinfo['url'];
         } catch(Exception $re){
             return null;
         }
         
-        $img = $this->createThumb($imageinfo['url']);        
-        return $img;
     }
     
-    private function createThumb($imageUrl){
-        $imgAttrs = getimagesize($imageUrl);
-        $w = $imgAttrs[0];
-        $h = $imgAttrs[1];
-        if($w < self::IMAGESIZE_THRESHOLD && $h < self::IMAGESIZE_THRESHOLD){
-            return $imageUrl;
-        }
-        
-        /*
-         * image is too big, check cache to see if image already exists
-         * if it does, load the image using gd, return url
-         * if not, cache image and return url of cached version
-         */
-        if($this->cache->has(array('imageUrl' => $imageUrl))){
-            $cacheElement = $this->cache->get(array('imageUrl' => $imageUrl));
-            $image = $cacheElement->getData();
-            return $image;
-        }
-        
-        $ext = $imgAttrs['mime'];
-        $commands = null;
-        switch($ext){
-            case "image/png":
-                $commands = array(
-                    'imagecreatefrompng',
-                    'imagepng',
-                );
-                break;
-            case "image/jpeg":
-                $commands = array(
-                    'imagecreatefromjpeg',
-                    'imagejpeg',
-                );
-                break;
-            case "image/gif":
-                $commands = array(
-                    'imagecreatefromgif',
-                    'imagegif',
-                );
-                break;
-        }
-        
-        $image = call_user_func($commands[0], fopen($imageUrl, 'r'));
-        
-        $newWidth = $w > self::IMAGESIZE_THRESHOLD ? self::IMAGESIZE_THRESHOLD : $w;
-        $newHeight = floor($h * ($newWidth / $w));
-        $tmpImg = imagecreatetruecolor($newWidth, $newHeight);
-        if($ext === "image/png" || $ext === "image/gif"){
-            imagealphablending($tmpImg, false);
-            imagesavealpha($tmpImg, true);
-        }
-        
-        imagecopyresized($tmpImg, $image, 0, 0, 0, 0, $newWidth, $newHeight, $w, $h);
-        call_user_func($commands[1], $tmpImg, $this->getUploadRootDir() . '/thumbs/' . $this->imagePath);
-                
-            
-            
-        return $imageUrl;
-    }
-    
-    public function getItemUrl($data){
+    private function getItemUrl($data){
         try{
             $imageinfo = array_pop($data['imageinfo']);
             return $imageinfo['descriptionurl'];
@@ -153,7 +81,7 @@ class WikiMediaProvider implements IMediaProviderStrategy {
         }
     }
     
-    public function getItemTitle($data){
+    private function getItemTitle($data){
         try{
             return $data['title'];
         } catch(Exception $re){
@@ -161,17 +89,35 @@ class WikiMediaProvider implements IMediaProviderStrategy {
         }
     }
     
-    public function getItemDecade($data) {
-        return null;
+    private function getItemThumbnail($data){
+        try {
+            $imageinfo = array_pop($data['imageinfo']);
+            return $imageinfo['thumburl'];
+            
+        } catch (Exception $ex) {
+            return null;
+        }
     }
     
-    public function getItemDescription($data) {
-//        try{
-//            return null;
-//        } catch (Exception $ex) {
-//            return null;
-//        }
-        return null;
+    private function getItemCategories($data){
+        try{
+            $categories = array_pop($data['categories']);
+            return (array)$categories['title'];
+        } catch (Exception $ex) {
+            return null;
+        }
+    }
+    
+    public function getItem($data){
+        return array(
+            'provider'      =>  self::PROVIDER_NAME,
+            'id'            =>  $this->getItemId($data),
+            'title'         =>  $this->getItemTitle($data),
+            'image'         =>  $this->getItemImage($data),
+            'thumbnail'     =>  $this->getItemThumbnail($data),
+            'url'           =>  $this->getItemUrl($data),
+            'categories'    =>  $this->getItemCategories($data)
+        );
     }
    
     /**
@@ -267,6 +213,10 @@ class WikiMediaProvider implements IMediaProviderStrategy {
         else
         {
             $response = json_decode($response, true, 25);
+            if($response['query'] === null) {
+                throw new Exception("Query node not found");
+            }
+            
             if(count($response['query']['pages']) === 0){
                 throw new Exception("No results were returned");
             }

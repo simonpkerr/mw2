@@ -78,15 +78,22 @@ class AmazonProvider implements IMediaProviderStrategy {
         $this->asr = $asr;
     }
     
+    public function getItem($data){
+        return array(
+            'provider'      =>  self::PROVIDER_NAME,
+            'id'            =>  $this->getItemId($data),
+            'title'         =>  $this->getItemTitle($data),
+            'image'         =>  $this->getItemImage($data),
+            'url'           =>  $this->getItemUrl($data)
+        );
+    }
+    
     //each api will have it's own method for returning the id of a mediaresource for caching purposes.
-    public function getItemId($data){
+    private function getItemId($data){
         return (string)$data->ASIN;
     }
     
-    public function getXML($data){
-        return $data->asXML();
-    }
-    
+       
 //    public function getItemPrice($data){
 //        try {
 //            return (string)$data->ItemAttributes->ListPrice->FormattedPrice;
@@ -95,7 +102,7 @@ class AmazonProvider implements IMediaProviderStrategy {
 //        }
 //    }
     
-    public function getItemImage($data){
+    private function getItemImage($data){
         try{
             return (string)$data->MediumImage->URL;
         } catch(Exception $re){
@@ -103,7 +110,7 @@ class AmazonProvider implements IMediaProviderStrategy {
         }
     }
     
-    public function getItemUrl($data){
+    private function getItemUrl($data){
         try{
             return (string)$data->DetailPageURL;
         } catch(Exception $re){
@@ -111,7 +118,7 @@ class AmazonProvider implements IMediaProviderStrategy {
         }
     }
     
-    public function getItemTitle($data){
+    private function getItemTitle($data){
         try{
             return (string)$data->ItemAttributes->Title;
         } catch(Exception $re){
@@ -119,7 +126,7 @@ class AmazonProvider implements IMediaProviderStrategy {
         }
     }
     
-    public function getItemDecade($data) {
+    private function getItemDecade($data) {
         try{
             $title = (string)$data->ItemAttributes->Title;
             $yearParts = array();
@@ -135,17 +142,6 @@ class AmazonProvider implements IMediaProviderStrategy {
         }
     }
     
-    public function getItemDescription($data) {
-//        try{
-//            return null;
-//        } catch (Exception $ex) {
-//            return null;
-//        }
-        return null;
-        
-    }
-    
-   
     /**
      * @param \Sk\MediaApiBundle\Entity\Decade $decade
      * @param type $pageNumber

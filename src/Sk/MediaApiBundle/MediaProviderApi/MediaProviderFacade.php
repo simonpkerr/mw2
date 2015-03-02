@@ -78,7 +78,7 @@ class MediaProviderFacade {
         return $wallData;
     }
     
-    private function getRandomItems($providerStrategy, $decade, $pageNumber){
+    private function getRandomItems(IMediaProviderStrategy $providerStrategy, $decade, $pageNumber){
         $items = array();
         $cacheKey = $providerStrategy->getCacheKey($decade, $pageNumber);
         if($this->cache->has($cacheKey)){
@@ -88,16 +88,7 @@ class MediaProviderFacade {
             $response = (array)$providerStrategy->getListings($decade, $pageNumber);
             foreach($response as $item){
                 //could just provide data object to api, each directive knows how to consume data
-                array_push($items, array(
-                    'provider'      =>  $providerStrategy::PROVIDER_NAME,
-                    'id'            =>  $providerStrategy->getItemId($item),
-                    'title'         =>  $providerStrategy->getItemTitle($item),
-                    'image'         =>  $providerStrategy->getItemImage($item),
-                    'url'           =>  $providerStrategy->getItemUrl($item),
-//                    'price'         =>  $providerStrategy->getItemPrice($item),
-                    'description'   =>  $providerStrategy->getItemDescription($item)
-                    //get additional data such as categories for wikimedia
-                ));
+                array_push($items, $providerStrategy->getItem($item));
             }
             $this->cache->set($cacheKey, $items, $providerStrategy::CACHE_TTL);
         }        

@@ -55,7 +55,6 @@
             <argument>%wikimedia_provider.access_params%</argument>
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument id="wikimedia_request" type="service" />
-            <argument id="sonata.cache.apc" type="service"  />
         </service>
         
         <!--amazon services-->
