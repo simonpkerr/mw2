@@ -3,9 +3,9 @@
     angular.module('mwApp.memoryWall',[])
         .controller('MemoryWall', MemoryWall);
     
-    MemoryWall.$inject = ['$scope', 'memoryWallPrepService'];
+    MemoryWall.$inject = ['$scope', 'memoryWallPrepService', '$sce'];
 
-    function MemoryWall($scope, memoryWallPrepService) {
+    function MemoryWall($scope, memoryWallPrepService, $sce) {
         //from here https://github.com/johnpapa/angularjs-styleguide#style-y034
         var vm = this;
         vm.wallData = {};

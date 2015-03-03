@@ -1,7 +1,17 @@
 <div class="wikimedia-item">
     <p>{{item.title}}</p>
-    <img ng-src="{{item.thumbnail}}" alt="{{item.title}}" />
     <!--if sound file, handle differently-->
-    <p><a ng-href="{{item.url}}">View this page on Wikimedia</a></p>
+    <a ng-href="{{item.image}}">
+        <img ng-src="{{item.thumbnail}}" alt="{{item.title}}" />
+    </a>
+    <div ng-bind-html="item.description"></div>
+    <h4>Categories</h4>
+    <ul>
+        <li ng-repeat="category in item.categories">
+            {{category}}
+        </li>
+    </ul>
+    <p><a ng-href="{{item.url}}">View this page on WikiMedia</a></p>
+    <p>{{item.mediatype}}</p>
 </div>
 

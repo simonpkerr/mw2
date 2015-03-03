@@ -2,6 +2,7 @@
     'use strict';
     angular.module('mwApp.core', [
         'ngRoute',
-        'ngResource'
+        'ngResource',
+        'ngSanitize'
     ]);
 })();

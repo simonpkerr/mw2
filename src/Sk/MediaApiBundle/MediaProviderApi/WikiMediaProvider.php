@@ -33,15 +33,19 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     public function __construct(array $access_params, EntityManager $em, $wikimedia_request){
         $this->em = $em;            
         $this->params = array(
-            'action'    =>      'query',
-            'generator' =>      'categorymembers',
-            'gcmlimit'  =>      self::BATCH_PROCESS_THRESHOLD,
-            'gcmtype'   =>      'file',
-            'prop'      =>      'imageinfo|categories',         //get imageinfo and categories
-            'iiprop'    =>      'url',                          //get the image url used on the page
-            'format'    =>      'json',
-            'iiurlwidth'=>      self::IMAGESIZE_THRESHOLD,      //specify a thumbnail url to return
-            'clshow'    =>      '!hidden'                       //don't show hidden categories
+            'action'                =>      'query',
+            'generator'             =>      'categorymembers',
+            'gcmlimit'              =>      self::BATCH_PROCESS_THRESHOLD,
+            'gcmtype'               =>      'file',
+            //'prop'      =>      'imageinfo|categories',         //get imageinfo and categories
+            'prop'                  =>      'imageinfo',         //get imageinfo
+            'iiprop'                =>      'url|extmetadata|mediatype',              //get the image url and extra metadata used on the page
+            'format'                =>      'json',
+            'iiurlwidth'            =>      self::IMAGESIZE_THRESHOLD,      //specify a thumbnail url to return
+            'iiextmetadatafilter'   =>      'ObjectName|Categories|ImageDescription',
+            'iiextmetadatalanguage' =>      'en'
+            
+            //'clshow'    =>      '!hidden'                       //don't show hidden categories
             
         );
         $this->apiEndPoint = $access_params['wikimedia_endpoint'];
@@ -58,40 +62,37 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     }
     
     //each api will have it's own method for returning the id of a mediaresource for caching purposes.
-    private function getItemId($data){
-        return $data['pageid'];
-    }
+//    private function getItemId($data){
+//        return $data['pageid'];
+//    }
     
-    private function getItemImage($data){
+    private function getItemImage($imageinfo){
         try{
-            $imageinfo = array_pop($data['imageinfo']);
             return $imageinfo['url'];
         } catch(Exception $re){
             return null;
         }
-        
     }
     
-    private function getItemUrl($data){
+    private function getItemUrl($imageinfo){
         try{
-            $imageinfo = array_pop($data['imageinfo']);
             return $imageinfo['descriptionurl'];
         } catch(Exception $re){
             return null;
         }
     }
     
-    private function getItemTitle($data){
+    private function getItemTitle($metadata){
         try{
-            return $data['title'];
+            return $metadata['ObjectName']['value'];
+            
         } catch(Exception $re){
             return null;
         }
     }
     
-    private function getItemThumbnail($data){
+    private function getItemThumbnail($imageinfo){
         try {
-            $imageinfo = array_pop($data['imageinfo']);
             return $imageinfo['thumburl'];
             
         } catch (Exception $ex) {
@@ -99,24 +100,47 @@ class WikiMediaProvider implements IMediaProviderStrategy {
         }
     }
     
-    private function getItemCategories($data){
+    private function getItemCategories($metadata){
         try{
-            $categories = array_pop($data['categories']);
-            return (array)$categories['title'];
+            
+            //$categories = array_pop($data['categories']); //if categories property has been selected (but doesn't seem to show categories on all)
+            //return (array)$categories['title'];
+            return explode('|', $metadata['Categories']['value']);
+            
+        } catch (Exception $ex) {
+            return null;
+        }
+    }
+    
+    private function getItemDescription($metadata){
+        try{
+            return $metadata['ImageDescription']['value'];
+        } catch (Exception $ex) {
+            return null;
+        }
+    }
+    
+    private function getItemMediaType($imageinfo){
+        try{
+            return $imageinfo['mediatype'];
         } catch (Exception $ex) {
             return null;
         }
     }
     
     public function getItem($data){
+        $imageinfo = array_pop($data['imageinfo']);
+        $metadata = $imageinfo['extmetadata'];
         return array(
             'provider'      =>  self::PROVIDER_NAME,
-            'id'            =>  $this->getItemId($data),
-            'title'         =>  $this->getItemTitle($data),
-            'image'         =>  $this->getItemImage($data),
-            'thumbnail'     =>  $this->getItemThumbnail($data),
-            'url'           =>  $this->getItemUrl($data),
-            'categories'    =>  $this->getItemCategories($data)
+            'id'            =>  $data['pageid'],
+            'title'         =>  $this->getItemTitle($metadata),
+            'image'         =>  $this->getItemImage($imageinfo),
+            'thumbnail'     =>  $this->getItemThumbnail($imageinfo),
+            'url'           =>  $this->getItemUrl($imageinfo),
+            'categories'    =>  $this->getItemCategories($metadata),
+            'description'   =>  $this->getItemDescription($metadata),
+            'mediatype'     =>  $this->getItemMediaType($imageinfo)
         );
     }
    
