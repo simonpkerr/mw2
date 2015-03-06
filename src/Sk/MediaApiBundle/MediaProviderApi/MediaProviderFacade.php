@@ -66,12 +66,6 @@ class MediaProviderFacade {
             }
               
             $wallData['providerData'] = array_merge($wallData['providerData'], $items);
-            
-//            array_push($wallData['providers'], array(
-//                'mediaProvider' => $mediaProvider->getProviderName(),
-//                'providerData'  => $items,
-//                'errorMsg'      => $errorMsg
-//            ));
         }
         
         shuffle($wallData['providerData']);

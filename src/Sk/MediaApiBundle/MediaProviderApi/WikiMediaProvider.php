@@ -12,8 +12,6 @@ use Sk\MediaApiBundle\MediaProviderApi\WikiMediaRequest;
 use Symfony\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManager;
 use Sk\MediaApiBundle\Entity\Decade;
-use Sk\MediaApiBundle\Entity\Genre;
-use Sk\MediaApiBundle\Entity\API;
 use Sk\MediaApiBundle\MediaProviderApi\Utilities;
 
 use \Exception;
@@ -22,16 +20,15 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     const FRIENDLY_NAME = 'Wikimedia';
     const PROVIDER_NAME = 'wikimedia';
     const BATCH_PROCESS_THRESHOLD = 50;
-    const CACHE_TTL = 0; //86400;
+    const CACHE_TTL = 86400;
     const IMAGESIZE_THRESHOLD = 300;
     private $apiEndPoint;                           
-    private $em;
     private $params;
     private $userAgent;
     private $wikiMediaRequest;
  
-    public function __construct(array $access_params, EntityManager $em, $wikimedia_request){
-        $this->em = $em;            
+    public function __construct(array $access_params, $wikimedia_request){
+           
         $this->params = array(
             'action'                =>      'query',
             'generator'             =>      'categorymembers',
@@ -102,7 +99,6 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     
     private function getItemCategories($metadata){
         try{
-            
             //$categories = array_pop($data['categories']); //if categories property has been selected (but doesn't seem to show categories on all)
             //return (array)$categories['title'];
             return explode('|', $metadata['Categories']['value']);
@@ -237,7 +233,7 @@ class WikiMediaProvider implements IMediaProviderStrategy {
         else
         {
             $response = json_decode($response, true, 25);
-            if($response['query'] === null) {
+            if(!array_key_exists('query', $response)) {
                 throw new Exception("Query node not found");
             }
             

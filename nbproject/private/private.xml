@@ -12,11 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/WikiMediaRequest.php</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwItemWikiMedia.directive.js</file>
             <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/Tests/MediaProviderApi/WikiMediaProviderTest.php</file>
             <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/WikiMediaProvider.php</file>
-            <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/AmazonProvider.php</file>
-            <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/Resources/config/services.xml</file>
+            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/wikimedia.html</file>
+            <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/MediaProviderFacade.php</file>
         </group>
     </open-files>
 </project-private>

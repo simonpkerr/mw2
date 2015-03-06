@@ -7,9 +7,9 @@
         //.constant('VIEWBASE', '../bundles/Sk/public/app/')
         .config(config);
 
-    config.$inject = ['$routeProvider'];
+    config.$inject = ['$routeProvider', '$sceDelegateProvider'];
 
-    function config($routeProvider) {
+    function config($routeProvider, $sceDelegateProvider) {
         var VIEW_BASE = '/web/bundles/Sk/app/';
         $routeProvider
                 .when('/index', {
@@ -23,6 +23,13 @@
                 otherwise({
                     redirectTo: '/index'
                 });
+                
+        $sceDelegateProvider.resourceUrlWhitelist([
+           'self',
+           'http://upload.wikimedia.org/**',
+           'https://www.youtube.com/**',
+           'https://i.ytimg.com/**'
+        ]);
     }
 
     memoryWallPrepService.$inject = ['memoryWallService', 'youTubeService'];

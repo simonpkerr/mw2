@@ -1,9 +1,13 @@
-<div class="wikimedia-item">
-    <p>{{item.title}}</p>
-    <!--if sound file, handle differently-->
-    <a ng-href="{{item.image}}">
+<div class="wikimedia-item" ng-switch on="item.mediatype">
+    <h3 ng-bind-html="item.title"></h3>
+    
+    <a ng-switch-when="BITMAP" ng-href="{{item.image}}">
         <img ng-src="{{item.thumbnail}}" alt="{{item.title}}" />
     </a>
+    <audio ng-switch-when="AUDIO" ng-src="{{item.image}}" controls preload="auto">
+        <p>Your browser does not support audio, you&rsquo;d better upgrade!</p>
+    </audio>
+    
     <div ng-bind-html="item.description"></div>
     <h4>Categories</h4>
     <ul>
@@ -12,6 +16,6 @@
         </li>
     </ul>
     <p><a ng-href="{{item.url}}">View this page on WikiMedia</a></p>
-    <p>{{item.mediatype}}</p>
+<!--    <p>{{item.mediatype}}</p>-->
 </div>
 

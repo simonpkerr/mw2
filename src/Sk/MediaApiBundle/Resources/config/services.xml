@@ -53,7 +53,6 @@
         <service id="wikimedia_request" class="%wikimedia_provider.wikimedia_request.class%" public="false" />
         <service id="wikimedia_provider" class="%wikimedia_provider.class%" public="false">
             <argument>%wikimedia_provider.access_params%</argument>
-            <argument type="service" id="doctrine.orm.entity_manager" />
             <argument id="wikimedia_request" type="service" />
         </service>
         

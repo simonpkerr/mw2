@@ -4,5 +4,5 @@
         'ngRoute',
         'ngResource',
         'ngSanitize'
-    ]);
+    ]);    
 })();

@@ -53,7 +53,6 @@ class AmazonProviderTest extends WebTestCase {
     
     protected function tearDown(){
         unset($this->access_params);
-        unset($this->mediaSelection);
         unset($this->testASR);                
     }
     
