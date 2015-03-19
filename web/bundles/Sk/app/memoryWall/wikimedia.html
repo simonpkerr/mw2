@@ -1,21 +1,20 @@
 <div class="wikimedia-item" ng-switch on="item.mediatype">
     <h3 ng-bind-html="item.title"></h3>
-    
-    <a ng-switch-when="BITMAP" ng-href="{{item.image}}">
-        <img ng-src="{{item.thumbnail}}" alt="{{item.title}}" />
-    </a>
+    <img ng-switch-when="BITMAP" ng-src="{{item.thumbnail}}" alt="{{item.title}}" />
     <audio ng-switch-when="AUDIO" ng-src="{{item.image}}" controls preload="auto">
         <p>Your browser does not support audio, you&rsquo;d better upgrade!</p>
     </audio>
-    
-    <div ng-bind-html="item.description"></div>
-    <h4>Categories</h4>
-    <ul>
-        <li ng-repeat="category in item.categories">
-            {{category}}
-        </li>
-    </ul>
-    <p><a ng-href="{{item.url}}">View this page on WikiMedia</a></p>
-<!--    <p>{{item.mediatype}}</p>-->
+    <a ng-click="isOpen = !isOpen" class="cta">Show details</a>
+    <div class="info-window" ng-show="isOpen">
+        <div ng-bind-html="item.description"></div>
+        <h4>Categories</h4>
+        <ul>
+            <li ng-repeat="category in item.categories">
+                {{category}}
+            </li>
+        </ul>
+        <a class="oj" ng-href="{{item.url}}">View this page on WikiMedia</a>
+    </div>
+    <!--    <p>{{item.mediatype}}</p>-->
 </div>
 
