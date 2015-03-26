@@ -25,9 +25,9 @@ class WikiMediaProvider implements IMediaProviderStrategy {
     private $apiEndPoint;                           
     private $params;
     private $userAgent;
-    private $wikiMediaRequest;
+    private $simpleRequest;
  
-    public function __construct(array $access_params, $wikimedia_request){
+    public function __construct(array $access_params, $simple_request){
            
         $this->params = array(
             'action'                =>      'query',
@@ -36,7 +36,7 @@ class WikiMediaProvider implements IMediaProviderStrategy {
             'gcmtype'               =>      'file',
             //'prop'      =>      'imageinfo|categories',         //get imageinfo and categories
             'prop'                  =>      'imageinfo',         //get imageinfo
-            'iiprop'                =>      'url|extmetadata|mediatype',              //get the image url and extra metadata used on the page
+            'iiprop'                =>      'url|extmetadata|mediatype', //get the image url and extra metadata used on the page
             'format'                =>      'json',
             'iiurlwidth'            =>      self::IMAGESIZE_THRESHOLD,      //specify a thumbnail url to return
             'iiextmetadatafilter'   =>      'ObjectName|Categories|ImageDescription',
@@ -47,7 +47,7 @@ class WikiMediaProvider implements IMediaProviderStrategy {
         );
         $this->apiEndPoint = $access_params['wikimedia_endpoint'];
         $this->userAgent = $access_params['wikimedia_user_agent'];
-        $this->wikiMediaRequest = $wikimedia_request;
+        $this->simpleRequest = $simple_request;
     }
   
     public function getCacheKey(Decade $decade, $pageNumber = 1){
@@ -253,7 +253,7 @@ class WikiMediaProvider implements IMediaProviderStrategy {
      */
     protected function runQuery($parameters)
     {
-        return $this->wikiMediaRequest->makeRequest($this->apiEndPoint, $parameters, $this->userAgent);
+        return $this->simpleRequest->makeRequest($this->apiEndPoint, $parameters, $this->userAgent);
     }
     
 

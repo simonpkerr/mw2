@@ -37,7 +37,7 @@ class WikiMediaProviderTest extends WebTestCase {
             'wikimedia_endpoint'     => 'ep',
             'wikimedia_user_agent'    => 'ua'
         );
-        $this->req = $this->getMockBuilder('\\Sk\\MediaApiBundle\\MediaProviderApi\\WikiMediaRequest')
+        $this->req = $this->getMockBuilder('\\Sk\\MediaApiBundle\\MediaProviderApi\\SimpleRequest')
                 ->setMethods(array(
                     'makeRequest',
                 ))

@@ -15,7 +15,7 @@ use \SimpleXMLElement;
 interface IMediaProviderStrategy {
     public function getItem($data);
     public function getCacheKey(Decade $decade, $pageNumber = 1);
-    public function getListings(Decade $decade);
+    public function getListings(Decade $decade, $pageNumber = 1);
 //    public function getItemId($data);
 //    public function getXML($data);
 //    public function getItemImage($data);

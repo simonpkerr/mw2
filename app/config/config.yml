@@ -148,6 +148,12 @@ sk_media_api:
       wikimedia_provider:
         access_params: 
           wikimedia_endpoint: %wikimedia_endpoint%
-          wikimedia_user_agent: %wikimedia_user_agent% 
+          wikimedia_user_agent: %wikimedia_user_agent%
+      seven_digital_provider:
+        access_params:
+          seven_digital_endpoints: 
+            query_endpoint: %seven_digital_query_endpoint%
+            streaming_endpoint: %seven_digital_streaming_endpoint%
+          seven_digital_oauth_key: %seven_digital_oauth_key%
         
         

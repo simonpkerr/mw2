@@ -29,11 +29,22 @@
         
         <!--wikimedia params-->
         <parameter key="wikimedia_provider.class">Sk\MediaApiBundle\MediaProviderApi\WikiMediaProvider</parameter>
-        <parameter key="wikimedia_provider.wikimedia_request.class" />
+        <parameter key="wikimedia_provider.simple_request.class" />
         <parameter key="wikimedia_provider.access_params" type="collection" >
             <parameter key="wikimedia_endpoint" />
             <parameter key="wikimedia_user_agent" />
-        </parameter>  
+        </parameter>
+        
+        <!--7Digital params-->
+        <parameter key="seven_digital_provider.class">Sk\MediaApiBundle\MediaProviderApi\SevenDigitalProvider</parameter>
+        <parameter key="seven_digital_provider.simple_request.class" />
+        <parameter key="seven_digital_provider.access_params" type="collection" >
+            <parameter key="seven_digital_endpoints" type="collection">
+                <parameter key="query_endpoint" />
+                <parameter key="streaming_endpoint" />
+            </parameter>
+            <parameter key="seven_digital_oauth_key" />
+        </parameter>
     </parameters>
     
     <services>
@@ -44,16 +55,24 @@
                 <argument type="service" id="amazon_provider" key="amazon_provider" />
                 <argument type="service" id="youtube_provider" key="youtube_provider" />
                 <argument type="service" id="wikimedia_provider" key="wikimedia_provider" />
+                <argument type="service" id="seven_digital_provider" key="seven_digital_provider" />
             </argument>
             <argument id="sonata.cache.apc" type="service"  />
             <argument>%media_provider_api.debug_mode%</argument>
         </service>
         
+        <!-- 7Digital service-->
+        <service id="simple_request" class="%seven_digital_provider.simple_request.class%" public="false" />
+        <service id="seven_digital_provider" class="%seven_digital_provider.class%" public="false">
+            <argument>%seven_digital_provider.access_params%</argument>
+            <argument id="simple_request" type="service" />
+        </service>
+        
         <!--wikimedia service-->
-        <service id="wikimedia_request" class="%wikimedia_provider.wikimedia_request.class%" public="false" />
+        <service id="simple_request" class="%wikimedia_provider.simple_request.class%" public="false" />
         <service id="wikimedia_provider" class="%wikimedia_provider.class%" public="false">
             <argument>%wikimedia_provider.access_params%</argument>
-            <argument id="wikimedia_request" type="service" />
+            <argument id="simple_request" type="service" />
         </service>
         
         <!--amazon services-->

@@ -28,5 +28,7 @@ parameters:
     apc_token: s3cur3
     wikimedia_endpoint: "/api/endpoint"
     wikimedia_user_agent: "mw.local"
+    seven_digital_query_endpoint: "query_ep"
+    seven_digital_streaming_endpoint: "streaming_ep"
     seven_digital_oauth_key: 7digkey
     seven_digital_secret: 7digsecret

@@ -44,7 +44,10 @@ class SkMediaApiExtension extends Extension
         
         //wikimedia params
         $container->setParameter('wikimedia_provider.access_params', $providers['wikimedia_provider']['access_params']);
-        $container->setParameter ('wikimedia_provider.wikimedia_request.class', $providers['wikimedia_provider']['wikimedia_request']['class']);
+        $container->setParameter ('wikimedia_provider.simple_request.class', $providers['wikimedia_provider']['simple_request']['class']);
         
+        //seven digital params
+        $container->setParameter('seven_digital_provider.access_params', $providers['seven_digital_provider']['access_params']);
+        $container->setParameter ('seven_digital_provider.simple_request.class', $providers['seven_digital_provider']['simple_request']['class']);
     }
 }

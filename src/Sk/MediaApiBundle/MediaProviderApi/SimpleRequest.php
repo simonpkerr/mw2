@@ -2,9 +2,9 @@
 
 namespace Sk\MediaApiBundle\MediaProviderApi;
 
-class WikiMediaRequest{
+class SimpleRequest{
 
-    public function makeRequest($host, $params, $user_agent)
+    public function makeRequest($host, $params, $user_agent = '')
     {
         $method = "GET";
         //$host = $end_point;
@@ -43,7 +43,10 @@ class WikiMediaRequest{
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_TIMEOUT, 15);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
+        if(strlen($user_agent) > 0){
+            curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
+        }
+        
         return curl_exec($ch);
     }
     
