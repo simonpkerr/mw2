@@ -43,11 +43,17 @@ class MediaProviderFacade {
         $this->cache = $cache;
     }    
     
-    public function getMemoryWall(){
+    public function getMemoryWall($decadeSlug){
         $wallData = array();
-        $decades = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecades();
-        $randomKey = array_rand($decades);
-        $decade = $decades[$randomKey]; 
+        $decade = null;
+        if($decadeSlug == 'any'){
+            $decades = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecades();
+            $randomKey = array_rand($decades);
+            $decade = $decades[$randomKey]; 
+        } else {
+            $decade = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug($decadeSlug);
+        }
+        
 //        $decade = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug('1980s'); 
         //make this something that each provider does
         //$pageNumber = rand(1, 10);

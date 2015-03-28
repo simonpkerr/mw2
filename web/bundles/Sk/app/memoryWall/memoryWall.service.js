@@ -12,13 +12,16 @@
         };
         return service;
 
-        function memoryWall() {
-            return $resource('/web/app_dev.php/api/memorywall', {
-                query: {
-                    method: 'GET',
-                    isArray: true
-                }
-            });
+        function memoryWall(decade) {
+          
+          return $resource('/web/app_dev.php/api/memorywalls/:decade',
+          { decade: decade },
+          {
+            query: {
+              method: 'GET',
+              isArray: true
+            }
+          });
         }
 
         function mediaTypes() {

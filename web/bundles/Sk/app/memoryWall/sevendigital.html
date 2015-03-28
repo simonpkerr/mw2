@@ -1,0 +1,11 @@
+<div class="sevendigital-item">
+    <h3>{{item.title}} by {{item.artist}}</h3>
+    <img ng-src="{{item.image}}" alt="{{item.title}}" />
+    <a ng-click="isOpen = !isOpen" class="cta">Show details and preview tracks</a>
+    <div class="info-window" ng-show="isOpen">
+        <p>Originally released: {{item.originalReleaseDate}}</p>
+        <p>Price: {{item.price}}</p>
+    </div>
+    <a class="oj" ng-href="{{item.url}}">Buy this from 7Digital</a>
+</div>
+

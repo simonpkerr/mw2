@@ -28,7 +28,8 @@
            'self',
            'http://upload.wikimedia.org/**',
            'https://www.youtube.com/**',
-           'https://i.ytimg.com/**'
+           'https://i.ytimg.com/**',
+           'http://previews.7digital.com/**'
         ]);
     }
 
