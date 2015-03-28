@@ -10,11 +10,16 @@ namespace Sk\MediaApiBundle\MediaProviderApi;
 use \SimpleXMLElement;
 use \Sk\MediaApiBundle\Entity\Decade;
 
+/**
+ * needs to get the releases for tags, choose random release id's, get the 
+ * tracks, get random track ids, then get image and preview clip
+ */
 class SevenDigitalProvider implements IMediaProviderStrategy {
     const PROVIDER_NAME = 'sevendigital';
     const FRIENDLY_NAME = '7Digital';
     const CACHE_TTL = 86400;
     const IMAGESIZE_THRESHOLD = 350;
+    const PAGE_NUMBER_THRESHOLD = 3;
     private $apiEndPoints;                           
     private $params;
     protected $methods;
@@ -28,10 +33,11 @@ class SevenDigitalProvider implements IMediaProviderStrategy {
     
     public function __construct(array $access_params, $simple_request) {
         $this->country = 'GB';
-//        $this->methods = array(
-//            'search_by_tag'     =>      '/release/bytag/top',
-//            'preview_clip'      =>      '/clip'
-//        );
+        $this->methods = array(
+            'search_by_tag'     =>      '/release/bytag/top',
+            'release_tracks'    =>      '/release/tracks',
+            'preview_clip'      =>      '/clip'
+        );
         $this->apiEndPoints = $access_params['seven_digital_endpoints'];
         $this->apiKey = $access_params['seven_digital_oauth_key'];
         //previews.7digital.com - media player endpoint
@@ -53,10 +59,10 @@ class SevenDigitalProvider implements IMediaProviderStrategy {
         return self::API_NAME;
     }
 
-    public function getCacheKey(Decade $decade, $pageNumber = 1) {
+    public function getCacheKey(Decade $decade) {
         return array(
             'decade'        => $decade->getSlug(),
-            'pageNumber'    => $pageNumber,
+            'pageNumber'    => rand(1, self::PAGE_NUMBER_THRESHOLD),
             'provider'      => self::PROVIDER_NAME
         );
     }
@@ -65,47 +71,47 @@ class SevenDigitalProvider implements IMediaProviderStrategy {
     public function getItem($data) {
         return array(
             'provider'              =>  self::PROVIDER_NAME,
-            'id'                    =>  $data->attributes()->id,
+            'id'                    =>  $this->getItemDetail($data, '@id'),
             'title'                 =>  $this->getItemDetail($data, 'title'),
-            'image'                 =>  '$this->getItemImage($imageinfo)',
-            'url'                   =>  '$this->getItemUrl($imageinfo)',
-            'description'           =>  '$this->getItemDescription($metadata)',
-            'originalReleaseDate'   =>  'releaseDate',
-            'price'                 =>  'getPrice'
+            'artist'                =>  $this->getItemDetail($data, 'artist/name'),
+            'image'                 =>  $this->getItemDetail($data, 'image'),
+            'url'                   =>  $this->getItemDetail($data, 'url'),
+            'originalReleaseDate'   =>  $this->getItemDetail($data, 'year'),
+            'price'                 =>  $this->getItemDetail($data, 'price/formattedPrice')
             //need a url to play the preview using the media player endpoint and the a track id
         );
     }
     
-    private function getItemDetail(SimpleXMLElement $data, $node){
+    private function getItemDetail(SimpleXMLElement $data, $xpath){
         try {
-            return (string)$data[$node];
+            return (string)$data->xpath($xpath)[0];
         } catch (Exception $ex) {
             return null;    
         }
     }
 
-    public function getListings(Decade $decade, $pageNumber = 1) {
+    public function getListings(Decade $decade) {
         $params = Utilities::removeNullEntries(array(
             'tags'      =>      $decade->getSevenDigitalTag(),
-            'page'      =>      1
+            'page'      =>      rand(1, self::PAGE_NUMBER_THRESHOLD)
         ));
         
         $this->params = array_merge($this->params, $params);
         $response = $this->runQuery($this->params);
         
         try{
-            $response = $this->verifyResponse($response);
+            $transformedResponse = $this->verifyResponse($response);
         }catch(Exception $e){
             throw $e;
         }
                 
-        return $response;
+        return $transformedResponse;
     }
     
     protected function runQuery($parameters)
     {
-//        $host = $this->apiEndPoints['query_endpoint'] . $this->methods['search_by_tag'];
-        return $this->simpleRequest->makeRequest($this->apiEndPoints['query_endpoint'], $parameters);
+        $host = $this->apiEndPoints['query_endpoint'] . $this->methods['search_by_tag'];
+        return $this->simpleRequest->makeRequest($host, $parameters);
     }
     
     /**
@@ -128,7 +134,7 @@ class SevenDigitalProvider implements IMediaProviderStrategy {
                 throw new Exception("No results were returned");
             }
             
-            return (array)$response->taggedResults->taggedItem->release;
+            return $response->xpath('taggedResults/taggedItem/release');
         }
     }
 

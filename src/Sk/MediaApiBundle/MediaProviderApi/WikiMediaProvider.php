@@ -50,10 +50,9 @@ class WikiMediaProvider implements IMediaProviderStrategy {
         $this->simpleRequest = $simple_request;
     }
   
-    public function getCacheKey(Decade $decade, $pageNumber = 1){
+    public function getCacheKey(Decade $decade){
         return array(
             'decade'        => $decade->getSlug(),
-            'pageNumber'    => $pageNumber,
             'provider'      => self::PROVIDER_NAME
         );
     }
@@ -149,7 +148,7 @@ class WikiMediaProvider implements IMediaProviderStrategy {
      * chooses random 3 years, then queries for 50 results,
      * which are cached for 2 days
      */
-    public function getListings(Decade $decade, $pageNumber = 1){
+    public function getListings(Decade $decade){
         $decadeIds = explode("|", $decade->getWikiMediaId());
 	shuffle($decadeIds);
         $decadeIds = array_splice($decadeIds, 0, 4);

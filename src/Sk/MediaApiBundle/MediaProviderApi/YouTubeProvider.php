@@ -44,7 +44,7 @@ class YouTubeProvider implements IMediaProviderStrategy {
         );
     }
     
-    public function getCacheKey(Decade $decade, $pageNumber = 1){
+    public function getCacheKey(Decade $decade){
         return array(
             'decade'        => $decade->getSlug(),
             'provider'      => self::PROVIDER_NAME
@@ -170,7 +170,7 @@ class YouTubeProvider implements IMediaProviderStrategy {
         return null;
     }
     
-    public function getListings(Decade $decade, $pageNumber = 1){
+    public function getListings(Decade $decade){
         try {
             $searchReponse = $this->gsYouTube->search->listSearch('id,snippet', array_merge($this->defaults, array(
                 'q'     => urlencode($decade->getSlug())

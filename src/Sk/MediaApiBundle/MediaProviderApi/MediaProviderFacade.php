@@ -49,10 +49,11 @@ class MediaProviderFacade {
         $randomKey = array_rand($decades);
         $decade = $decades[$randomKey]; 
 //        $decade = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug('1980s'); 
-        $pageNumber = rand(1, 10);
+        //make this something that each provider does
+        //$pageNumber = rand(1, 10);
         $wallData['metaData'] = array(
-            'decade' => $decade->getSlug(),
-            'pageNumber' => $pageNumber
+            'decade' => $decade->getSlug()
+            //'pageNumber' => $pageNumber
         );
         $wallData['providerData'] = array();
         
@@ -60,7 +61,7 @@ class MediaProviderFacade {
             $items = array();
             $errorMsg = null;
             try {
-                $items = $this->getRandomItems($mediaProvider, $decade, $pageNumber);
+                $items = $this->getRandomItems($mediaProvider, $decade);
             } catch (Exception $ex) {
                 array_push($wallData['errorMessages'], $ex->getMessage());
             }
@@ -72,16 +73,15 @@ class MediaProviderFacade {
         return $wallData;
     }
     
-    private function getRandomItems(IMediaProviderStrategy $providerStrategy, $decade, $pageNumber){
+    private function getRandomItems(IMediaProviderStrategy $providerStrategy, $decade){
         $items = array();
-        $cacheKey = $providerStrategy->getCacheKey($decade, $pageNumber);
+        $cacheKey = $providerStrategy->getCacheKey($decade);
         if($this->cache->has($cacheKey)){
             $cacheElement = $this->cache->get($cacheKey);
             $items = $cacheElement->getData();
         } else {
-            $response = (array)$providerStrategy->getListings($decade, $pageNumber);
+            $response = (array)$providerStrategy->getListings($decade);
             foreach($response as $item){
-                //could just provide data object to api, each directive knows how to consume data
                 array_push($items, $providerStrategy->getItem($item));
             }
             $this->cache->set($cacheKey, $items, $providerStrategy::CACHE_TTL);

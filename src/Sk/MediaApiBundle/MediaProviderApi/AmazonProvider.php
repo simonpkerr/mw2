@@ -25,6 +25,7 @@ class AmazonProvider implements IMediaProviderStrategy {
     const FRIENDLY_NAME = 'Amazon';
     const PROVIDER_NAME = 'amazon';
     const BATCH_PROCESS_THRESHOLD = 10;
+    const PAGE_NUMBER_THRESHOLD = 10;
     const CACHE_TTL = 86400;
     
     //protected $apiEntity;
@@ -58,10 +59,11 @@ class AmazonProvider implements IMediaProviderStrategy {
         //$this->cache = $cache;
     }
   
-    public function getCacheKey(Decade $decade, $pageNumber = 1){
+    public function getCacheKey(Decade $decade){
+        
         return array(
             'decade'        => $decade->getSlug(),
-            'pageNumber'    => $pageNumber,
+            'pageNumber'    => rand(1, self::PAGE_NUMBER_THRESHOLD),
             'provider'      => self::PROVIDER_NAME
         );
     }
@@ -148,7 +150,7 @@ class AmazonProvider implements IMediaProviderStrategy {
      * @return type
      * @throws Exception
      */
-    public function getListings(Decade $decade, $pageNumber = 1){
+    public function getListings(Decade $decade){
         $browseNodeArray = array(); 
         array_push($browseNodeArray, $decade->getAmazonBrowseNodeId());
         $canonicalBrowseNodes = implode(',', $browseNodeArray);
@@ -156,7 +158,7 @@ class AmazonProvider implements IMediaProviderStrategy {
             //'Keywords'       =>      $mediaSelection->getKeywords() != null ? $mediaSelection->getKeywords() : null,
             'BrowseNode'     =>      $canonicalBrowseNodes,
             'SearchIndex'    =>      'Video',
-            'ItemPage'       =>      $pageNumber,
+            'ItemPage'       =>      rand(1, self::PAGE_NUMBER_THRESHOLD),
             'Sort'           =>      'salesrank',
         ));
         
