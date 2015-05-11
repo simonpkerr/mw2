@@ -148,13 +148,19 @@ module.exports = function (grunt) {
         httpFontsPath: 'styles/fonts',
         relativeAssets: false,
         assetCacheBuster: false,
-        raw: 'Sass::Script::Number.precision = 10\n'
+        raw: 'Sass::Script::Number.precision = 10\n',
+        require: 'susy'
       },
       dist: {
         options: {
           generatedImagesDir: 'images/generated',
           outputStyle: 'compressed'
          
+        }
+      },
+      test: {
+        options: {
+          outputStyle: 'expanded'
         }
       },
       server: {
@@ -276,7 +282,7 @@ module.exports = function (grunt) {
         'compass:server'
       ],
       test: [
-        'compass'
+        'compass:test'
       ],
       dist: [
         'compass:dist'
@@ -316,18 +322,22 @@ module.exports = function (grunt) {
     'connect:test',
     'karma'
   ]);
+  
+  grunt.registerTask('dev', [
+    'concurrent:test'
+  ]);
 
   grunt.registerTask('build', [
     'clean:dist',
     //'wiredep',
     //useminPrepare',
-    //'concurrent:dist',
+    'concurrent:dist',
     'autoprefixer',
-    'concat',
+    //'concat'
     //'ngAnnotate',
     //'copy:dist',
     //'cdnify',
-    'cssmin'
+    //'cssmin'
     //'uglify',
     //'filerev',
     //'usemin',

@@ -12,11 +12,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwItemWikiMedia.directive.js</file>
-            <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/Tests/MediaProviderApi/WikiMediaProviderTest.php</file>
-            <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/WikiMediaProvider.php</file>
-            <file>file:/D:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/wikimedia.html</file>
-            <file>file:/D:/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/MediaProviderFacade.php</file>
+            <file>file:/C:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/app.memoryWall.js</file>
+            <file>file:/C:/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/MediaProviderFacade.php</file>
+            <file>file:/C:/xampp/htdocs/mw/src/Sk/MediaApiBundle/Controller/DefaultController.php</file>
+            <file>file:/C:/xampp/htdocs/mw/web/bundles/Sk/app/core/app.routing.js</file>
+            <file>file:/C:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/main.html</file>
+            <file>file:/C:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/memoryWall.service.js</file>
         </group>
     </open-files>
 </project-private>
