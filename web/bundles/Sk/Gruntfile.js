@@ -149,7 +149,10 @@ module.exports = function (grunt) {
         relativeAssets: false,
         assetCacheBuster: false,
         raw: 'Sass::Script::Number.precision = 10\n',
-        require: 'susy'
+        require: [
+          'normalize-scss',
+          'susy'
+        ]
       },
       dist: {
         options: {
