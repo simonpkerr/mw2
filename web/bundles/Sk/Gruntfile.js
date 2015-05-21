@@ -151,7 +151,7 @@ module.exports = function (grunt) {
         raw: 'Sass::Script::Number.precision = 10\n',
         require: [
           'normalize-scss',
-          'susy'
+          'susy'          
         ]
       },
       dist: {
@@ -335,7 +335,7 @@ module.exports = function (grunt) {
     //'wiredep',
     //useminPrepare',
     'concurrent:dist',
-    'autoprefixer',
+    'autoprefixer'
     //'concat'
     //'ngAnnotate',
     //'copy:dist',

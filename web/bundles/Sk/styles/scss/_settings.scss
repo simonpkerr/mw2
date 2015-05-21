@@ -9,3 +9,17 @@ $susy: (
     rem : true,
   )
 );
+
+//variables
+$palettes: (
+    blue: (
+        base:   #aac,
+        light:  #bbd,
+        dark:   #88a
+    ),
+    grey: (
+        base:  #aaa,
+        light: #efefef,
+        dark: #444
+    )
+);

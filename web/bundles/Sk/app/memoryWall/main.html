@@ -1,19 +1,26 @@
-<div id="wall-options">
-    <div id="select-decade-options">
-        <label for="selectedDecade">Choose a decade</label>
-        <select name="selectedDecade" ng-model="vm.selectedDecade" ng-options="decade for decade in vm.decades">
-            <option value="">surprise me!</option>
-        </select>
-        <button class="button primary" ng-click="vm.getWallData()">Show me another wall</button>
+<header class="site-header">
+    <div class="site-header__headings">
+        <span class="site-header__headings--site-name">NoodleDig</span>
+        <span class="site-header__headings--page-name" ng-show="vm.wallData.metaData.decade">the {{vm.wallData.metaData.decade}}</span>
     </div>
-    <button class="button primary">Share this wall</button>
-</div>
-<p>Decade: {{ vm.wallData.metaData.decade }}</p>
-<ul class="flex-container">
-    <li ng-repeat="item in vm.wallData.providerData" ng-switch on="item.provider">
-        <mw-item-amazon ng-switch-when="amazon" item="item"></mw-item-amazon>
-        <mw-item-youtube ng-switch-when="youtube" item="item"></mw-item-youtube>
-        <mw-item-wikimedia ng-switch-when="wikimedia" item="item"></mw-item-wikimedia>
-        <mw-item-sevendigital ng-switch-when="sevendigital" item="item"></mw-item-sevendigital>
-    </li>
-</ul>
+    <div class="site-header__search">
+        <div class="search__select" id="select-decade-options">
+            <label for="selectedDecade">Choose a decade</label>
+            <select name="selectedDecade" ng-model="vm.selectedDecade" ng-options="decade for decade in vm.decades">
+                <option value="">surprise me!</option>
+            </select>
+            <button class="search__button" ng-click="vm.getWallData()">Show me another wall</button>
+        </div>
+    </div>
+</header>
+
+<section class="body">
+    <ul class="wall-items flex-container">
+        <li class="wall-items__item" ng-repeat="item in vm.wallData.providerData" ng-switch on="item.provider">
+            <mw-item-amazon ng-switch-when="amazon" item="item"></mw-item-amazon>
+            <mw-item-youtube ng-switch-when="youtube" item="item"></mw-item-youtube>
+            <mw-item-wikimedia ng-switch-when="wikimedia" item="item"></mw-item-wikimedia>
+            <mw-item-sevendigital ng-switch-when="sevendigital" item="item"></mw-item-sevendigital>
+        </li>
+    </ul>
+</section>
