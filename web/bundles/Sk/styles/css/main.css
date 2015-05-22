@@ -330,8 +330,6 @@ figure {
  */
 /* line 424, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss */
 hr {
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
   box-sizing: content-box;
   height: 0;
 }
@@ -478,8 +476,6 @@ input {
 /* line 573, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss */
 input[type="checkbox"],
 input[type="radio"] {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -510,8 +506,6 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
   box-sizing: content-box;
   /* 2 */
   /**
@@ -596,11 +590,17 @@ th {
   padding: 0;
 }
 
+/* line 1, ../scss/_global.scss */
+.visually-hidden {
+  position: absolute;
+  width: 1;
+  height: 1;
+  top: -999em;
+}
+
 /* custom mixins and functions */
 /* line 21, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/susy-2.2.3/sass/susy/language/susy/_box-sizing.scss */
 *, *:before, *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -611,6 +611,7 @@ th {
   margin-right: auto;
   overflow: hidden;
   *zoom: 1;
+  background-color: #5e5f65;
 }
 /* line 12, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/susy-2.2.3/sass/susy/output/support/_clearfix.scss */
 .container:after {
@@ -619,20 +620,50 @@ th {
   clear: both;
 }
 
-/* line 8, ../scss/_layout.scss */
-.site-header__headings {
-  background-color: #aac;
-  width: 33.3333333333%;
-  float: left;
-  padding-left: 0.8333333333%;
-  padding-right: 0.8333333333%;
+/* line 9, ../scss/_layout.scss */
+.site-header {
+  background-color: #4fabeb;
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.3);
+}
+/* line 13, ../scss/_layout.scss */
+.site-header .search__button {
+  background-color: #abd7f5;
+}
+/* line 17, ../scss/_layout.scss */
+.site-header .search__select {
+  background-color: #1679be;
 }
 
-/* line 13, ../scss/_layout.scss */
+/* line 22, ../scss/_layout.scss */
+.site-header__headings {
+  color: #1679be;
+  box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.2);
+}
+@media (min-width: 768) {
+  /* line 22, ../scss/_layout.scss */
+  .site-header__headings {
+    width: 33.3333333333%;
+    float: left;
+    padding-left: 0.8333333333%;
+    padding-right: 0.8333333333%;
+  }
+}
+
+/* line 30, ../scss/_layout.scss */
+site-header__headings--page-name {
+  color: #fff;
+}
+
+/* line 34, ../scss/_layout.scss */
 .site-header__search {
-  background-color: #bbd;
-  width: 66.6666666667%;
-  float: right;
-  padding-left: 0.8333333333%;
-  padding-right: 0.8333333333%;
+  background-color: #abd7f5;
+}
+@media (min-width: 768) {
+  /* line 34, ../scss/_layout.scss */
+  .site-header__search {
+    width: 66.6666666667%;
+    float: right;
+    padding-left: 0.8333333333%;
+    padding-right: 0.8333333333%;
+  }
 }

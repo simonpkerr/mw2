@@ -10,16 +10,22 @@ $susy: (
   )
 );
 
+$breakpoints: (
+    lap: 768,
+    desk: 1024
+);
+
 //variables
 $palettes: (
     blue: (
-        base:   #aac,
-        light:  #bbd,
-        dark:   #88a
+        base:   #4fabeb,
+        light:  lighten(#4fabeb, 20%),
+        dark:   darken(#4fabeb, 20%),
+        x-dark: darken(#4fabeb, 40%)
     ),
     grey: (
-        base:  #aaa,
+        base:  #5e5f65,
         light: #efefef,
-        dark: #444
+        dark: #b3b4be
     )
 );

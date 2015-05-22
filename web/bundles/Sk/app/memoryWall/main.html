@@ -5,7 +5,7 @@
     </div>
     <div class="site-header__search">
         <div class="search__select" id="select-decade-options">
-            <label for="selectedDecade">Choose a decade</label>
+            <label for="selectedDecade" class="visually-hidden">Choose a decade</label>
             <select name="selectedDecade" ng-model="vm.selectedDecade" ng-options="decade for decade in vm.decades">
                 <option value="">surprise me!</option>
             </select>
@@ -14,8 +14,8 @@
     </div>
 </header>
 
-<section class="body">
-    <ul class="wall-items flex-container">
+<section class="site-content">
+    <ul class="wall-items">
         <li class="wall-items__item" ng-repeat="item in vm.wallData.providerData" ng-switch on="item.provider">
             <mw-item-amazon ng-switch-when="amazon" item="item"></mw-item-amazon>
             <mw-item-youtube ng-switch-when="youtube" item="item"></mw-item-youtube>

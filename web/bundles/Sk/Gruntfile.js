@@ -127,7 +127,8 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           //cwd: '<%= yeoman.app %>/styles/css',
-          src: 'styles/css/*.css'
+          src: 'styles/css/*.css',
+          browsers: ['last 2 versions', 'ie 9']
           //dest: '<%= yeoman.app %>/styles/css/compiled/main.css'
         }]
       }
@@ -150,6 +151,7 @@ module.exports = function (grunt) {
         assetCacheBuster: false,
         raw: 'Sass::Script::Number.precision = 10\n',
         require: [
+          'breakpoint',
           'normalize-scss',
           'susy'          
         ]
@@ -168,7 +170,8 @@ module.exports = function (grunt) {
       },
       server: {
         options: {
-          debugInfo: true
+          debugInfo: true,
+          outputStyle: 'expanded'
         }
       }
     },
@@ -310,7 +313,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
-      'clean:server',
+      //'clean:server',
       //'wiredep',
       'concurrent:server',
       'autoprefixer',
@@ -327,7 +330,8 @@ module.exports = function (grunt) {
   ]);
   
   grunt.registerTask('dev', [
-    'concurrent:test'
+    'concurrent:test',
+    'autoprefixer'
   ]);
 
   grunt.registerTask('build', [

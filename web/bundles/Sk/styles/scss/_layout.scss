@@ -3,14 +3,43 @@
 .container {
     @include container;
     @include clearfix;
+    background-color: palette(grey);
+}
+
+.site-header {
+    background-color: palette(blue);
+    box-shadow: 0 4px 0 0 rgba(0,0,0,0.3);
+    
+    .search__button {
+        background-color: palette(blue, light);
+    }
+    
+    .search__select {
+        background-color: palette(blue, dark);
+    }
 }
 
 .site-header__headings {
-    background-color: palette(blue);
-    @include span(4 of 12);
+    color: palette(blue, dark);
+    box-shadow: 2px 2px 0 0 rgba(0,0,0,0.2);
+    @include breakpoint(media(lap)){
+        @include span(4 of 12);    
+    }
+}
+
+site-header__headings--page-name {
+    color: #fff;
 }
 
 .site-header__search {
     background-color: palette(blue, light);
-    @include span(8 of 12 last);
+    @include breakpoint(media(lap)){
+        @include span(8 of 12 last);
+    }
+}
+
+.site-content {
+    .no-flexbox {
+        //use gallery mixin otherwise use flexbox
+    }
 }

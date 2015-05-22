@@ -2,3 +2,7 @@
 @function palette($palette, $tone: 'base') {
     @return map-get(map-get($palettes, $palette), $tone);
 }
+
+@function media($size) {
+    @return map-get($breakpoints, $size);
+}
