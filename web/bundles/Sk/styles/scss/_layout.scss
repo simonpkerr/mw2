@@ -31,6 +31,8 @@ site-header__headings--page-name {
     color: #fff;
 }
 
+//$no-query: 1000px, 'no-query' '.no-mq';
+
 .site-header__search {
     background-color: palette(blue, light);
     @include breakpoint(media(lap)){

@@ -1,8 +1,9 @@
-@import "normalize",
+@import "settings",
+        "normalize",
         "global",
         "breakpoint",
         "compass/utilities/general/clearfix",
         "susy",
-        "settings",
         "mixins",
+        "typography",
         "layout";

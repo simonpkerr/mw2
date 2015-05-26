@@ -648,22 +648,36 @@ th {
     padding-right: 0.8333333333%;
   }
 }
+/* line 92, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/breakpoint-2.5.0/stylesheets/_breakpoint.scss */
+.no-mq .site-header__headings {
+  width: 33.3333333333%;
+  float: left;
+  padding-left: 0.8333333333%;
+  padding-right: 0.8333333333%;
+}
 
 /* line 30, ../scss/_layout.scss */
 site-header__headings--page-name {
   color: #fff;
 }
 
-/* line 34, ../scss/_layout.scss */
+/* line 36, ../scss/_layout.scss */
 .site-header__search {
   background-color: #abd7f5;
 }
 @media (min-width: 768) {
-  /* line 34, ../scss/_layout.scss */
+  /* line 36, ../scss/_layout.scss */
   .site-header__search {
     width: 66.6666666667%;
     float: right;
     padding-left: 0.8333333333%;
     padding-right: 0.8333333333%;
   }
+}
+/* line 92, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/breakpoint-2.5.0/stylesheets/_breakpoint.scss */
+.no-mq .site-header__search {
+  width: 66.6666666667%;
+  float: right;
+  padding-left: 0.8333333333%;
+  padding-right: 0.8333333333%;
 }

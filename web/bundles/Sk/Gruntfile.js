@@ -128,7 +128,7 @@ module.exports = function (grunt) {
           expand: true,
           //cwd: '<%= yeoman.app %>/styles/css',
           src: 'styles/css/*.css',
-          browsers: ['last 2 versions', 'ie 9']
+          browsers: ['last 5 versions', 'ie 9', 'ie 8']
           //dest: '<%= yeoman.app %>/styles/css/compiled/main.css'
         }]
       }

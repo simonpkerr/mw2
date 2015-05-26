@@ -10,12 +10,14 @@ $susy: (
   )
 );
 
+//breakpoints
+$breakpoint-no-query-fallbacks: true;
 $breakpoints: (
-    lap: 768,
-    desk: 1024
+    lap: (768, 'no-query' '.no-mq'),
+    desk: (1024, 'no-query' '.no-mq')
 );
 
-//variables
+//colours
 $palettes: (
     blue: (
         base:   #4fabeb,
