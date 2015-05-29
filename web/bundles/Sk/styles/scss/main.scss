@@ -1,9 +1,10 @@
-@import "settings",
+@import "compass/typography/vertical_rhythm",
+        "compass/utilities/general/clearfix",
+        "mixins",
+        "settings",
         "normalize",
         "global",
         "breakpoint",
-        "compass/utilities/general/clearfix",
         "susy",
-        "mixins",
         "typography",
         "layout";

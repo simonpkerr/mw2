@@ -1,3 +1,4 @@
+/* custom mixins and functions */
 /* normalize-scss 3.0.2+normalize.3.0.2 | MIT/GPLv2 License | bit.ly/normalize-scss */
 /**
  * Establish a vertical rhythm unit using $base-font-size, $base-line-height,
@@ -6,8 +7,8 @@
  */
 /* line 106, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/typography/_vertical_rhythm.scss */
 html {
-  font-size: 100%;
-  line-height: 1.5em;
+  font-size: 112.5%;
+  line-height: 2em;
 }
 
 /**
@@ -17,7 +18,7 @@ html {
  */
 /* line 76, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss */
 html {
-  font-family: sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   /* 1 */
   -ms-text-size-adjust: 100%;
   /* 2 */
@@ -144,7 +145,8 @@ strong {
  */
 /* line 212, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss */
 blockquote {
-  margin: 1.5em 40px;
+  margin: 36px 40px;
+  margin: 2rem 2.2222222222rem;
 }
 
 /**
@@ -160,53 +162,77 @@ dfn {
  * contexts in Firefox 4+, Safari, and Chrome.
  */
 /* line 230, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss */
-h1 {
+h1, .site-header__headings {
   /* Set the font-size and line-height while keeping a proper vertical rhythm. */
-  font-size: 2em;
-  line-height: 1.5em;
+  font-size: 36px;
+  font-size: 2rem;
+  line-height: 72px;
+  line-height: 4rem;
   /* Set 1 unit of vertical rhythm on the top and bottom margins. */
-  margin-top: 0.75em;
-  margin-bottom: 0.75em;
+  margin-top: 36px;
+  margin-top: 2rem;
+  margin-bottom: 36px;
+  margin-bottom: 2rem;
 }
 
 /* line 245, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss */
 h2 {
-  font-size: 1.5em;
-  line-height: 2em;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  font-size: 27px;
+  font-size: 1.5rem;
+  line-height: 36px;
+  line-height: 2rem;
+  margin-top: 36px;
+  margin-top: 2rem;
+  margin-bottom: 36px;
+  margin-bottom: 2rem;
 }
 
 /* line 251, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss */
 h3 {
-  font-size: 1.17em;
-  line-height: 1.2820512821em;
-  margin-top: 1.2820512821em;
-  margin-bottom: 1.2820512821em;
+  font-size: 21px;
+  font-size: 1.17rem;
+  line-height: 36px;
+  line-height: 2rem;
+  margin-top: 36px;
+  margin-top: 2rem;
+  margin-bottom: 36px;
+  margin-bottom: 2rem;
 }
 
 /* line 257, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss */
 h4 {
-  font-size: 1em;
-  line-height: 1.5em;
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
+  font-size: 18px;
+  font-size: 1rem;
+  line-height: 36px;
+  line-height: 2rem;
+  margin-top: 36px;
+  margin-top: 2rem;
+  margin-bottom: 36px;
+  margin-bottom: 2rem;
 }
 
 /* line 263, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss */
 h5 {
-  font-size: 0.83em;
-  line-height: 1.8072289157em;
-  margin-top: 1.8072289157em;
-  margin-bottom: 1.8072289157em;
+  font-size: 15px;
+  font-size: 0.83rem;
+  line-height: 36px;
+  line-height: 2rem;
+  margin-top: 36px;
+  margin-top: 2rem;
+  margin-bottom: 36px;
+  margin-bottom: 2rem;
 }
 
 /* line 269, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss */
 h6 {
-  font-size: 0.67em;
-  line-height: 2.2388059701em;
-  margin-top: 2.2388059701em;
-  margin-bottom: 2.2388059701em;
+  font-size: 12px;
+  font-size: 0.67rem;
+  line-height: 36px;
+  line-height: 2rem;
+  margin-top: 36px;
+  margin-top: 2rem;
+  margin-bottom: 36px;
+  margin-bottom: 2rem;
 }
 
 /**
@@ -224,7 +250,8 @@ mark {
 /* line 292, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss */
 p,
 pre {
-  margin: 1.5em 0;
+  margin: 36px 0;
+  margin: 2rem 0;
 }
 
 /**
@@ -267,7 +294,8 @@ dl,
 menu,
 ol,
 ul {
-  margin: 1.5em 0;
+  margin: 36px 0;
+  margin: 2rem 0;
 }
 
 /* line 355, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss */
@@ -322,7 +350,8 @@ svg:not(:root) {
  */
 /* line 415, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss */
 figure {
-  margin: 1.5em 40px;
+  margin: 36px 40px;
+  margin: 2rem 2.2222222222rem;
 }
 
 /**
@@ -388,7 +417,7 @@ textarea {
   /* 2 */
   margin: 0;
   /* 3 */
-  *font-family: sans-serif;
+  *font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   /* 4 */
   *vertical-align: middle;
   /* 5 */
@@ -527,18 +556,26 @@ fieldset {
   margin: 0 2px;
   /* Apply borders and padding that keep the vertical rhythm. */
   border-color: #c0c0c0;
-  border-top-width: 0.0625em;
+  border-top-width: 1px;
+  border-top-width: 0.0555555556rem;
   border-top-style: solid;
-  padding-top: 0.4625em;
-  border-bottom-width: 0.0625em;
+  padding-top: 12px;
+  padding-top: 0.6444444444rem;
+  border-bottom-width: 1px;
+  border-bottom-width: 0.0555555556rem;
   border-bottom-style: solid;
-  padding-bottom: 0.9125em;
-  border-left-width: 0.0625em;
+  padding-bottom: 22px;
+  padding-bottom: 1.2444444444rem;
+  border-left-width: 1px;
+  border-left-width: 0.0555555556rem;
   border-left-style: solid;
-  padding-left: 0.875em;
-  border-right-width: 0.0625em;
+  padding-left: 22px;
+  padding-left: 1.1944444444rem;
+  border-right-width: 1px;
+  border-right-width: 0.0555555556rem;
   border-right-style: solid;
-  padding-right: 0.875em;
+  padding-right: 22px;
+  padding-right: 1.1944444444rem;
 }
 
 /**
@@ -598,7 +635,11 @@ th {
   top: -999em;
 }
 
-/* custom mixins and functions */
+/* line 1, ../scss/_typography.scss */
+h1, .site-header__headings, .h1 {
+  text-transform: uppercase;
+}
+
 /* line 21, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/susy-2.2.3/sass/susy/language/susy/_box-sizing.scss */
 *, *:before, *:after {
   box-sizing: border-box;
@@ -609,8 +650,6 @@ th {
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-  overflow: hidden;
-  *zoom: 1;
   background-color: #5e5f65;
 }
 /* line 12, ../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/susy-2.2.3/sass/susy/output/support/_clearfix.scss */
@@ -620,27 +659,31 @@ th {
   clear: both;
 }
 
-/* line 9, ../scss/_layout.scss */
+/* line 8, ../scss/_layout.scss */
 .site-header {
   background-color: #4fabeb;
   box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  *zoom: 1;
 }
-/* line 13, ../scss/_layout.scss */
+/* line 12, ../scss/_layout.scss */
 .site-header .search__button {
   background-color: #abd7f5;
 }
-/* line 17, ../scss/_layout.scss */
+/* line 16, ../scss/_layout.scss */
 .site-header .search__select {
   background-color: #1679be;
 }
 
-/* line 22, ../scss/_layout.scss */
+/* line 21, ../scss/_layout.scss */
 .site-header__headings {
+  margin-top: 0;
+  padding: 0 20px;
   color: #1679be;
   box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.2);
 }
-@media (min-width: 768) {
-  /* line 22, ../scss/_layout.scss */
+@media (min-width: 768px) {
+  /* line 21, ../scss/_layout.scss */
   .site-header__headings {
     width: 33.3333333333%;
     float: left;
@@ -656,17 +699,17 @@ th {
   padding-right: 0.8333333333%;
 }
 
-/* line 30, ../scss/_layout.scss */
+/* line 32, ../scss/_layout.scss */
 site-header__headings--page-name {
   color: #fff;
 }
 
-/* line 36, ../scss/_layout.scss */
+/* line 38, ../scss/_layout.scss */
 .site-header__search {
   background-color: #abd7f5;
 }
-@media (min-width: 768) {
-  /* line 36, ../scss/_layout.scss */
+@media (min-width: 768px) {
+  /* line 38, ../scss/_layout.scss */
   .site-header__search {
     width: 66.6666666667%;
     float: right;

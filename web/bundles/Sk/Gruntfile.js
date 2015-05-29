@@ -29,10 +29,6 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
-      bower: {
-        files: ['bower.json'],
-        tasks: ['wiredep']
-      },
       js: {
         files: ['<%= yeoman.app %>/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
@@ -180,27 +176,27 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-     cssmin: {
-       dist: {
-         files: {
-           'styles/css/main.css': [
-             'styles/css/*.css'
-           ]
-         }
-       }
-     },
-     uglify: {
-       dist: {
-         files: {
-           '<%= yeoman.dist %>/mw.js': [
-             '<%= yeoman.dist %>/mw.js'
-           ]
-         }
-       }
-     },
-     concat: {
-       dist: {}
-     },
+//     cssmin: {
+//       dist: {
+//         files: {
+//           'styles/css/main.css': [
+//             'styles/css/*.css'
+//           ]
+//         }
+//       }
+//     },
+//     uglify: {
+//       dist: {
+//         files: {
+//           '<%= yeoman.dist %>/mw.js': [
+//             '<%= yeoman.dist %>/mw.js'
+//           ]
+//         }
+//       }
+//     },
+//     concat: {
+//       dist: {}
+//     },
 
 //    svgmin: {
 //      dist: {

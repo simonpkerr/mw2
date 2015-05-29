@@ -3,6 +3,7 @@
     @return map-get(map-get($palettes, $palette), $tone);
 }
 
+//get breakpoints from map
 @function media($size) {
     @return map-get($breakpoints, $size);
 }

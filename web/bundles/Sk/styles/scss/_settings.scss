@@ -1,3 +1,6 @@
+//globals
+$global-padding: 20px;
+
 $susy: (
   columns: 12,
   gutters: 1/4,
@@ -13,8 +16,8 @@ $susy: (
 //breakpoints
 $breakpoint-no-query-fallbacks: true;
 $breakpoints: (
-    lap: (768, 'no-query' '.no-mq'),
-    desk: (1024, 'no-query' '.no-mq')
+    lap: (768px, 'no-query' '.no-mq'),
+    desk: 1024px
 );
 
 //colours
@@ -28,6 +31,16 @@ $palettes: (
     grey: (
         base:  #5e5f65,
         light: #efefef,
-        dark: #b3b4be
+        dark: #b3b4be,
+        x-dark: #666
     )
 );
+
+//type
+$base-font-size: 18px;
+$base-line-height: 36px;
+$rhythm-unit: "rem";
+$base-font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-weight: 400;
+$base-font-color: palette(grey, x-dark);
+
