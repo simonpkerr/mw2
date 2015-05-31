@@ -44,6 +44,10 @@ class MediaProviderFacade {
     }    
     
     public function getMemoryWall($decadeSlug){
+        //return test data
+        $wallData = json_decode(file_get_contents('http://mw.local/web/sample-wall-1980s.json'), true);
+        return $wallData['wallData'];
+
         $wallData = array();
         $decade = null;
         if($decadeSlug == 'any'){

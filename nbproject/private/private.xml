@@ -13,12 +13,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/app.memoryWall.js</file>
-            <file>file:/C:/xampp/htdocs/mw/src/Sk/FrontEndBundle/Resources/views/Default/index.html.twig</file>
-            <file>file:/C:/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/MediaProviderFacade.php</file>
-            <file>file:/C:/xampp/htdocs/mw/src/Sk/MediaApiBundle/Controller/DefaultController.php</file>
-            <file>file:/C:/xampp/htdocs/mw/web/bundles/Sk/app/core/app.routing.js</file>
+            <file>file:/C:/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_settings.scss</file>
+            <file>file:/C:/xampp/htdocs/mw/web/bundles/Sk/styles/scss/main.scss</file>
+            <file>file:/C:/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_typography.scss</file>
+            <file>file:/C:/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_components.scss</file>
             <file>file:/C:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/main.html</file>
-            <file>file:/C:/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/memoryWall.service.js</file>
+            <file>file:/C:/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_layout.scss</file>
         </group>
     </open-files>
 </project-private>
