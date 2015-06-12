@@ -6,7 +6,14 @@
     <title>Memory Walls</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="{{ asset('bundles/Sk/styles/css/main.css') }}">
+    
+    {% stylesheets
+        'bundles/Sk/bower_components/jquery-ui/themes/base/core.css'
+        'bundles/Sk/bower_components/jquery-ui/themes/base/slider.css' 
+        'bundles/Sk/styles/css/main.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
     {% javascripts
     'bundles/Sk/bower_components/modernizr/modernizr.js'
     %}
@@ -42,6 +49,11 @@
     {% javascripts
     
     'bundles/Sk/bower_components/jquery/dist/jquery.js'
+    'bundles/Sk/bower_components/jquery-ui/ui/core.js'
+    'bundles/Sk/bower_components/jquery-ui/ui/widget.js'
+    'bundles/Sk/bower_components/jquery-ui/ui/mouse.js'
+    'bundles/Sk/bower_components/jquery-ui/ui/slider.js'
+    'bundles/Sk/bower_components/jquery-ui/ui/selectmenu.js'
     'bundles/Sk/bower_components/es5-shim/es5-shim.js'
     'bundles/Sk/bower_components/angular/angular.js'
     'bundles/Sk/bower_components/angular-route/angular-route.js'

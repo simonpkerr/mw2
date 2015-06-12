@@ -1,0 +1,26 @@
+.ui-slider {
+	background-color: palette(blue, dark);
+	.ui-slider-handle {
+		background-color: palette(blue, light);
+		border: 3px solid #fff;
+	}	
+}
+
+
+.site-header__submit {
+	background-color: palette(blue, x-dark);
+	@extend h1;
+	text-transform: uppercase;
+	margin: 0;
+	border: none;
+	color: palette(blue, x-dark);
+}
+
+.site-header__select {
+	background-color: palette(blue, dark);
+	@extend h1;
+	text-transform: uppercase;
+	margin: 0;
+	border: none;
+	color: #fff;
+}

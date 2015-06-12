@@ -5,13 +5,10 @@
     background-color: palette(grey);
 }
 
-.site-header__headings {
-
-    @include breakpoint(media(lap)){
-        @include span(4 of 12);    
+.site-header__site-name {
+    @include breakpoint(media(lap)) {
+        @include span(4 of 12);
     }
-
-
 }
 
 .site-header__search {
@@ -20,19 +17,25 @@
     }
 }
 
-.search__select {
-    select
-    {
+@include nested(8){
+    .site-header__select {
         @include breakpoint(media(lap)){
-            @include span(6 of 12);
+            @include span(4 of 12);
         }
     }
-    select
-    {
-        @include breakpoint(media(lap)){
-            @include span(6 of 12);
+
+    .site-header__slider {
+        @include breakpoint(media(lap)) {
+            @include span(5 of 12);
         }
     }
+
+    .site-header__submit {
+        @include breakpoint(media(lap)) {
+            @include span(3 of 12);
+        }
+    }
+
 }
 
 .site-content {

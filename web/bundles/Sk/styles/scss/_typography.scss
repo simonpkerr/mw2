@@ -4,12 +4,12 @@ h1 {
 
 @font-face {
     font-family: 'economicabold';
-    src: url('../fonts/economica-bold-otf-webfont.eot');
-    src: url('../fonts/economica-bold-otf-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/economica-bold-otf-webfont.woff2') format('woff2'),
-         url('../fonts/economica-bold-otf-webfont.woff') format('woff'),
-         url('../fonts/economica-bold-otf-webfont.ttf') format('truetype'),
-         url('../fonts/economica-bold-otf-webfont.svg#economicabold') format('svg');
+    src: url('../bundles/Sk/styles/fonts/economica-bold-otf-webfont.eot');
+    src: url('../bundles/Sk/styles/fonts/economica-bold-otf-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../bundles/Sk/styles/fonts/economica-bold-otf-webfont.woff2') format('woff2'),
+    url('../bundles/Sk/styles/fonts/economica-bold-otf-webfont.woff') format('woff'),
+    url('../bundles/Sk/styles/fonts/economica-bold-otf-webfont.ttf') format('truetype'),
+    url('../bundles/Sk/styles/fonts/economica-bold-otf-webfont.svg#economicabold') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -20,54 +20,16 @@ h1 {
     background-color: palette(blue);
     box-shadow: 0 4px 0 0 rgba(0,0,0,0.3);
     @include clearfix;
-    .search__button {
-        background-color: palette(blue, light);
-    }
-
-    .search__select {
-        background-color: palette(blue, dark);
-    }
+    
 }
 
-.site-header__headings {
-    > span {
-        @extend h1;
-        margin: 0;
-        padding: 0;
-    }
-}
-
-.site-header__headings--site-name {
+.site-header__site-name {
     color: palette(blue, x-dark);
     text-shadow: 2px 2px rgba(0, 0, 0, 0.1);
+    @extend h1;
+    margin: 0;
+    padding: 0;
 }
 
-.site-header__headings--page-name {
-    color: #fff;
-}
 
-.site-header__search {
-
-    .search__select {
-        select {
-            @extend h1;
-            text-transform: uppercase;
-            margin: 0;
-            border: none;
-            color: #fff;
-            background-color: palette(blue, dark);
-
-        }
-        button {
-            @extend h1;
-            text-transform: uppercase;
-            margin: 0;
-            border: none;
-            color: palette(blue, x-dark);
-            background-color: palette(blue, light);
-        }
-
-    }
-
-}
 

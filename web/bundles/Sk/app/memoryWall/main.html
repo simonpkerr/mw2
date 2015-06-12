@@ -1,16 +1,9 @@
 <header class="site-header">
-    <div class="site-header__headings">
-        <span class="site-header__headings--site-name">NOODLEDIG</span>
-        <!-- select here for the decade name. show all decades in scrollable list -->
-        <span class="site-header__headings--page-name" ng-show="vm.wallData.metaData.decade">THE {{vm.wallData.metaData.decade}}</span>
-    </div>
+
+    <span class="site-header__site-name">NOODLEDIG</span>
     <div class="site-header__search">
-        <div class="search__select">
-            <select name="selectedDecade" id="select-decade-options" ng-model="vm.selectedDecade" ng-options="decade for decade in vm.decades">
-                <option value="">SURPRISE ME!</option>
-            </select>
-            <button ng-click="vm.getWallData()">SHOW ANOTHER WALL</button>
-        </div>
+        <mw-decade-select selected-decade="vm.selectedDecade" decades="vm.decades"></mw-decade-select>
+        <button class="site-header__submit" ng-click="vm.getWallData()">SHOW ANOTHER WALL</button>
     </div>
 </header>
 

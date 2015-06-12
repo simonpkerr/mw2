@@ -162,7 +162,7 @@ dfn {
  * contexts in Firefox 4+, Safari, and Chrome.
  */
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/RailsInstaller\/Ruby1\.9\.3\/lib\/ruby\/gems\/1\.9\.1\/gems\/normalize-scss-3\.0\.2\/_normalize\.scss}line{font-family:\00003230}}
-h1, .site-header__submit, .site-header__select, .site-header__site-name {
+h1, .site-header__headings > span, .site-header__search .search__select select, .site-header__search .search__select button {
   /* Set the font-size and line-height while keeping a proper vertical rhythm. */
   font-size: 36px;
   font-size: 2rem;
@@ -635,43 +635,116 @@ th {
   top: -999em;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\000031}}
-.ui-slider {
-  background-color: #1679be;
+/* Container used for styling the custom select, the buttom class below adds the bg gradient, corners, etc. */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\000034}}
+.select {
+  position: relative;
+  display: block;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\000033}}
-.ui-slider .ui-slider-handle {
-  background-color: #abd7f5;
-  border: 3px solid #fff;
-}
-
 @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\0000310}}
-.site-header__submit {
-  background-color: #0b3f63;
-  text-transform: uppercase;
+.select option {
+  font-weight: normal;
+  font-family: 'economicabold', sans-serif, arial;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\0000314}}
+.select select {
+  width: 100%;
   margin: 0;
-  border: none;
-  color: #0b3f63;
+  background: none;
+  border: 1px solid transparent;
+  outline: none;
+  /* Prefixed box-sizing rules necessary for older browsers */
+  box-sizing: border-box;
+  /* Remove select styling */
+  appearance: none;
+  /* Font size must the 16px or larger to prevent iOS page zoom on focus */
+  /* General select styles: change as needed */
+  font-family: helvetica, sans-serif;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\0000333}}
+.select select:focus {
+  outline: none;
+  box-shadow: 0 0 1px 3px #b4defa;
+  background-color: transparent;
+  color: #666;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\0000341}}
+.select::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 8px;
+  top: 50%;
+  right: 1em;
+  margin-top: -4px;
+  background-image: url(http://filamentgroup.com/files/select-arrow.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  z-index: 2;
+  /* This hack make the select behind the arrow clickable in some browsers */
+  pointer-events: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\0000357}}
+.select:hover {
+  border: 1px solid #888;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\0000319}}
-.site-header__select {
-  background-color: #1679be;
-  text-transform: uppercase;
-  margin: 0;
-  border: none;
-  color: #fff;
+/* OPERA - Pre-Blink nix the custom arrow, go with a native select button to keep it simple. Targeted via this hack http://browserhacks.com/#hack-a3f166304aafed524566bc6814e1d5c7 */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\0000365}}
+x:-o-prefocus, .select::after {
+  display: none;
+}
+
+/* IE 10/11+ - This hides native dropdown button arrow so it will have the custom appearance, IE 9 and earlier get a native select - targeting media query hack via http://browserhacks.com/#hack-28f493d247a12ab654f6c3637f6978d5 - looking for better ways to achieve this targeting */
+/* The second rule removes the odd blue bg color behind the text in the select button in IE 10/11 and sets the text color to match the focus style's - fix via http://stackoverflow.com/questions/17553300/change-ie-background-color-on-unopened-focused-select-box */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\0000372}}
+  .select select::-ms-expand {
+    display: none;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\0000375}}
+  .select select:focus::-ms-value {
+    background: transparent;
+    color: #222;
+  }
+}
+/* FIREFOX won't let us hide the native select arrow, so we have to make it wider than needed and clip it via overflow 
+on the parent container. The percentage width is a fallback since FF 4+ supports calc() so we can just add a fixed amount 
+of extra width to push the native arrow out of view. We're applying this hack across all FF versions because all the 
+previous hacks were too fragile and complex. You might want to consider not using this hack and using the native select 
+arrow in FF. Note this makes the menus wider than the select button because they display at the specified width and aren't
+clipped. Targeting hack via http://browserhacks.com/#hack-758bff81c5c32351b02e10480b5ed48e */
+/* Show only the native arrow */
+@-moz-document url-prefix() {
+  /* line 90, ../scss/_components.scss */
+  .select {
+    overflow: hidden;
+  }
+
+  /* line 93, ../scss/_components.scss */
+  .select select {
+    width: 120%;
+    width: calc(100% + em);
+  }
+}
+/* Firefox focus has odd artifacts around the text, this kills that. 
+See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-focusring */
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\00003103}}
+.select select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\000031}}
-h1, .site-header__submit, .site-header__select, .site-header__site-name {
+h1, .site-header__headings > span, .site-header__search .search__select select, .site-header__search .search__select button {
   font-family: "economicabold", sans-serif, arial;
 }
 
 @font-face {
   font-family: 'economicabold';
-  src: url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.eot");
-  src: url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.eot?#iefix") format("embedded-opentype"), url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.woff2") format("woff2"), url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.woff") format("woff"), url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.ttf") format("truetype"), url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.svg#economicabold") format("svg");
+  src: url("../fonts/economica-bold-otf-webfont.eot");
+  src: url("../fonts/economica-bold-otf-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/economica-bold-otf-webfont.woff2") format("woff2"), url("../fonts/economica-bold-otf-webfont.woff") format("woff"), url("../fonts/economica-bold-otf-webfont.ttf") format("truetype"), url("../fonts/economica-bold-otf-webfont.svg#economicabold") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -683,13 +756,47 @@ h1, .site-header__submit, .site-header__select, .site-header__site-name {
   overflow: hidden;
   *zoom: 1;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000323}}
+.site-header .search__button {
+  background-color: #abd7f5;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000327}}
+.site-header .search__select {
+  background-color: #1679be;
+}
 
-@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000326}}
-.site-header__site-name {
-  color: #0b3f63;
-  text-shadow: 2px 2px rgba(0, 0, 0, 0.1);
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000333}}
+.site-header__headings > span {
   margin: 0;
   padding: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000340}}
+.site-header__headings--site-name {
+  color: #0b3f63;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000345}}
+.site-header__headings--page-name {
+  color: #fff;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000352}}
+.site-header__search .search__select select {
+  text-transform: uppercase;
+  margin: 0;
+  border: none;
+  color: #fff;
+  background-color: #1679be;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000361}}
+.site-header__search .search__select button {
+  text-transform: uppercase;
+  margin: 0;
+  border: none;
+  color: #0b3f63;
+  background-color: #abd7f5;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/RailsInstaller\/Ruby1\.9\.3\/lib\/ruby\/gems\/1\.9\.1\/gems\/susy-2\.2\.3\/sass\/susy\/language\/susy\/_box-sizing\.scss}line{font-family:\0000321}}
@@ -713,7 +820,7 @@ h1, .site-header__submit, .site-header__select, .site-header__site-name {
 
 @media (min-width: 768px) {
 @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\000038}}
-  .site-header__site-name {
+  .site-header__headings {
     width: 33.3333333333%;
     float: left;
     padding-left: 0.8333333333%;
@@ -721,7 +828,7 @@ h1, .site-header__submit, .site-header__select, .site-header__site-name {
   }
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/RailsInstaller\/Ruby1\.9\.3\/lib\/ruby\/gems\/1\.9\.1\/gems\/breakpoint-2\.5\.0\/stylesheets\/_breakpoint\.scss}line{font-family:\0000392}}
-.no-mq .site-header__site-name {
+.no-mq .site-header__headings {
   width: 33.3333333333%;
   float: left;
   padding-left: 0.8333333333%;
@@ -729,7 +836,7 @@ h1, .site-header__submit, .site-header__select, .site-header__site-name {
 }
 
 @media (min-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000314}}
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000317}}
   .site-header__search {
     width: 66.6666666667%;
     float: right;
@@ -746,51 +853,33 @@ h1, .site-header__submit, .site-header__select, .site-header__site-name {
 }
 
 @media (min-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000321}}
-  .site-header__select {
-    width: 33.3333333333%;
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000324}}
+  .search__select select {
+    width: 50%;
     float: left;
     padding-left: 0.8333333333%;
     padding-right: 0.8333333333%;
   }
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/RailsInstaller\/Ruby1\.9\.3\/lib\/ruby\/gems\/1\.9\.1\/gems\/breakpoint-2\.5\.0\/stylesheets\/_breakpoint\.scss}line{font-family:\0000392}}
-.no-mq .site-header__select {
-  width: 33.3333333333%;
+.no-mq .search__select select {
+  width: 50%;
   float: left;
   padding-left: 0.8333333333%;
   padding-right: 0.8333333333%;
 }
-
 @media (min-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000327}}
-  .site-header__slider {
-    width: 41.6666666667%;
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000330}}
+  .search__select select {
+    width: 50%;
     float: left;
     padding-left: 0.8333333333%;
     padding-right: 0.8333333333%;
   }
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/RailsInstaller\/Ruby1\.9\.3\/lib\/ruby\/gems\/1\.9\.1\/gems\/breakpoint-2\.5\.0\/stylesheets\/_breakpoint\.scss}line{font-family:\0000392}}
-.no-mq .site-header__slider {
-  width: 41.6666666667%;
-  float: left;
-  padding-left: 0.8333333333%;
-  padding-right: 0.8333333333%;
-}
-
-@media (min-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000333}}
-  .site-header__submit {
-    width: 25%;
-    float: left;
-    padding-left: 0.8333333333%;
-    padding-right: 0.8333333333%;
-  }
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/RailsInstaller\/Ruby1\.9\.3\/lib\/ruby\/gems\/1\.9\.1\/gems\/breakpoint-2\.5\.0\/stylesheets\/_breakpoint\.scss}line{font-family:\0000392}}
-.no-mq .site-header__submit {
-  width: 25%;
+.no-mq .search__select select {
+  width: 50%;
   float: left;
   padding-left: 0.8333333333%;
   padding-right: 0.8333333333%;

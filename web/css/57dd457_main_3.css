@@ -162,7 +162,7 @@ dfn {
  * contexts in Firefox 4+, Safari, and Chrome.
  */
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/RailsInstaller\/Ruby1\.9\.3\/lib\/ruby\/gems\/1\.9\.1\/gems\/normalize-scss-3\.0\.2\/_normalize\.scss}line{font-family:\00003230}}
-h1, .site-header__submit, .site-header__select, .site-header__site-name {
+h1, .site-header__site-name, .site-header__submit, .site-header__select {
   /* Set the font-size and line-height while keeping a proper vertical rhythm. */
   font-size: 36px;
   font-size: 2rem;
@@ -636,42 +636,20 @@ th {
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\000031}}
-.ui-slider {
-  background-color: #1679be;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\000033}}
-.ui-slider .ui-slider-handle {
+.ui-slider-handle {
   background-color: #abd7f5;
   border: 3px solid #fff;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\0000310}}
-.site-header__submit {
-  background-color: #0b3f63;
-  text-transform: uppercase;
-  margin: 0;
-  border: none;
-  color: #0b3f63;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_components\.scss}line{font-family:\0000319}}
-.site-header__select {
-  background-color: #1679be;
-  text-transform: uppercase;
-  margin: 0;
-  border: none;
-  color: #fff;
-}
-
 @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\000031}}
-h1, .site-header__submit, .site-header__select, .site-header__site-name {
+h1, .site-header__site-name, .site-header__submit, .site-header__select {
   font-family: "economicabold", sans-serif, arial;
 }
 
 @font-face {
   font-family: 'economicabold';
-  src: url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.eot");
-  src: url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.eot?#iefix") format("embedded-opentype"), url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.woff2") format("woff2"), url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.woff") format("woff"), url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.ttf") format("truetype"), url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.svg#economicabold") format("svg");
+  src: url("../fonts/economica-bold-otf-webfont.eot");
+  src: url("../fonts/economica-bold-otf-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/economica-bold-otf-webfont.woff2") format("woff2"), url("../fonts/economica-bold-otf-webfont.woff") format("woff"), url("../fonts/economica-bold-otf-webfont.ttf") format("truetype"), url("../fonts/economica-bold-otf-webfont.svg#economicabold") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -690,6 +668,24 @@ h1, .site-header__submit, .site-header__select, .site-header__site-name {
   text-shadow: 2px 2px rgba(0, 0, 0, 0.1);
   margin: 0;
   padding: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000334}}
+.site-header__submit {
+  background-color: #abd7f5;
+  text-transform: uppercase;
+  margin: 0;
+  border: none;
+  color: #0b3f63;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/c\:\/xampp\/htdocs\/mw\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000343}}
+.site-header__select {
+  background-color: #1679be;
+  text-transform: uppercase;
+  margin: 0;
+  border: none;
+  color: #fff;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/RailsInstaller\/Ruby1\.9\.3\/lib\/ruby\/gems\/1\.9\.1\/gems\/susy-2\.2\.3\/sass\/susy\/language\/susy\/_box-sizing\.scss}line{font-family:\0000321}}
