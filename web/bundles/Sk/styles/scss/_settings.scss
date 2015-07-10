@@ -1,9 +1,10 @@
 //globals
 $global-padding: 20px;
+$global-radius: 5px;
 
 $susy: (
   columns: 12,
-  gutters: 1/4,
+  gutters: 1/3,
   math: fluid,
   output: float,
   gutter-position: inside,
@@ -23,16 +24,20 @@ $breakpoints: (
 //colours
 $palettes: (
     blue: (
-        base:   #4fabeb,
-        light:  lighten(#4fabeb, 20%),
-        dark:   darken(#4fabeb, 20%),
-        x-dark: darken(#4fabeb, 40%)
+      base:   #4fabeb,
+      light:  lighten(#4fabeb, 20%),
+      dark:   darken(#4fabeb, 20%),
+      x-dark: darken(#4fabeb, 40%)
+    ),
+    red: (
+      base: #da153a,
+      dark: darken(#da153a, 20%)
     ),
     grey: (
-        base:  #5e5f65,
-        light: #efefef,
-        dark: #b3b4be,
-        x-dark: #666
+      base:  #5e5f65,
+      light: #efefef,
+      dark: #b3b4be,
+      x-dark: #666
     )
 );
 
@@ -40,7 +45,15 @@ $palettes: (
 $base-font-size: 18px;
 $base-line-height: 36px;
 $rhythm-unit: "rem";
-$base-font-family: 'economicabold', sans-serif, arial;
+$rem-with-px-fallback: false;
+$base-font-family: 'Calibri Light', Verdana, sans-serif, arial;
 $base-font-weight: 400;
 $base-font-color: palette(grey, x-dark);
+$heading-font-family: 'strawberrylimeade', serif;
+$h1-font-size: 2    * $base-font-size;
+$h2-font-size: 1.5  * $base-font-size;
+$h3-font-size: 1.17 * $base-font-size;
+$h4-font-size: 1    * $base-font-size;
+$h5-font-size: 0.83 * $base-font-size;
+$h6-font-size: 0.67 * $base-font-size;
 

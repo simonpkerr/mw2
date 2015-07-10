@@ -22,7 +22,7 @@
           year = new Date().getFullYear(),
           endDecade = year - (year % 10);
         for (var i = 1930; i <= endDecade; i+=10) {
-          decades.push(i + 's');
+          decades.push('THE ' + i + "'S");
         }
         return decades;
       }

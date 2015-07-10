@@ -1,3 +1,6 @@
-<select name="selectedDecade" id="select-decade-options" class="site-header__select" ng-model="selectedDecade" ng-options="decade for decade in decades">
-	<option value="">ANY DECADE!</option>
-</select>
+<div class="site-header__search">
+	<select name="selectedDecade" id="select-decade-options" class="site-header__select" ng-model="selectedDecade" ng-options="decade for decade in decades">
+		<option value="">Any decade</option>
+	</select>
+	<button class="site-header__submit" ng-click="getWallData()">Go!</button>
+</div>

@@ -31,14 +31,14 @@ module.exports = function (grunt) {
     watch: {
       js: {
         files: ['<%= yeoman.app %>/{,*/}*.js'],
-        tasks: ['newer:jshint:all'],
+        tasks: ['jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
       },
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
+        tasks: ['jshint:test', 'karma']
       },
       compass: {
         files: ['styles/scss/*.{scss,sass}'],
@@ -135,20 +135,19 @@ module.exports = function (grunt) {
       options: {
         sassDir: 'styles/scss',
         cssDir: 'styles/css',
-        generatedImagesDir: '.tmp/images/generated',
-        imagesDir: 'images',
+        //generatedImagesDir: '.tmp/images/generated',
+        //imagesDir: 'images',
         javascriptsDir: 'scripts',
         fontsDir: 'styles/fonts',
         importPath: 'bower_components',
         httpImagesPath: 'images',
-        httpGeneratedImagesPath: 'images/generated',
+        //httpGeneratedImagesPath: 'images/generated',
         httpFontsPath: 'styles/fonts',
         relativeAssets: false,
         assetCacheBuster: false,
         raw: 'Sass::Script::Number.precision = 10\n',
         require: [
           'breakpoint',
-          'normalize-scss',
           'susy'          
         ]
       },
@@ -327,7 +326,6 @@ module.exports = function (grunt) {
   
   grunt.registerTask('dev', [
     'concurrent:test',
-    'autoprefixer'
   ]);
 
   grunt.registerTask('build', [

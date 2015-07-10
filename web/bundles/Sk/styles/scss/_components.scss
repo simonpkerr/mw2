@@ -1,26 +1,39 @@
+%btn--primary {
+	background-color: palette(red);
+	font-family: $heading-font-family;
+	font-size: $h1-font-size;
+	padding: $global-padding/2;
+	border: none;
+	color: #fff;
+	border-radius: $global-radius;
+	transition: all 0.3s;
+
+	&:hover {
+		background-color: palette(red, dark);
+	}
+}
+
 .ui-slider {
-	background-color: palette(blue, dark);
+	background-color: palette(blue);
+	height: 0.5em;
+	
 	.ui-slider-handle {
-		background-color: palette(blue, light);
+		background-color: palette(blue);
 		border: 3px solid #fff;
+		box-shadow: 0 0 3px 0 rgba(0,0,0,0.2);
 	}	
 }
 
 
 .site-header__submit {
-	background-color: palette(blue, x-dark);
-	@extend h1;
-	text-transform: uppercase;
-	margin: 0;
-	border: none;
-	color: palette(blue, x-dark);
+	@extend %btn--primary
 }
 
 .site-header__select {
-	background-color: palette(blue, dark);
+	background-color: transparent;
+	border: none;
 	@extend h1;
-	text-transform: uppercase;
 	margin: 0;
 	border: none;
-	color: #fff;
+	color: palette(red);
 }

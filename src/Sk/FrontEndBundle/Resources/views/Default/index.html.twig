@@ -7,13 +7,18 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     
-    {% stylesheets
+    {#% stylesheets
         'bundles/Sk/bower_components/jquery-ui/themes/base/core.css'
         'bundles/Sk/bower_components/jquery-ui/themes/base/slider.css' 
         'bundles/Sk/styles/css/main.css'
     %}
     <link rel="stylesheet" href="{{ asset_url }}">
-    {% endstylesheets %}
+    {% endstylesheets %#}
+
+    <link rel="stylesheet" href="bundles/Sk/bower_components/jquery-ui/themes/base/core.css">
+    <link rel="stylesheet" href="bundles/Sk/bower_components/jquery-ui/themes/base/slider.css">
+    <link rel="stylesheet" href="bundles/Sk/styles/css/main.css">
+
     {% javascripts
     'bundles/Sk/bower_components/modernizr/modernizr.js'
     %}
