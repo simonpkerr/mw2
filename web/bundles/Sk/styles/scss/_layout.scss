@@ -8,6 +8,11 @@ body {
     @include container;
 }
 
+.site-header {
+    @include clearfix;
+    padding: $global-padding 0;
+
+}
 
 .site-header__site-logo {
     text-align: center;
@@ -68,7 +73,9 @@ body {
 }
 
 .site-header__slider {
-    @include span(12 of 12);
+    @include squish(2%);
+    @include span(96% break);
+
     margin-top: 0.5em;
 
     // @include breakpoint(media(desktop)) {

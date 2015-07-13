@@ -7,13 +7,15 @@
     function mwDecadeSelect() {
         var select,
             slider,
+            link = {
+                post: post
+            },
             sliderHtml = '<div id="decade-slider" class="site-header__slider"></div>',
             slide = function ( event, ui ) {
                 select[ 0 ].selectedIndex = ui.value - 1;
             },
             change = function(){
                 slider.slider( "value", this.selectedIndex + 1 );
-                console.log(this.selectedIndex);
             },
             directive = {
                 restrict: 'E',
@@ -29,22 +31,17 @@
             };
         return directive;
 
-        // function compile(element, attrs) {
-        //     var modelAccessor = $parse(attrs.ngModel);
-        //     var html = '<select id="'+ attrs.id +'-select"></select>'
-        // }
-
-        function link(scope, element, attrs) {
-            select = $('select', element);
+        function post (scope, element, attrs) {
+            select = $('select[name="selectedDecade"]', element).change(change);
             slider = $(sliderHtml).insertAfter(element).slider({
                min: 1,
-               max: 6,
+               max: scope.decades.length + 1,
                range: "min",
                value: select[ 0 ].selectedIndex + 1,
-               slide: slide,
-               change: change
+               slide: slide
             });
         }
+        
     }
 
 })();

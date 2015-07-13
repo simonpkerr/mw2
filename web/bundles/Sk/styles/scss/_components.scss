@@ -13,14 +13,27 @@
 	}
 }
 
-.ui-slider {
+.ui-slider-horizontal {
 	background-color: palette(blue);
-	height: 0.5em;
-	
+	height: 0.25em;
+
 	.ui-slider-handle {
 		background-color: palette(blue);
 		border: 3px solid #fff;
 		box-shadow: 0 0 3px 0 rgba(0,0,0,0.2);
+		top: -.9em;
+		height: 2em;
+		cursor: pointer;
+
+		&.ui-state-hover,
+		&:hover,
+		&:active {
+			background-color: palette(red);
+		}
+	}
+
+	.ui-widget-header {
+		background-color: palette(blue, dark);
 	}	
 }
 

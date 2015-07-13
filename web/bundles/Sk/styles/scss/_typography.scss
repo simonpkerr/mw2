@@ -44,8 +44,6 @@ h1, h2 {
 
 .site-header {
     font-family: $heading-font-family;
-    @include clearfix;
-    padding-top: $global-padding;
 }
 
 .site-header__site-strapline {
