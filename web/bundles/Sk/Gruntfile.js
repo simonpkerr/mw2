@@ -148,14 +148,14 @@ module.exports = function (grunt) {
         raw: 'Sass::Script::Number.precision = 10\n',
         require: [
           'breakpoint',
-          'susy'          
+          'susy'
         ]
       },
       dist: {
         options: {
           generatedImagesDir: 'images/generated',
           outputStyle: 'compressed'
-         
+
         }
       },
       test: {
@@ -323,7 +323,7 @@ module.exports = function (grunt) {
     'connect:test',
     'karma'
   ]);
-  
+
   grunt.registerTask('dev', [
     'concurrent:test',
   ]);
@@ -346,7 +346,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'newer:jshint',
     'test',
     'build'
   ]);

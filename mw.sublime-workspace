@@ -1,0 +1,641 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"proto",
+				"prototype"
+			],
+			[
+				"site-header",
+				"site-header__site-name"
+			],
+			[
+				"e",
+				"economicabold"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/Simon/AppData/Roaming/npm/.jscsrc",
+			"settings":
+			{
+				"buffer_size": 25,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "web/bundles/Sk/app/memoryWall/main.html",
+			"settings":
+			{
+				"buffer_size": 1228,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "web/bundles/Sk/Gruntfile.js",
+			"settings":
+			{
+				"buffer_size": 8094,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "web/bundles/Sk/styles/scss/_components.scss",
+			"settings":
+			{
+				"buffer_size": 1010,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Simon/AppData/Roaming/npm/.jshintrc",
+			"settings":
+			{
+				"buffer_size": 86,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 150.0,
+		"last_filter": "show e",
+		"selected_items":
+		[
+			[
+				"show e",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript (DOM)"
+			],
+			[
+				"dom",
+				"Snippet: $('#select DOM Element')"
+			],
+			[
+				"javascript",
+				"Set Syntax: JavaScript (DOM)"
+			],
+			[
+				"format	",
+				"Snippet: for (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"snippet",
+				"Snippet: html"
+			],
+			[
+				"html",
+				"Snippet: html"
+			],
+			[
+				"lower",
+				"Convert Case: Lower Case"
+			],
+			[
+				"emmet wr",
+				"Emmet: Wrap With Abbreviation"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reinder",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"angular",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"twig",
+				"Set Syntax: HTML (Twig)"
+			],
+			[
+				"sass",
+				"Set Syntax: Sass"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 472.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/xampp/htdocs/mw",
+		"/C/xampp/htdocs/mw/src/Sk",
+		"/C/xampp/htdocs/mw/src/Sk/FrontEndBundle",
+		"/C/xampp/htdocs/mw/src/Sk/FrontEndBundle/Resources",
+		"/C/xampp/htdocs/mw/src/Sk/FrontEndBundle/Resources/views",
+		"/C/xampp/htdocs/mw/src/Sk/FrontEndBundle/Resources/views/Default",
+		"/C/xampp/htdocs/mw/web",
+		"/C/xampp/htdocs/mw/web/bundles",
+		"/C/xampp/htdocs/mw/web/bundles/Sk",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/core",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/styles",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss",
+		"/C/Users/Simon/AppData/Roaming/npm"
+	],
+	"file_history":
+	[
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/D/dev/talktalk/test/tiers_test.js",
+		"/D/dev/talktalk/test/tiers.html",
+		"/D/dev/talktalk/Gruntfile.js",
+		"/D/dev/talktalk/test/quoteSetup_test.js",
+		"/D/dev/talktalk/sales-order-capture/index.html",
+		"/D/dev/talktalk/sales-order-capture/quote-setup.html",
+		"/D/dev/talktalk/js/custom/modules/app.modules.global.js",
+		"/D/dev/talktalk/js/custom/app.js",
+		"/D/dev/talktalk/js/custom/modules/app.modules.quoteSetup.js",
+		"/D/dev/talktalk/js/custom/modules/app.modules.tiers.js",
+		"/D/dev/talktalk/css/scss/_components.scss",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/Distraction Free.sublime-settings",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/JSON.sublime-settings",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/Markdown Preview/MarkdownPreview.sublime-settings",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/MarkdownPreview.sublime-settings",
+		"/D/dev/talktalk/test/quoteSetup.html",
+		"/D/dev/talktalk/js/custom/modules/app.modules.dashboard.js",
+		"/D/dev/Misys-Umbraco/web/Masterpages/BaseSite.master",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/MavensMate/mavensmate.sublime-settings",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
+		"/D/dev/talktalk/js/vendor/checkboxradio.js",
+		"/C/Users/Simon/Downloads/mavensmate.sublime-settings",
+		"/D/dev/talktalk/js/custom/loader.js",
+		"/D/dev/talktalk/js/custom/modules/app.modules.components.js",
+		"/D/dev/talktalk/test/dashboardFilters.html",
+		"/D/dev/talktalk/js/custom/components/datatables/dashboardFilters.js",
+		"/D/dev/talktalk/js/custom/components/autoCompleteDropdown/autoCompleteDropdown.js",
+		"/D/dev/talktalk/bower_components/jquery-ui/ui/autocomplete.js",
+		"/D/dev/talktalk/js/main.js",
+		"/D/dev/talktalk/js/custom/custom.js",
+		"/D/dev/talktalk/js/custom/app.modules.dashboard.js",
+		"/D/dev/talktalk/js/custom/app.modules.global.js",
+		"/D/dev/talktalk/js/custom/initial.js",
+		"/D/dev/talktalk/js/custom/jquery.dashboard.js",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/Gruntfile.js",
+		"/C/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/typography/_vertical_rhythm.scss",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_normalize.scss",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/main.scss",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/css/main.css",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/app.memoryWall.js",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwDecadeSelect.html",
+		"/C/xampp/htdocs/SkNd/web/bundles/SkNd/js/compiled/nd-scripts.js",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_components.scss",
+		"/C/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/ui/ui.js",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwItemAmazon.directive.js",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwItemYouTube.directive.js",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwItemSevendigital.directive.js",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_layout.scss",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_settings.scss",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_typography.scss",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/bower.json",
+		"/C/xampp/htdocs/mw/app/config/config_dev.yml",
+		"/C/xampp/htdocs/mw/app/config/parameters.yml",
+		"/D/downloads/webfontkit-20150531-120147/stylesheet.css",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/Xdebug Client/Xdebug.sublime-settings"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"D:\\dev\\talktalk\\css\\scss",
+			"D:\\dev\\talktalk"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"border",
+			"\\",
+			"selectTier",
+			"filter-item",
+			"a",
+			"error",
+			".error",
+			"input.error",
+			"error",
+			"errpr",
+			"form",
+			"/******************************************************",
+			"hide",
+			"hide {",
+			"hide",
+			"not:",
+			"not",
+			"validateTier",
+			">'",
+			"'",
+			"tableHtml",
+			"tierCreateElements",
+			"tierCreateContainers",
+			"a",
+			"advanced search",
+			"javascript",
+			"tier 1",
+			"a",
+			"create tier",
+			"row()",
+			"this",
+			"map",
+			"<a href=\"#\" class=\"icon icon--lookup\">Lookup</a>",
+			"<a href=\"#",
+			"data-location",
+			"[data-location",
+			"<th>",
+			"data-location-display-lookup",
+			"<table",
+			"table",
+			"<table",
+			"responsive--only",
+			"responsive",
+			"responsive--only",
+			"table",
+			"selectLocation",
+			"1",
+			"disabled",
+			"1",
+			"address-lookup-container",
+			"address",
+			"drop1",
+			"buttons",
+			"inactive",
+			"locationTable",
+			"LocationTable",
+			"locationTable",
+			"LocationTable",
+			"locationTable",
+			"th>'",
+			"1",
+			"<tr class=\"red\">\n                    <td>\n                        <label class=\"checkbox\">\n                            <input name=\"feature-1\" value=\"1\" checked=\"\" type=\"checkbox\">\n                            <span class=\"label-text\"></span>\n                        </label>\n                    </td>\n                    <td>Location 2</td>\n                    <td>DEF 456</td>\n                    <td class=\"text-center\"><a href=\"#\" class=\"icon icon--lookup\">Lookup</a></td>\n                    <td><a href=\"#\" class=\"icon  icon--delete-row\">Delete</a></td>\n                </tr>",
+			"obj",
+			"und;800</td>",
+			"800</td>",
+			"label",
+			"hidden",
+			"after",
+			"tableSearch",
+			"id=\"tabs\"",
+			"tabs",
+			"item\"",
+			"input",
+			".input",
+			"select",
+			"2",
+			"$rhythm-unit",
+			"..",
+			"\\",
+			"\\')",
+			"!default",
+			"economica-bold-otf-webfont",
+			"../",
+			"styles",
+			"economica"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"html"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/Simon/AppData/Roaming/npm/.jscsrc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 25,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								25,
+								25
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "web/bundles/Sk/app/memoryWall/main.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1228,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								106,
+								106
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "web/bundles/Sk/Gruntfile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8094,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8060,
+								8060
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3853.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "web/bundles/Sk/styles/scss/_components.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1010,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								547,
+								547
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 247.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/Simon/AppData/Roaming/npm/.jshintrc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 86,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								81,
+								81
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 29.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.MavensMate-OutputPanel":
+	{
+		"height": 88.0
+	},
+	"output.exec":
+	{
+		"height": 167.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "mw.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"tier",
+				"test\\tiers_test.js"
+			],
+			[
+				"app.",
+				"js\\custom\\modules\\app.modules.tiers.js"
+			],
+			[
+				"tiers_test",
+				"test\\tiers_test.js"
+			],
+			[
+				"grunt",
+				"Gruntfile.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+		"xdebug":
+		{
+			"hide_conflict": false
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 278.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -3,7 +3,7 @@
 	font-family: $heading-font-family;
 	font-size: $h1-font-size;
 	padding: $global-padding/2;
-	border: none;
+	border: 0;
 	color: #fff;
 	border-radius: $global-radius;
 	transition: all 0.3s;
@@ -34,7 +34,7 @@
 
 	.ui-widget-header {
 		background-color: palette(blue, dark);
-	}	
+	}
 }
 
 
@@ -44,9 +44,21 @@
 
 .site-header__select {
 	background-color: transparent;
-	border: none;
+	border: 0;
 	@extend h1;
 	margin: 0;
-	border: none;
 	color: palette(red);
+}
+
+a.svg {
+  position: relative;
+  display: inline-block;
+  &:after {
+	  content: '';
+	  position: absolute;
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+	  left:0;
+	}
 }
