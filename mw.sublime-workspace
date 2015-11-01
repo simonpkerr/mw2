@@ -174,23 +174,16 @@
 	"expanded_folders":
 	[
 		"/C/xampp/htdocs/mw",
-		"/C/xampp/htdocs/mw/src/Sk",
-		"/C/xampp/htdocs/mw/src/Sk/FrontEndBundle",
-		"/C/xampp/htdocs/mw/src/Sk/FrontEndBundle/Resources",
-		"/C/xampp/htdocs/mw/src/Sk/FrontEndBundle/Resources/views",
-		"/C/xampp/htdocs/mw/src/Sk/FrontEndBundle/Resources/views/Default",
 		"/C/xampp/htdocs/mw/web",
 		"/C/xampp/htdocs/mw/web/bundles",
 		"/C/xampp/htdocs/mw/web/bundles/Sk",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/app",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/app/core",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/styles",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss",
 		"/C/Users/Simon/AppData/Roaming/npm"
 	],
 	"file_history":
 	[
+		"/D/documents/Cong/theo min school/data/TMS-student-notes.org",
+		"/C/Users/Simon/.jshintrc",
+		"/C/Users/Simon/.jscsrc",
 		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
 		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
 		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
@@ -375,7 +368,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -404,7 +397,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -434,7 +427,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -464,7 +457,7 @@
 						"translation.y": 3853.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -493,7 +486,7 @@
 						"translation.y": 247.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -522,7 +515,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

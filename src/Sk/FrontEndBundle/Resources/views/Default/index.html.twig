@@ -6,30 +6,30 @@
     <title>Memory Walls</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    
+
     {#% stylesheets
         'bundles/Sk/bower_components/jquery-ui/themes/base/core.css'
-        'bundles/Sk/bower_components/jquery-ui/themes/base/slider.css' 
+        'bundles/Sk/bower_components/jquery-ui/themes/base/slider.css'
         'bundles/Sk/styles/css/main.css'
     %}
     <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %#}
 
-    <link rel="stylesheet" href="bundles/Sk/bower_components/jquery-ui/themes/base/core.css">
-    <link rel="stylesheet" href="bundles/Sk/bower_components/jquery-ui/themes/base/slider.css">
-    <link rel="stylesheet" href="bundles/Sk/styles/css/main.css">
+    <link rel="stylesheet" href="../web/bundles/Sk/bower_components/jquery-ui/themes/base/core.css">
+    <link rel="stylesheet" href="../web/bundles/Sk/bower_components/jquery-ui/themes/base/slider.css">
+    <link rel="stylesheet" href="../web/bundles/Sk/styles/css/main.css">
 
     {% javascripts
     'bundles/Sk/bower_components/modernizr/modernizr.js'
     %}
     <script src="{{ asset_url }}"></script>
-    {% endjavascripts %} 
+    {% endjavascripts %}
   </head>
   <body>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    
+
     <div class="container">
         <div ng-view class="view-frame"></div>
     </div>
@@ -43,7 +43,7 @@
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
     </script>#}
-    
+
     <!--[if lt IE 9]>
     <script src="{{ asset('bundles/Sk/bower_components/es5-shim/es5-shim.js') }}"></script>
     <script src="{{ asset('bundles/Sk/bower_components/json3/lib/json3.js') }}"></script>
@@ -51,8 +51,10 @@
 
     {# dependecies #}
     {#'bundles/Sk/bower_components/requirejs/require.js'#}
-    {% javascripts
-    
+    <script src='../web/bundles/Sk/dist/js/vendors.js'></script>
+    <script src='../web/bundles/Sk/dist/js/app.js'></script>
+    {# {% javascripts
+
     'bundles/Sk/bower_components/jquery/dist/jquery.js'
     'bundles/Sk/bower_components/jquery-ui/ui/core.js'
     'bundles/Sk/bower_components/jquery-ui/ui/widget.js'
@@ -67,16 +69,16 @@
     'bundles/Sk/bower_components/json3/lib/json3.js'
     %}
     <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-    
-    {# the app #} 
-    {% javascripts
+    {% endjavascripts %} #}
+
+    {# the app #}
+    {# {% javascripts
     'bundles/Sk/app/*.js'
     'bundles/Sk/app/core/*.js'
     'bundles/Sk/app/memoryWall/*.js'
     %}
     <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    {% endjavascripts %} #}
 
 </body>
 </html>

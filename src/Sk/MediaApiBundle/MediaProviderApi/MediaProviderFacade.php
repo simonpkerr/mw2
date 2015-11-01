@@ -26,39 +26,40 @@ class MediaProviderFacade {
     protected $doctrine;
     protected $em;
     protected $cache;
-    
+
     public function __construct(EntityManager $em, array $providers, CacheAdapterInterface $cache, $debug_mode = false){
         $this->debugMode = $debug_mode;
         $this->em = $em;
         //$this->session = $session;
-        $this->mediaProviders = $providers;     
+        $this->mediaProviders = $providers;
         $this->cache = $cache;
     }
-    
+
     public function setProviders(array $providers){
         $this->mediaProviders = $providers;
     }
-    
+
     public function setCache(CacheAdapterInterface $cache){
         $this->cache = $cache;
-    }    
-    
+    }
+
     public function getMemoryWall($decadeSlug){
         //return test data
-        $wallData = json_decode(file_get_contents('http://mw.local/web/sample-wall-1980s.json'), true);
-        return $wallData['wallData'];
+        //$wallData = json_decode(file_get_contents('http://mw.local/web/sample-wall-1980s.json'), true);
+        //return $wallData['wallData'];
 
         $wallData = array();
+        $wallData['errorMessages'] = array();
         $decade = null;
         if($decadeSlug == 'any'){
             $decades = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecades();
             $randomKey = array_rand($decades);
-            $decade = $decades[$randomKey]; 
+            $decade = $decades[$randomKey];
         } else {
             $decade = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug($decadeSlug);
         }
-        
-//        $decade = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug('1980s'); 
+
+//        $decade = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug('1980s');
         //make this something that each provider does
         //$pageNumber = rand(1, 10);
         $wallData['metaData'] = array(
@@ -66,8 +67,8 @@ class MediaProviderFacade {
             //'pageNumber' => $pageNumber
         );
         $wallData['providerData'] = array();
-        
-        foreach($this->mediaProviders as $mediaProvider){       
+
+        foreach($this->mediaProviders as $mediaProvider){
             $items = array();
             $errorMsg = null;
             try {
@@ -75,14 +76,14 @@ class MediaProviderFacade {
             } catch (Exception $ex) {
                 array_push($wallData['errorMessages'], $ex->getMessage());
             }
-              
+
             $wallData['providerData'] = array_merge($wallData['providerData'], $items);
         }
-        
+
         shuffle($wallData['providerData']);
         return $wallData;
     }
-    
+
     private function getRandomItems(IMediaProviderStrategy $providerStrategy, $decade){
         $items = array();
         $cacheKey = $providerStrategy->getCacheKey($decade);
@@ -95,13 +96,13 @@ class MediaProviderFacade {
                 array_push($items, $providerStrategy->getItem($item));
             }
             $this->cache->set($cacheKey, $items, $providerStrategy::CACHE_TTL);
-        }        
-        
+        }
+
         $listingsCount = count($items);
         $listingsCount = $listingsCount > 5 ? 5 : $listingsCount;
         shuffle($items);
         $randomItems = array_slice($items, 0, $listingsCount);
-        
+
         return $randomItems;
     }
 }

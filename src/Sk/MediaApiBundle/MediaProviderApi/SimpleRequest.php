@@ -1,6 +1,7 @@
 <?php
 
 namespace Sk\MediaApiBundle\MediaProviderApi;
+use \Exception;
 
 class SimpleRequest{
 
@@ -9,7 +10,7 @@ class SimpleRequest{
         $method = "GET";
         //$host = $end_point;
         //$uri = "/onca/xml";
-        
+
         ksort($params);
         $canonicalized_query = array();
 
@@ -23,9 +24,9 @@ class SimpleRequest{
         $canonicalized_query = implode("&", $canonicalized_query);
 
         /* create request */
-        $request = "http://".$host."?".$canonicalized_query;
+        $request = "//".$host."?".$canonicalized_query;
 
-        $response = $this->execCurl($request, $user_agent); 
+        $response = $this->execCurl($request, $user_agent);
         if ($response === False)
         {
             return False;
@@ -36,20 +37,31 @@ class SimpleRequest{
             return $response;
         }
     }
-    
+
     public function execCurl($request, $user_agent){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $request);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_TIMEOUT, 15);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         if(strlen($user_agent) > 0){
             curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
         }
-        
-        return curl_exec($ch);
+
+        $response = null;
+        try {
+            $response = curl_exec($ch);
+        } catch (Exception $ex) {
+            $response = $ex;
+        }
+
+        // curl_close($ch);
+
+        return $response;
     }
-    
-    
+
+
 }
 ?>

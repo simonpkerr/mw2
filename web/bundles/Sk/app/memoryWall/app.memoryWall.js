@@ -2,7 +2,7 @@
     'use strict';
     angular.module('mwApp.memoryWall',[])
         .controller('MemoryWall', MemoryWall);
-    
+
     MemoryWall.$inject = ['$scope', 'memoryWallPrepService', '$sce'];
 
     function MemoryWall($scope, memoryWallPrepService, $sce) {
@@ -22,7 +22,10 @@
           year = new Date().getFullYear(),
           endDecade = year - (year % 10);
         for (var i = 1930; i <= endDecade; i+=10) {
-          decades.push('THE ' + i + "'S");
+          decades.push({
+            label: 'THE ' + i + '\'S',
+            id: i + 's'
+          });
         }
         return decades;
       }
@@ -30,8 +33,8 @@
       function getWallData() {
         var decade = vm.selectedDecade || 'any';
         return memoryWallPrepService.memoryWall.get(
-          { 
-            decade: decade 
+          {
+            decade: decade
           },
           function (data) {
             vm.wallData = data.wallData;

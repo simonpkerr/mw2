@@ -18,6 +18,7 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
+    bower: 'bower_components',
     dist: 'dist'
   };
 
@@ -31,7 +32,7 @@ module.exports = function (grunt) {
     watch: {
       js: {
         files: ['<%= yeoman.app %>/{,*/}*.js'],
-        tasks: ['jshint:all'],
+        tasks: ['jshint:all', 'uglify:app'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
@@ -46,39 +47,6 @@ module.exports = function (grunt) {
       },
       gruntfile: {
         files: ['Gruntfile.js']
-      }
-    },
-
-    // The actual grunt server settings
-    connect: {
-      options: {
-        port: 9000,
-        // Change this to '0.0.0.0' to access the server from outside.
-        hostname: '0.0.0.0',
-        base: '',
-        livereload: 35729
-      },
-      test: {
-        options: {
-          port: 9001,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect.static('test'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect.static(appConfig.app)
-            ];
-          }
-        }
-      },
-      dist: {
-        options: {
-          open: true,
-          base: '<%= yeoman.dist %>'
-        }
       }
     },
 
@@ -171,111 +139,47 @@ module.exports = function (grunt) {
       }
     },
 
-    // The following *-min tasks will produce minified files in the dist folder
-    // By default, your `index.html`'s <!-- Usemin block --> will take care of
-    // minification. These next options are pre-configured if you do not wish
-    // to use the Usemin blocks.
-//     cssmin: {
-//       dist: {
-//         files: {
-//           'styles/css/main.css': [
-//             'styles/css/*.css'
-//           ]
-//         }
-//       }
-//     },
-//     uglify: {
-//       dist: {
-//         files: {
-//           '<%= yeoman.dist %>/mw.js': [
-//             '<%= yeoman.dist %>/mw.js'
-//           ]
-//         }
-//       }
-//     },
-//     concat: {
-//       dist: {}
-//     },
 
-//    svgmin: {
-//      dist: {
-//        files: [{
-//          expand: true,
-//          cwd: '<%= yeoman.app %>/images',
-//          src: '{,*/}*.svg',
-//          dest: '<%= yeoman.dist %>/images'
-//        }]
-//      }
-//    },
-
-//    htmlmin: {
-//      dist: {
-//        options: {
-//          collapseWhitespace: true,
-//          conservativeCollapse: true,
-//          collapseBooleanAttributes: true,
-//          removeCommentsFromCDATA: true,
-//          removeOptionalTags: true
-//        },
-//        files: [{
-//          expand: true,
-//          cwd: '<%= yeoman.dist %>',
-//          src: ['*.html', 'views/{,*/}*.html'],
-//          dest: '<%= yeoman.dist %>'
-//        }]
-//      }
-//    },
-
-    // ng-annotate tries to make the code safe for minification automatically
-    // by using the Angular long form for dependency injection.
-//    ngAnnotate: {
-//      dist: {
-//        files: [{
-//          expand: true,
-//          cwd: '.tmp/concat/scripts',
-//          src: ['*.js', '!oldieshim.js'],
-//          dest: '.tmp/concat/scripts'
-//        }]
-//      }
-//    },
-
-    // Replace Google CDN references
-//    cdnify: {
-//      dist: {
-//        html: ['<%= yeoman.dist %>/*.html']
-//      }
-//    },
-
-    // Copies remaining files to places other tasks can use
-    copy: {
-      dist: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>',
-          src: [
-            '*.{ico,png,txt}',
-            '.htaccess',
-            '*.html',
-            'views/{,*/}*.html',
-            'images/{,*/}*.{webp}',
-            'fonts/*'
+    uglify: {
+      vendors: {
+        options: {
+          compress: true,
+          mangle: true,
+          beautify: false
+        },
+        files: {
+          '<%= yeoman.dist %>/js/vendors.js': [
+            '<%= yeoman.bower %>/jquery/dist/jquery.js',
+            '<%= yeoman.bower %>/jquery-ui/ui/core.js',
+            '<%= yeoman.bower %>/jquery-ui/ui/widget.js',
+            '<%= yeoman.bower %>/jquery-ui/ui/mouse.js',
+            '<%= yeoman.bower %>/jquery-ui/ui/slider.js',
+            '<%= yeoman.bower %>/jquery-ui/ui/selectmenu.js',
+            '<%= yeoman.bower %>/es5-shim/es5-shim.js',
+            '<%= yeoman.bower %>/angular/angular.js',
+            '<%= yeoman.bower %>/angular-route/angular-route.js',
+            '<%= yeoman.bower %>/angular-resource/angular-resource.js',
+            '<%= yeoman.bower %>/angular-sanitize/angular-sanitize.js',
+            '<%= yeoman.bower %>/json3/lib/json3.js'
           ]
-        }, {
-          expand: true,
-          cwd: '.tmp/images',
-          dest: '<%= yeoman.dist %>/images',
-          src: ['generated/*']
-        }]
+        }
       },
-      styles: {
-        expand: true,
-        cwd: 'styles',
-        dest: '.tmp/styles/',
-        src: '{,*/}*.css'
+      app: {
+        options: {
+          compress: false,
+          beautify: true,
+          mangle: false
+        },
+        files: {
+          '<%= yeoman.dist %>/js/app.js': [
+            '<%= yeoman.app %>/*.js',
+            '<%= yeoman.app %>/core/*.js',
+            '<%= yeoman.app %>/memoryWall/*.js'
+          ]
+        }
       }
     },
+
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
@@ -283,7 +187,8 @@ module.exports = function (grunt) {
         'compass:server'
       ],
       test: [
-        'compass:test'
+        'compass:test',
+        'uglify',
       ],
       dist: [
         'compass:dist'
@@ -334,7 +239,6 @@ module.exports = function (grunt) {
     //useminPrepare',
     'concurrent:dist',
     'autoprefixer'
-    //'concat'
     //'ngAnnotate',
     //'copy:dist',
     //'cdnify',
