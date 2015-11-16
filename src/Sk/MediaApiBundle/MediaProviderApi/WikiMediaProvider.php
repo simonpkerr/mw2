@@ -257,7 +257,7 @@ class WikiMediaProvider implements IMediaProviderStrategy {
      */
     protected function runQuery($parameters)
     {
-        return $this->simpleRequest->makeRequest($this->apiEndPoint, $parameters, $this->userAgent);
+        return $this->simpleRequest->makeRequest('https', $this->apiEndPoint, $parameters, $this->userAgent);
     }
 
 

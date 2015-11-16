@@ -112,7 +112,7 @@ class SevenDigitalProvider implements IMediaProviderStrategy {
     protected function runQuery($parameters)
     {
         $host = $this->apiEndPoints['query_endpoint'] . $this->methods['search_by_tag'];
-        return $this->simpleRequest->makeRequest($host, $parameters);
+        return $this->simpleRequest->makeRequest('http', $host, $parameters);
     }
 
     /**

@@ -5,7 +5,7 @@ use \Exception;
 
 class SimpleRequest{
 
-    public function makeRequest($host, $params, $user_agent = '')
+    public function makeRequest($protocol, $host, $params, $user_agent = '')
     {
         $method = "GET";
         //$host = $end_point;
@@ -24,7 +24,7 @@ class SimpleRequest{
         $canonicalized_query = implode("&", $canonicalized_query);
 
         /* create request */
-        $request = "//".$host."?".$canonicalized_query;
+        $request = $protocol.'://'.$host."?".$canonicalized_query;
 
         $response = $this->execCurl($request, $user_agent);
         if ($response === False)
@@ -46,6 +46,7 @@ class SimpleRequest{
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
         if(strlen($user_agent) > 0){
             curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
         }

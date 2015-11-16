@@ -16,12 +16,12 @@
 <!-- {{ vm.wallData.providerData }} -->
 
 <section class="site-content">
-    <ul class="wall-items">
-        <li class="wall-items__item" ng-repeat="item in vm.wallData.providerData" ng-switch on="item.provider">
+    <div class="wall-items__container flex__container">
+        <div class="wall-items__item  flex__item" ng-repeat="item in vm.wallData.providerData" ng-switch on="item.provider">
             <mw-item-amazon ng-switch-when="amazon" item="item"></mw-item-amazon>
             <mw-item-youtube ng-switch-when="youtube" item="item"></mw-item-youtube>
             <mw-item-wikimedia ng-switch-when="wikimedia" item="item"></mw-item-wikimedia>
             <mw-item-sevendigital ng-switch-when="sevendigital" item="item"></mw-item-sevendigital>
-        </li>
-    </ul>
+        </div>
+    </div>
 </section>

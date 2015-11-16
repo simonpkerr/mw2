@@ -32,10 +32,7 @@ module.exports = function (grunt) {
     watch: {
       js: {
         files: ['<%= yeoman.app %>/{,*/}*.js'],
-        tasks: ['jshint:all', 'uglify:app'],
-        options: {
-          livereload: '<%= connect.options.livereload %>'
-        }
+        tasks: ['jshint:all', 'uglify:app']
       },
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
@@ -105,10 +102,10 @@ module.exports = function (grunt) {
         cssDir: 'styles/css',
         //generatedImagesDir: '.tmp/images/generated',
         //imagesDir: 'images',
-        javascriptsDir: 'scripts',
+        //javascriptsDir: 'scripts',
         fontsDir: 'styles/fonts',
         importPath: 'bower_components',
-        httpImagesPath: 'images',
+        //httpImagesPath: 'images',
         //httpGeneratedImagesPath: 'images/generated',
         httpFontsPath: 'styles/fonts',
         relativeAssets: false,
@@ -160,7 +157,9 @@ module.exports = function (grunt) {
             '<%= yeoman.bower %>/angular-route/angular-route.js',
             '<%= yeoman.bower %>/angular-resource/angular-resource.js',
             '<%= yeoman.bower %>/angular-sanitize/angular-sanitize.js',
-            '<%= yeoman.bower %>/json3/lib/json3.js'
+            '<%= yeoman.bower %>/angular-animate/angular-animate.js',
+            '<%= yeoman.bower %>/json3/lib/json3.js',
+            '<%= yeoman.bower %>/angular-loading-bar/build/loading-bar.js'
           ]
         }
       },
@@ -184,7 +183,8 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'compass:server'
+        'compass:server',
+        'uglify'
       ],
       test: [
         'compass:test',

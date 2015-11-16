@@ -23,10 +23,11 @@
                 otherwise({
                     redirectTo: '/index'
                 });
-                
+
         $sceDelegateProvider.resourceUrlWhitelist([
            'self',
            'http://upload.wikimedia.org/**',
+           'https://upload.wikimedia.org/**',
            'https://www.youtube.com/**',
            'https://i.ytimg.com/**',
            'http://previews.7digital.com/**'

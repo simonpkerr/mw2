@@ -31,7 +31,7 @@
       }
 
       function getWallData() {
-        var decade = vm.selectedDecade || 'any';
+        var decade = vm.selectedDecade.id || 'any';
         return memoryWallPrepService.memoryWall.get(
           {
             decade: decade

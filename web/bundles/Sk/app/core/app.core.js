@@ -3,6 +3,9 @@
     angular.module('mwApp.core', [
         'ngRoute',
         'ngResource',
-        'ngSanitize'
-    ]);    
+        'ngSanitize',
+        'angular-loading-bar',
+        'ngAnimate'
+
+    ]);
 })();
