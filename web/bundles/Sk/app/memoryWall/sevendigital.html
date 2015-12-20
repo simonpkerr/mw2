@@ -1,11 +1,20 @@
-<div class="sevendigital-item">
-    <h3>{{item.title}} by {{item.artist}}</h3>
-    <img ng-src="{{item.image}}" alt="{{item.title}}" />
-    <a ng-click="isOpen = !isOpen" class="cta">Show details and preview tracks</a>
-    <div class="info-window" ng-show="isOpen">
-        <p>Originally released: {{item.originalReleaseDate}}</p>
-        <p>Price: {{item.price}}</p>
-    </div>
-    <a class="oj" ng-href="{{item.url}}">Buy this from 7Digital</a>
+<div>
+<h3>{{item.title}} by {{item.artist}}</h3>
+<img ng-src="{{item.image}}" alt="{{item.title}}" />
+<div class="info-window" ng-show="isOpen">
+    <dl>
+      <dt>Originally released:</dt><dd ng-bind="item.originalReleaseDate"></dd>
+      <dt>Price:</dt><dd ng-bind="item.price"></dd>
+    </dl>
 </div>
 
+
+<ul class="item-actions">
+  <li><a ng-click="isOpen = !isOpen" class="icon-info" title="Show details and preview tracks for {{item.title}}"></a></li>
+  <li><a class="icon-basket" title="Buy {{item.title}} from 7Digital" ng-href="{{item.url}}"></a></li>
+</ul>
+
+
+
+
+</div>

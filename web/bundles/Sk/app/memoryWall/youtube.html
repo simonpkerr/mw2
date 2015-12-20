@@ -1,9 +1,11 @@
-<div class="youtube-item">
-    <p>{{item.title}}</p>
-    <img ng-src="{{item.image}}" alt="{{item.title}}" />
-    <p>{{ item.description }}</p>
-    <a ng-click="playYouTubeVideo()">Play the video</a>
-    <div class="youtube-player"></div>
-</div>
+<div>
+<h3 ng-bind="item.title"></h3>
+<img ng-src="{{item.image}}" alt="{{item.title}}" />
+<p ng-bind="item.description"></p>
+<ul class="item-actions">
+  <li><a ng-click="playYouTubeVideo()" class="icon-play" title="play {{item.title}}" ></a></li>
+</ul>
 
+<div class="youtube-player"></div>
+</div>
 

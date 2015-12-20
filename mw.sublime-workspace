@@ -20,10 +20,10 @@
 	"buffers":
 	[
 		{
-			"file": "/C/Users/Simon/AppData/Roaming/npm/.jscsrc",
+			"file": "web/bundles/Sk/app/memoryWall/app.memoryWall.js",
 			"settings":
 			{
-				"buffer_size": 25,
+				"buffer_size": 1348,
 				"line_ending": "Windows"
 			}
 		},
@@ -31,31 +31,53 @@
 			"file": "web/bundles/Sk/app/memoryWall/main.html",
 			"settings":
 			{
-				"buffer_size": 1228,
+				"buffer_size": 1367,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "web/bundles/Sk/Gruntfile.js",
+			"contents": "/* CSS Document */\n* {\n	box-sizing: border-box;\n}\n.flex-container {\n	display: flex;\n	flex-flow: row wrap;\n	justify-content: center;\n	/*align-content: space-around;*/\n	align-items: center;\n	width: 100%;\n	height: 100%;\n	\n}\n.flex-item {\n	background: #aaa;\n	padding: 1em;\n	margin: 1em;\n	width: 30%;\n	height: 20em;\n	list-style-type: none;\n	/*flex-grow: 1;*/\n	/*flex-basis: 10em;*/\n	\n}\n",
+			"file": "/F/useful stuff/flex/style.css",
+			"file_size": 405,
+			"file_write_time": 130598233200000000,
 			"settings":
 			{
-				"buffer_size": 8094,
+				"buffer_size": 380,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "web/bundles/Sk/styles/scss/_components.scss",
+			"file": "web/bundles/Sk/styles/scss/_layout.scss",
 			"settings":
 			{
-				"buffer_size": 1010,
-				"line_ending": "Windows"
+				"buffer_size": 1971,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/C/Users/Simon/AppData/Roaming/npm/.jshintrc",
+			"contents": "Package Control Messages\n========================\n\nMarkdownEditing\n---------------\n\n  # MarkdownEditing 2.1.4 Changelog\n  \n  Your _MarkdownEditing_ plugin is updated. Enjoy new version. For any type of\n  feedback you can use [GitHub issues][issues].\n  \n  ## Bug Fixes\n  \n  * Various small bug fixes.\n  \n  ## New Features\n  \n  * Automatized syntax highlighting tests (a new feature of ST).\n  * \"Swift\" and \"scheme\" language support for fenced code blocks.\n  * More liberal fenced code block matching, with unknown language header.\n  \n  [issues]: https://github.com/SublimeText-Markdown/MarkdownEditing/issues\n",
 			"settings":
 			{
-				"buffer_size": 86,
+				"buffer_size": 608,
+				"line_ending": "Windows",
+				"name": "Package Control Messages",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"file": "web/bundles/Sk/styles/scss/_settings.scss",
+			"settings":
+			{
+				"buffer_size": 1226,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Sk/FrontEndBundle/Resources/views/Default/index.html.twig",
+			"settings":
+			{
+				"buffer_size": 3252,
 				"line_ending": "Windows"
 			}
 		}
@@ -67,17 +89,69 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 150.0,
-		"last_filter": "show e",
+		"height": 392.0,
+		"last_filter": "rein",
 		"selected_items":
 		[
 			[
-				"show e",
-				"SublimeLinter: Show All Errors"
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"xdebug",
+				"Xdebug: Stop Debugging"
+			],
+			[
+				"stop",
+				"Xdebug: Stop Debugging"
+			],
+			[
+				"start",
+				"Xdebug: Start Debugging"
+			],
+			[
+				"run",
+				"Xdebug: Breakpoint - Run"
+			],
+			[
+				"curl",
+				"MavensMate: Force Save Current File"
+			],
+			[
+				"x",
+				"Xdebug: Stop Debugging"
+			],
+			[
+				"step",
+				"Xdebug: Breakpoint - Step Into"
+			],
+			[
+				"break",
+				"Xdebug: Add/Remove Breakpoint"
 			],
 			[
 				"install",
 				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"xdebug star",
+				"Xdebug: Start Debugging"
+			],
+			[
+				"xdebug stop",
+				"Xdebug: Stop Debugging"
+			],
+			[
+				"watch",
+				"Xdebug: Set Watch Expression"
+			],
+			[
+				"show e",
+				"SublimeLinter: Show All Errors"
 			],
 			[
 				"remove",
@@ -118,10 +192,6 @@
 			[
 				"emmet wr",
 				"Emmet: Wrap With Abbreviation"
-			],
-			[
-				"rein",
-				"Indentation: Reindent Lines"
 			],
 			[
 				"reinder",
@@ -174,13 +244,45 @@
 	"expanded_folders":
 	[
 		"/C/xampp/htdocs/mw",
+		"/C/xampp/htdocs/mw/src",
+		"/C/xampp/htdocs/mw/src/Sk",
+		"/C/xampp/htdocs/mw/src/Sk/FrontEndBundle",
+		"/C/xampp/htdocs/mw/src/Sk/FrontEndBundle/Resources",
+		"/C/xampp/htdocs/mw/src/Sk/FrontEndBundle/Resources/views",
+		"/C/xampp/htdocs/mw/src/Sk/FrontEndBundle/Resources/views/Default",
 		"/C/xampp/htdocs/mw/web",
 		"/C/xampp/htdocs/mw/web/bundles",
 		"/C/xampp/htdocs/mw/web/bundles/Sk",
-		"/C/Users/Simon/AppData/Roaming/npm"
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/core",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/styles",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss"
 	],
 	"file_history":
 	[
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/Gruntfile.js",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwDecadeSelect.html",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_components.scss",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/core/app.core.js",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/bower_components/angular-loading-bar/build/loading-bar.css",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/main.html",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/core/app.routing.js",
+		"/C/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/WikiMediaProvider.php",
+		"/C/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/SevenDigitalProvider.php",
+		"/C/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/SimpleRequest.php",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/dist/js/app.js",
+		"/C/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/MediaProviderFacade.php",
+		"/C/xampp/htdocs/mw/src/Sk/FrontEndBundle/Resources/views/Default/index.html.twig",
+		"/C/xampp/htdocs/mw/app/config/parameters.yml",
+		"/C/xampp/php/php.ini",
+		"/C/xampp/htdocs/mw/src/Sk/MediaApiBundle/Controller/DefaultController.php",
+		"/C/xampp/htdocs/mw/src/Sk/MediaApiBundle/MediaProviderApi/MediaProviderApi.php",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwDecadeSelect.directive.js",
+		"/C/xampp/htdocs/mw/web/bundles/Sk/package.json",
+		"/C/Users/Simon/AppData/Roaming/npm/.jscsrc",
+		"/C/Users/Simon/AppData/Roaming/npm/.jshintrc",
 		"/D/documents/Cong/theo min school/data/TMS-student-notes.org",
 		"/C/Users/Simon/.jshintrc",
 		"/C/Users/Simon/.jscsrc",
@@ -222,16 +324,12 @@
 		"/D/dev/talktalk/js/custom/app.modules.global.js",
 		"/D/dev/talktalk/js/custom/initial.js",
 		"/D/dev/talktalk/js/custom/jquery.dashboard.js",
-		"/C/Windows/System32/drivers/etc/hosts",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/Gruntfile.js",
 		"/C/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/typography/_vertical_rhythm.scss",
 		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_normalize.scss",
 		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/main.scss",
 		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/css/main.css",
 		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/app.memoryWall.js",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwDecadeSelect.html",
 		"/C/xampp/htdocs/SkNd/web/bundles/SkNd/js/compiled/nd-scripts.js",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_components.scss",
 		"/C/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss",
 		"/C/xampp/htdocs/mw/web/bundles/Sk/app/ui/ui.js",
 		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwItemAmazon.directive.js",
@@ -243,7 +341,6 @@
 		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_typography.scss",
 		"/C/xampp/htdocs/mw/web/bundles/Sk/bower.json",
 		"/C/xampp/htdocs/mw/app/config/config_dev.yml",
-		"/C/xampp/htdocs/mw/app/config/parameters.yml",
 		"/D/downloads/webfontkit-20150531-120147/stylesheet.css",
 		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/Xdebug Client/Xdebug.sublime-settings"
 	],
@@ -265,6 +362,20 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ng-switch-when",
+			"user_agent",
+			"curl",
+			"bundles",
+			"web/",
+			"bundles",
+			"$response",
+			"concat",
+			"dist",
+			"bundles/Sk",
+			"<%= yeoman.bower",
+			"bundles/Sk/bower_components/",
+			"concat",
+			"scope",
 			"border",
 			"\\",
 			"selectTier",
@@ -373,31 +484,32 @@
 			[
 				{
 					"buffer": 0,
-					"file": "/C/Users/Simon/AppData/Roaming/npm/.jscsrc",
+					"file": "web/bundles/Sk/app/memoryWall/app.memoryWall.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 25,
+						"buffer_size": 1348,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								25,
-								25
+								986,
+								986
 							]
 						],
 						"settings":
 						{
-							"open_with_edit": true,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 196.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -406,15 +518,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1228,
+						"buffer_size": 1367,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								106,
-								106
+								819,
+								819
 							]
 						],
 						"settings":
@@ -432,90 +544,152 @@
 				},
 				{
 					"buffer": 2,
-					"file": "web/bundles/Sk/Gruntfile.js",
+					"file": "/F/useful stuff/flex/style.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8094,
+						"buffer_size": 380,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8060,
-								8060
+								218,
+								218
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3853.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "web/bundles/Sk/styles/scss/_components.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1010,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								547,
-								547
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"syntax": "Packages/CSS/CSS.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 247.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "/C/Users/Simon/AppData/Roaming/npm/.jshintrc",
+					"buffer": 3,
+					"file": "web/bundles/Sk/styles/scss/_layout.scss",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 86,
+						"buffer_size": 1971,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								81,
-								81
+								1862,
+								1862
 							]
 						],
 						"settings":
 						{
-							"open_with_edit": true,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1203.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 608,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								608,
+								608
+							]
+						],
+						"settings":
+						{
+							"auto_indent": false,
+							"default_dir": "C:\\xampp\\htdocs\\mw",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_width": 2,
+							"word_wrap": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "web/bundles/Sk/styles/scss/_settings.scss",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1226,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								927,
+								927
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 160.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/Sk/FrontEndBundle/Resources/views/Default/index.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3252,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1300,
+								1300
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP-Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 379.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -564,11 +738,15 @@
 	{
 		"height": 0.0
 	},
+	"output.xdebug":
+	{
+		"height": 100.0
+	},
 	"pinned_build_system": "",
 	"project": "mw.sublime-project",
 	"replace":
 	{
-		"height": 62.0
+		"height": 42.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -577,6 +755,34 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"grunt",
+				"web\\bundles\\Sk\\Gruntfile.js"
+			],
+			[
+				"simple",
+				"src\\Sk\\MediaApiBundle\\MediaProviderApi\\SimpleRequest.php"
+			],
+			[
+				"app.js",
+				"web\\bundles\\Sk\\dist\\js\\app.js"
+			],
+			[
+				"parameters",
+				"app\\config\\parameters.yml"
+			],
+			[
+				"simplereq",
+				"src\\Sk\\MediaApiBundle\\MediaProviderApi\\SimpleRequest.php"
+			],
+			[
+				"seven",
+				"src\\Sk\\MediaApiBundle\\MediaProviderApi\\SevenDigitalProvider.php"
+			],
+			[
+				"gruntfile",
+				"web\\bundles\\Sk\\Gruntfile.js"
+			],
 			[
 				"tier",
 				"test\\tiers_test.js"
@@ -588,10 +794,6 @@
 			[
 				"tiers_test",
 				"test\\tiers_test.js"
-			],
-			[
-				"grunt",
-				"Gruntfile.js"
 			]
 		],
 		"width": 0.0
@@ -619,14 +821,54 @@
 	{
 		"xdebug":
 		{
-			"hide_conflict": false
+			"hide_conflict": false,
+			"restore_index":
+			{
+				"15":
+				{
+					"group": 0,
+					"index": 0
+				},
+				"34":
+				{
+					"group": 0,
+					"index": 1
+				},
+				"35":
+				{
+					"group": 0,
+					"index": 2
+				}
+			},
+			"restore_layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			}
 		}
 	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 278.0,
+	"side_bar_width": 312.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

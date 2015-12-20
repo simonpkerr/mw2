@@ -1,6 +1,8 @@
-<div class="amazon-item">
-    <p>{{item.title}}</p>
-    <img ng-src="{{item.image}}" alt="{{item.title}}" />
-    <p><a ng-href="{{item.url}}">Buy it now</a></p>
+<div>
+<h3 ng-bind="item.title"></h3>
+<img ng-src="{{item.image}}" alt="{{item.title}}" />
+<ul class="item-actions">
+  <li><a ng-href="{{item.url}}" title="buy {{item.title}} from Amazon" class="icon-basket"></a></li>
+  <li><a href="" class="icon-search" title="explore"></a></li>
+</ul>
 </div>
-

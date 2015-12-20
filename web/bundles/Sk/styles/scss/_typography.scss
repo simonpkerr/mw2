@@ -55,11 +55,23 @@ h1, h2 {
         margin: 10px 0;
 
         @include breakpoint(media(lap)) {
-            text-align: right;    
+            text-align: right;
         }
     }
 }
 
+.wall-items__item {
+  h3 {
+    margin-top: 0;
+  }
+  p {
+    margin: $global-padding/2 0;
+  }
+
+  &.youtube__item {
+
+  }
+}
 
 
 
