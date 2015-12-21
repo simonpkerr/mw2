@@ -179,6 +179,13 @@ module.exports = function (grunt) {
       }
     },
 
+    connect: {
+      server: {
+        options: {
+          port: 9001
+        }
+      }
+    },
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
@@ -227,6 +234,13 @@ module.exports = function (grunt) {
     'autoprefixer',
     'connect:test',
     'karma'
+  ]);
+
+  grunt.registerTask('flatdev', [
+    'connect',
+    'concurrent:server',
+    'autoprefixer',
+    'watch'
   ]);
 
   grunt.registerTask('dev', [
