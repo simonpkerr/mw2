@@ -62,7 +62,8 @@ h1, h2 {
 
 .wall-items__item {
   h3 {
-    margin-top: 0;
+    margin: 0 0 $global-padding/2 0;
+    text-align: center;
   }
   p {
     margin: $global-padding/2 0;

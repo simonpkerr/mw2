@@ -151,9 +151,11 @@ body {
     }
 
     img {
+      display: block;
+      margin: 0 auto;
       max-width: 100%;
       min-width: 50%;
-      border: 10px solid rgba(255,255,255,0.3);
+      border: 10px solid rgba(255,255,255,.3);
     }
   }
   .no-flexbox {
