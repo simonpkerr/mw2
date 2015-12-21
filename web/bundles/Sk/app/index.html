@@ -1,0 +1,30 @@
+<!doctype html>
+<html class="no-js" ng-app="mwApp" lang="en">
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <title>Memory Walls</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="../bower_components/jquery-ui/themes/base/core.css">
+    <link rel="stylesheet" href="../bower_components/jquery-ui/themes/base/slider.css">
+    <link rel="stylesheet" href="../styles/css/main.css">
+
+    <script src='../bower_components/modernizr/modernizr.js'></script>
+
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="container view-animate-container">
+        <div ng-view class="view-frame view-animate"></div>
+    </div>
+
+    <script src='../dist/js/vendors.js'></script>
+    <script src='../dist/js/app.js'></script>
+
+</body>
+</html>

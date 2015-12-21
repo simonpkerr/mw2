@@ -1,6 +1,6 @@
 /**
- * 
- * @description thanks to brandly https://github.com/brandly/angular-youtube-embed 
+ *
+ * @description thanks to brandly https://github.com/brandly/angular-youtube-embed
  * for the youtube embed directive, which this is a modified version of.
  */
 (function () {
@@ -8,10 +8,10 @@
     angular
         .module('mwApp.memoryWall')
         .directive('mwItemYoutube', mwItemYoutube);
-    
-    mwItemYoutube.$inject = ['youTubeService'];
-    
-    function mwItemYoutube(youTubeService) {
+
+    mwItemYoutube.$inject = ['youTubeService', 'baseUrl'];
+
+    function mwItemYoutube(youTubeService, baseUrl) {
         var stateNames = {
                 '-1': 'unstarted',
                 0: 'ended',
@@ -32,7 +32,7 @@
                     playerWidth:    '=?'
                 },
                 replace: true,
-                templateUrl: '/web/bundles/Sk/app/memoryWall/youtube.html',
+                templateUrl: baseUrl + 'memoryWall/youtube.html',
                 link: link
 
             };
@@ -44,16 +44,16 @@
             scope.videoId = scope.videoId || scope.item.id;
             scope.playerHeight = scope.playerHeight || 390;
             scope.playerWidth = scope.playerWidth || 640;
-            
+
             //scope.playerVars = scope.playerVars || {};
-            
+
             function applyBroadcast() {
                 var args = Array.prototype.slice.call(arguments);
-                scope.$apply(function(){ 
+                scope.$apply(function(){
                     scope.$emit.apply(scope, args);
                 });
             }
-            
+
             function onPlayerStateChange (event) {
                 var state = stateNames[event.data];
                 if (typeof state !== 'undefined') {
@@ -63,33 +63,33 @@
                     scope.player.currentState = state;
                 });
             }
-            
+
             function onPlayerReady (event) {
                 applyBroadcast(eventPrefix + 'ready', scope.player, event);
             }
-            
+
             function createPlayer() {
                 //var playerVars = angular.copy(scope.playerVars);
                 //playerVars.start = playerVars.start || null;
                 var events = {
                         onReady: onPlayerReady,
-                        onStateChange: onPlayerStateChange                         
+                        onStateChange: onPlayerStateChange
                     },
                     player = youTubeService.createPlayer(scope, events);
-                    
+
                 return player;
             }
-            
+
             function loadPlayer() {
                 if(scope.videoId) {
                     if(scope.player && scope.player.d && typeof scope.player.destroy === 'function') {
                         scope.player.destroy();
                     }
-                    
+
                     scope.player = createPlayer();
                 }
             }
-            
+
             function preparePlayer() {
                 var stopWatchingReady = scope.$watch(
                     //watchExpression
@@ -107,17 +107,17 @@
                     }
                 );
             }
-            
+
             scope.playYouTubeVideo = function() {
                 if(typeof scope.player !== 'object') {
                     preparePlayer();
                 }
             };
-            
+
             scope.$on('$destroy', function () {
                 scope.player && scope.player.destroy();
             });
-    
+
 
         }
     }

@@ -4,7 +4,9 @@
     .module('mwApp.memoryWall')
     .directive('mwDecadeSelect', mwDecadeSelect);
 
-    function mwDecadeSelect() {
+    mwDecadeSelect.$inject = ['baseUrl'];
+
+    function mwDecadeSelect(baseUrl) {
         var select,
             slider,
             link = {
@@ -26,7 +28,7 @@
                 //     getWallData: '='
                 // },
                 replace: true,
-                templateUrl: '/web/bundles/Sk/app/memoryWall/mwDecadeSelect.html',
+                templateUrl: baseUrl + 'memoryWall/mwDecadeSelect.html',
                 link: link
 
             };
