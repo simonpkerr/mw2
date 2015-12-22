@@ -7,6 +7,8 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
+var path = require('path');
+
 module.exports = function (grunt) {
 
   // Load grunt tasks automatically
@@ -179,13 +181,38 @@ module.exports = function (grunt) {
       }
     },
 
-    connect: {
-      server: {
+    express: {
+      options: {
+        port: 9000,
+        hostname: '*'
+      },
+      livereload: {
         options: {
-          port: 9001
+          server: path.resolve('./server'),
+          livereload: true,
+          serverreload: true,
+          bases: [path.resolve('./app'), path.resolve(__dirname, appConfig.app), path.resolve('./')]
+        }
+      },
+      test: {
+        options: {
+          server: path.resolve('./server'),
+          bases: [path.resolve('./app'), path.resolve(__dirname, 'test')]
+        }
+      },
+      dist: {
+        options: {
+          server: path.resolve('./server'),
+          bases: path.resolve(__dirname, appConfig.dist)
         }
       }
     },
+    open: {
+      server: {
+        url: 'http://localhost:<%= express.options.port %>'
+      }
+    },
+
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
@@ -216,7 +243,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
+      return grunt.task.run(['build', 'express:dist:keepalive']);
     }
 
     grunt.task.run([
@@ -237,10 +264,12 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('flatdev', [
-    'connect',
     'concurrent:server',
     'autoprefixer',
+    'express:livereload',
+    'open',
     'watch'
+
   ]);
 
   grunt.registerTask('dev', [

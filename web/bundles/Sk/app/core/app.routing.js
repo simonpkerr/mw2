@@ -4,13 +4,11 @@
 //https://github.com/johnpapa/angularjs-styleguide#style-y038
   angular
     .module('mwApp')
-    //.constant('VIEWBASE', '../bundles/Sk/public/app/')
     .config(config);
 
   config.$inject = ['$routeProvider', '$sceDelegateProvider', '$locationProvider', 'baseUrl'];
 
   function config($routeProvider, $sceDelegateProvider, $locationProvider, baseUrl) {
-    //var VIEW_BASE = 'app/';// '/web/bundles/Sk/app/';
     $routeProvider
       .when('/index', {
         templateUrl: baseUrl + 'memoryWall/main.html',
@@ -19,9 +17,9 @@
         resolve: {
           memoryWallPrepService: memoryWallPrepService
         }
-      }).
-      otherwise({
-          redirectTo: '/index'
+      })
+      .otherwise({
+        redirectTo: '/index'
       });
 
     $sceDelegateProvider.resourceUrlWhitelist([
