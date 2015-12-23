@@ -62,8 +62,6 @@
           },
           function (data) {
             vm.wallData = data.wallData;
-            //vm.selectedDecade.id = data.wallData.metaData.decade;
-            //$location.path('/index/' + vm.selectedDecade);
             return vm.wallData;
           }
         );

@@ -197,7 +197,7 @@ module.exports = function (grunt) {
       test: {
         options: {
           server: path.resolve('./server'),
-          bases: [path.resolve('./app'), path.resolve(__dirname, 'test')]
+          bases: [path.resolve('./app'), path.resolve(__dirname, 'test'), path.resolve('./')]
         }
       },
       dist: {
@@ -258,8 +258,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
-    'autoprefixer',
-    'connect:test',
+    'express:test',
     'karma'
   ]);
 

@@ -13,7 +13,7 @@ module.exports = function (config) {
         basePath: '../',
         // testing framework to use (jasmine/mocha/qunit/...)
         frameworks: ['jasmine'],
-        
+
         // list of files / patterns to load in the browser
         files: [
             'bower_components/jquery/dist/jquery.js',
@@ -22,6 +22,10 @@ module.exports = function (config) {
             'bower_components/angular-resource/angular-resource.js',
             'bower_components/angular-mocks/angular-mocks.js',
             'bower_components/angular-sanitize/angular-sanitize.js',
+            'bower_components/angular-sanitize/angular-sanitize.js',
+            'bower_components/angular-animate/angular-animate.js',
+            'bower_components/json3/lib/json3.js',
+            'bower_components/angular-loading-bar/build/loading-bar.js',
             'app/**/*.js',
             //'test/mock/**/*.js',
             'test/spec/**/*.js',
@@ -32,10 +36,10 @@ module.exports = function (config) {
         },
         ngHtml2JsPreprocessor: {
             // strip this from the file path
-            //stripPrefix: 'public/',
+            //stripPrefix: 'app/',
             //stripSufix: '.ext',
             // prepend this to the
-            prependPrefix: '/web/bundles/Sk/',
+            //prependPrefix: '/web/bundles/Sk/',
             // or define a custom transform function
 //            cacheIdFromPath: function (filepath) {
 //                return '/web/bundles/Sk/' + filepath; //cacheId;
@@ -48,7 +52,7 @@ module.exports = function (config) {
         // list of files / patterns to exclude
         exclude: [],
         // web server port
-        port: 9001,
+        //port: 9001,
         // Start these browsers, currently available:
         // - Chrome
         // - ChromeCanary
@@ -74,14 +78,14 @@ module.exports = function (config) {
         colors: true,
         // level of logging
         // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-        logLevel: config.LOG_DEBUG
+        logLevel: config.LOG_DEBUG,
 
 
 
                 // Uncomment the following lines if you are using grunt's server to run the tests
-//    proxies: {
-//       '/': 'http://mw.local:9000/'
-//    }
+       proxies: {
+          '/': 'http://localhost:9000/'
+       }
                 // URL root prevent conflicts with the site root
                 // urlRoot: '_karma_'
     });

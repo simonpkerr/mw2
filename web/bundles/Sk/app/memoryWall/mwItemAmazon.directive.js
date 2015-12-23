@@ -20,9 +20,9 @@
 
 
     function link(scope, element, attrs) {
-//            scope.template = '/web/bundles/Sk/app/memoryWall/' + scope.item.provider + '.html';
+      //scope.template = '/web/bundles/Sk/app/memoryWall/' + scope.item.provider + '.html';
 
-}
+    }
 }
 
 })();
