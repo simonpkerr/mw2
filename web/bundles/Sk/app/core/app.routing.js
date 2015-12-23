@@ -10,6 +10,14 @@
 
   function config($routeProvider, $sceDelegateProvider, $locationProvider, baseUrl) {
     $routeProvider
+      .when('/index/:selectedDecade', {
+        templateUrl: baseUrl + 'memoryWall/main.html',
+        controller: 'MemoryWall',
+        controllerAs: 'vm',
+        resolve: {
+          memoryWallPrepService: memoryWallPrepService
+        }
+      })
       .when('/index', {
         templateUrl: baseUrl + 'memoryWall/main.html',
         controller: 'MemoryWall',
