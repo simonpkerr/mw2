@@ -1,8 +1,11 @@
 <div>
-<h3 ng-bind="item.title"></h3>
+  <div class="item-actions">
+    <a href="#" ng-click="vm.exploreWall(item)" class="icon-search explore" title="Explore {{item.title}}"></a>
+  </div>
+<h3 class="item-title" ng-bind="item.title"></h3>
 <img ng-src="{{item.image}}" alt="{{item.title}}" />
-<ul class="item-actions">
+<!-- <ul class="item-actions">
   <li><a ng-href="{{item.url}}" title="buy {{item.title}} from Amazon" class="icon-basket"></a></li>
-  <li><a href="" class="icon-search" title="explore"></a></li>
-</ul>
+  <li></li>
+</ul> -->
 </div>

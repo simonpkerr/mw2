@@ -21,8 +21,8 @@
             scope.$digest();
         }));
 
-        it('should create a container with a class of "amazon-item"', function() {
-            expect(elm.hasClass('amazon-item')).toBe(true);
+        it('should include the title', function() {
+            expect($('.item-title', elm).text()).toEqual('Mock title');
         });
 
         it('should link to the associated item', function() {

@@ -8,11 +8,12 @@
   function memoryWallService($resource) {
     var service = {
       memoryWall: memoryWall,
-      mediaTypes: mediaTypes
+      mediaTypes: mediaTypes,
+      memoryWallItem: memoryWallItem
     };
     return service;
 
-    function memoryWall(decade) {
+    function memoryWall() {
 
       return $resource('/web/app_dev.php/api/memorywalls/:decade',
         { decade: decade },
@@ -21,7 +22,8 @@
             method: 'GET',
             isArray: true
           }
-        });
+        }
+      );
     }
 
     function mediaTypes() {
@@ -31,6 +33,20 @@
           isArray: true
         }
       });
+    }
+
+    function memoryWallItem(item) {
+      return $resource('/web/app_dev.php/api/memorywall/item/:provider/:id',
+        {
+          provider: item.provider,
+          id: item.id
+        },
+        {
+          query: {
+            method: 'GET'
+          }
+        }
+      );
     }
 
   }

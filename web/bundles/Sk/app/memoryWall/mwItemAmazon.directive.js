@@ -4,9 +4,9 @@
   .module('mwApp.memoryWall')
   .directive('mwItemAmazon', mwItemAmazon);
 
-  mwItemAmazon.$inject = ['baseUrl'];
+  mwItemAmazon.$inject = ['baseUrl', 'memoryWallService'];
 
-  function mwItemAmazon(baseUrl) {
+  function mwItemAmazon(baseUrl, memoryWallService) {
     var directive = {
       restrict: 'E',
       scope: {
@@ -20,7 +20,19 @@
 
 
     function link(scope, element, attrs) {
-      //scope.template = '/web/bundles/Sk/app/memoryWall/' + scope.item.provider + '.html';
+
+      // scope.explore = function (item) {
+      //   return memoryWallService.memoryWallItem.get(
+      //     {
+      //       provider: item.provider,
+      //       id: item.id
+      //     },
+      //     function (data) {
+      //       return data;
+      //     }
+      //   );
+
+      // };
 
     }
 }

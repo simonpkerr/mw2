@@ -1,11 +1,14 @@
 <div>
-<h3 ng-bind="item.title"></h3>
-<img ng-src="{{item.image}}" alt="{{item.title}}" />
-<p ng-bind="item.description"></p>
-<ul class="item-actions">
-  <li><a ng-click="playYouTubeVideo()" class="icon-play" title="play {{item.title}}" ></a></li>
-</ul>
+  <div class="item-actions">
+    <a href="#" class="icon-search explore" title="Explore {{item.title}}"></a>
+  </div>
+  <h3 class="item-title" ng-bind="item.title"></h3>
+  <img ng-src="{{item.image}}" alt="{{item.title}}" />
+  <!-- <p ng-bind="item.description"></p> -->
+  <!-- <ul class="item-actions">
+    <li><a ng-click="playYouTubeVideo()" class="icon-play" title="play {{item.title}}" ></a></li>
+  </ul> -->
 
-<div class="youtube-player"></div>
+  <div class="youtube-player"></div>
 </div>
 

@@ -3,19 +3,21 @@
     angular.module('mwApp.memoryWall',[])
         .controller('MemoryWall', MemoryWall);
 
-    MemoryWall.$inject = ['$scope', 'memoryWallPrepService', '$sce', '$location', '$routeParams'];
+    MemoryWall.$inject = ['$scope', 'memoryWallService', '$sce', '$location', '$routeParams'];
 
-    function MemoryWall($scope, memoryWallPrepService, $sce, $location, $routeParams) {
+    function MemoryWall($scope, memoryWallService, $sce, $location, $routeParams) {
       //from here https://github.com/johnpapa/angularjs-styleguide#style-y034
       var vm = this;
       vm.wallData = {};
+      vm.exploredItems = {};
       vm.decades = getDecades();
       vm.selectedDecade = getSelectedDecade();
       vm.getWallData = getWallData;
-      vm.getYouTubePlayer = getYouTubePlayer;
+      //vm.getYouTubePlayer = getYouTubePlayer;
+      vm.exploreWall = exploreWall;
 
       getWallData();
-      getYouTubePlayer();
+      //getYouTubePlayer();
 
       function getDecades(){
         var decades = [],
@@ -56,7 +58,7 @@
         }
 
         //var decade = vm.selectedDecade || 'any';
-        return memoryWallPrepService.memoryWall.get(
+        return memoryWallService.memoryWall().get(
           {
             decade: vm.selectedDecade.id
           },
@@ -67,8 +69,23 @@
         );
       }
 
-      function getYouTubePlayer() {
-        return memoryWallPrepService.getYouTubePlayer();
+      function exploreWall(item) {
+        var itemData = memoryWallService.memoryWallItem().get(
+          {
+            provider: item.provider,
+            id: item.id
+          },
+          function (data) {
+            return data;
+          }
+        );
+
+        console.log(itemData);
+
       }
+
+      // function getYouTubePlayer() {
+      //   return memoryWallService.getYouTubePlayer();
+      // }
     }
 })();

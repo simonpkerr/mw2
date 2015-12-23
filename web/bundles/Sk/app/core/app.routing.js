@@ -13,18 +13,20 @@
       .when('/index/:selectedDecade', {
         templateUrl: baseUrl + 'memoryWall/main.html',
         controller: 'MemoryWall',
-        controllerAs: 'vm',
-        resolve: {
-          memoryWallPrepService: memoryWallPrepService
-        }
+        controllerAs: 'vm'
+        // ,
+        // resolve: {
+        //   memoryWallPrepService: memoryWallPrepService
+        // }
       })
       .when('/index', {
         templateUrl: baseUrl + 'memoryWall/main.html',
         controller: 'MemoryWall',
-        controllerAs: 'vm',
-        resolve: {
-          memoryWallPrepService: memoryWallPrepService
-        }
+        controllerAs: 'vm'
+        // ,
+        // resolve: {
+        //   memoryWallPrepService: memoryWallPrepService
+        // }
       })
       .otherwise({
         redirectTo: '/index'
@@ -42,13 +44,14 @@
     $locationProvider.html5Mode(true);
   }
 
-  memoryWallPrepService.$inject = ['memoryWallService', 'youTubeService'];
-  function memoryWallPrepService (memoryWallService, youTubeService) {
-    return {
-      memoryWall: memoryWallService.memoryWall(),
-      getYouTubePlayer: youTubeService.getPlayer
-    };
-  }
+  // memoryWallPrepService.$inject = ['memoryWallService', 'youTubeService'];
+  // function memoryWallPrepService (memoryWallService, youTubeService) {
+  //   return {
+  //     memoryWall: memoryWallService.memoryWall(),
+  //     memoryWallItem: memoryWallService.memoryWallItem(),
+  //     getYouTubePlayer: youTubeService.getPlayer
+  //   };
+  // }
 
 
 })();

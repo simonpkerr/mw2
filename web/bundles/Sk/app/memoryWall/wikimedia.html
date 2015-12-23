@@ -1,22 +1,25 @@
 <div ng-switch on="item.mediatype">
-    <h3 ng-bind-html="item.title"></h3>
-    <img ng-switch-when="BITMAP" ng-src="{{item.thumbnail}}" alt="{{item.title}}" />
-    <audio ng-switch-when="AUDIO" ng-src="{{item.image}}" controls preload="auto">
-        <p>Your browser does not support audio, you&rsquo;d better upgrade!</p>
-    </audio>
-    <ul class="item-actions">
-        <li><a ng-click="isOpen = !isOpen" class="icon-info" title="show details about {{item.title}}"></a></li>
+  <div class="item-actions">
+    <a href="#" class="icon-search explore" title="Explore {{item.title}}"></a>
+  </div>
+  <h3 class="item-title" ng-bind-html="item.title"></h3>
+  <img ng-switch-when="BITMAP" ng-src="{{item.thumbnail}}" alt="{{item.title}}" />
+  <audio ng-switch-when="AUDIO" ng-src="{{item.image}}" controls preload="auto">
+    <p>Your browser does not support audio, you&rsquo;d better upgrade!</p>
+  </audio>
+  <!-- <ul class="item-actions">
+    <li><a ng-click="isOpen = !isOpen" class="icon-info" title="show details about {{item.title}}"></a></li>
+  </ul>
+  <div class="info-window" ng-show="isOpen">
+    <div ng-bind-html="item.description"></div>
+    <h4>Categories</h4>
+    <ul>
+      <li ng-repeat="category in item.categories">
+        {{category}}
+      </li>
     </ul>
-    <div class="info-window" ng-show="isOpen">
-        <div ng-bind-html="item.description"></div>
-        <h4>Categories</h4>
-        <ul>
-            <li ng-repeat="category in item.categories">
-                {{category}}
-            </li>
-        </ul>
-        <a class="oj" ng-href="{{item.url}}">View this page on WikiMedia</a>
-    </div>
-    <!--    <p>{{item.mediatype}}</p>-->
+    <a class="oj" ng-href="{{item.url}}">View this page on WikiMedia</a>
+  </div> -->
+  <!--    <p>{{item.mediatype}}</p>-->
 </div>
 

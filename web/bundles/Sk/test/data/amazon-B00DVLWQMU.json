@@ -1,0 +1,312 @@
+{
+  "ItemLookupResponse": {
+    "-xmlns": "http://webservices.amazon.com/AWSECommerceService/2011-08-01",
+    "OperationRequest": {
+      "RequestId": "007abf64-ecda-4f03-bff0-daa36a00bc37",
+      "Arguments": {
+        "Argument": [
+          {
+            "-Name": "ItemId",
+            "-Value": "B0073FCA94"
+          },
+          {
+            "-Name": "Operation",
+            "-Value": "ItemLookup"
+          },
+          {
+            "-Name": "Service",
+            "-Value": "AWSECommerceService"
+          },
+          {
+            "-Name": "AWSAccessKeyId",
+            "-Value": "AKIAJVJZWBLIJ353LQ2Q"
+          },
+          {
+            "-Name": "Timestamp",
+            "-Value": "2012-06-26T08:15:34Z"
+          },
+          {
+            "-Name": "Signature",
+            "-Value": "JKgIed9ThIy4ODipfbQNnM2Qi1VdULojV733dEt7eCU="
+          },
+          {
+            "-Name": "ResponseGroup",
+            "-Value": "Images,ItemAttributes,SalesRank,Request,Similarities"
+          },
+          {
+            "-Name": "AssociateTag",
+            "-Value": "noodledig-21"
+          },
+          {
+            "-Name": "Version",
+            "-Value": "2009-03-31"
+          }
+        ]
+      },
+      "RequestProcessingTime": "0.1062980000000000"
+    },
+    "Items": {
+      "Request": {
+        "IsValid": "True",
+        "ItemLookupRequest": {
+          "IdType": "ASIN",
+          "ItemId": "B0073FCA94",
+          "ResponseGroup": [
+            "Images",
+            "ItemAttributes",
+            "SalesRank",
+            "Request",
+            "Similarities"
+          ],
+          "VariationPage": "All"
+        }
+      },
+      "Item": {
+        "ASIN": "B0073FCA94",
+        "DetailPageURL": "http://www.amazon.co.uk/The-Return-Living-Dead-Steelbook/dp/B0073FCA94%3FSubscriptionId%3DAKIAJVJZWBLIJ353LQ2Q%26tag%3Dnoodledig-21%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3DB0073FCA94",
+        "ItemLinks": {
+          "ItemLink": [
+            {
+              "Description": "Add To Wishlist",
+              "URL": "http://www.amazon.co.uk/gp/registry/wishlist/add-item.html%3Fasin.0%3DB0073FCA94%26SubscriptionId%3DAKIAJVJZWBLIJ353LQ2Q%26tag%3Dnoodledig-21%26linkCode%3Dxm2%26camp%3D2025%26creative%3D12734%26creativeASIN%3DB0073FCA94"
+            },
+            {
+              "Description": "Tell A Friend",
+              "URL": "http://www.amazon.co.uk/gp/pdp/taf/B0073FCA94%3FSubscriptionId%3DAKIAJVJZWBLIJ353LQ2Q%26tag%3Dnoodledig-21%26linkCode%3Dxm2%26camp%3D2025%26creative%3D12734%26creativeASIN%3DB0073FCA94"
+            },
+            {
+              "Description": "All Customer Reviews",
+              "URL": "http://www.amazon.co.uk/review/product/B0073FCA94%3FSubscriptionId%3DAKIAJVJZWBLIJ353LQ2Q%26tag%3Dnoodledig-21%26linkCode%3Dxm2%26camp%3D2025%26creative%3D12734%26creativeASIN%3DB0073FCA94"
+            },
+            {
+              "Description": "All Offers",
+              "URL": "http://www.amazon.co.uk/gp/offer-listing/B0073FCA94%3FSubscriptionId%3DAKIAJVJZWBLIJ353LQ2Q%26tag%3Dnoodledig-21%26linkCode%3Dxm2%26camp%3D2025%26creative%3D12734%26creativeASIN%3DB0073FCA94"
+            }
+          ]
+        },
+        "SalesRank": "579",
+        "SmallImage": {
+          "URL": "http://ecx.images-amazon.com/images/I/51c1uh6bgWL._SL75_.jpg",
+          "Height": {
+            "-Units": "pixels",
+            "#text": "75"
+          },
+          "Width": {
+            "-Units": "pixels",
+            "#text": "62"
+          }
+        },
+        "MediumImage": {
+          "URL": "http://ecx.images-amazon.com/images/I/51c1uh6bgWL._SL160_.jpg",
+          "Height": {
+            "-Units": "pixels",
+            "#text": "160"
+          },
+          "Width": {
+            "-Units": "pixels",
+            "#text": "132"
+          }
+        },
+        "LargeImage": {
+          "URL": "http://ecx.images-amazon.com/images/I/51c1uh6bgWL.jpg",
+          "Height": {
+            "-Units": "pixels",
+            "#text": "500"
+          },
+          "Width": {
+            "-Units": "pixels",
+            "#text": "413"
+          }
+        },
+        "ImageSets": {
+          "ImageSet": {
+            "-Category": "primary",
+            "SwatchImage": {
+              "URL": "http://ecx.images-amazon.com/images/I/51c1uh6bgWL._SL30_.jpg",
+              "Height": {
+                "-Units": "pixels",
+                "#text": "30"
+              },
+              "Width": {
+                "-Units": "pixels",
+                "#text": "25"
+              }
+            },
+            "SmallImage": {
+              "URL": "http://ecx.images-amazon.com/images/I/51c1uh6bgWL._SL75_.jpg",
+              "Height": {
+                "-Units": "pixels",
+                "#text": "75"
+              },
+              "Width": {
+                "-Units": "pixels",
+                "#text": "62"
+              }
+            },
+            "ThumbnailImage": {
+              "URL": "http://ecx.images-amazon.com/images/I/51c1uh6bgWL._SL75_.jpg",
+              "Height": {
+                "-Units": "pixels",
+                "#text": "75"
+              },
+              "Width": {
+                "-Units": "pixels",
+                "#text": "62"
+              }
+            },
+            "TinyImage": {
+              "URL": "http://ecx.images-amazon.com/images/I/51c1uh6bgWL._SL110_.jpg",
+              "Height": {
+                "-Units": "pixels",
+                "#text": "110"
+              },
+              "Width": {
+                "-Units": "pixels",
+                "#text": "91"
+              }
+            },
+            "MediumImage": {
+              "URL": "http://ecx.images-amazon.com/images/I/51c1uh6bgWL._SL160_.jpg",
+              "Height": {
+                "-Units": "pixels",
+                "#text": "160"
+              },
+              "Width": {
+                "-Units": "pixels",
+                "#text": "132"
+              }
+            },
+            "LargeImage": {
+              "URL": "http://ecx.images-amazon.com/images/I/51c1uh6bgWL.jpg",
+              "Height": {
+                "-Units": "pixels",
+                "#text": "500"
+              },
+              "Width": {
+                "-Units": "pixels",
+                "#text": "413"
+              }
+            }
+          }
+        },
+        "ItemAttributes": {
+          "Actor": [
+            "Clu Galager",
+            "James Karen"
+          ],
+          "AudienceRating": "Suitable for 15 years and over",
+          "Binding": "Blu-ray",
+          "Brand": "SECOND SIGHT",
+          "Creator": [
+            {
+              "-Role": "Primary Contributor",
+              "#text": "Clu Galager"
+            },
+            {
+              "-Role": "Primary Contributor",
+              "#text": "James Karen"
+            }
+          ],
+          "Director": "Dan O'Bannon",
+          "EAN": "5028836040064",
+          "EANList": { "EANListElement": "5028836040064" },
+          "Format": [
+            "Anamorphic",
+            "Dolby",
+            "PAL",
+            "Surround Sound",
+            "Widescreen"
+          ],
+          "Label": "Second Sight Films",
+          "Languages": {
+            "Language": [
+              {
+                "Name": "None",
+                "Type": "Subtitles For The Hearing Impaired"
+              },
+              {
+                "Name": "English",
+                "Type": "Unknown"
+              },
+              {
+                "Name": "None",
+                "Type": "Subtitled"
+              },
+              {
+                "Name": "English",
+                "Type": "Original Language"
+              },
+              {
+                "Name": "None",
+                "Type": "Dubbed"
+              }
+            ]
+          },
+          "ListPrice": {
+            "Amount": "2299",
+            "CurrencyCode": "GBP",
+            "FormattedPrice": "£22.99"
+          },
+          "Manufacturer": "Second Sight Films",
+          "MPN": "5028836040064",
+          "NumberOfDiscs": "1",
+          "NumberOfItems": "1",
+          "PackageDimensions": {
+            "Height": {
+              "-Units": "hundredths-inches",
+              "#text": "185"
+            },
+            "Length": {
+              "-Units": "hundredths-inches",
+              "#text": "866"
+            },
+            "Weight": {
+              "-Units": "hundredths-pounds",
+              "#text": "57"
+            },
+            "Width": {
+              "-Units": "hundredths-inches",
+              "#text": "807"
+            }
+          },
+          "PartNumber": "5028836040064",
+          "ProductGroup": "DVD",
+          "ProductTypeName": "ABIS_DVD",
+          "Publisher": "Second Sight Films",
+          "RegionCode": "2",
+          "ReleaseDate": "2012-06-04",
+          "RunningTime": {
+            "-Units": "minutes",
+            "#text": "90"
+          },
+          "Studio": "Second Sight Films",
+          "Title": "The Return of the Living Dead : Limited Special Edition Steelbook [Blu-ray] [1985]"
+        },
+        "SimilarProducts": {
+          "SimilarProduct": [
+            {
+              "ASIN": "B0002W12LW",
+              "Title": "Return of The Living Dead 2 [DVD] [1988]"
+            },
+            {
+              "ASIN": "B005DDIUYW",
+              "Title": "Island of Lost Souls [Masters of Cinema] (Dual Format) [Blu-ray] [1932]"
+            },
+            {
+              "ASIN": "B0038KGLZC",
+              "Title": "City of the Living Dead [Blu-ray][Region Free]"
+            },
+            {
+              "ASIN": "B004Z132V4",
+              "Title": "The Funhouse [Blu-ray]"
+            },
+            {
+              "ASIN": "B006C19NQI",
+              "Title": "Plague Of The Zombies (DVD + Blu-ray Double Play) [1966]"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,18 +1,21 @@
 <div>
-<h3>{{item.title}} by {{item.artist}}</h3>
-<img ng-src="{{item.image}}" alt="{{item.title}}" />
-<div class="info-window" ng-show="isOpen">
+  <div class="item-actions">
+    <a href="#" class="icon-search explore" title="Explore {{item.title}}"></a>
+  </div>
+  <h3>{{item.title}} by {{item.artist}}</h3>
+  <img ng-src="{{item.image}}" alt="{{item.title}}" />
+<!-- <div class="info-window" ng-show="isOpen">
     <dl>
       <dt>Originally released:</dt><dd ng-bind="item.originalReleaseDate"></dd>
       <dt>Price:</dt><dd ng-bind="item.price"></dd>
     </dl>
 </div>
+ -->
 
-
-<ul class="item-actions">
+<!-- <ul class="item-actions">
   <li><a ng-click="isOpen = !isOpen" class="icon-info" title="Show details and preview tracks for {{item.title}}"></a></li>
   <li><a class="icon-basket" title="Buy {{item.title}} from 7Digital" ng-href="{{item.url}}"></a></li>
-</ul>
+</ul> -->
 
 
 
