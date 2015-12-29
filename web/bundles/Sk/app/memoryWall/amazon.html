@@ -1,10 +1,4 @@
-<div ng-class="{ selected : selected }">
-  <div class="item-actions" ng-show="!selected">
-    <a href="#" ng-click="exploreWall(item)" class="icon-search explore" title="Explore {{item.title}}"></a>
-  </div>
+<div>
   <h3 class="item-title" ng-bind="item.title"></h3>
   <img ng-src="{{item.image}}" alt="{{item.title}}" />
-
-  <mw-explored-item ng-show="exploredItems.length > 0" explore-wall="exploreWall" explored-items="exploredItems" />
-
 </div>

@@ -9,6 +9,19 @@
     <img ng-src="{{item.image}}" alt="{{item.title}}" />
   </div>
 
-  <mw-explored-item ng-show="exploredItems.length > 0 && selected" explore-wall="exploreWall" explored-items="exploredItems" />
+  <!-- <mw-explored-item ng-show="exploredItems.length > 0 && selected" explore-wall="exploreWall" explored-items="exploredItems" /> -->
+  <div class="item-details" ng-show="exploredItems.length > 0 && selected">
+
+    <div class="owl-carousel">
+      <!-- loop through all explored-items, output relevant directive -->
+      <div class="item" ng-repeat="item in exploredItems" ng-switch on="item.provider">
+          <mw-item-amazon ng-switch-when="amazon" item="item.data" explore-wall="exploreWall"></mw-item-amazon>
+          <mw-item-youtube ng-switch-when="youtube" item="item.data" explore-wall="exploreWall"></mw-item-youtube>
+          <mw-item-wikimedia ng-switch-when="wikimedia" item="item.data" explore-wall="exploreWall"></mw-item-wikimedia>
+          <mw-item-sevendigital ng-switch-when="sevendigital" item="item.data" explore-wall="exploreWall"></mw-item-sevendigital>
+      </div>
+    </div>
+
+  </div>
 
 </div>

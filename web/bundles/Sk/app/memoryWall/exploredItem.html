@@ -1,5 +1,11 @@
-<div class="owl-carousel">
+<div class="owl-carousel" >
 <!-- loop through all explored-items, output relevant directive -->
-  <p>content goes here</p>
-  <a href="#" ng-click="exploreWall()">explore this item now</a>
+  <mw-item-detail class="item" ng-repeat="item in exploredItems" item="item" explore-wall="exploreWall"></mw-item-detail>
+
+  <div class="item" ng-repeat="item in exploredItems" ng-switch on="item.provider">
+      <mw-item-amazon ng-switch-when="amazon" item="item" explore-wall="vm.exploreWall"></mw-item-amazon>
+      <mw-item-youtube ng-switch-when="youtube" item="item"></mw-item-youtube>
+      <mw-item-wikimedia ng-switch-when="wikimedia" item="item"></mw-item-wikimedia>
+      <mw-item-sevendigital ng-switch-when="sevendigital" item="item"></mw-item-sevendigital>
+  </div>
 </div>

@@ -11,8 +11,6 @@
       restrict: 'E',
       scope: {
         item: '='
-        //,
-        //exploreWall: '='
       },
       replace: true,
       link: link,
@@ -21,24 +19,6 @@
     return directive;
 
     function link(scope, element, attrs) {
-
-      scope.exploredItems = [];
-      scope.exploreWall = exploreWall;
-      scope.selected = false;
-
-      function exploreWall(item) {
-        memoryWallService.memoryWallItem().get(
-          {
-            provider: item.provider,
-            id: item.id
-          },
-          function (data) {
-            //make the api call return a generic itemData object with provider specific data inside
-            scope.exploredItems.push(data.ItemLookupResponse);
-            scope.selected = true;
-          }
-        );
-      }
 
     }
 

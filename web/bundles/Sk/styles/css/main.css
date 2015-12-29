@@ -1363,8 +1363,8 @@ body {
 .site-content .wall-items__item:hover .item-actions {
   opacity: 1;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003162}}
-.site-content .wall-items__item img {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003163}}
+.site-content .wall-items__item .item-overview img {
   display: block;
   margin: 0 auto;
   max-width: 100%;
@@ -1372,23 +1372,23 @@ body {
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.3);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003172}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003173}}
 .site-content .wall-items__item.selected {
   max-width: 100%;
   width: 100%;
   padding: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003180}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003181}}
 .site-content .wall-items__item .item-close {
   float: right;
   color: #b3b4be;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003185}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003184}}
 .site-content .wall-items__item .item-close:hover {
   color: #da153a;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003199}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003198}}
 .item-actions {
   transition: all 0.5s;
   display: -webkit-flex;
@@ -1405,7 +1405,7 @@ body {
   position: absolute;
   opacity: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003209}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003208}}
 .item-actions:before {
   background-color: #abd7f5;
   content: ' ';
@@ -1416,7 +1416,7 @@ body {
   left: 0;
   top: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003219}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003218}}
 .item-actions a {
   display: inline-block;
   margin: 0;
@@ -1427,12 +1427,12 @@ body {
   cursor: pointer;
   z-index: 10;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003228}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003227}}
 .item-actions a:before {
   font-size: 300%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003240}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003239}}
 .icon.radius {
   border-radius: 3px;
 }

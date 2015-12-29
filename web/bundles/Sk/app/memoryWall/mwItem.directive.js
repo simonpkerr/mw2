@@ -32,7 +32,7 @@
           },
           function (data) {
             //make the api call return a generic itemData object with provider specific data inside
-            scope.exploredItems.push(data.ItemLookupResponse);
+            scope.exploredItems.push(data.wallItem);
             scope.selected = true;
 
             //move the window to the top of the selected panel
@@ -43,9 +43,6 @@
           }
         );
       }
-
-
-
     }
 
 

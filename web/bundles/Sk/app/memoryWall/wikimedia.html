@@ -1,7 +1,4 @@
 <div ng-switch on="item.mediatype">
-  <div class="item-actions">
-    <a href="#" class="icon-search explore" title="Explore {{item.title}}"></a>
-  </div>
   <h3 class="item-title" ng-bind-html="item.title"></h3>
   <img ng-switch-when="BITMAP" ng-src="{{item.thumbnail}}" alt="{{item.title}}" />
   <audio ng-switch-when="AUDIO" ng-src="{{item.image}}" controls preload="auto">
