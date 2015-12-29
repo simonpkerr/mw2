@@ -48,7 +48,6 @@
   // function memoryWallPrepService (memoryWallService, youTubeService) {
   //   return {
   //     memoryWall: memoryWallService.memoryWall(),
-  //     memoryWallItem: memoryWallService.memoryWallItem(),
   //     getYouTubePlayer: youTubeService.getPlayer
   //   };
   // }

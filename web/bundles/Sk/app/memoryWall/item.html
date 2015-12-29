@@ -1,0 +1,14 @@
+<div ng-class="{ selected : selected }">
+  <a ng-click="selected = !selected" class="icon-cancel radius item-close" title="close" ng-show="selected" href="#"></a>
+
+  <div class="item-overview" ng-show="!selected">
+    <div class="item-actions" >
+      <a href="#" ng-click="exploreWall(item)" class="icon-search explore" title="Explore {{item.title}}"></a>
+    </div>
+    <h3 class="item-title" ng-bind="item.title"></h3>
+    <img ng-src="{{item.image}}" alt="{{item.title}}" />
+  </div>
+
+  <mw-explored-item ng-show="exploredItems.length > 0 && selected" explore-wall="exploreWall" explored-items="exploredItems" />
+
+</div>

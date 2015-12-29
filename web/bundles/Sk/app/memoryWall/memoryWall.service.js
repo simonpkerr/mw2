@@ -13,7 +13,7 @@
     };
     return service;
 
-    function memoryWall() {
+    function memoryWall(decade) {
 
       return $resource('/web/app_dev.php/api/memorywalls/:decade',
         { decade: decade },
@@ -35,11 +35,11 @@
       });
     }
 
-    function memoryWallItem(item) {
+    function memoryWallItem(provider, id) {
       return $resource('/web/app_dev.php/api/memorywall/item/:provider/:id',
         {
-          provider: item.provider,
-          id: item.id
+          provider: provider,
+          id: id
         },
         {
           query: {

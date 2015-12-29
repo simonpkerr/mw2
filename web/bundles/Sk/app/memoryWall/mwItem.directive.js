@@ -2,21 +2,19 @@
   'use strict';
   angular
   .module('mwApp.memoryWall')
-  .directive('mwItemAmazon', mwItemAmazon);
+  .directive('mwItem', mwItem);
 
-  mwItemAmazon.$inject = ['baseUrl', 'memoryWallService'];
+  mwItem.$inject = ['baseUrl', 'memoryWallService', '$timeout'];
 
-  function mwItemAmazon(baseUrl, memoryWallService) {
+  function mwItem(baseUrl, memoryWallService, $timeout) {
     var directive = {
       restrict: 'E',
       scope: {
         item: '='
-        //,
-        //exploreWall: '='
       },
       replace: true,
       link: link,
-      templateUrl: baseUrl + 'memoryWall/amazon.html'
+      templateUrl: baseUrl + 'memoryWall/item.html'
     };
     return directive;
 
@@ -36,9 +34,17 @@
             //make the api call return a generic itemData object with provider specific data inside
             scope.exploredItems.push(data.ItemLookupResponse);
             scope.selected = true;
+
+            //move the window to the top of the selected panel
+            // $timeout(function(){
+
+            // });
+
           }
         );
       }
+
+
 
     }
 

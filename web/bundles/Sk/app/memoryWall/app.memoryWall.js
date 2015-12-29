@@ -14,7 +14,7 @@
       vm.selectedDecade = getSelectedDecade();
       vm.getWallData = getWallData;
       //vm.getYouTubePlayer = getYouTubePlayer;
-      vm.exploreWall = exploreWall;
+      //vm.exploreWall = exploreWall;
 
       getWallData();
       //getYouTubePlayer();
@@ -69,20 +69,17 @@
         );
       }
 
-      function exploreWall(item) {
-        var itemData = memoryWallService.memoryWallItem().get(
-          {
-            provider: item.provider,
-            id: item.id
-          },
-          function (data) {
-            return data;
-          }
-        );
-
-        console.log(itemData);
-
-      }
+      // function exploreWall(item) {
+      //   var itemData = memoryWallService.memoryWallItem().get(
+      //     {
+      //       provider: item.provider,
+      //       id: item.id
+      //     },
+      //     function (data) {
+      //       return data;
+      //     }
+      //   );
+      // }
 
       // function getYouTubePlayer() {
       //   return memoryWallService.getYouTubePlayer();

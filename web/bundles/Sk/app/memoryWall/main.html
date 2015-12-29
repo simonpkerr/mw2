@@ -13,11 +13,13 @@
 
 <section class="site-content">
     <div class="wall-items__container flex__container">
-        <div class="wall-items__item  flex__item {{item.provider}}__item" ng-repeat="item in vm.wallData.providerData" ng-switch on="item.provider">
-            <mw-item-amazon ng-switch-when="amazon" item="item"></mw-item-amazon>
+        <!-- <div class="wall-items__item  flex__item {{item.provider}}__item" ng-repeat="item in vm.wallData.providerData" ng-switch on="item.provider">
+            <mw-item-amazon ng-switch-when="amazon" item="item" explore-wall="vm.exploreWall"></mw-item-amazon>
             <mw-item-youtube ng-switch-when="youtube" item="item"></mw-item-youtube>
             <mw-item-wikimedia ng-switch-when="wikimedia" item="item"></mw-item-wikimedia>
             <mw-item-sevendigital ng-switch-when="sevendigital" item="item"></mw-item-sevendigital>
-        </div>
+        </div> -->
+        <mw-item class="wall-items__item  flex__item {{item.provider}}__item" ng-repeat="item in vm.wallData.providerData" item="item" explore-wall="vm.exploreWall"></mw-item>
+
     </div>
 </section>

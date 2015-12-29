@@ -1,11 +1,10 @@
-<div>
-  <div class="item-actions">
-    <a href="#" ng-click="vm.exploreWall(item)" class="icon-search explore" title="Explore {{item.title}}"></a>
+<div ng-class="{ selected : selected }">
+  <div class="item-actions" ng-show="!selected">
+    <a href="#" ng-click="exploreWall(item)" class="icon-search explore" title="Explore {{item.title}}"></a>
   </div>
-<h3 class="item-title" ng-bind="item.title"></h3>
-<img ng-src="{{item.image}}" alt="{{item.title}}" />
-<!-- <ul class="item-actions">
-  <li><a ng-href="{{item.url}}" title="buy {{item.title}} from Amazon" class="icon-basket"></a></li>
-  <li></li>
-</ul> -->
+  <h3 class="item-title" ng-bind="item.title"></h3>
+  <img ng-src="{{item.image}}" alt="{{item.title}}" />
+
+  <mw-explored-item ng-show="exploredItems.length > 0" explore-wall="exploreWall" explored-items="exploredItems" />
+
 </div>
