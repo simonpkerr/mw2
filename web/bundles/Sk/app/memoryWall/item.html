@@ -14,8 +14,8 @@
 
     <div class="owl-carousel">
       <!-- loop through all explored-items, output relevant directive -->
-      <div class="item" ng-repeat="item in exploredItems" ng-switch on="item.provider">
-          <mw-item-amazon ng-switch-when="amazon" item="item" explore-wall="exploreWall"></mw-item-amazon>
+      <div ng-repeat="item in exploredItems" ng-switch on="item.provider" class="item" ng-init="$last ? setupCarousel($index) : angular.noop()">
+          <mw-item-amazon ng-switch-when="amazon" item="item" explore-wall="exploreWall" item-index="$index"></mw-item-amazon>
           <mw-item-youtube ng-switch-when="youtube" item="item" explore-wall="exploreWall"></mw-item-youtube>
           <mw-item-wikimedia ng-switch-when="wikimedia" item="item" explore-wall="exploreWall"></mw-item-wikimedia>
           <mw-item-sevendigital ng-switch-when="sevendigital" item="item" explore-wall="exploreWall"></mw-item-sevendigital>

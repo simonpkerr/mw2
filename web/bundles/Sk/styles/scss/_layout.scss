@@ -179,6 +179,8 @@ body {
     }
 
     .item-close {
+      position: relative;
+      z-index: 999;
       float: right;
       color: palette(grey, dark);
       &:hover {

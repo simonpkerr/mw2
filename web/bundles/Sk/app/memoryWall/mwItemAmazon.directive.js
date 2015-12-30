@@ -11,7 +11,8 @@
       restrict: 'E',
       scope: {
         item: '=',
-        exploreWall: '='
+        exploreWall: '=',
+        itemIndex: '='
       },
       replace: true,
       link: link,
