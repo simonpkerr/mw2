@@ -3,7 +3,7 @@
 
   <div class="item-overview" ng-show="!selected">
     <div class="item-actions" >
-      <a href="#" ng-click="exploreWall(item)" class="icon-search explore" title="Explore {{item.title}}"></a>
+      <a href="#" ng-click="exploreWall(item.provider, item.id)" class="icon-search explore" title="Explore {{item.title}}"></a>
     </div>
     <h3 class="item-title" ng-bind="item.title"></h3>
     <img ng-src="{{item.image}}" alt="{{item.title}}" />
@@ -15,10 +15,10 @@
     <div class="owl-carousel">
       <!-- loop through all explored-items, output relevant directive -->
       <div class="item" ng-repeat="item in exploredItems" ng-switch on="item.provider">
-          <mw-item-amazon ng-switch-when="amazon" item="item.data" explore-wall="exploreWall"></mw-item-amazon>
-          <mw-item-youtube ng-switch-when="youtube" item="item.data" explore-wall="exploreWall"></mw-item-youtube>
-          <mw-item-wikimedia ng-switch-when="wikimedia" item="item.data" explore-wall="exploreWall"></mw-item-wikimedia>
-          <mw-item-sevendigital ng-switch-when="sevendigital" item="item.data" explore-wall="exploreWall"></mw-item-sevendigital>
+          <mw-item-amazon ng-switch-when="amazon" item="item" explore-wall="exploreWall"></mw-item-amazon>
+          <mw-item-youtube ng-switch-when="youtube" item="item" explore-wall="exploreWall"></mw-item-youtube>
+          <mw-item-wikimedia ng-switch-when="wikimedia" item="item" explore-wall="exploreWall"></mw-item-wikimedia>
+          <mw-item-sevendigital ng-switch-when="sevendigital" item="item" explore-wall="exploreWall"></mw-item-sevendigital>
       </div>
     </div>
 

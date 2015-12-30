@@ -26,6 +26,7 @@
                 restrict: 'E',
                 scope: {
                     item:           '=',
+                    exploreWall:    '=',
                     videoId:        '=?',
                     player:         '=?',
                     playerHeight:   '=?',

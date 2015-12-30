@@ -24,11 +24,18 @@
       scope.exploreWall = exploreWall;
       scope.selected = false;
 
-      function exploreWall(item) {
+      function exploreWall(provider, id) {
+        if ($.grep(scope.exploredItems, function (el) {
+          return el.data.id === id;
+        }).length > 0) {
+          scope.selected = true;
+          return;
+        }
+
         memoryWallService.memoryWallItem().get(
           {
-            provider: item.provider,
-            id: item.id
+            provider: provider,
+            id: id
           },
           function (data) {
             //make the api call return a generic itemData object with provider specific data inside

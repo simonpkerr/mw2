@@ -10,7 +10,8 @@
     var directive = {
       restrict: 'E',
       scope: {
-        item: '='
+        item: '=',
+        exploreWall: '='
       },
       replace: true,
       link: link,
