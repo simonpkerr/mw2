@@ -162,7 +162,7 @@ module.exports = function (grunt) {
             '<%= yeoman.bower %>/angular-animate/angular-animate.js',
             '<%= yeoman.bower %>/json3/lib/json3.js',
             // '<%= yeoman.bower %>/owlcarousel/owl-carousel/owl.carousel.js',
-            '<%= yeoman.bower %>/owl.carousel/dist/owl.carousel.js',
+            // '<%= yeoman.bower %>/owl.carousel/dist/owl.carousel.js',
             '<%= yeoman.bower %>/angular-loading-bar/build/loading-bar.js'
           ]
         }

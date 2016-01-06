@@ -4,58 +4,45 @@
   .module('mwApp.memoryWall')
   .directive('mwItem', mwItem);
 
-  mwItem.$inject = ['baseUrl', 'memoryWallService', '$timeout'];
+  mwItem.$inject = ['baseUrl', 'memoryWallService'];
 
-  function mwItem(baseUrl, memoryWallService, $timeout) {
-    var options = {
-        items: 1,
-        stagePadding: 50,
-        margin: 10,
-        pagination: true,
-        nav: true,
-        navText: ['<span class="icon-left-open"><span>', '<span class="icon-right-open"><span>']
-      },
+  function mwItem(baseUrl, memoryWallService) {
+    var
+    // options = {
+    //     items: 1,
+    //     stagePadding: 50,
+    //     margin: 10,
+    //     pagination: true,
+    //     nav: true,
+    //     navText: ['<span class="icon-left-open"><span>', '<span class="icon-right-open"><span>']
+    //   },
       directive = {
         restrict: 'E',
         scope: {
           item: '='
         },
+        controller: controller,
+        controllerAs: 'vm',
+        bindToController: true,
         replace: true,
         link: link,
         templateUrl: baseUrl + 'memoryWall/item.html'
       };
     return directive;
 
-    function link(scope, element, attrs) {
-      var carousel = $('.owl-carousel', element);
-      //carousel.owlCarousel();
-      scope.exploredItems = [];
-      scope.exploreWall = exploreWall;
-      scope.selected = false;
+    function controller() {
 
-      // scope.$watch('scope.exploredItems', function() {
-      //   carousel.trigger('refresh.owl.carousel');
-      // });
-      //
-      scope.setupCarousel = function (itemIndex) {
-        if (scope.exploredItems.length === 1) {
-          carousel.owlCarousel(options);
-
-        } else {
-          // carousel.trigger('destroy.owl.carousel').removeClass('owl-carousel owl-loaded');
-          // carousel.find('.owl-stage-outer').children().unwrap();
-          carousel.owlCarousel(options);
-        }
-      };
-
-
-      function exploreWall (provider, id, itemIndex) {
+      var vm = this;
+      vm.exploredItems = [];
+      vm.selected = false;
+      vm.exploreWall = function (provider, id, itemIndex) {
         itemIndex = itemIndex || 0;
 
-        if ($.grep(scope.exploredItems, function (el) {
+        //if item exists already, don't load it again, just open the window
+        if ($.grep(vm.exploredItems, function (el) {
           return el.data.id === id;
         }).length > 0) {
-          scope.selected = true;
+          vm.selected = true;
           return;
         }
 
@@ -66,20 +53,19 @@
           },
           function (data) {
             //make the api call return a generic itemData object with provider specific data inside
-            carousel.trigger('destroy.owl.carousel').removeClass('owl-loaded');
-            $('.item', carousel).unwrap().unwrap().unwrap();
-            scope.exploredItems.push(data.wallItem);
+            vm.exploredItems.splice(itemIndex + 1, 0, data.wallItem);
 
             //move the window to the top of the selected panel
-            //setupCarousel(itemIndex);
-            scope.selected = true;
-
+            vm.selected = true;
 
           }
         );
-      }
+      };
+
     }
 
+    function link(scope, element, attrs) {
 
+    }
   }
 })();

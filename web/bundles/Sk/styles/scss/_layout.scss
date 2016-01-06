@@ -103,6 +103,7 @@ body {
     padding: 0;
     margin: $global-padding;
     max-width: 33%;
+    min-width: 15%;
     transition: all 0.5s;
     list-style-type: none;
     box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
@@ -120,7 +121,7 @@ body {
     }
 
     &.youtube__item {
-      max-width: 37%;
+      max-width: 32%;
       margin: $global-padding / 2;
       &:before {
         background-color: rgba(palette(youtube), 0.2);
@@ -128,7 +129,7 @@ body {
     }
 
     &.wikimedia__item {
-      max-width: 33%;
+      max-width: 25%;
       margin: $global-padding / 2;
       &:before {
         background-color: rgba(palette(grey, light), 0.2);
@@ -154,7 +155,7 @@ body {
       background-color: rgba(#fff, .9);
       box-shadow: 0 0 15px 0 rgba(0,0,0,.5);
 
-      .item-actions {
+      .explore-item {
         opacity: 1;
       }
     }
@@ -172,7 +173,8 @@ body {
 
     &.selected {
       max-width: 100%;
-      width: 100%;
+      min-width: 100%;
+      //width: 100%;
       //order: -1;
       padding: $global-padding;
       //height: 80vh;
@@ -197,7 +199,7 @@ body {
 }
 
 
-.item-actions {
+.explore-item {
   transition: all 0.5s;
   display: flex;
   width: 100%;

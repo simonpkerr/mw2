@@ -61,10 +61,13 @@ h1, h2 {
 }
 
 .wall-items__item {
-  h3 {
+  .item-title {
+    display: block;
     margin: 0 0 $global-padding/2 0;
     text-align: center;
     padding: $global-padding/2;
+    @extend h3;
+
   }
   p {
     margin: $global-padding/2 0;
@@ -73,6 +76,7 @@ h1, h2 {
   &.youtube__item {
 
   }
+
 }
 
 

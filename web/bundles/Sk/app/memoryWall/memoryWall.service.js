@@ -20,7 +20,8 @@
         {
           query: {
             method: 'GET',
-            isArray: true
+            isArray: true,
+            cache: true
           }
         }
       );
@@ -43,7 +44,8 @@
         },
         {
           query: {
-            method: 'GET'
+            method: 'GET',
+            cache: true
           }
         }
       );

@@ -1,25 +1,23 @@
-<div ng-class="{ selected : selected }">
-  <a ng-click="selected = !selected" class="icon-cancel radius item-close" title="close" ng-show="selected" href="#"></a>
+<div ng-class="{ selected : vm.selected }">
+  <a ng-click="vm.selected = !vm.selected" class="icon-cancel radius item-close" title="close" ng-show="vm.selected" href="#"></a>
 
-  <div class="item-overview" ng-show="!selected">
-    <div class="item-actions" >
-      <a href="#" ng-click="exploreWall(item.provider, item.id)" class="icon-search explore" title="Explore {{item.title}}"></a>
+  <div class="item-overview" ng-show="!vm.selected">
+    <div class="explore-item">
+      <a href="#" ng-click="vm.exploreWall(vm.item.provider, vm.item.id)" class="icon-search explore" title="Explore {{vm.item.title}}"></a>
     </div>
-    <h3 class="item-title" ng-bind="item.title"></h3>
-    <img ng-src="{{item.image}}" alt="{{item.title}}" />
+    <span class="item-title" ng-bind="vm.item.title"></span>
+    <img ng-src="{{vm.item.image}}" alt="{{vm.item.title}}" />
   </div>
 
   <!-- <mw-explored-item ng-show="exploredItems.length > 0 && selected" explore-wall="exploreWall" explored-items="exploredItems" /> -->
-  <div class="item-details" ng-show="exploredItems.length > 0 && selected">
+  <div class="item-details" ng-show="vm.exploredItems.length > 0 && vm.selected">
 
-    <div class="owl-carousel">
-      <!-- loop through all explored-items, output relevant directive -->
-      <div ng-repeat="item in exploredItems" ng-switch on="item.provider" class="item" ng-init="$last ? setupCarousel($index) : angular.noop()">
-          <mw-item-amazon ng-switch-when="amazon" item="item" explore-wall="exploreWall" item-index="$index"></mw-item-amazon>
-          <mw-item-youtube ng-switch-when="youtube" item="item" explore-wall="exploreWall"></mw-item-youtube>
-          <mw-item-wikimedia ng-switch-when="wikimedia" item="item" explore-wall="exploreWall"></mw-item-wikimedia>
-          <mw-item-sevendigital ng-switch-when="sevendigital" item="item" explore-wall="exploreWall"></mw-item-sevendigital>
-      </div>
+    <!-- loop through all explored-items, output relevant directive -->
+    <div ng-repeat="item in vm.exploredItems" ng-switch on="vm.item.provider" class="item">
+        <mw-item-amazon ng-switch-when="amazon" item="item" item-index="$index"></mw-item-amazon>
+        <mw-item-youtube ng-switch-when="youtube" item="item" item-index="$index"></mw-item-youtube>
+        <mw-item-wikimedia ng-switch-when="wikimedia" item="item" item-index="$index"></mw-item-wikimedia>
+        <mw-item-sevendigital ng-switch-when="sevendigital" item="item" item-index="$index"></mw-item-sevendigital>
     </div>
 
   </div>

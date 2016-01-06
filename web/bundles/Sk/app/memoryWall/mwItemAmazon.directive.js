@@ -4,23 +4,24 @@
   .module('mwApp.memoryWall')
   .directive('mwItemAmazon', mwItemAmazon);
 
-  mwItemAmazon.$inject = ['baseUrl', 'memoryWallService'];
+  mwItemAmazon.$inject = ['baseUrl'];
 
-  function mwItemAmazon(baseUrl, memoryWallService) {
+  function mwItemAmazon(baseUrl) {
     var directive = {
       restrict: 'E',
       scope: {
         item: '=',
-        exploreWall: '=',
         itemIndex: '='
       },
+      require: '^mwItem',
       replace: true,
       link: link,
       templateUrl: baseUrl + 'memoryWall/amazon.html'
     };
     return directive;
 
-    function link(scope, element, attrs) {
+    function link(scope, element, attrs, controller) {
+      scope.exploreWall = controller.exploreWall;
 
     }
 

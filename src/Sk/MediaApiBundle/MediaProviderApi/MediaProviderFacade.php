@@ -105,4 +105,13 @@ class MediaProviderFacade {
 
         return $randomItems;
     }
+
+    public function getMemoryWallItem($provider, $id)
+    {
+        //remember to cache item
+        if (array_key_exists($provider, $this->mediaProviders)) {
+            $this->mediaProviders[$provider]->getDetails($id);
+        }
+
+    }
 }

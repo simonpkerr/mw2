@@ -4,5 +4,18 @@
 		{
 			"path": "."
 		}
-	]
+	],
+	"settings":
+	{
+		"FuzzyFilePath":
+		{
+		},
+		"xdebug":
+		{
+			"url": "http://localhost",
+			"path_mapping": {
+				"/web/app_dev.php/" : "C:/xampp/htdocs/mw2/src/Sk/MediaApiBundle"
+			}
+		}
+	}
 }

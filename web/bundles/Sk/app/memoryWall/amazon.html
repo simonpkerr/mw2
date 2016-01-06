@@ -1,8 +1,15 @@
 <div>
-  <h3 class="item-title" ng-bind="item.data.title"></h3>
+  <h2 ng-bind="item.data.title"></h2>
   <img ng-src="{{item.data.image}}" alt="{{item.data.title}}" />
-  <ul>
+  <p>Description</p>
+  <p>Reviews</p>
+  <div class="item-actions">
+    <ul>
+      <li><a href="#" class="icon-basket">Buy it</a></li>
+    </ul>
+  </div>
+  <div class="flex-equal-heights">
   <!-- all explored items need to include the current slide number so that the new slide is added in the right place -->
-    <li ng-repeat="similarItem in item.data.SimilarProducts.SimilarProduct"><a href="#" ng-click="exploreWall(item.provider, similarItem.ASIN, itemIndex)">{{similarItem.Title}}</a></li>
-  </ul>
+    <div ng-repeat="similarItem in item.data.SimilarProducts.SimilarProduct"><a href="#" ng-click="exploreWall(item.provider, similarItem.ASIN, itemIndex)">{{similarItem.Title}}</a></div>
+  </div>
 </div>

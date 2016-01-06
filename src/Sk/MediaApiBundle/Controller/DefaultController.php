@@ -20,21 +20,21 @@ class DefaultController extends Controller
      */
     private function getViewHandler()
     {
-        return $this->container->get('fos_rest.view_handler');
+      return $this->container->get('fos_rest.view_handler');
     }
-    
+
     /**
      * @return View
      */
     public function getMediatypesAction(){
-        $em = $this->getDoctrine()->getManager();
-        $mediaTypes = $em->getRepository('SkMediaApiBundle:MediaType')->getMediaTypes();
-        $view = View::create()
-            ->setData(array('mediaTypes' => $mediaTypes));
+      $em = $this->getDoctrine()->getManager();
+      $mediaTypes = $em->getRepository('SkMediaApiBundle:MediaType')->getMediaTypes();
+      $view = View::create()
+      ->setData(array('mediaTypes' => $mediaTypes));
 
-        return $this->getViewHandler()->handle($view);
+      return $this->getViewHandler()->handle($view);
     }
-    
+
     /**
      * Gets the media type for a given id.
      *
@@ -44,34 +44,45 @@ class DefaultController extends Controller
      */
     public function getMediatypeAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $mediaType = $em->getRepository('SkMediaApiBundle:MediaType')->getMediaTypeById($id);
-        
-        if (null === $mediaType) {
-            throw new NotFoundHttpException(sprintf("Media Type with id '%s' could not be found.", $id));
-        }
+      $em = $this->getDoctrine()->getManager();
+      $mediaType = $em->getRepository('SkMediaApiBundle:MediaType')->getMediaTypeById($id);
 
-        $view = View::create()
-            ->setData(array('mediaType' => $mediaType));
+      if (null === $mediaType) {
+        throw new NotFoundHttpException(sprintf("Media Type with id '%s' could not be found.", $id));
+      }
 
-        return $this->getViewHandler()->handle($view);
+      $view = View::create()
+      ->setData(array('mediaType' => $mediaType));
+
+      return $this->getViewHandler()->handle($view);
     }
-    
+
     /**
-     * Get a wall based on random decade 
+     * Get a wall based on random decade
      * Gets a collection of Amazon, youtube, 7digital, flickr, google images listings and caches them if there is no existing cache
      * or the existing cache is stale.
-     * Then returns 5 random results from each provider  
-     * 
+     * Then returns 5 random results from each provider
+     *
      * @return View
      */
     public function getMemorywallAction($decade){
-        $mediaProviderFacade = $this->get('sk_media_api.media_provider_api');
-        $wallData = $mediaProviderFacade->getMemoryWall($decade);
-        
-        $view = View::create()
-            ->setData(array('wallData' => $wallData));
+      $mediaProviderFacade = $this->get('sk_media_api.media_provider_api');
+      $wallData = $mediaProviderFacade->getMemoryWall($decade);
 
-        return $this->getViewHandler()->handle($view);
+      $view = View::create()
+      ->setData(array('wallData' => $wallData));
+
+      return $this->getViewHandler()->handle($view);
     }
-}
+
+    public function getMemorywallItemAction($provider, $id) {
+      $mediaProviderFacade = $this->get('sk_media_api.media_provider_api');
+      $item = $mediaProviderFacade->getMemoryWallItem($provider, $id);
+
+      $view = View::create()
+      ->setData(array('wallItem' => $item));
+
+      return $this->getViewHandler()->handle($view);
+
+    }
+  }
