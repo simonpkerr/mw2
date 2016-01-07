@@ -16,12 +16,28 @@
       require: '^mwItem',
       replace: true,
       link: link,
+      controller: controller,
+      controllerAs: 'vm',
+      bindToController: true,
       templateUrl: baseUrl + 'memoryWall/amazon.html'
     };
     return directive;
 
+    function controller() {
+      var vm = this;
+
+      vm.getItemPrice = function (item) {
+        if(item.price !== undefined) {
+          return 'Buy this from Amazon for ' + item.price;
+        } else {
+          return 'Buy this from Amazon';
+        }
+
+      };
+    }
+
     function link(scope, element, attrs, controller) {
-      scope.exploreWall = controller.exploreWall;
+      vm.exploreWall = controller.exploreWall;
 
     }
 

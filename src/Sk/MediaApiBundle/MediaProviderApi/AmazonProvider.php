@@ -80,14 +80,69 @@ class AmazonProvider implements IMediaProviderStrategy {
     $this->asr = $asr;
   }
 
-  public function getItem($data){
-    return array(
+  public function getItem($data, $extendedInfo = false){
+    $item = array(
       'provider'      =>  self::PROVIDER_NAME,
       'id'            =>  $this->getItemId($data),
       'title'         =>  $this->getItemTitle($data),
-      'image'         =>  $this->getItemImage($data),
+      'image'         =>  $this->getItemImage($data, $extendedInfo),
       'url'           =>  $this->getItemUrl($data)
       );
+
+    if ($extendedInfo) {
+      $item = array_merge($item, array(
+        'price'         =>  $this->getItemPrice($data),
+        'review'        =>  $this->getItemReview($data),
+        'similarItems' =>  $this->getSimilarItems($data)
+      ));
+    }
+
+    return $item;
+  }
+
+  private function getSimilarItems($data) {
+    $similarItems = array();
+    if (is_null($data->SimiliarProducts)) {
+      return null;
+    }
+
+    $similarProducts = $data->SimilarProducts->SimilarProduct;
+
+    if (!is_array($similarProducts) && !is_object($similarProducts)) {
+      return null;
+    }
+
+    try {
+      foreach ($similarProducts as $product) {
+        array_push($similarItems, array(
+          'id'    =>  (string)$product->ASIN,
+          'title' =>  (string)$product->Title
+        ));
+      }
+      return $similarItems;
+
+    } catch (Exception $ex) {
+      return null;
+    }
+
+
+
+  }
+
+  private function getItemReview($data) {
+    try {
+      return strip_tags((string)$data->EditorialReviews->EditorialReview->Content);
+    } catch (Exception $ex) {
+      return null;
+    }
+  }
+
+  private function getItemPrice($data) {
+    try {
+      return (string)$data->OfferSummary->LowestNewPrice->FormattedPrice;
+    } catch (Exception $ex) {
+      return null;
+    }
   }
 
     //each api will have it's own method for returning the id of a mediaresource for caching purposes.
@@ -95,18 +150,10 @@ class AmazonProvider implements IMediaProviderStrategy {
     return (string)$data->ASIN;
   }
 
-
-//    public function getItemPrice($data){
-//        try {
-//            return (string)$data->ItemAttributes->ListPrice->FormattedPrice;
-//        } catch (Exception $ex) {
-//            return null;
-//        }
-//    }
-
-  private function getItemImage($data){
+  private function getItemImage($data, $extendedInfo){
     try{
-      return (string)$data->MediumImage->URL;
+      $image = $extendedInfo ? $data->LargeImage->URL : $data->MediumImage->URL;
+      return (string)$image;
     } catch(Exception $re){
       return null;
     }
@@ -167,7 +214,7 @@ class AmazonProvider implements IMediaProviderStrategy {
 
       try{
         $xml_response = (array)$this->verifyXmlResponse($xml_response)->Items;
-      }catch(Exception $e){
+      } catch(Exception $e){
         throw $e;
       }
 
@@ -183,7 +230,7 @@ class AmazonProvider implements IMediaProviderStrategy {
         array(
          'Operation'          =>     $this->ITEM_LOOKUP,
          //'ResponseGroup'      =>    'Images,ItemAttributes,Request,Similarities,EditorialReview',
-         'ResponseGroup'      =>      'Images,ItemAttributes,Request,Similarities,OfferSummary,EditorialReview,BrowseNodes',
+         'ResponseGroup'      =>      'Images,ItemAttributes,Request,Similarities,OfferSummary,EditorialReview',//,BrowseNodes',
          'ItemId'             =>     $id
          ));
 
@@ -192,14 +239,12 @@ class AmazonProvider implements IMediaProviderStrategy {
 
       try{
         $verifiedResponse = (array)$this->verifyXmlResponse($xml_response)->Items;
-      }catch(\RunTimeException $re){
-        throw $re;
-      }catch(\LengthException $le){
-        throw $le;
+      }catch(Exception $e){
+        throw $e;
       }
 
         //certain operations like batch processing only pass ids and do not require recommendations
-      return $verifiedResponse['Item'];
+      return $this->getItem($verifiedResponse['Item'], true);
 
     }
 
@@ -242,7 +287,7 @@ class AmazonProvider implements IMediaProviderStrategy {
           throw new Exception("No results were returned");
         }
             //for lookups
-        if(!$response->Items->Request->IsValid && $this->amazonParameters['Operation'] == $this->ITEM_LOOKUP){
+        if(!(bool)$response->Items->Request->IsValid && $this->amazonParameters['Operation'] == $this->ITEM_LOOKUP){
           throw new Exception("Invalid result set");
         }
         if($response->Items->Request->Errors->Error != null) {

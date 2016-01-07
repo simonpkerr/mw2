@@ -3,6 +3,7 @@
     angular.module('mwApp', [
         /*shared widgets*/
         'mwApp.core',
+        //'mwApp.filters',
 
         /*features*/
         'mwApp.memoryWall'

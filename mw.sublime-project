@@ -12,10 +12,25 @@
 		},
 		"xdebug":
 		{
-			"url": "http://localhost",
-			"path_mapping": {
-				"/web/app_dev.php/" : "C:/xampp/htdocs/mw2/src/Sk/MediaApiBundle"
-			}
+			"url": "http://mw.local",
+			// Window layout that is being used when debugging.
+      "debug_layout" : {
+          "cols": [0.0, 0.5, 1.0],
+          "rows": [0.0, 0.7, 1.0],
+          "cells": [[0, 0, 2, 1], [0, 1, 1, 2], [1, 1, 2, 2]]
+      },
+
+      // Group and index positions for debug views.
+      "breakpoint_group": 2,
+      "breakpoint_index": 1,
+      "context_group": 1,
+      "context_index": 0,
+      "stack_group": 2,
+      "stack_index": 0,
+      "watch_group": 1,
+      "watch_index": 1,
+      "close_on_stop": true,
+	    "debug": true
 		}
 	}
 }

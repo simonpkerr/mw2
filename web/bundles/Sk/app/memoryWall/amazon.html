@@ -1,15 +1,22 @@
-<div>
-  <h2 ng-bind="item.data.title"></h2>
-  <img ng-src="{{item.data.image}}" alt="{{item.data.title}}" />
-  <p>Description</p>
-  <p>Reviews</p>
+<div ng-init="data = item.providerData">
+  <div ng-show="item.errorMessages.length > 0">
+    <h2>Oh dear&hellip;</h2>
+    <p>Looks like something went wrong, please try again later</p>
+  </div>
+
   <div class="item-actions">
     <ul>
-      <li><a href="#" class="icon-basket">Buy it</a></li>
+      <li><a href="{{data.url}}" class="icon-basket">{{ getItemPrice(data) }}</a></li>
     </ul>
   </div>
+
+  <h2 ng-bind="data.title"></h2>
+  <img ng-src="{{data.image}}" alt="{{data.title}}" />
+  <!-- add directive to show/hide more -->
+  <p ng-bind="data.review"></p>
+
   <div class="flex-equal-heights">
   <!-- all explored items need to include the current slide number so that the new slide is added in the right place -->
-    <div ng-repeat="similarItem in item.data.SimilarProducts.SimilarProduct"><a href="#" ng-click="exploreWall(item.provider, similarItem.ASIN, itemIndex)">{{similarItem.Title}}</a></div>
+    <div ng-repeat="similarItem in data.similarItems"><a href="#" ng-click="exploreWall(item.provider, similarItem.ASIN, itemIndex)">{{similarItem.Title}}</a></div>
   </div>
 </div>

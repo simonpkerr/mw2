@@ -21,97 +21,105 @@ use \Exception;
  * @author Simon Kerr
  */
 class MediaProviderFacade {
-    protected $mediaProviders;
-    protected $debugMode;
-    protected $doctrine;
-    protected $em;
-    protected $cache;
+  protected $mediaProviders;
+  protected $debugMode;
+  protected $doctrine;
+  protected $em;
+  protected $cache;
 
-    public function __construct(EntityManager $em, array $providers, CacheAdapterInterface $cache, $debug_mode = false){
-        $this->debugMode = $debug_mode;
-        $this->em = $em;
+  public function __construct(EntityManager $em, array $providers, CacheAdapterInterface $cache, $debug_mode = false){
+    $this->debugMode = $debug_mode;
+    $this->em = $em;
         //$this->session = $session;
-        $this->mediaProviders = $providers;
-        $this->cache = $cache;
-    }
+    $this->mediaProviders = $providers;
+    $this->cache = $cache;
+  }
 
-    public function setProviders(array $providers){
-        $this->mediaProviders = $providers;
-    }
+  public function setProviders(array $providers){
+    $this->mediaProviders = $providers;
+  }
 
-    public function setCache(CacheAdapterInterface $cache){
-        $this->cache = $cache;
-    }
+  public function setCache(CacheAdapterInterface $cache){
+    $this->cache = $cache;
+  }
 
-    public function getMemoryWall($decadeSlug){
+  public function getMemoryWall($decadeSlug){
         //return test data
         //$wallData = json_decode(file_get_contents('http://mw.local/web/sample-wall-1980s.json'), true);
         //return $wallData['wallData'];
 
-        $wallData = array();
-        $wallData['errorMessages'] = array();
-        $decade = null;
-        if($decadeSlug == 'any'){
-            $decades = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecades();
-            $randomKey = array_rand($decades);
-            $decade = $decades[$randomKey];
-        } else {
-            $decade = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug($decadeSlug);
-        }
+    $wallData = array();
+    $wallData['errorMessages'] = array();
+    $decade = null;
+    if($decadeSlug == 'any'){
+      $decades = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecades();
+      $randomKey = array_rand($decades);
+      $decade = $decades[$randomKey];
+    } else {
+      $decade = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug($decadeSlug);
+    }
 
 //        $decade = $this->em->getRepository('SkMediaApiBundle:Decade')->getDecadeBySlug('1980s');
         //make this something that each provider does
         //$pageNumber = rand(1, 10);
-        $wallData['metaData'] = array(
-            'decade' => $decade->getSlug()
+    $wallData['metaData'] = array(
+      'decade' => $decade->getSlug()
             //'pageNumber' => $pageNumber
-        );
-        $wallData['providerData'] = array();
+      );
+    $wallData['providerData'] = array();
 
-        foreach($this->mediaProviders as $mediaProvider){
-            $items = array();
-            $errorMsg = null;
-            try {
-                $items = $this->getRandomItems($mediaProvider, $decade);
-            } catch (Exception $ex) {
-                array_push($wallData['errorMessages'], $ex->getMessage());
-            }
+    foreach($this->mediaProviders as $mediaProvider){
+      $items = array();
+      $errorMsg = null;
+      try {
+        $items = $this->getRandomItems($mediaProvider, $decade);
+      } catch (Exception $ex) {
+        array_push($wallData['errorMessages'], $ex->getMessage());
+      }
 
-            $wallData['providerData'] = array_merge($wallData['providerData'], $items);
-        }
-
-        shuffle($wallData['providerData']);
-        return $wallData;
+      $wallData['providerData'] = array_merge($wallData['providerData'], $items);
     }
 
-    private function getRandomItems(IMediaProviderStrategy $providerStrategy, $decade){
-        $items = array();
-        $cacheKey = $providerStrategy->getCacheKey($decade);
-        if($this->cache->has($cacheKey)){
-            $cacheElement = $this->cache->get($cacheKey);
-            $items = $cacheElement->getData();
-        } else {
-            $response = (array)$providerStrategy->getListings($decade);
-            foreach($response as $item){
-                array_push($items, $providerStrategy->getItem($item));
-            }
-            $this->cache->set($cacheKey, $items, $providerStrategy::CACHE_TTL);
-        }
+    shuffle($wallData['providerData']);
+    return $wallData;
+  }
 
-        $listingsCount = count($items);
-        $listingsCount = $listingsCount > 5 ? 5 : $listingsCount;
-        shuffle($items);
-        $randomItems = array_slice($items, 0, $listingsCount);
-
-        return $randomItems;
+  private function getRandomItems(IMediaProviderStrategy $providerStrategy, $decade){
+    $items = array();
+    $cacheKey = $providerStrategy->getCacheKey($decade);
+    if($this->cache->has($cacheKey)){
+      $cacheElement = $this->cache->get($cacheKey);
+      $items = $cacheElement->getData();
+    } else {
+      $response = (array)$providerStrategy->getListings($decade);
+      foreach($response as $item){
+        array_push($items, $providerStrategy->getItem($item));
+      }
+      $this->cache->set($cacheKey, $items, $providerStrategy::CACHE_TTL);
     }
 
-    public function getMemoryWallItem($provider, $id)
-    {
+    $listingsCount = count($items);
+    $listingsCount = $listingsCount > 5 ? 5 : $listingsCount;
+    shuffle($items);
+    $randomItems = array_slice($items, 0, $listingsCount);
+
+    return $randomItems;
+  }
+
+  public function getMemoryWallItem($provider, $id)
+  {
+    $wallItemData = array();
         //remember to cache item
-        if (array_key_exists($provider, $this->mediaProviders)) {
-            $this->mediaProviders[$provider]->getDetails($id);
-        }
-
+    if (array_key_exists($provider, $this->mediaProviders)) {
+      try {
+        $wallItemData['providerData'] = $this->mediaProviders[$provider]->getDetails($id);
+      }
+      catch (Exception $ex) {
+        $wallItemData['errorMessages'] = $ex->getMessage();
+      }
     }
+
+    return $wallItemData;
+
+  }
 }
