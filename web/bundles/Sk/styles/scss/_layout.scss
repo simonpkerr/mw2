@@ -1,7 +1,9 @@
 @include border-box-sizing;
 
 body {
-  background: url('/web/bundles/Sk/images/bg-texture.png') 50% 50% repeat #f2f1e3;
+  background: url('#{$global-asset-path}images/bg-texture.png') 50% 50% repeat #f2f1e3;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
 .container {
@@ -76,7 +78,7 @@ body {
   @include squish(2%);
   @include span(96% break);
 
-  margin-top: 0.5em;
+  margin-top: 1.5em;
 
     // @include breakpoint(media(desktop)) {
     //     margin-top: 0.5em;
@@ -102,13 +104,23 @@ body {
     background-color: rgba(#fff, .5);
     padding: 0;
     margin: $global-padding;
-    max-width: 33%;
-    min-width: 15%;
+    max-width: 95%;
+    min-width: 95%;
     transition: all 0.5s;
     list-style-type: none;
     box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
     position: relative;
     border-radius: $global-radius;
+
+    @include breakpoint(media(tablet)) {
+      max-width: 33%;
+      min-width: 15%;
+    }
+
+    @include breakpoint(media(wide)) {
+      max-width: 25%;
+      min-width: 10%;
+    }
 
     &:before {
       content: ' ';
@@ -121,31 +133,55 @@ body {
     }
 
     &.youtube__item {
-      max-width: 32%;
-      margin: $global-padding / 2;
+      @include breakpoint(media(tablet)) {
+        max-width: 32%;
+        margin: $global-padding / 2;
+      }
+
+      @include breakpoint(media(wide)) {
+        max-width: 20%;
+      }
+
       &:before {
         background-color: rgba(palette(youtube), 0.2);
       }
     }
 
     &.wikimedia__item {
-      max-width: 25%;
-      margin: $global-padding / 2;
+      @include breakpoint(media(tablet)) {
+        max-width: 25%;
+        margin: $global-padding / 2;
+      }
+
+      @include breakpoint(media(wide)) {
+        max-width: 18%;
+      }
+
       &:before {
         background-color: rgba(palette(grey, light), 0.2);
       }
     }
 
     &.amazon__item {
-      max-width: 38%;
+      @include breakpoint(media(tablet)) {
+        max-width: 38%;
+      }
+      @include breakpoint(media(wide)) {
+        max-width: 25%;
+      }
       &:before {
         background-color: rgba(palette(amazon), 0.2);
       }
     }
 
     &.sevendigital__item {
-      margin: 5px;
-      max-width: 35%;
+      @include breakpoint(media(tablet)) {
+        margin: 5px;
+        max-width: 35%;
+      }
+      @include breakpoint(media(wide)) {
+        max-width: 23%;
+      }
       &:before {
         background-color: rgba(palette(sevendigital), 0.2);
       }
@@ -157,6 +193,7 @@ body {
 
       .explore-item {
         opacity: 1;
+
       }
     }
 
@@ -174,6 +211,7 @@ body {
     &.selected {
       max-width: 100%;
       min-width: 100%;
+      border-radius: 0;
       //width: 100%;
       //order: -1;
       padding: $global-padding;

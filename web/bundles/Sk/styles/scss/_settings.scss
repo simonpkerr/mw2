@@ -1,6 +1,8 @@
 //globals
+$global-asset-path: '../../';// '/web/bundles/Sk/' !default;
 $global-padding: 20px;
 $global-radius: 3px;
+
 
 $susy: (
   columns: 12,
@@ -17,8 +19,10 @@ $susy: (
 //breakpoints
 $breakpoint-no-query-fallbacks: true;
 $breakpoints: (
+    tablet: 480px,
     lap: (768px, 'no-query' '.no-mq'),
-    desk: 1024px
+    desk: 1024px,
+    wide: 1280px
 );
 
 //colours
@@ -52,18 +56,18 @@ $palettes: (
 );
 
 //type
-$base-font-size: 18px;
-$base-line-height: 36px;
+$base-font-size: 16px;
+$base-line-height: 32px;
 $rhythm-unit: "rem";
 $rem-with-px-fallback: false;
-$base-font-family: 'Calibri Light', Verdana, sans-serif, arial;
+$base-font-family: 'gandhi_sansregular', 'Calibri Light', Verdana, sans-serif, arial;
 $base-font-weight: 400;
 $base-font-color: palette(grey, x-dark);
 $heading-font-family: 'strawberrylimeade', serif;
 $h1-font-size: 2    * $base-font-size;
-$h2-font-size: 1.5  * $base-font-size;
-$h3-font-size: 1.17 * $base-font-size;
-$h4-font-size: 1    * $base-font-size;
-$h5-font-size: 0.83 * $base-font-size;
-$h6-font-size: 0.67 * $base-font-size;
+$h2-font-size: 1.6  * $base-font-size;
+$h3-font-size: 1.3 * $base-font-size;
+$h4-font-size: 1.1 * $base-font-size;
+$h5-font-size: 0.94 * $base-font-size;
+$h6-font-size: 0.7 * $base-font-size;
 

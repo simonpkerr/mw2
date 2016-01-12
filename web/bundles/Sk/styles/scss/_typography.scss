@@ -2,12 +2,12 @@
 
 @font-face {
     font-family: 'economicabold';
-    src: url('../bundles/Sk/styles/fonts/economica-bold-otf-webfont.eot');
-    src: url('../bundles/Sk/styles/fonts/economica-bold-otf-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../bundles/Sk/styles/fonts/economica-bold-otf-webfont.woff2') format('woff2'),
-    url('../bundles/Sk/styles/fonts/economica-bold-otf-webfont.woff') format('woff'),
-    url('../bundles/Sk/styles/fonts/economica-bold-otf-webfont.ttf') format('truetype'),
-    url('../bundles/Sk/styles/fonts/economica-bold-otf-webfont.svg#economicabold') format('svg');
+    src: url('#{$global-asset-path}styles/fonts/economica-bold-otf-webfont.eot');
+    src: url('#{$global-asset-path}styles/fonts/economica-bold-otf-webfont.eot?#iefix') format('embedded-opentype'),
+    url('#{$global-asset-path}styles/fonts/economica-bold-otf-webfont.woff2') format('woff2'),
+    url('#{$global-asset-path}styles/fonts/economica-bold-otf-webfont.woff') format('woff'),
+    url('#{$global-asset-path}styles/fonts/economica-bold-otf-webfont.ttf') format('truetype'),
+    url('#{$global-asset-path}styles/fonts/economica-bold-otf-webfont.svg#economicabold') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -15,15 +15,28 @@
 
 @font-face {
     font-family: 'strawberrylimeade';
-    src: url('/web/bundles/Sk/styles/fonts/kgstrawberrylimeade-webfont.eot');
-    src: url('/web/bundles/Sk/styles/fonts/kgstrawberrylimeade-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/web/bundles/Sk/styles/fonts/kgstrawberrylimeade-webfont.woff') format('woff'),
-    url('/web/bundles/Sk/styles/fonts/kgstrawberrylimeade-webfont.ttf') format('truetype'),
-    url('/web/bundles/Sk/styles/fonts/kgstrawberrylimeade-webfont.svg#kgstrawberrylimeade-webfont') format('svg');
+    src: url('#{$global-asset-path}styles/fonts/kgstrawberrylimeade-webfont.eot');
+    src: url('#{$global-asset-path}styles/fonts/kgstrawberrylimeade-webfont.eot?#iefix') format('embedded-opentype'),
+    url('#{$global-asset-path}styles/fonts/kgstrawberrylimeade-webfont.woff') format('woff'),
+    url('#{$global-asset-path}styles/fonts/kgstrawberrylimeade-webfont.ttf') format('truetype'),
+    url('#{$global-asset-path}styles/fonts/kgstrawberrylimeade-webfont.svg#kgstrawberrylimeade-webfont') format('svg');
     font-weight: normal;
     font-style: normal;
 
 }
+
+@font-face {
+    font-family: 'gandhi_sansregular';
+    src: url('#{$global-asset-path}styles/fonts/GandhiSans-Regular-webfont.eot');
+    src: url('#{$global-asset-path}styles/fonts/GandhiSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('#{$global-asset-path}styles/fonts/GandhiSans-Regular-webfont.woff') format('woff'),
+         url('#{$global-asset-path}styles/fonts/GandhiSans-Regular-webfont.ttf') format('truetype'),
+         url('#{$global-asset-path}styles/fonts/GandhiSans-Regular-webfont.svg#gandhi_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 
 
 body {

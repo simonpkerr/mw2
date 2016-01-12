@@ -224,7 +224,7 @@ class AmazonProvider implements IMediaProviderStrategy {
     /*
      * getDetails handles calls to the live api,
      */
-    public function getDetails($id){
+    public function getDetails($decade, $id){
       $this->amazonParameters = array_merge(
         $this->amazonParameters,
         array(
@@ -243,8 +243,11 @@ class AmazonProvider implements IMediaProviderStrategy {
         throw $e;
       }
 
-        //certain operations like batch processing only pass ids and do not require recommendations
-      return $this->getItem($verifiedResponse['Item'], true);
+      $item = $this->getItem($verifiedResponse['Item'], true);
+
+      //get items from other providers using decade and name
+
+      return $item;
 
     }
 

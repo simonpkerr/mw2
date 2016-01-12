@@ -106,17 +106,19 @@ class MediaProviderFacade {
     return $randomItems;
   }
 
-  public function getMemoryWallItem($provider, $id)
+  public function getMemoryWallItem($decade, $provider, $id)
   {
     $wallItemData = array();
         //remember to cache item
-    if (array_key_exists($provider, $this->mediaProviders)) {
-      try {
-        $wallItemData['providerData'] = $this->mediaProviders[$provider]->getDetails($id);
-      }
-      catch (Exception $ex) {
-        $wallItemData['errorMessages'] = $ex->getMessage();
-      }
+    if (!array_key_exists($provider, $this->mediaProviders)) {
+      return $wallItemData;
+    }
+
+    //remember to cache the item
+    try {
+      $wallItemData['providerData'] = $this->mediaProviders[$provider]->getDetails($decade, $id);
+    } catch (Exception $ex) {
+      $wallItemData['errorMessages'] = $ex->getMessage();
     }
 
     return $wallItemData;

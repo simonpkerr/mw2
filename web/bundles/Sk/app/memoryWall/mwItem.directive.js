@@ -4,9 +4,9 @@
   .module('mwApp.memoryWall')
   .directive('mwItem', mwItem);
 
-  mwItem.$inject = ['baseUrl', 'memoryWallService'];
+  mwItem.$inject = ['baseUrl', 'memoryWallService', '$timeout'];
 
-  function mwItem(baseUrl, memoryWallService) {
+  function mwItem(baseUrl, memoryWallService, $timeout) {
     var
     // options = {
     //     items: 1,
@@ -19,7 +19,8 @@
       directive = {
         restrict: 'E',
         scope: {
-          item: '='
+          item: '=',
+          selectedDecade: '='
         },
         controller: controller,
         controllerAs: 'vm',
@@ -40,7 +41,7 @@
 
         //if item exists already, don't load it again, just open the window
         if ($.grep(vm.exploredItems, function (el) {
-          return el.data.id === id;
+          return el.providerData !== undefined && el.providerData.id === id;
         }).length > 0) {
           vm.selected = true;
           return;
@@ -48,6 +49,7 @@
 
         memoryWallService.memoryWallItem().get(
           {
+            decade: vm.selectedDecade.id,
             provider: provider,
             id: id
           },
@@ -65,6 +67,14 @@
     }
 
     function link(scope, element, attrs) {
+      scope.$watch('vm.selected', function (newVal, oldVal) {
+        if (newVal) {
+          $timeout(function () {
+            window.scrollTo(0, element.offset().top);
+          }, 500);
+
+        }
+      });
 
     }
   }

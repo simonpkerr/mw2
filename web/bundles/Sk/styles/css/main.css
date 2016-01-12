@@ -8,7 +8,7 @@
  */
 @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/RailsInstaller\/Ruby2\.1\.0\/lib\/ruby\/gems\/2\.1\.0\/gems\/compass-core-1\.0\.3\/stylesheets\/compass\/typography\/_vertical_rhythm\.scss}line{font-family:\00003106}}
 html {
-  font-size: 112.5%;
+  font-size: 100%;
   line-height: 2em;
 }
 
@@ -19,7 +19,7 @@ html {
  */
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_normalize\.scss}line{font-family:\0000376}}
 html {
-  font-family: "Calibri Light", Verdana, sans-serif, arial;
+  font-family: "gandhi_sansregular", "Calibri Light", Verdana, sans-serif, arial;
   /* 1 */
   -ms-text-size-adjust: 100%;
   /* 2 */
@@ -173,7 +173,7 @@ h1, .site-header__select {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_normalize\.scss}line{font-family:\00003245}}
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   line-height: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -181,7 +181,7 @@ h2 {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_normalize\.scss}line{font-family:\00003251}}
 h3, .wall-items__item .item-title {
-  font-size: 1.17rem;
+  font-size: 1.3rem;
   line-height: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -189,7 +189,7 @@ h3, .wall-items__item .item-title {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_normalize\.scss}line{font-family:\00003257}}
 h4 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -197,7 +197,7 @@ h4 {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_normalize\.scss}line{font-family:\00003263}}
 h5 {
-  font-size: 0.83rem;
+  font-size: 0.94rem;
   line-height: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -205,7 +205,7 @@ h5 {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_normalize\.scss}line{font-family:\00003269}}
 h6 {
-  font-size: 0.67rem;
+  font-size: 0.7rem;
   line-height: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -390,7 +390,7 @@ textarea {
   /* 2 */
   margin: 0;
   /* 3 */
-  *font-family: "Calibri Light", Verdana, sans-serif, arial;
+  *font-family: "gandhi_sansregular", "Calibri Light", Verdana, sans-serif, arial;
   /* 4 */
   *vertical-align: middle;
   /* 5 */
@@ -529,18 +529,18 @@ fieldset {
   margin: 0 2px;
   /* Apply borders and padding that keep the vertical rhythm. */
   border-color: #c0c0c0;
-  border-top-width: 0.0555555556rem;
+  border-top-width: 0.0625rem;
   border-top-style: solid;
-  padding-top: 0.6444444444rem;
-  border-bottom-width: 0.0555555556rem;
+  padding-top: 0.6375rem;
+  border-bottom-width: 0.0625rem;
   border-bottom-style: solid;
-  padding-bottom: 1.2444444444rem;
-  border-left-width: 0.0555555556rem;
+  padding-bottom: 1.2375rem;
+  border-left-width: 0.0625rem;
   border-left-style: solid;
-  padding-left: 1.1944444444rem;
-  border-right-width: 0.0555555556rem;
+  padding-left: 1.1875rem;
+  border-right-width: 0.0625rem;
   border-right-style: solid;
-  padding-right: 1.1944444444rem;
+  padding-right: 1.1875rem;
 }
 
 /**
@@ -854,7 +854,7 @@ a[class^="icon-"], a[class*=" icon-"] {
 .site-header__submit {
   background-color: #da153a;
   font-family: "strawberrylimeade", serif;
-  font-size: 36px;
+  font-size: 32px;
   padding: 10px;
   border: 0;
   color: #fff;
@@ -1026,60 +1026,67 @@ a.svg:after {
 }
 @font-face {
   font-family: 'economicabold';
-  src: url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.eot");
-  src: url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.eot?#iefix") format("embedded-opentype"), url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.woff2") format("woff2"), url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.woff") format("woff"), url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.ttf") format("truetype"), url("../bundles/Sk/styles/fonts/economica-bold-otf-webfont.svg#economicabold") format("svg");
+  src: url("../../styles/fonts/economica-bold-otf-webfont.eot");
+  src: url("../../styles/fonts/economica-bold-otf-webfont.eot?#iefix") format("embedded-opentype"), url("../../styles/fonts/economica-bold-otf-webfont.woff2") format("woff2"), url("../../styles/fonts/economica-bold-otf-webfont.woff") format("woff"), url("../../styles/fonts/economica-bold-otf-webfont.ttf") format("truetype"), url("../../styles/fonts/economica-bold-otf-webfont.svg#economicabold") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'strawberrylimeade';
-  src: url("/web/bundles/Sk/styles/fonts/kgstrawberrylimeade-webfont.eot");
-  src: url("/web/bundles/Sk/styles/fonts/kgstrawberrylimeade-webfont.eot?#iefix") format("embedded-opentype"), url("/web/bundles/Sk/styles/fonts/kgstrawberrylimeade-webfont.woff") format("woff"), url("/web/bundles/Sk/styles/fonts/kgstrawberrylimeade-webfont.ttf") format("truetype"), url("/web/bundles/Sk/styles/fonts/kgstrawberrylimeade-webfont.svg#kgstrawberrylimeade-webfont") format("svg");
+  src: url("../../styles/fonts/kgstrawberrylimeade-webfont.eot");
+  src: url("../../styles/fonts/kgstrawberrylimeade-webfont.eot?#iefix") format("embedded-opentype"), url("../../styles/fonts/kgstrawberrylimeade-webfont.woff") format("woff"), url("../../styles/fonts/kgstrawberrylimeade-webfont.ttf") format("truetype"), url("../../styles/fonts/kgstrawberrylimeade-webfont.svg#kgstrawberrylimeade-webfont") format("svg");
   font-weight: normal;
   font-style: normal;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000329}}
+@font-face {
+  font-family: 'gandhi_sansregular';
+  src: url("../../styles/fonts/GandhiSans-Regular-webfont.eot");
+  src: url("../../styles/fonts/GandhiSans-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("../../styles/fonts/GandhiSans-Regular-webfont.woff") format("woff"), url("../../styles/fonts/GandhiSans-Regular-webfont.ttf") format("truetype"), url("../../styles/fonts/GandhiSans-Regular-webfont.svg#gandhi_sansregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000342}}
 body {
-  font-family: "Calibri Light", Verdana, sans-serif, arial;
-  font-size: 18px;
+  font-family: "gandhi_sansregular", "Calibri Light", Verdana, sans-serif, arial;
+  font-size: 16px;
 }
 @media (min-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000329}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000342}}
   body {
-    font-size: 19.8px;
+    font-size: 17.6px;
   }
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/RailsInstaller\/Ruby2\.1\.0\/lib\/ruby\/gems\/2\.1\.0\/gems\/breakpoint-2\.5\.0\/stylesheets\/_breakpoint\.scss}line{font-family:\0000392}}
 .no-mq body {
-  font-size: 19.8px;
+  font-size: 17.6px;
 }
 @media (min-width: 1024px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000329}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000342}}
   body {
-    font-size: 21.6px;
+    font-size: 19.2px;
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000340}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000353}}
 h1, .site-header__select, h2 {
   font-family: "strawberrylimeade", serif;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000345}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000358}}
 .site-header {
   font-family: "strawberrylimeade", serif;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000350}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000363}}
 .site-header__site-strapline p {
   font-family: "strawberrylimeade", serif;
-  font-size: 36px;
+  font-size: 32px;
   text-align: center;
   color: #4fabeb;
   margin: 10px 0;
 }
 @media (min-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000350}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000363}}
   .site-header__site-strapline p {
     text-align: right;
   }
@@ -1089,14 +1096,14 @@ h1, .site-header__select, h2 {
   text-align: right;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000364}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000377}}
 .wall-items__item .item-title {
   display: block;
   margin: 0 0 10px 0;
   text-align: center;
   padding: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000372}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000385}}
 .wall-items__item p {
   margin: 10px 0;
 }
@@ -1108,10 +1115,12 @@ h1, .site-header__select, h2 {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\000033}}
 body {
-  background: url("/web/bundles/Sk/images/bg-texture.png") 50% 50% repeat #f2f1e3;
+  background: url("../../images/bg-texture.png") 50% 50% repeat #f2f1e3;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\000037}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\000039}}
 .container {
   max-width: 100%;
   margin-left: auto;
@@ -1124,19 +1133,19 @@ body {
   clear: both;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000311}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000313}}
 .site-header {
   overflow: hidden;
   *zoom: 1;
   padding: 20px 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000319}}
 .site-header__site-logo {
   text-align: center;
 }
 @media (min-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000319}}
   .site-header__site-logo {
     text-align: left;
     width: 33.3333333333%;
@@ -1154,7 +1163,7 @@ body {
   padding-right: 1.0416666667%;
 }
 @media (min-width: 1024px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000319}}
   .site-header__site-logo {
     width: 16.6666666667%;
     float: left;
@@ -1162,14 +1171,14 @@ body {
     padding-right: 1.0416666667%;
   }
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000328}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000330}}
 .site-header__site-logo object {
   min-width: 100px;
   max-width: 180px;
 }
 
 @media (min-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000334}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000336}}
   .site-header__site-strapline {
     width: 66.6666666667%;
     float: left;
@@ -1185,7 +1194,7 @@ body {
   padding-right: 1.0416666667%;
 }
 @media (min-width: 1024px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000334}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000336}}
   .site-header__site-strapline {
     width: 50%;
     float: left;
@@ -1195,7 +1204,7 @@ body {
 }
 
 @media (min-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000344}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000346}}
   .site-header__search {
     width: 100%;
     float: left;
@@ -1211,7 +1220,7 @@ body {
   padding-right: 1.0416666667%;
 }
 @media (min-width: 1024px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000344}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000346}}
   .site-header__search {
     width: 33.3333333333%;
     float: right;
@@ -1220,7 +1229,7 @@ body {
   }
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000356}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000358}}
 .site-header__select {
   width: 50%;
   float: left;
@@ -1228,7 +1237,7 @@ body {
   padding-right: 1.0416666667%;
 }
 @media (min-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000356}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000358}}
   .site-header__select {
     width: 58.3333333333%;
     float: left;
@@ -1244,7 +1253,7 @@ body {
   padding-right: 1.0416666667%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000364}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000366}}
 .site-header__submit {
   width: 50%;
   float: left;
@@ -1252,7 +1261,7 @@ body {
   padding-right: 1.0416666667%;
 }
 @media (min-width: 768px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000364}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000366}}
   .site-header__submit {
     width: 41.6666666667%;
     float: left;
@@ -1268,7 +1277,7 @@ body {
   padding-right: 1.0416666667%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000375}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000377}}
 .site-header__slider {
   margin-left: 2%;
   margin-right: 2%;
@@ -1277,10 +1286,10 @@ body {
   float: left;
   padding-left: 1.0416666667%;
   padding-right: 1.0416666667%;
-  margin-top: 0.5em;
+  margin-top: 1.5em;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000391}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\0000393}}
 .site-content .flex__container {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1298,20 +1307,34 @@ body {
   width: 100%;
   height: 100%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003101}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003103}}
 .site-content .wall-items__item {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 0;
   margin: 20px;
-  max-width: 33%;
-  min-width: 15%;
+  max-width: 95%;
+  min-width: 95%;
   transition: all 0.5s;
   list-style-type: none;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   position: relative;
   border-radius: 3px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003113}}
+@media (min-width: 480px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003103}}
+  .site-content .wall-items__item {
+    max-width: 33%;
+    min-width: 15%;
+  }
+}
+@media (min-width: 1280px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003103}}
+  .site-content .wall-items__item {
+    max-width: 25%;
+    min-width: 10%;
+  }
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003125}}
 .site-content .wall-items__item:before {
   content: ' ';
   position: absolute;
@@ -1321,51 +1344,83 @@ body {
   top: 0;
   left: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003123}}
-.site-content .wall-items__item.youtube__item {
-  max-width: 32%;
-  margin: 10px;
+@media (min-width: 480px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003135}}
+  .site-content .wall-items__item.youtube__item {
+    max-width: 32%;
+    margin: 10px;
+  }
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003126}}
+@media (min-width: 1280px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003135}}
+  .site-content .wall-items__item.youtube__item {
+    max-width: 20%;
+  }
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003145}}
 .site-content .wall-items__item.youtube__item:before {
   background-color: rgba(205, 32, 31, 0.2);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003131}}
-.site-content .wall-items__item.wikimedia__item {
-  max-width: 25%;
-  margin: 10px;
+@media (min-width: 480px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003150}}
+  .site-content .wall-items__item.wikimedia__item {
+    max-width: 25%;
+    margin: 10px;
+  }
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003134}}
+@media (min-width: 1280px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003150}}
+  .site-content .wall-items__item.wikimedia__item {
+    max-width: 18%;
+  }
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003160}}
 .site-content .wall-items__item.wikimedia__item:before {
   background-color: rgba(239, 239, 239, 0.2);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003139}}
-.site-content .wall-items__item.amazon__item {
-  max-width: 38%;
+@media (min-width: 480px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003165}}
+  .site-content .wall-items__item.amazon__item {
+    max-width: 38%;
+  }
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003141}}
+@media (min-width: 1280px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003165}}
+  .site-content .wall-items__item.amazon__item {
+    max-width: 25%;
+  }
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003172}}
 .site-content .wall-items__item.amazon__item:before {
   background-color: rgba(255, 153, 0, 0.2);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003146}}
-.site-content .wall-items__item.sevendigital__item {
-  margin: 5px;
-  max-width: 35%;
+@media (min-width: 480px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003177}}
+  .site-content .wall-items__item.sevendigital__item {
+    margin: 5px;
+    max-width: 35%;
+  }
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003149}}
+@media (min-width: 1280px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003177}}
+  .site-content .wall-items__item.sevendigital__item {
+    max-width: 23%;
+  }
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003185}}
 .site-content .wall-items__item.sevendigital__item:before {
   background-color: rgba(0, 60, 160, 0.2);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003154}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003190}}
 .site-content .wall-items__item:hover {
   background-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003158}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003194}}
 .site-content .wall-items__item:hover .explore-item {
   opacity: 1;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003164}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003201}}
 .site-content .wall-items__item .item-overview img {
   display: block;
   margin: 0 auto;
@@ -1374,25 +1429,26 @@ body {
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.3);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003174}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003211}}
 .site-content .wall-items__item.selected {
   max-width: 100%;
   min-width: 100%;
+  border-radius: 0;
   padding: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003183}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003221}}
 .site-content .wall-items__item .item-close {
   position: relative;
   z-index: 999;
   float: right;
   color: #b3b4be;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003188}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003226}}
 .site-content .wall-items__item .item-close:hover {
   color: #da153a;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003202}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003240}}
 .explore-item {
   transition: all 0.5s;
   display: -webkit-flex;
@@ -1409,7 +1465,7 @@ body {
   position: absolute;
   opacity: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003212}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003250}}
 .explore-item:before {
   background-color: #abd7f5;
   content: ' ';
@@ -1420,7 +1476,7 @@ body {
   left: 0;
   top: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003222}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003260}}
 .explore-item a {
   display: inline-block;
   margin: 0;
@@ -1431,12 +1487,12 @@ body {
   cursor: pointer;
   z-index: 10;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003231}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003269}}
 .explore-item a:before {
   font-size: 300%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003243}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003281}}
 .icon.radius {
   border-radius: 3px;
 }

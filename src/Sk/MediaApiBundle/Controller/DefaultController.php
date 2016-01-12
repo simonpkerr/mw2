@@ -75,9 +75,9 @@ class DefaultController extends Controller
       return $this->getViewHandler()->handle($view);
     }
 
-    public function getMemorywallItemAction($provider, $id) {
+    public function getMemorywallProviderItemAction($decade, $provider, $id) {
       $mediaProviderFacade = $this->get('sk_media_api.media_provider_api');
-      $item = $mediaProviderFacade->getMemoryWallItem($provider, $id);
+      $item = $mediaProviderFacade->getMemoryWallItem($decade, $provider, $id);
 
       $view = View::create()
       ->setData(array('wallItem' => $item));

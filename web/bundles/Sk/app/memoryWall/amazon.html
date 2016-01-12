@@ -1,4 +1,5 @@
-<div ng-init="data = item.providerData">
+
+<div ng-init="data = vm.item.providerData">
   <div ng-show="item.errorMessages.length > 0">
     <h2>Oh dear&hellip;</h2>
     <p>Looks like something went wrong, please try again later</p>
@@ -6,17 +7,16 @@
 
   <div class="item-actions">
     <ul>
-      <li><a href="{{data.url}}" class="icon-basket">{{ getItemPrice(data) }}</a></li>
+      <li><a href="{{data.url}}" class="icon-basket">{{ vm.getItemPrice(data) }}</a></li>
     </ul>
   </div>
 
   <h2 ng-bind="data.title"></h2>
   <img ng-src="{{data.image}}" alt="{{data.title}}" />
   <!-- add directive to show/hide more -->
-  <p ng-bind="data.review"></p>
+  <div toggle-text="{{data.review}}" toggle-limit="250"></div>
 
   <div class="flex-equal-heights">
-  <!-- all explored items need to include the current slide number so that the new slide is added in the right place -->
-    <div ng-repeat="similarItem in data.similarItems"><a href="#" ng-click="exploreWall(item.provider, similarItem.ASIN, itemIndex)">{{similarItem.Title}}</a></div>
+    <div ng-repeat="similarItem in data.similarItems"><a href="#" ng-click="vm.exploreWall(data.provider, similarItem.id, itemIndex)">{{similarItem.title}}</a></div>
   </div>
 </div>

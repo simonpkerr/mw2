@@ -16,6 +16,8 @@ interface IMediaProviderStrategy {
     public function getItem($data);
     public function getCacheKey(Decade $decade);
     public function getListings(Decade $decade);
+    // public function getDetails($decade, $id);
+
 //    public function getItemId($data);
 //    public function getXML($data);
 //    public function getItemImage($data);
@@ -23,8 +25,8 @@ interface IMediaProviderStrategy {
 //    public function getItemDecade($data);
 //    public function getItemDescription($data);
 //    public function getItemUrl($data);
-//   
-    
+//
+
 }
 
 ?>

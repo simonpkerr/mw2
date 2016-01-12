@@ -36,9 +36,10 @@
       });
     }
 
-    function memoryWallItem(provider, id) {
-      return $resource('/web/app_dev.php/api/memorywall/item/:provider/:id',
+    function memoryWallItem(decade, provider, id) {
+      return $resource('/web/app_dev.php/api/memorywalls/:decade/providers/:provider/items/:id',
         {
+          decade: decade,
           provider: provider,
           id: id
         },

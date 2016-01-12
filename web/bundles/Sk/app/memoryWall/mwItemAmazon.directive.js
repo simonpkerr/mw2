@@ -37,7 +37,7 @@
     }
 
     function link(scope, element, attrs, controller) {
-      vm.exploreWall = controller.exploreWall;
+      scope.vm.exploreWall = controller.exploreWall;
 
     }
 

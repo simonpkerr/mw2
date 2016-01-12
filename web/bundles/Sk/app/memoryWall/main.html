@@ -19,7 +19,7 @@
             <mw-item-wikimedia ng-switch-when="wikimedia" item="item"></mw-item-wikimedia>
             <mw-item-sevendigital ng-switch-when="sevendigital" item="item"></mw-item-sevendigital>
         </div> -->
-        <mw-item class="wall-items__item  flex__item {{item.provider}}__item" ng-repeat="item in vm.wallData.providerData" item="item"></mw-item>
+        <mw-item class="wall-items__item  flex__item {{item.provider}}__item" ng-repeat="item in vm.wallData.providerData" item="item" selected-decade="vm.selectedDecade"></mw-item>
 
     </div>
 </section>

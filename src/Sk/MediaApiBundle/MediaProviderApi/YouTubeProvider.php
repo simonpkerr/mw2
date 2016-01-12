@@ -23,13 +23,13 @@ class YouTubeProvider implements IMediaProviderStrategy {
     const BATCH_PROCESS_THRESHOLD = 24;
     const SEARCH_MAX_RESULTS = 50;
     const CACHE_TTL = 259200;
-    
+
     private $gsYouTube;
     private $defaults;
-    
+
     //through DI, either receives the genuine search object or a fake
     /**
-     * 
+     *
      * @param type $google_service_youtube
      * @param CacheAdapterInterface $cache
      * $defaults  1 (Film & animation), 10 (Music), 20 (Gaming), 24 (Entertainment), 30 (movies), 43 (Shows)
@@ -43,14 +43,14 @@ class YouTubeProvider implements IMediaProviderStrategy {
             'regionCode'        =>  'GB'
         );
     }
-    
+
     public function getCacheKey(Decade $decade){
         return array(
             'decade'        => $decade->getSlug(),
             'provider'      => self::PROVIDER_NAME
         );
     }
-    
+
     public function setRequestObject($obj){
         $this->gsYouTube = $obj;
     }
@@ -65,12 +65,12 @@ class YouTubeProvider implements IMediaProviderStrategy {
             'description'   =>  $this->getItemDescription($data)
         );
     }
-    
+
     private function getItemId($data){
         return  $data->id->videoId;
     }
-    
-    
+
+
     private function getItemUrl($data){
         try{
             return 'https://www.youtube.com/watch?v=' . $data->id->videoId;
@@ -78,7 +78,7 @@ class YouTubeProvider implements IMediaProviderStrategy {
             return null;
         }
     }
-    
+
     private function getItemImage($data) {
         try{
             return $data->snippet->thumbnails->medium->url;
@@ -86,7 +86,7 @@ class YouTubeProvider implements IMediaProviderStrategy {
             return null;
         }
     }
-    
+
     private function getItemTitle($data){
         try{
             return $data->snippet->title;
@@ -94,51 +94,51 @@ class YouTubeProvider implements IMediaProviderStrategy {
             return null;
         }
     }
-    
-   
+
+
     private function getItemDescription($data) {
         try{
             return $data->snippet->description;
         } catch (Exception $ex) {
             return null;
         }
-        
+
     }
-    
+
     /*
      * for youtube, details are retrieved on the client,
      * but still need to be stored to drive recommendations, timeline
      * and improve memory walls
      */
-    public function getDetails(array $params){
-        
+    public function getDetails($decade, $id){
+
 //        if(!isset($params['ItemId']))
 //           throw new \InvalidArgumentException('No id was passed to Youtube');
-//        
+//
 //        $ve = $this->gsYouTube->getVideoEntry($params['ItemId']);
-//        
+//
 //        if($ve === false)
 //            throw new \RuntimeException("Could not connect to YouTube");
-//        
+//
 //        if(count($ve) < 1){
 //            throw new \LengthException("No results were returned");
 //        }
-//        
+//
 //        $response = $this->constructVideoEntry(new SimpleXMLElement('<entry></entry>'), $ve);
-// 
+//
 //        return $response;
         return null;
     }
-    
+
     public function getBatch(array $ids){
 //        if(count($ids) > self::BATCH_PROCESS_THRESHOLD)
 //            $ids = array_slice ($ids, 0, self::BATCH_PROCESS_THRESHOLD);
-//        
+//
 //        $this->ids = $ids;
-//                
+//
 //        $feed = '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/"
 //xmlns:batch="http://schemas.google.com/gdata/batch" xmlns:yt="http://gdata.youtube.com/schemas/2007"><batch:operation type="query" />';
-//        
+//
 //        $entries = array();
 //        foreach($ids as $id){
 //            array_push($entries, '<entry><id>http://gdata.youtube.com/feeds/api/videos/' . $id . '</id></entry>');
@@ -149,13 +149,13 @@ class YouTubeProvider implements IMediaProviderStrategy {
 //        }catch(\Exception $ex){
 //            throw new \RuntimeException('A problem occurred connecting to YouTube');
 //        }
-//        
+//
 //        if($response === false)
 //            throw new \RuntimeException('Could not connect to YouTube');
-//        
+//
 //        if($response->getStatus() != 200)
 //            throw new \RuntimeException('A problem occurred with the response');
-//        
+//
 //        $response = $response->getBody();//gets the raw response as Zend_Http_Response
 //        $feed = new \Zend_Gdata_YouTube_VideoFeed();
 //        $feed->setMajorProtocolVersion(2);
@@ -169,7 +169,7 @@ class YouTubeProvider implements IMediaProviderStrategy {
 //        return $response;
         return null;
     }
-    
+
     public function getListings(Decade $decade){
         try {
             $searchReponse = $this->gsYouTube->search->listSearch('id,snippet', array_merge($this->defaults, array(
@@ -177,7 +177,7 @@ class YouTubeProvider implements IMediaProviderStrategy {
             )));
         } catch (Exception $e) {
             throw $e;
-        }    
+        }
 
         if(count($searchReponse['items']) < 1){
             throw new Exception("No results were returned");
@@ -185,28 +185,32 @@ class YouTubeProvider implements IMediaProviderStrategy {
 
         return $searchReponse['items'];
     }
-    
-    private function getVideoFeed(Decade $decade){
+
+    public function search($query) {
+
+    }
+
+    private function getVideoFeed(Decade $decade) {
         //$query = $this->gsYouTube->newVideoQuery();
-        
+
         //$query->setOrderBy('viewCount');
         //default ordering is relevance
         //$query->setMaxResults(self::BATCH_PROCESS_THRESHOLD);
         //$query->setCategory('Entertainment/' . $decade->getSlug());
-        
+
         //$this->query = $query->getQueryUrl(2);
-        
-        //return $this->gsYouTube->getVideoFeed($query);    
-        return null;        
+
+        //return $this->gsYouTube->getVideoFeed($query);
+        return null;
     }
-    
+
 //    private function getSimpleXml($videoFeed, $debugURL = false){
 //        $sxml = new SimpleXMLElement('<feed></feed>');
 //        foreach($videoFeed as $i=>$videoEntry){
 //            $entry = $sxml->addChild('entry');
 //            $this->constructVideoEntry($entry, $videoEntry, $i);
 //        }
-//        
+//
 //        //debug - output the search url
 //        if($debugURL){
 //            $url = $sxml->addChild('url');
@@ -214,12 +218,12 @@ class YouTubeProvider implements IMediaProviderStrategy {
 //        }
 //        return $sxml;
 //    }
-    
+
 //    private function constructVideoEntry(SimpleXMLElement $entry, $videoEntry, $i = null){
 //        $id = $entry->addChild('id');
 //        $thumbnail = $entry->addChild('thumbnail');
 //        $title = $entry->addChild('title');
-//        
+//
 //        if(!is_null($videoEntry->getVideoTitle())) {
 //            $id[0] = $videoEntry->getVideoId();
 //            $thumbnails = $videoEntry->getVideoThumbnails();
@@ -228,19 +232,19 @@ class YouTubeProvider implements IMediaProviderStrategy {
 //            $title[0] = $videoEntry->getVideoTitle();
 //        } else {
 //            if(!is_null($this->ids) && !is_null($i)){
-//                $id[0] = $this->ids[$i];                        
+//                $id[0] = $this->ids[$i];
 //            } else {
 //                $id[0] = '-1';
 //            }
 //            $thumbnail[0] = 'na';
 //            $title[0] = 'Sorry, this video has been removed by YouTube';
 //        }
-//        
+//
 //        return $entry;
 //    }
-//    
+//
 
-   
+
 }
 
 ?>
