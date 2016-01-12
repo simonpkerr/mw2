@@ -3,9 +3,9 @@
   angular.module('mwApp.memoryWall')
   .directive('toggleText', toggleText);
 
-  toggleText.$inject = ['limitToFilter'];
+  toggleText.$inject = ['baseUrl'];
 
-  function toggleText (limitToFilter){
+  function toggleText (baseUrl){
     var directive = {
       scope: {
         toggleText: '@',
@@ -14,8 +14,8 @@
         // controller: function($scope, $element, $attrs, $transclude) {},
         // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
         restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
-        template: '<div><p>{{ toggleText | limitTo:appliedToggleLimit }}</p><a ng-click="toggle()" href="#">show {{ toggled ? "more" : "less" }}</a></div>',
-        // templateUrl: '',
+        // template: '',
+        templateUrl: baseUrl + 'memoryWall/toggleText.html',
         replace: true,
         //transclude: true,
         link: link
@@ -28,11 +28,8 @@
         scope.toggled = true;
         scope.toggle = function () {
           scope.toggled = !scope.toggled;
-          scope.appliedToggleLimit = scope.toggled ? scope.toggleLimit : 9999999;
+          scope.appliedToggleLimit = scope.toggled ? scope.toggleLimit : scope.toggleText.length;
         };
-
-
-
       }
     }
 

@@ -277,6 +277,57 @@ body {
   }
 }
 
+.flex-equal-heights {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  & > div,
+  & > a {
+
+    margin: 0 $global-padding $global-padding 0;
+    background-color: palette(blue, x-light);
+    padding: $global-padding;
+    width: 50%;
+    border-radius: $global-radius;
+
+    &:hover {
+      background-color: palette(blue, light);
+    }
+
+    @include breakpoint(media(desk)) {
+      width: 25%;
+    }
+  }
+}
+
+@include nested(12) {
+  .item-details {
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .item-details__image {
+    @include span(12 of 12);
+    @include breakpoint(media(tablet)){
+      @include span(6 of 12);
+    }
+  }
+
+  .item-details__overview {
+    @include span(12 of 12);
+    @include breakpoint(media(tablet)){
+      @include span(6 of 12);
+    }
+  }
+
+  .item-details__related {
+    @include span(12 of 12);
+  }
+}
+
 .icon {
   &.radius {
     border-radius: $global-radius;

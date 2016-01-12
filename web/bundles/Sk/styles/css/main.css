@@ -1097,15 +1097,30 @@ h1, .site-header__select, h2 {
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000377}}
+.site-content a {
+  text-decoration: none;
+  color: #da153a;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000380}}
+.site-content a:hover {
+  color: #7d0c21;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000387}}
 .wall-items__item .item-title {
   display: block;
   margin: 0 0 10px 0;
   text-align: center;
   padding: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000385}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\0000395}}
 .wall-items__item p {
   margin: 10px 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_typography\.scss}line{font-family:\00003106}}
+.item-details__related a {
+  color: #333;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/c\:\/RailsInstaller\/Ruby2\.1\.0\/lib\/ruby\/gems\/2\.1\.0\/gems\/susy-2\.2\.9\/sass\/susy\/language\/susy\/_box-sizing\.scss}line{font-family:\0000321}}
@@ -1492,7 +1507,88 @@ body {
   font-size: 300%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003281}}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003280}}
+.flex-equal-heights {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003286}}
+.flex-equal-heights > div, .flex-equal-heights > a {
+  margin: 0 20px 20px 0;
+  background-color: #d8edfb;
+  padding: 20px;
+  width: 50%;
+  border-radius: 3px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003295}}
+.flex-equal-heights > div:hover, .flex-equal-heights > a:hover {
+  background-color: #abd7f5;
+}
+@media (min-width: 1024px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003286}}
+  .flex-equal-heights > div, .flex-equal-heights > a {
+    width: 25%;
+  }
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003307}}
+.item-details a {
+  text-decoration: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003312}}
+.item-details__image {
+  width: 100%;
+  float: left;
+  padding-left: 1.0416666667%;
+  padding-right: 1.0416666667%;
+}
+@media (min-width: 480px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003312}}
+  .item-details__image {
+    width: 50%;
+    float: left;
+    padding-left: 1.0416666667%;
+    padding-right: 1.0416666667%;
+  }
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003319}}
+.item-details__overview {
+  width: 100%;
+  float: left;
+  padding-left: 1.0416666667%;
+  padding-right: 1.0416666667%;
+}
+@media (min-width: 480px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003319}}
+  .item-details__overview {
+    width: 50%;
+    float: left;
+    padding-left: 1.0416666667%;
+    padding-right: 1.0416666667%;
+  }
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003326}}
+.item-details__related {
+  width: 100%;
+  float: left;
+  padding-left: 1.0416666667%;
+  padding-right: 1.0416666667%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/xampp\/htdocs\/mw2\/web\/bundles\/Sk\/styles\/scss\/_layout\.scss}line{font-family:\00003332}}
 .icon.radius {
   border-radius: 3px;
 }

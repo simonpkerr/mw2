@@ -29,6 +29,7 @@ $breakpoints: (
 $palettes: (
     blue: (
       base:   #4fabeb,
+      x-light:  lighten(#4fabeb, 30%),
       light:  lighten(#4fabeb, 20%),
       dark:   darken(#4fabeb, 20%),
       x-dark: darken(#4fabeb, 40%)
@@ -41,7 +42,8 @@ $palettes: (
       base:  #5e5f65,
       light: #efefef,
       dark: #b3b4be,
-      x-dark: #666
+      x-dark: #666,
+      xx-dark: #333
     ),
     amazon: (
       base: #ff9900

@@ -5,18 +5,23 @@
     <p>Looks like something went wrong, please try again later</p>
   </div>
 
-  <div class="item-actions">
-    <ul>
-      <li><a href="{{data.url}}" class="icon-basket">{{ vm.getItemPrice(data) }}</a></li>
-    </ul>
+  <h2 ng-bind="data.title"></h2>
+
+  <div class="item-details__image">
+    <img ng-src="{{data.image}}" alt="{{data.title}}" />
   </div>
 
-  <h2 ng-bind="data.title"></h2>
-  <img ng-src="{{data.image}}" alt="{{data.title}}" />
-  <!-- add directive to show/hide more -->
-  <div toggle-text="{{data.review}}" toggle-limit="250"></div>
+  <div class="item-details__overview">
+    <div toggle-text="{{data.review}}" toggle-limit="250"></div>
+    <div class="item-actions">
+      <a href="{{data.url}}" class="icon-basket">{{ vm.getItemPrice(data) }}</a>
+    </div>
+  </div>
 
-  <div class="flex-equal-heights">
-    <div ng-repeat="similarItem in data.similarItems"><a href="#" ng-click="vm.exploreWall(data.provider, similarItem.id, itemIndex)">{{similarItem.title}}</a></div>
+  <div class="item-details__related">
+    <h3>Other similar stuff</h3>
+    <div class="flex-equal-heights">
+      <a ng-repeat="similarItem in data.similarItems" href="#" ng-click="vm.exploreWall(data.provider, similarItem.id, itemIndex)">{{similarItem.title}}</a>
+    </div>
   </div>
 </div>

@@ -1,0 +1,4 @@
+<div class="toggle-text">
+  <p>{{ toggleText | limitTo:appliedToggleLimit }}</p>
+  <a class="toggle" ng-class="{ 'icon-plus': toggled, 'icon-minus': !toggled }" ng-click="toggle()" href="#">show {{ toggled ? "more" : "less" }}</a>
+</div>
