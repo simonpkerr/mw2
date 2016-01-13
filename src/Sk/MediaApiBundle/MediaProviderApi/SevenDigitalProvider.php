@@ -73,8 +73,7 @@ class SevenDigitalProvider implements IMediaProviderStrategy {
         return array(
             'provider'              =>  self::PROVIDER_NAME,
             'id'                    =>  $this->getItemDetail($data, '@id'),
-            'title'                 =>  $this->getItemDetail($data, 'title'),
-            'artist'                =>  $this->getItemDetail($data, 'artist/name'),
+            'title'                 =>  $this->getItemDetail($data, 'title') . ' - ' . $this->getItemDetail($data, 'artist/name'),
             'image'                 =>  $this->getItemDetail($data, 'image'),
             'url'                   =>  $this->getItemDetail($data, 'url'),
             'originalReleaseDate'   =>  $this->getItemDetail($data, 'year'),

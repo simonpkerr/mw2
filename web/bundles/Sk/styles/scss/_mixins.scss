@@ -1,9 +1,31 @@
 /* custom mixins and functions */
 @function palette($palette, $tone: 'base') {
-    @return map-get(map-get($palettes, $palette), $tone);
+  @return map-get(map-get($palettes, $palette), $tone);
 }
 
 //get breakpoints from map
 @function media($size) {
-    @return map-get($breakpoints, $size);
+  @return map-get($breakpoints, $size);
 }
+
+@mixin chevron($orientation, $thickness: 0.1em, $size: 1em) {
+  &:before {
+    border-style: solid;
+    border-width: $thickness $thickness 0 0;
+    content: '';
+    display: inline-block;
+    height: $size;
+    position: absolute;
+    vertical-align: top;
+    width: $size;
+    @content;
+
+
+    @if $orientation == 'down' {
+      transform: rotate(135deg);
+      } @else  {
+        transform: rotate(-45deg);
+      }
+    }
+
+  }

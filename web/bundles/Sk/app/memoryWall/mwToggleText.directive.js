@@ -26,10 +26,16 @@
       function link (scope, element, attrs, ctrl) {
         scope.appliedToggleLimit = scope.toggleLimit;
         scope.toggled = true;
+        scope.toggleEnabled = true;
         scope.toggle = function () {
           scope.toggled = !scope.toggled;
           scope.appliedToggleLimit = scope.toggled ? scope.toggleLimit : scope.toggleText.length;
         };
+
+        if (scope.toggleText.length <= scope.toggleLimit) {
+          scope.toggleEnabled = false;
+        }
+
       }
     }
 

@@ -1,11 +1,11 @@
 {
   "wallItem": {
-    "provider": "youtube",
-    "data": {
-      "title": "All Mecha anime openings in collection from the 1980s",
+    "providerData": {
+      "provider": "youtube",
       "id": "a26JG33Lx-w",
-      "image": "https://i.ytimg.com/vi/a26JG33Lx-w/mqdefault.jpg"
+      "title": "All Mecha anime openings in collection from the 1980s",
+      "image": "https://i.ytimg.com/vi/a26JG33Lx-w/mqdefault.jpg",
+      "description": "An almost complete collection of giant robot anime TV openings from the 1980s I finally found out who the author of this great collection is: A group called \"Anime ..."
     }
-
   }
 }

@@ -8,14 +8,6 @@
 
   function mwItem(baseUrl, memoryWallService, $timeout) {
     var
-    // options = {
-    //     items: 1,
-    //     stagePadding: 50,
-    //     margin: 10,
-    //     pagination: true,
-    //     nav: true,
-    //     navText: ['<span class="icon-left-open"><span>', '<span class="icon-right-open"><span>']
-    //   },
       directive = {
         restrict: 'E',
         scope: {
@@ -64,15 +56,21 @@
         );
       };
 
+      vm.scrollToElement = function (element) {
+        $timeout(function () {
+          $('html, body').animate(
+            {
+              scrollTop: element.offset().top
+            }, 400, 'swing');
+        }, 500);
+      };
+
     }
 
     function link(scope, element, attrs) {
       scope.$watch('vm.selected', function (newVal, oldVal) {
         if (newVal) {
-          $timeout(function () {
-            window.scrollTo(0, element.offset().top);
-          }, 500);
-
+          scope.vm.scrollToElement(element);
         }
       });
 

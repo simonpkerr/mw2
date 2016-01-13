@@ -38,7 +38,7 @@
 
     function link(scope, element, attrs, controller) {
       scope.vm.exploreWall = controller.exploreWall;
-
+      controller.scrollToElement(element);
     }
 
 

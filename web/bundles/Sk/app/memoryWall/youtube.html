@@ -1,11 +1,24 @@
-<div>
-  <h3 class="item-title" ng-bind="item.data.title"></h3>
-  <img ng-src="{{item.data.image}}" alt="{{item.data.title}}" />
-  <!-- <p ng-bind="item.description"></p> -->
-  <!-- <ul class="item-actions">
-    <li><a ng-click="playYouTubeVideo()" class="icon-play" title="play {{item.title}}" ></a></li>
-  </ul> -->
+<div ng-init="data = vm.item.providerData">
+  <div ng-show="item.errorMessages.length > 0">
+    <h2>Oh dear&hellip;</h2>
+    <p>Looks like something went wrong, please try again later</p>
+  </div>
 
-  <div class="youtube-player"></div>
+  <h2 ng-bind="data.title"></h2>
+
+  <div class="item-details__video">
+    <img ng-hide="vm.player" ng-src="{{data.image}}" alt="{{data.title}}" />
+    <div class="youtube-player"></div>
+  </div>
+
+  <div class="item-details__overview">
+    <div toggle-text="{{data.description}}" toggle-limit="250"></div>
+    <!-- <div class="item-actions">
+      <a href="#" ng-click="vm.playYouTubeVideo()" class="icon-play cta" title="Play {{data.title}}" >Play the video</a>
+    </div> -->
+
+  </div>
+
+
 </div>
 

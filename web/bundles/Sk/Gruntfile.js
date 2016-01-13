@@ -115,7 +115,8 @@ module.exports = function (grunt) {
         raw: 'Sass::Script::Number.precision = 10\n',
         require: [
           'breakpoint',
-          'susy'
+          'susy',
+          'ceaser-easing'
         ]
       },
       dist: {
