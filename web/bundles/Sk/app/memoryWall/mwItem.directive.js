@@ -28,14 +28,17 @@
       var vm = this;
       vm.exploredItems = [];
       vm.selected = false;
+      vm.selectedItem = undefined;
       vm.exploreWall = function (provider, id, itemIndex) {
         itemIndex = itemIndex || 0;
 
-        //if item exists already, don't load it again, just open the window
-        if ($.grep(vm.exploredItems, function (el) {
+        //if item exists already, don't load it again, just open the window or focus on the element
+        var existingItems = $.grep(vm.exploredItems, function (el) {
           return el.providerData !== undefined && el.providerData.id === id;
-        }).length > 0) {
+        });
+        if (existingItems.length > 0) {
           vm.selected = true;
+          vm.selectedItem = id;
           return;
         }
 

@@ -39,6 +39,13 @@
     function link(scope, element, attrs, controller) {
       scope.vm.exploreWall = controller.exploreWall;
       controller.scrollToElement(element);
+
+      //watch parent selectedItem
+      scope.$watch('controller.selectedItem', function (newVal, oldVal) {
+        if (scope.vm.item.providerData !== undefined && newVal === scope.vm.item.providerData.id) {
+          controller.scrollToElement(element);
+        }
+      });
     }
 
 

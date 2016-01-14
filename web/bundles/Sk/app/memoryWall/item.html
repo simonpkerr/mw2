@@ -13,7 +13,7 @@
   <div class="explored-items" ng-show="vm.exploredItems.length > 0 && vm.selected">
 
     <!-- loop through all explored-items, output relevant directive -->
-    <div ng-repeat="item in vm.exploredItems" ng-switch on="vm.item.provider" class="item-details {{ vm.item.provider }}">
+    <div ng-repeat="item in vm.exploredItems" ng-switch on="vm.item.provider" class="item-details {{ vm.item.provider }}" data-item="{{ item.providerData.id }}">
         <mw-item-amazon ng-switch-when="amazon" item="item" item-index="$index"></mw-item-amazon>
         <mw-item-youtube ng-switch-when="youtube" item="item" item-index="$index"></mw-item-youtube>
         <mw-item-wikimedia ng-switch-when="wikimedia" item="item" item-index="$index"></mw-item-wikimedia>
