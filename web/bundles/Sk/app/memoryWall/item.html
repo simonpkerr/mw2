@@ -14,10 +14,10 @@
 
     <!-- loop through all explored-items, output relevant directive -->
     <div ng-repeat="item in vm.exploredItems" ng-switch on="vm.item.provider" class="item-details {{ vm.item.provider }}" data-item="{{ item.providerData.id }}">
-        <mw-item-amazon ng-switch-when="amazon" item="item" item-index="$index"></mw-item-amazon>
-        <mw-item-youtube ng-switch-when="youtube" item="item" item-index="$index"></mw-item-youtube>
-        <mw-item-wikimedia ng-switch-when="wikimedia" item="item" item-index="$index"></mw-item-wikimedia>
-        <mw-item-sevendigital ng-switch-when="sevendigital" item="item" item-index="$index"></mw-item-sevendigital>
+      <mw-item-amazon ng-switch-when="amazon" item="item" item-index="$index"></mw-item-amazon>
+      <mw-item-youtube ng-switch-when="youtube" item="item" item-index="$index"></mw-item-youtube>
+      <mw-item-wikimedia ng-switch-when="wikimedia" item="item" item-index="$index"></mw-item-wikimedia>
+      <mw-item-sevendigital ng-switch-when="sevendigital" item="item" item-index="$index"></mw-item-sevendigital>
     </div>
 
   </div>

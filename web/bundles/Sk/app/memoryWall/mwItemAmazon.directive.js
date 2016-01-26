@@ -11,7 +11,8 @@
       restrict: 'E',
       scope: {
         item: '=',
-        itemIndex: '='
+        itemIndex: '=',
+        selectedItemId: '='
       },
       require: '^mwItem',
       replace: true,
@@ -41,11 +42,13 @@
       controller.scrollToElement(element);
 
       //watch parent selectedItem
-      scope.$watch('controller.selectedItem', function (newVal, oldVal) {
-        if (scope.vm.item.providerData !== undefined && newVal === scope.vm.item.providerData.id) {
+      scope.$on('selectedItemIdChange', function (event, args) {
+        if (scope.vm.item.providerData !== undefined && args.id === scope.vm.item.providerData.id) {
           controller.scrollToElement(element);
         }
       });
+
+
     }
 
 

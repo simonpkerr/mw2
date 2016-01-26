@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"pattern",
+				"patternSyntax"
+			],
+			[
+				"glo",
+				"global-padding"
+			],
+			[
+				"glob",
+				"global-padding"
+			],
+			[
+				"global-",
+				"global-radius"
+			],
+			[
+				"backgroun",
+				"background-color"
+			],
+			[
 				"Simil",
 				"SimilarProduct"
 			],
@@ -32,66 +52,66 @@
 	"buffers":
 	[
 		{
-			"file": "src/Sk/MediaApiBundle/Controller/DefaultController.php",
+			"file": "web/bundles/Sk/app/memoryWall/mwItemAmazon.directive.js",
 			"settings":
 			{
-				"buffer_size": 2708,
+				"buffer_size": 1256,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "web/bundles/Sk/test/data/amazon-B005DDIUYW.json",
+			"file": "web/bundles/Sk/app/memoryWall/mwItem.directive.js",
 			"settings":
 			{
-				"buffer_size": 613,
+				"buffer_size": 2147,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "web/bundles/Sk/test/data/amazon-B00DVLWQMU.json",
+			"file": "web/bundles/Sk/app/memoryWall/item.html",
 			"settings":
 			{
-				"buffer_size": 2233,
+				"buffer_size": 1453,
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Sk/MediaApiBundle/MediaProviderApi/AmazonProvider.php",
-			"settings":
-			{
-				"buffer_size": 9106,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/Sk/MediaApiBundle/MediaProviderApi/MediaProviderFacade.php",
-			"settings":
-			{
-				"buffer_size": 3926,
-				"line_ending": "Windows"
 			}
 		},
 		{
 			"file": "web/bundles/Sk/app/memoryWall/amazon.html",
 			"settings":
 			{
-				"buffer_size": 841,
+				"buffer_size": 919,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "web/bundles/Sk/app/app.module.js",
+			"file": "web/bundles/Sk/styles/scss/_layout.scss",
 			"settings":
 			{
-				"buffer_size": 263,
+				"buffer_size": 7231,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "web/bundles/Sk/app/memoryWall/mwItemAmazon.directive.js",
+			"file": "web/bundles/Sk/styles/scss/_typography.scss",
 			"settings":
 			{
-				"buffer_size": 930,
+				"buffer_size": 2989,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "web/bundles/Sk/app/memoryWall/youtube.html",
+			"settings":
+			{
+				"buffer_size": 695,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "web/bundles/Sk/app/memoryWall/mwItemYouTube.directive.js",
+			"settings":
+			{
+				"buffer_size": 3738,
 				"line_ending": "Windows"
 			}
 		}
@@ -103,10 +123,18 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 242.0,
-		"last_filter": "json",
+		"height": 392.0,
+		"last_filter": "html",
 		"selected_items":
 		[
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
 			[
 				"json",
 				"Set Syntax: JSON"
@@ -134,10 +162,6 @@
 			[
 				"xdebug sta",
 				"Xdebug: Restart Session"
-			],
-			[
-				"rein",
-				"Indentation: Reindent Lines"
 			],
 			[
 				"php",
@@ -220,10 +244,6 @@
 				"Snippet: html"
 			],
 			[
-				"html",
-				"Snippet: html"
-			],
-			[
 				"lower",
 				"Convert Case: Lower Case"
 			],
@@ -260,7 +280,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 472.0
+		"width": 512.0
 	},
 	"console":
 	{
@@ -282,49 +302,73 @@
 	"expanded_folders":
 	[
 		"/C/xampp/htdocs/mw2",
-		"/C/xampp/htdocs/mw2/src",
 		"/C/xampp/htdocs/mw2/src/Sk",
+		"/C/xampp/htdocs/mw2/src/Sk/FrontEndBundle",
+		"/C/xampp/htdocs/mw2/src/Sk/FrontEndBundle/Resources",
+		"/C/xampp/htdocs/mw2/src/Sk/FrontEndBundle/Resources/views",
+		"/C/xampp/htdocs/mw2/src/Sk/FrontEndBundle/Resources/views/Default",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/Controller",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/Resources",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/Resources/config",
-		"/C/xampp/htdocs/mw2/vendor/symfony/symfony",
-		"/C/xampp/htdocs/mw2/vendor/symfony/symfony/src/Symfony",
 		"/C/xampp/htdocs/mw2/web",
 		"/C/xampp/htdocs/mw2/web/bundles",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/app",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/core",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/test",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data"
 	],
 	"file_history":
 	[
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/C/Development/FE-Corporate/src/Orchard.Web/Web.config",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/youTube.service.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/app.memoryWall.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/youtube-a26JG33Lx-w.json",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/toggleText.html",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/mwToggleText.directive.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_settings.scss",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_mixins.scss",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_mw-embedded.scss",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/amazon-B00T7MDZAO.json",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/Gruntfile.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/main.scss",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/sample-wall-1980s.json",
+		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi/SevenDigitalProvider.php",
+		"/C/Development/QV/Source/QV.Presentation/App_Start/BundleEvents.cs",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/memoryWall.service.js",
+		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi/MediaProviderFacade.php",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/amazon-B00DVLWQMU.json",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/app.module.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_layout.scss",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_typography.scss",
+		"/C/Users/Simon.Kerr/Downloads/gandhi-sans-fontfacekit/web fonts/gandhisans_regular_macroman/stylesheet.css",
+		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/Controller/DefaultController.php",
+		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi/IMediaProviderStrategy.php",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/main.html",
+		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi/YouTubeProvider.php",
+		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi/AmazonProvider.php",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/server/index.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/amazon-B00T7MDY8M.json",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/amazon-B005DDIUYW.json",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/mwItemAmazon.directive.js",
 		"/C/Development/Misys-Umbraco/web/Web.config",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/amazon-B004Z132V4.json",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/sample-wall-1980s.json",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/amazon-B00T7MDZAO.json",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/amazon-B00DVLWQMU.json",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/amazon-B00T7MDY8M.json",
 		"/C/xampp/htdocs/mw2/mw.sublime-project",
 		"/C/xampp/htdocs/mw2/vendor/symfony/symfony/src/Symfony/Component/Debug/ErrorHandler.php",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/Resources/config/services.xml",
-		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi/AmazonProvider.php",
 		"/C/xampp/php/php.ini",
 		"/C/xampp/htdocs/mw2/web/phpinfo.php",
 		"/C/xampp/apache/conf/extra/httpd-vhosts.conf",
-		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi/MediaProviderFacade.php",
 		"/C/xampp/tmp/cachegrind.out.1452098763-C__xampp_htdocs_mw2_web_app_dev_php",
 		"/C/xampp/tmp/cachegrind.out.1452098670-C__xampp_htdocs_mw2_web_app_dev_php",
-		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/Controller/DefaultController.php",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_layout.scss",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/main.html",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/app.memoryWall.js",
 		"/C/xampp/htdocs/mw2/src/Sk/FrontEndBundle/Resources/views/Default/index.html.twig",
 		"/C/Users/Simon.Kerr/AppData/Roaming/Sublime Text 3/Packages/User/Xdebug.sublime-settings",
-		"/C/Windows/System32/drivers/etc/hosts",
 		"/C/xampp/htdocs/mw/web/bundles/Sk/Gruntfile.js",
 		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwDecadeSelect.html",
 		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_components.scss",
@@ -424,6 +468,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"getPlayer",
+			"scope",
+			"toggle",
+			"p",
+			"desk",
+			"decade-slider",
+			"lap",
+			"$global-asset-path'",
+			"body",
+			"GandhiSans-Regular-webfont",
+			"'/web/bundles/Sk/",
+			"../bundles/Sk/",
+			"getVideoFeed",
 			"redirect",
 			"EditorialReviews",
 			"\\",
@@ -545,89 +602,89 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/Sk/MediaApiBundle/Controller/DefaultController.php",
+					"file": "web/bundles/Sk/app/memoryWall/mwItemAmazon.directive.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2708,
+						"buffer_size": 1256,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2696,
-								2696
+								1256,
+								1256
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 720.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "web/bundles/Sk/test/data/amazon-B005DDIUYW.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 613,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								91,
-								91
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 84.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "web/bundles/Sk/test/data/amazon-B00DVLWQMU.json",
+					"buffer": 1,
+					"file": "web/bundles/Sk/app/memoryWall/mwItem.directive.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2233,
+						"buffer_size": 2147,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1966,
-								1998
+								1253,
+								1253
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 335.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "web/bundles/Sk/app/memoryWall/item.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1453,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1453,
+								1453
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -640,79 +697,19 @@
 				},
 				{
 					"buffer": 3,
-					"file": "src/Sk/MediaApiBundle/MediaProviderApi/AmazonProvider.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9106,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2965,
-								2965
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1056.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/Sk/MediaApiBundle/MediaProviderApi/MediaProviderFacade.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3926,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3581,
-								3581
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1274.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "web/bundles/Sk/app/memoryWall/amazon.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 841,
+						"buffer_size": 919,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								841,
-								841
+								863,
+								863
 							]
 						],
 						"settings":
@@ -729,48 +726,108 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "web/bundles/Sk/app/app.module.js",
+					"buffer": 4,
+					"file": "web/bundles/Sk/styles/scss/_layout.scss",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 263,
+						"buffer_size": 7231,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								122,
-								122
+								5765,
+								5765
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4461.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "web/bundles/Sk/styles/scss/_typography.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2989,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2313,
+								2313
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 462.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "web/bundles/Sk/app/memoryWall/youtube.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 695,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								284,
+								284
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
 					"buffer": 7,
-					"file": "web/bundles/Sk/app/memoryWall/mwItemAmazon.directive.js",
+					"file": "web/bundles/Sk/app/memoryWall/mwItemYouTube.directive.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 930,
+						"buffer_size": 3738,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								781,
-								781
+								2995,
+								2995
 							]
 						],
 						"settings":
@@ -780,10 +837,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 84.0,
+						"translation.y": 1196.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -962,7 +1019,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 303.0,
+	"side_bar_width": 320.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

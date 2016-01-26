@@ -23,12 +23,12 @@
       };
     return directive;
 
-    function controller() {
+    function controller($scope) {
 
       var vm = this;
       vm.exploredItems = [];
       vm.selected = false;
-      vm.selectedItem = undefined;
+      vm.selectedItemId = undefined;
       vm.exploreWall = function (provider, id, itemIndex) {
         itemIndex = itemIndex || 0;
 
@@ -38,7 +38,8 @@
         });
         if (existingItems.length > 0) {
           vm.selected = true;
-          vm.selectedItem = id;
+          vm.selectedItemId = id;
+          $scope.$broadcast('selectedItemIdChange', { 'id': id});
           return;
         }
 
@@ -76,6 +77,10 @@
           scope.vm.scrollToElement(element);
         }
       });
+
+      // scope.$watch('vm.selectedItemId', function (newVal) {
+      //   scope.$broadcast('selectedItemIdChange', { 'id': newVal});
+      // });
 
     }
   }
