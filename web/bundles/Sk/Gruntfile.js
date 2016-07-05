@@ -11,17 +11,33 @@ var path = require('path');
 
 module.exports = function (grunt) {
 
-  // Load grunt tasks automatically
-  require('load-grunt-tasks')(grunt);
-
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
+
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  // Load grunt tasks automatically
+  // require('load-grunt-tasks')(grunt);
+  require('jit-grunt')(grunt, {
+    useminPrepare: 'grunt-usemin',
+    ngtemplates: 'grunt-angular-templates'
+  });
+
+
 
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
     bower: 'bower_components',
-    dist: 'dist'
+    dist: 'dist',
+    scripts: [
+      // JS files to be included by includeSource task into index.html
+      'app/app.module.js',
+      'app/**/*.module.js',
+      'app/**/*.js',
+      '!app/lib/*.js',
+      '!app/**/*.spec.js'
+    ]
   };
 
   // Define the configuration for all the tasks
@@ -46,6 +62,44 @@ module.exports = function (grunt) {
       },
       gruntfile: {
         files: ['Gruntfile.js']
+      }
+    },
+
+    express: {
+      options: {
+        port: 9000,
+        hostname: '*'
+      },
+      livereload: {
+        options: {
+          server: path.resolve('./server'),
+          livereload: true,
+          serverreload: false,
+          bases: [
+            path.resolve(__dirname, appConfig.app),
+            path.resolve('./'),
+            path.resolve('./tmp'),
+            // path.resolve('./app'),
+            path.resolve('/bower_components')
+          ]
+        }
+      },
+      test: {
+        options: {
+          server: path.resolve('./server'),
+          bases: [path.resolve('./app'), path.resolve(__dirname, 'test'), path.resolve('./')]
+        }
+      },
+      dist: {
+        options: {
+          server: path.resolve('./server'),
+          bases: path.resolve(__dirname, appConfig.dist)
+        }
+      }
+    },
+    open: {
+      server: {
+        url: 'http://localhost:<%= express.options.port %>'
       }
     },
 
@@ -84,16 +138,63 @@ module.exports = function (grunt) {
       server: '.tmp'
     },
 
-    // Add vendor prefixed styles
-    autoprefixer: {
+    postcss: {
+      options: {
+        processors: [
+          require('autoprefixer-core')({browsers: ['last 1 version']})
+        ]
+      },
+      server: {
+        options: {
+          map: true
+        },
+        files: [{
+          expand: true,
+          cwd: '.tmp/styles/',
+          src: '{,*/}*.css',
+          dest: '.tmp/styles/'
+        }]
+      },
       dist: {
         files: [{
           expand: true,
-          //cwd: '<%= yeoman.app %>/styles/css',
-          src: 'styles/css/*.css',
-          browsers: ['last 5 versions', 'ie 9', 'ie 8']
-          //dest: '<%= yeoman.app %>/styles/css/compiled/main.css'
+          cwd: '.tmp/styles/',
+          src: '{,*/}*.css',
+          dest: '.tmp/styles/'
         }]
+      }
+    },
+
+    wiredep: {
+      app: {
+        src: ['index.html'],
+        ignorePath:  /\.\.\//,
+        exclude: [
+          'bower_components/requirejs',
+          'bower_components/jquery-ui'
+        ]
+      },
+      test: {
+        devDependencies: true,
+        src: '<%= karma.unit.configFile %>',
+        ignorePath:  /\.\.\//,
+        exclude: [
+        ],
+        fileTypes:{
+          js: {
+            block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
+              detect: {
+                js: /'(.*\.js)'/gi
+              },
+              replace: {
+                js: '\'{{filePath}}\','
+              }
+            }
+          }
+      },
+      sass: {
+        src: ['styles/{,*/}*.{scss,sass}'],
+        ignorePath: /(\.\.\/){1,2}bower_components\//
       }
     },
 
@@ -101,14 +202,14 @@ module.exports = function (grunt) {
     compass: {
       options: {
         sassDir: 'styles/scss',
-        cssDir: 'styles/css',
-        //generatedImagesDir: '.tmp/images/generated',
-        //imagesDir: 'images',
-        //javascriptsDir: 'scripts',
+        cssDir: '.tmp/css',
+        generatedImagesDir: '.tmp/images/generated',
+        imagesDir: 'images',
+        javascriptsDir: '<%= yeoman.app %>',
         fontsDir: 'styles/fonts',
-        importPath: 'bower_components',
-        //httpImagesPath: 'images',
-        //httpGeneratedImagesPath: 'images/generated',
+        importPath: ['./bower_components', './styles'],
+        httpImagesPath: 'images',
+        httpGeneratedImagesPath: 'images/generated',
         httpFontsPath: 'styles/fonts',
         relativeAssets: false,
         assetCacheBuster: false,
@@ -117,11 +218,12 @@ module.exports = function (grunt) {
           'breakpoint',
           'susy',
           'ceaser-easing'
-        ]
+        ],
+        sourcemap: true
       },
       dist: {
         options: {
-          generatedImagesDir: 'images/generated',
+          generatedImagesDir: '<%= yeoman.dist %>/images/generated',
           outputStyle: 'compressed'
 
         }
@@ -134,13 +236,106 @@ module.exports = function (grunt) {
       server: {
         options: {
           debugInfo: true,
-          outputStyle: 'expanded'
+          outputStyle: 'expanded',
+          sourcemap: true
         }
       }
     },
 
+    useminPrepare: {
+      html: 'index.html',
+      options: {
+        dest: '<%= yeoman.dist %>',
+        flow: {
+          html: {
+            steps: {
+              js: ['concat', 'uglifyjs'],
+              css: ['cssmin']
+            },
+            post: {}
+          }
+        }
+      }
+    },
 
-    uglify: {
+    // Performs rewrites based on filerev and the useminPrepare configuration
+    usemin: {
+      html: ['<%= yeoman.dist %>/{,*/}*.html'],
+      css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+      js: ['<%= yeoman.dist %>/scripts/{,*/}*.js'],
+      options: {
+        assetsDirs: [
+          '<%= yeoman.dist %>',
+          '<%= yeoman.dist %>/images',
+          '<%= yeoman.dist %>/styles'
+        ],
+        patterns: {
+          js: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images']]
+        }
+      }
+    },
+
+    htmlmin: {
+      dist: {
+        options: {
+          collapseWhitespace: true,
+          conservativeCollapse: true,
+          collapseBooleanAttributes: true,
+          removeCommentsFromCDATA: true
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.dist %>',
+          src: ['*.html'],
+          dest: '<%= yeoman.dist %>'
+        }]
+      }
+    },
+
+    ngtemplates: {
+      dist: {
+        options: {
+          module: 'app',
+          htmlmin: '<%= htmlmin.dist.options %>',
+          usemin: 'scripts/scripts.js'
+        },
+        cwd: '<%= yeoman.app %>',
+        src: '{,**/}*.html',
+        //this gets added to scripts.js during the build task
+        dest: '.tmp/templateCache.js'
+      }
+    },
+
+    copy: {
+      dist: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: './',
+          dest: '<%= yeoman.dist %>',
+          src: [
+            '*.{ico,png,txt}',
+            '*.html',
+            'images/{,*/}*.{webp}',
+            'styles/fonts/{,*/}*.*'
+          ]
+        }, {
+          expand: true,
+          cwd: '.tmp/images',
+          dest: '<%= yeoman.dist %>/images',
+          src: ['generated/*']
+        }]
+      },
+      styles: {
+        expand: true,
+        cwd: 'styles',
+        dest: '.tmp/styles/',
+        src: '{,*/}*.css'
+      }
+
+    },
+
+    /*uglify: {
       vendors: {
         options: {
           compress: true,
@@ -162,8 +357,6 @@ module.exports = function (grunt) {
             '<%= yeoman.bower %>/angular-sanitize/angular-sanitize.js',
             '<%= yeoman.bower %>/angular-animate/angular-animate.js',
             '<%= yeoman.bower %>/json3/lib/json3.js',
-            // '<%= yeoman.bower %>/owlcarousel/owl-carousel/owl.carousel.js',
-            // '<%= yeoman.bower %>/owl.carousel/dist/owl.carousel.js',
             '<%= yeoman.bower %>/angular-loading-bar/build/loading-bar.js'
           ]
         }
@@ -182,56 +375,36 @@ module.exports = function (grunt) {
           ]
         }
       }
-    },
+    },*/
 
-    express: {
-      options: {
-        port: 9000,
-        hostname: '*'
-      },
-      livereload: {
-        options: {
-          server: path.resolve('./server'),
-          livereload: true,
-          serverreload: true,
-          bases: [path.resolve('./app'), path.resolve(__dirname, appConfig.app), path.resolve('./')]
-        }
-      },
-      test: {
-        options: {
-          server: path.resolve('./server'),
-          bases: [path.resolve('./app'), path.resolve(__dirname, 'test'), path.resolve('./')]
-        }
-      },
-      dist: {
-        options: {
-          server: path.resolve('./server'),
-          bases: path.resolve(__dirname, appConfig.dist)
-        }
-      }
-    },
-    open: {
-      server: {
-        url: 'http://localhost:<%= express.options.port %>'
-      }
-    },
+
 
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'compass:server',
-        'uglify'
+        'compass:server'
+        // 'uglify'
       ],
       test: [
-        'compass:test',
-        'uglify',
+        'compass:test'
+        // 'uglify',
       ],
       dist: [
         'compass:dist'
         //'imagemin',
         //'svgmin'
       ]
+    },
+
+    includeSource: {
+      options: {
+        basePath: './'
+      },
+
+      app: {
+        files: {'index.html' : 'index.html'}
+      }
     },
 
     // Test settings
@@ -250,10 +423,11 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
-      //'clean:server',
-      //'wiredep',
+      'clean:server',
+      'wiredep',
+      'includeSource:app',
       'concurrent:server',
-      'autoprefixer',
+      'postcss:server',
       'express:livereload',
       'open',
       'watch'
@@ -282,7 +456,7 @@ module.exports = function (grunt) {
     //'wiredep',
     //useminPrepare',
     'concurrent:dist',
-    'autoprefixer'
+    // 'autoprefixer'
     //'ngAnnotate',
     //'copy:dist',
     //'cdnify',

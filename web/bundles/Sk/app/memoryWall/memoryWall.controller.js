@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('mwApp.memoryWall',[])
+    angular.module('mwApp.memoryWall')
         .controller('MemoryWall', MemoryWall);
 
     MemoryWall.$inject = ['$scope', 'memoryWallService', 'youTubeService', '$sce', '$location', '$routeParams'];

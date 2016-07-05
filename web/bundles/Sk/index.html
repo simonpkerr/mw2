@@ -1,0 +1,75 @@
+<!doctype html>
+<html class="no-js" ng-app="mwApp" lang="en">
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <title>Memory Walls</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- build:css(.tmp) styles/vendor.css -->
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/core.css">
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/slider.css">
+    <!-- endbuild -->
+
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/css/main.css">
+    <!-- endbuild -->
+
+    <script src='bower_components/modernizr/modernizr.js'></script>
+
+  </head>
+  <body>
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="container view-animate-container">
+        <div ng-view class="view-frame view-animate"></div>
+    </div>
+
+    <!-- build:js({./,.tmp}) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src='bower_components/angular/angular.js'></script>
+    <script src='bower_components/angular-route/angular-route.js'></script>
+    <script src='bower_components/angular-resource/angular-resource.js'></script>
+    <script src='bower_components/angular-sanitize/angular-sanitize.js'></script>
+    <script src='bower_components/json3/lib/json3.js'></script>
+    <script src='bower_components/es5-shim/es5-shim.js'></script>
+    <script src='bower_components/jquery/dist/jquery.js'></script>
+    <script src='bower_components/angular-ui-router/release/angular-ui-router.js'></script>
+    <script src='bower_components/angular-loading-bar/build/loading-bar.js'></script>
+    <script src='bower_components/angular-animate/angular-animate.js'></script>
+    <!-- endbower -->
+    <script src='bower_components/jquery-ui/ui/core.js'></script>
+    <script src='bower_components/jquery-ui/ui/widget.js'></script>
+    <script src='bower_components/jquery-ui/ui/mouse.js'></script>
+    <script src='bower_components/jquery-ui/ui/slider.js'></script>
+    <script src='bower_components/jquery-ui/ui/selectmenu.js'></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,./}) scripts/scripts.js -->
+    <!-- include: "type" : "js", "files" : "<%= yeoman.scripts  %>"  -->
+    <script src="app/app.module.js"></script>
+    <script src="app/core/core.module.js"></script>
+    <script src="app/memoryWall/memoryWall.module.js"></script>
+    <script src="app/core/app.routing.js"></script>
+    <script src="app/memoryWall/memoryWall.controller.js"></script>
+    <script src="app/memoryWall/memoryWall.service.js"></script>
+    <script src="app/memoryWall/mwDecadeSelect.directive.js"></script>
+    <script src="app/memoryWall/mwItem.directive.js"></script>
+    <script src="app/memoryWall/mwItemAmazon.directive.js"></script>
+    <script src="app/memoryWall/mwItemSevendigital.directive.js"></script>
+    <script src="app/memoryWall/mwItemWikiMedia.directive.js"></script>
+    <script src="app/memoryWall/mwItemYouTube.directive.js"></script>
+    <script src="app/memoryWall/mwToggleText.directive.js"></script>
+    <script src="app/memoryWall/youTube.service.js"></script>
+    <!-- /include -->
+    <!-- endbuild -->
+
+
+    <!-- <script src='../dist/js/vendors.js'></script>
+    <script src='../dist/js/app.js'></script> -->
+
+</body>
+</html>

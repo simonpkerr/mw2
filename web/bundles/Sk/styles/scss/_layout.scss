@@ -339,6 +339,15 @@ body {
       width: 18%;
     }
   }
+
+  &.to-4-cols {
+    & > div,
+    & > a {
+      @include breakpoint(media(desk)) {
+        width: 23%;
+      }
+    }
+  }
 }
 
 @include nested(12) {
@@ -415,6 +424,9 @@ body {
 
   .item-details__related {
     @include span(12 of 12);
+    h4 {
+      word-break: break-word;
+    }
   }
 }
 

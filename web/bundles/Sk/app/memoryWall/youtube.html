@@ -21,8 +21,11 @@
 
   <div class="item-details__related" ng-show="data.similarItems">
     <h3>Other similar stuff</h3>
-    <div class="flex-equal-heights">
-      <a ng-repeat="similarItem in data.similarItems" href="#" ng-click="vm.exploreWall(data.provider, similarItem.id, itemIndex)">{{similarItem.title}}</a>
+    <div class="flex-equal-heights   to-4-cols">
+      <a ng-repeat="similarItem in data.similarItems" ng-click="vm.exploreWall(data.provider, similarItem.id, itemIndex)">
+        <img ng-src="{{ similarItem.image }}" alt="{{ similarItem.title }}" />
+        <h4 ng-bind="similarItem.title"></h4>
+      </a>
     </div>
   </div>
 

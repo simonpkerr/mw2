@@ -41,7 +41,7 @@
      'http://previews.7digital.com/**'
     ]);
 
-    $locationProvider.html5Mode(true);
+    /// $locationProvider.html5Mode(true);
   }
 
   // memoryWallPrepService.$inject = ['memoryWallService', 'youTubeService'];

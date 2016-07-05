@@ -1,9 +1,9 @@
 <div ng-class="{ selected : vm.selected }">
-  <a ng-click="vm.selected = !vm.selected" class="icon-cancel radius item-close" title="close" ng-show="vm.selected" href="#"></a>
+  <a ng-click="vm.selected = !vm.selected" class="icon-cancel radius item-close" title="close" ng-show="vm.selected"></a>
 
   <div class="item-overview" ng-show="!vm.selected">
     <div class="explore-item">
-      <a href="#" ng-click="vm.exploreWall(vm.item.provider, vm.item.id)" class="icon-search explore" title="Explore {{vm.item.title}}"></a>
+      <a ng-click="vm.exploreWall(vm.item.provider, vm.item.id)" class="icon-search explore" title="Explore {{vm.item.title}}"></a>
     </div>
     <span class="item-title" ng-bind="vm.item.title"></span>
     <img ng-src="{{vm.item.image}}" alt="{{vm.item.title}}" />

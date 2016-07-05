@@ -22,6 +22,7 @@ class YouTubeProvider implements IMediaProviderStrategy {
   const PROVIDER_NAME = 'youtube';
   const BATCH_PROCESS_THRESHOLD = 24;
   const SEARCH_MAX_RESULTS = 50;
+  const SIMILAR_MAX_RESULTS = 12;
   const CACHE_TTL = 259200;
 
   private $gsYouTube;
@@ -39,7 +40,7 @@ class YouTubeProvider implements IMediaProviderStrategy {
       $this->defaults = array(
         'maxResults'        =>  self::SEARCH_MAX_RESULTS,
         'type'              =>  'video',
-        'videoCategoryId'   =>  '24',
+        // 'videoCategoryId'   =>  '24',
         'regionCode'        =>  'GB'
         );
     }
@@ -148,9 +149,10 @@ class YouTubeProvider implements IMediaProviderStrategy {
       try {
         //get similar items
         $similarItems = $this->gsYouTube->search->listSearch('snippet', array(
-          'relatedToVideoId' => $id,
-          'type' => 'video',
-          'maxResults' => 25
+          'relatedToVideoId'    => $id,
+          'type'                => 'video',
+          'maxResults'          => self::SIMILAR_MAX_RESULTS,
+          'regionCode'          => 'GB'
         ));
       } catch (Exception $e) {
         throw $e;
