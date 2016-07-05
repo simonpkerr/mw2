@@ -36,6 +36,7 @@
         var existingItems = $.grep(vm.exploredItems, function (el) {
           return el.providerData !== undefined && el.providerData.id === id;
         });
+
         if (existingItems.length > 0) {
           vm.selected = true;
           vm.selectedItemId = id;

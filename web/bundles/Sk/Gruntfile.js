@@ -254,6 +254,8 @@ module.exports = function (grunt) {
       //'wiredep',
       'concurrent:server',
       'autoprefixer',
+      'express:livereload',
+      'open',
       'watch'
     ]);
   });

@@ -52,67 +52,51 @@
 	"buffers":
 	[
 		{
-			"file": "web/bundles/Sk/app/memoryWall/mwItemAmazon.directive.js",
+			"file": "src/Sk/MediaApiBundle/MediaProviderApi/MediaProviderFacade.php",
 			"settings":
 			{
-				"buffer_size": 1256,
+				"buffer_size": 3991,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "web/bundles/Sk/app/memoryWall/mwItem.directive.js",
+			"file": "src/Sk/MediaApiBundle/MediaProviderApi/AmazonProvider.php",
 			"settings":
 			{
-				"buffer_size": 2147,
+				"buffer_size": 9099,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/Sk/MediaApiBundle/MediaProviderApi/YouTubeProvider.php",
+			"settings":
+			{
+				"buffer_size": 7920,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/Sk/MediaApiBundle/MediaProviderApi/SevenDigitalProvider.php",
+			"settings":
+			{
+				"buffer_size": 4679,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/Sk/MediaApiBundle/MediaProviderApi/IMediaProviderStrategy.php",
+			"settings":
+			{
+				"buffer_size": 890,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "web/bundles/Sk/test/data/sample-wall-1980s.json",
+			"settings":
+			{
+				"buffer_size": 10699,
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "web/bundles/Sk/app/memoryWall/item.html",
-			"settings":
-			{
-				"buffer_size": 1453,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "web/bundles/Sk/app/memoryWall/amazon.html",
-			"settings":
-			{
-				"buffer_size": 919,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "web/bundles/Sk/styles/scss/_layout.scss",
-			"settings":
-			{
-				"buffer_size": 7231,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "web/bundles/Sk/styles/scss/_typography.scss",
-			"settings":
-			{
-				"buffer_size": 2989,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "web/bundles/Sk/app/memoryWall/youtube.html",
-			"settings":
-			{
-				"buffer_size": 695,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "web/bundles/Sk/app/memoryWall/mwItemYouTube.directive.js",
-			"settings":
-			{
-				"buffer_size": 3738,
-				"line_ending": "Windows"
 			}
 		}
 	],
@@ -124,9 +108,13 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "html",
+		"last_filter": "package",
 		"selected_items":
 		[
+			[
+				"package",
+				"Package Control: List Packages"
+			],
 			[
 				"html",
 				"Set Syntax: HTML"
@@ -274,13 +262,9 @@
 			[
 				"install ",
 				"Package Control: Install Package"
-			],
-			[
-				"package",
-				"Package Control: Install Package"
 			]
 		],
-		"width": 512.0
+		"width": 472.0
 	},
 	"console":
 	{
@@ -302,66 +286,80 @@
 	"expanded_folders":
 	[
 		"/C/xampp/htdocs/mw2",
+		"/C/xampp/htdocs/mw2/src",
 		"/C/xampp/htdocs/mw2/src/Sk",
-		"/C/xampp/htdocs/mw2/src/Sk/FrontEndBundle",
-		"/C/xampp/htdocs/mw2/src/Sk/FrontEndBundle/Resources",
-		"/C/xampp/htdocs/mw2/src/Sk/FrontEndBundle/Resources/views",
-		"/C/xampp/htdocs/mw2/src/Sk/FrontEndBundle/Resources/views/Default",
+		"/C/xampp/htdocs/mw2/src/Sk/FrontEndBundle/Controller",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/Controller",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi",
+		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/Repository",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/Resources",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/Resources/config",
+		"/C/xampp/htdocs/mw2/vendor/google/apiclient",
+		"/C/xampp/htdocs/mw2/vendor/google/apiclient/src",
+		"/C/xampp/htdocs/mw2/vendor/google/apiclient/src/Google",
 		"/C/xampp/htdocs/mw2/web",
 		"/C/xampp/htdocs/mw2/web/bundles",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/app",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/core",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/test",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data"
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/spec/memoryWall"
 	],
 	"file_history":
 	[
-		"/C/Windows/System32/drivers/etc/hosts",
-		"/C/Development/FE-Corporate/src/Orchard.Web/Web.config",
+		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/Resources/config/services.xml",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/mwItemYouTube.directive.js",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/youTube.service.js",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/app.memoryWall.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/mwItem.directive.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/memoryWall.service.js",
+		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi/YouTubeProvider.php",
+		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/Controller/DefaultController.php",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/mwDecadeSelect.directive.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/karma.conf.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/Gruntfile.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/spec/memoryWall/app.memoryWallSpec.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/spec/memoryWall/mwItemYoutube.directiveSpec.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/mwDecadeSelect.html",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/core/app.core.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/app.module.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/core/app.routing.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/package.json",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/youtube.html",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/amazon.html",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/item.html",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/mwItemAmazon.directive.js",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/index.html",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_typography.scss",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_layout.scss",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_mixins.scss",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_settings.scss",
+		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/main.scss",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/C/Development/FE-Corporate/src/Orchard.Web/Web.config",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/youtube-a26JG33Lx-w.json",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/toggleText.html",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/mwToggleText.directive.js",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_settings.scss",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_mixins.scss",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_mw-embedded.scss",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/amazon-B00T7MDZAO.json",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/Gruntfile.js",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/main.scss",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/sample-wall-1980s.json",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi/SevenDigitalProvider.php",
 		"/C/Development/QV/Source/QV.Presentation/App_Start/BundleEvents.cs",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/memoryWall.service.js",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi/MediaProviderFacade.php",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/amazon-B00DVLWQMU.json",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/app.module.js",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_layout.scss",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/styles/scss/_typography.scss",
 		"/C/Users/Simon.Kerr/Downloads/gandhi-sans-fontfacekit/web fonts/gandhisans_regular_macroman/stylesheet.css",
-		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/Controller/DefaultController.php",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi/IMediaProviderStrategy.php",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/main.html",
-		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi/YouTubeProvider.php",
 		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/MediaProviderApi/AmazonProvider.php",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/server/index.js",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/amazon-B00T7MDY8M.json",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/amazon-B005DDIUYW.json",
-		"/C/xampp/htdocs/mw2/web/bundles/Sk/app/memoryWall/mwItemAmazon.directive.js",
 		"/C/Development/Misys-Umbraco/web/Web.config",
 		"/C/xampp/htdocs/mw2/web/bundles/Sk/test/data/amazon-B004Z132V4.json",
 		"/C/xampp/htdocs/mw2/mw.sublime-project",
 		"/C/xampp/htdocs/mw2/vendor/symfony/symfony/src/Symfony/Component/Debug/ErrorHandler.php",
-		"/C/xampp/htdocs/mw2/src/Sk/MediaApiBundle/Resources/config/services.xml",
 		"/C/xampp/php/php.ini",
 		"/C/xampp/htdocs/mw2/web/phpinfo.php",
 		"/C/xampp/apache/conf/extra/httpd-vhosts.conf",
@@ -438,17 +436,7 @@
 		"/C/xampp/htdocs/SkNd/web/bundles/SkNd/js/compiled/nd-scripts.js",
 		"/C/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/normalize-scss-3.0.2/_normalize.scss",
 		"/C/xampp/htdocs/mw/web/bundles/Sk/app/ui/ui.js",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwItemAmazon.directive.js",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwItemYouTube.directive.js",
-		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwItemSevendigital.directive.js",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_layout.scss",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_settings.scss",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/styles/scss/_typography.scss",
-		"/C/xampp/htdocs/mw/web/bundles/Sk/bower.json",
-		"/C/xampp/htdocs/mw/app/config/config_dev.yml",
-		"/D/downloads/webfontkit-20150531-120147/stylesheet.css",
-		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/Xdebug Client/Xdebug.sublime-settings"
+		"/C/xampp/htdocs/mw/web/bundles/Sk/app/memoryWall/mwItemAmazon.directive.js"
 	],
 	"find":
 	{
@@ -468,6 +456,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"livereload",
+			"watch",
+			"connect",
+			"routes",
+			" selected-item-id=\"vm.selectedItemId\"",
+			"selectedItem",
 			"getPlayer",
 			"scope",
 			"toggle",
@@ -602,120 +596,120 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "web/bundles/Sk/app/memoryWall/mwItemAmazon.directive.js",
+					"file": "src/Sk/MediaApiBundle/MediaProviderApi/MediaProviderFacade.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1256,
+						"buffer_size": 3991,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1256,
-								1256
+								3122,
+								3122
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 84.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "web/bundles/Sk/app/memoryWall/mwItem.directive.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2147,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1253,
-								1253
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 335.0,
+						"translation.y": 1070.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "web/bundles/Sk/app/memoryWall/item.html",
+					"buffer": 1,
+					"file": "src/Sk/MediaApiBundle/MediaProviderApi/AmazonProvider.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1453,
+						"buffer_size": 9099,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1453,
-								1453
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2814.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "web/bundles/Sk/app/memoryWall/amazon.html",
+					"buffer": 2,
+					"file": "src/Sk/MediaApiBundle/MediaProviderApi/YouTubeProvider.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 919,
+						"buffer_size": 7920,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								863,
-								863
+								1027,
+								1027
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1218.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/Sk/MediaApiBundle/MediaProviderApi/SevenDigitalProvider.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4679,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								453,
+								475
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -727,117 +721,57 @@
 				},
 				{
 					"buffer": 4,
-					"file": "web/bundles/Sk/styles/scss/_layout.scss",
+					"file": "src/Sk/MediaApiBundle/MediaProviderApi/IMediaProviderStrategy.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7231,
+						"buffer_size": 890,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5765,
-								5765
+								563,
+								563
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 4461.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "web/bundles/Sk/styles/scss/_typography.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2989,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2313,
-								2313
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 462.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "web/bundles/Sk/app/memoryWall/youtube.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 695,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								284,
-								284
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "web/bundles/Sk/app/memoryWall/mwItemYouTube.directive.js",
+					"buffer": 5,
+					"file": "web/bundles/Sk/test/data/sample-wall-1980s.json",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3738,
+						"buffer_size": 10699,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2995,
-								2995
+								546,
+								546
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1196.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
@@ -1019,7 +953,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 320.0,
+	"side_bar_width": 353.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -52,8 +52,8 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
             <!--<argument type="service" id="session" />-->
             <argument type="collection" id="providers">
-                <argument type="service" id="amazon_provider" key="amazon" />
                 <argument type="service" id="youtube_provider" key="youtube" />
+                <argument type="service" id="amazon_provider" key="amazon" />
                 <argument type="service" id="wikimedia_provider" key="wikimedia" />
                 <argument type="service" id="seven_digital_provider" key="sevendigital" />
             </argument>

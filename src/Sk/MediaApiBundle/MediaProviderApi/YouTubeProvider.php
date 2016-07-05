@@ -18,14 +18,14 @@ use Sonata\Cache\CacheElement;
 use \Exception;
 
 class YouTubeProvider implements IMediaProviderStrategy {
-    const FRIENDLY_NAME = 'YouTube';
-    const PROVIDER_NAME = 'youtube';
-    const BATCH_PROCESS_THRESHOLD = 24;
-    const SEARCH_MAX_RESULTS = 50;
-    const CACHE_TTL = 259200;
+  const FRIENDLY_NAME = 'YouTube';
+  const PROVIDER_NAME = 'youtube';
+  const BATCH_PROCESS_THRESHOLD = 24;
+  const SEARCH_MAX_RESULTS = 50;
+  const CACHE_TTL = 259200;
 
-    private $gsYouTube;
-    private $defaults;
+  private $gsYouTube;
+  private $defaults;
 
     //through DI, either receives the genuine search object or a fake
     /**
@@ -35,99 +35,170 @@ class YouTubeProvider implements IMediaProviderStrategy {
      * $defaults  1 (Film & animation), 10 (Music), 20 (Gaming), 24 (Entertainment), 30 (movies), 43 (Shows)
      */
     public function __construct($google_service_youtube){
-        $this->gsYouTube = $google_service_youtube;
-        $this->defaults = array(
-            'maxResults'        =>  self::SEARCH_MAX_RESULTS,
-            'type'              =>  'video',
-            'videoCategoryId'   =>  '1,10,20,24,30,43',
-            'regionCode'        =>  'GB'
+      $this->gsYouTube = $google_service_youtube;
+      $this->defaults = array(
+        'maxResults'        =>  self::SEARCH_MAX_RESULTS,
+        'type'              =>  'video',
+        'videoCategoryId'   =>  '24',
+        'regionCode'        =>  'GB'
         );
     }
 
     public function getCacheKey(Decade $decade){
-        return array(
-            'decade'        => $decade->getSlug(),
-            'provider'      => self::PROVIDER_NAME
+      return array(
+        'decade'        => $decade->getSlug(),
+        'provider'      => self::PROVIDER_NAME
         );
     }
 
     public function setRequestObject($obj){
-        $this->gsYouTube = $obj;
+      $this->gsYouTube = $obj;
     }
 
-    public function getItem($data){
-        return array(
-            'provider'      =>  self::PROVIDER_NAME,
-            'id'            =>  $this->getItemId($data),
-            'title'         =>  $this->getItemTitle($data),
-            'image'         =>  $this->getItemImage($data),
-            'url'           =>  $this->getItemUrl($data),
-            'description'   =>  $this->getItemDescription($data)
+    private function getSimilarItems($items) {
+      $similarItems = array();
+      if (!is_array($items)) {
+        return null;
+      }
+
+      try {
+        foreach ($items as $item) {
+          array_push($similarItems, $this->getItem($item));
+        }
+
+      } catch (Exception $ex) {
+        return null;
+      }
+
+      return $similarItems;
+
+    }
+
+    public function getItem ($data){
+      $item = array(
+        'provider'      =>  self::PROVIDER_NAME,
+        'id'            =>  $this->getItemId($data),
+        'title'         =>  $this->getItemTitle($data),
+        'image'         =>  $this->getItemImage($data),
+        'url'           =>  $this->getItemUrl($data),
+        'description'   =>  $this->getItemDescription($data)
         );
+
+      return $item;
     }
 
     private function getItemId($data){
-        return  $data->id->videoId;
+      return is_object($data->id) ? $data->id->videoId : $data->id;
     }
 
 
     private function getItemUrl($data){
-        try{
-            return 'https://www.youtube.com/watch?v=' . $data->id->videoId;
-        } catch(Exception $re){
-            return null;
-        }
+      try{
+        return 'https://www.youtube.com/watch?v=' . $this->getItemId($data);
+      } catch(Exception $re){
+        return null;
+      }
     }
 
     private function getItemImage($data) {
-        try{
-            return $data->snippet->thumbnails->medium->url;
-        } catch(Exception $re){
-            return null;
-        }
+      try{
+        return $data->snippet->thumbnails->medium->url;
+      } catch(Exception $re){
+        return null;
+      }
     }
 
     private function getItemTitle($data){
-        try{
-            return $data->snippet->title;
-        } catch(Exception $e){
-            return null;
-        }
+      try{
+        return $data->snippet->title;
+      } catch(Exception $e){
+        return null;
+      }
     }
 
 
     private function getItemDescription($data) {
-        try{
-            return $data->snippet->description;
-        } catch (Exception $ex) {
-            return null;
-        }
+      try{
+        return $data->snippet->description;
+      } catch (Exception $ex) {
+        return null;
+      }
 
     }
 
     /*
-     * for youtube, details are retrieved on the client,
-     * but still need to be stored to drive recommendations, timeline
-     * and improve memory walls
+     * details are retrieved for related items using the search function
      */
     public function getDetails($decade, $id){
 
-//        if(!isset($params['ItemId']))
-//           throw new \InvalidArgumentException('No id was passed to Youtube');
-//
-//        $ve = $this->gsYouTube->getVideoEntry($params['ItemId']);
-//
-//        if($ve === false)
-//            throw new \RuntimeException("Could not connect to YouTube");
-//
-//        if(count($ve) < 1){
-//            throw new \LengthException("No results were returned");
-//        }
-//
-//        $response = $this->constructVideoEntry(new SimpleXMLElement('<entry></entry>'), $ve);
-//
-//        return $response;
-        return null;
+      $searchResponse = array();
+      //get the item details
+      try {
+        $searchResponse = $this->gsYouTube->videos->listVideos('snippet', array(
+          'id' => $id
+        ));
+      } catch (Exception $e) {
+        throw $e;
+      }
+
+      if(count($searchResponse['items']) < 1){
+        throw new Exception("No results were returned");
+      }
+
+      try {
+        //get similar items
+        $similarItems = $this->gsYouTube->search->listSearch('snippet', array(
+          'relatedToVideoId' => $id,
+          'type' => 'video',
+          'maxResults' => 25
+        ));
+      } catch (Exception $e) {
+        throw $e;
+      }
+
+      $items = (array)$searchResponse['items'];
+
+      //$itemTitle = $item->snippet->title;
+      //$itemId = is_object($item->id) ? $item->id->videoId : $item->id;
+
+      $item = $this->getItem($items[0]);
+      $item['similarItems'] = $this->getSimilarItems((array)$similarItems['items']);
+
+      return $item;
+    }
+
+    public function getListings(Decade $decade){
+      try {
+        $searchResponse = $this->gsYouTube->search->listSearch('id,snippet', array_merge($this->defaults, array(
+          'q'     => urlencode($decade->getSlug())
+          )));
+      } catch (Exception $e) {
+        throw $e;
+      }
+
+      if(count($searchResponse['items']) < 1){
+        throw new Exception("No results were returned");
+      }
+
+      return $searchResponse['items'];
+    }
+
+    public function search($query) {
+
+    }
+
+    private function getVideoFeed(Decade $decade) {
+        //$query = $this->gsYouTube->newVideoQuery();
+
+        //$query->setOrderBy('viewCount');
+        //default ordering is relevance
+        //$query->setMaxResults(self::BATCH_PROCESS_THRESHOLD);
+        //$query->setCategory('Entertainment/' . $decade->getSlug());
+
+        //$this->query = $query->getQueryUrl(2);
+
+        //return $this->gsYouTube->getVideoFeed($query);
+      return null;
     }
 
     public function getBatch(array $ids){
@@ -167,41 +238,7 @@ class YouTubeProvider implements IMediaProviderStrategy {
 //        $response = $this->getSimpleXml($feed);
 //
 //        return $response;
-        return null;
-    }
-
-    public function getListings(Decade $decade){
-        try {
-            $searchReponse = $this->gsYouTube->search->listSearch('id,snippet', array_merge($this->defaults, array(
-                'q'     => urlencode($decade->getSlug())
-            )));
-        } catch (Exception $e) {
-            throw $e;
-        }
-
-        if(count($searchReponse['items']) < 1){
-            throw new Exception("No results were returned");
-        }
-
-        return $searchReponse['items'];
-    }
-
-    public function search($query) {
-
-    }
-
-    private function getVideoFeed(Decade $decade) {
-        //$query = $this->gsYouTube->newVideoQuery();
-
-        //$query->setOrderBy('viewCount');
-        //default ordering is relevance
-        //$query->setMaxResults(self::BATCH_PROCESS_THRESHOLD);
-        //$query->setCategory('Entertainment/' . $decade->getSlug());
-
-        //$this->query = $query->getQueryUrl(2);
-
-        //return $this->gsYouTube->getVideoFeed($query);
-        return null;
+      return null;
     }
 
 //    private function getSimpleXml($videoFeed, $debugURL = false){
@@ -245,6 +282,6 @@ class YouTubeProvider implements IMediaProviderStrategy {
 //
 
 
-}
+  }
 
-?>
+  ?>

@@ -87,7 +87,7 @@ class AmazonProvider implements IMediaProviderStrategy {
       'title'         =>  $this->getItemTitle($data),
       'image'         =>  $this->getItemImage($data, $extendedInfo),
       'url'           =>  $this->getItemUrl($data)
-      );
+    );
 
     if ($extendedInfo) {
       $item = array_merge($item, array(
